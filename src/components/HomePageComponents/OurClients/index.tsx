@@ -19,9 +19,9 @@ export default function OurClients() {
 
                         </div>
                         <div className=' w-full px-5 pb-6 -mt-[70px] pt-[80px] bg-white rounded-2xl ' >
-                            <p className=' text-[#12121280] text-sm font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
+                            <p className=' text-[#12121280]  font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
                             <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                            <p className=' font-semibold text-sm text-[#12121280] ' >Position @company</p>
+                            <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
                         </div>
                     </div>
                     <div className=' w-[350px] flex flex-col items-center ' >
@@ -29,9 +29,9 @@ export default function OurClients() {
 
                         </div>
                         <div className=' w-full px-5 pb-6 -mt-[70px] pt-[80px] bg-white rounded-2xl ' >
-                            <p className=' text-[#12121280] text-sm font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
+                            <p className=' text-[#12121280]  font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
                             <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                            <p className=' font-semibold text-sm text-[#12121280] ' >Position @company</p>
+                            <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
                         </div>
                     </div>
                     <div className=' w-[350px] flex flex-col items-center ' >
@@ -39,9 +39,9 @@ export default function OurClients() {
 
                         </div>
                         <div className=' w-full px-5 pb-6 -mt-[70px] pt-[80px] bg-white rounded-2xl ' >
-                            <p className=' text-[#12121280] text-sm font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
+                            <p className=' text-[#12121280]  font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
                             <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                            <p className=' font-semibold text-sm text-[#12121280] ' >Position @company</p>
+                            <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
                         </div>
                     </div>
                     <div className=' w-[350px] flex flex-col items-center ' >
@@ -49,9 +49,9 @@ export default function OurClients() {
 
                         </div>
                         <div className=' w-full px-5 pb-6 -mt-[70px] pt-[80px] bg-white rounded-2xl ' >
-                            <p className=' text-[#12121280] text-sm font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
+                            <p className=' text-[#12121280]  font-medium leading-[24px] ' >“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”“Lorem ipsum dolor sit amet consectetur. Fusce sed euismod in turpis amet nulla. Interdum ut sed faucibus arcu tempus. Tellus cursus amet tellus facilisis donec magna. Suspendisse facilisi iaculis et amet malesuada enim sed.”</p>
                             <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                            <p className=' font-semibold text-sm text-[#12121280] ' >Position @company</p>
+                            <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
                         </div>
                     </div>
                 </div>
