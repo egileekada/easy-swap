@@ -8,6 +8,8 @@ import ResetPwdPage from './pages/ResetPwdPage';
 import Dashboard from './pages/Dashboard';
 import DashboardLayout from './components/DashboardLayout';
 import SellCryptoPage from './pages/SellCryptoPage';
+import TransactionPage from './pages/TransactionPage';
+import BankPage from './pages/BankPage';
 
 function App() {
   return ( 
@@ -21,6 +23,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />} > 
           <Route path="/dashboard" element={<Dashboard />} /> 
           <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
+          <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
+          <Route path="/dashboard/banks" element={<BankPage />} /> 
         </Route>
       </Routes>
     </Router>

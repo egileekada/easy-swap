@@ -22,7 +22,7 @@ export default function LoginPage() {
                      
                     <a href='/resetpwd' className=' font-semibold ' >Forget password</a>
                 </div>
-                <ButtonComponent name="Log in" />
+                <ButtonComponent onClick={()=> navigate("/dashboard")} name="Log in" />
                 <div className=' flex items-center justify-center font-medium text-[#344054] mt-8 gap-2 ' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.5005 12.2336C22.5005 11.3702 22.4291 10.7402 22.2744 10.0869H12.2148V13.9835H18.1196C18.0006 14.9519 17.3577 16.4102 15.9291 17.3902L15.9091 17.5206L19.0897 19.9354L19.3101 19.9569C21.3338 18.1252 22.5005 15.4302 22.5005 12.2336Z" fill="#4285F4"/>
