@@ -3,11 +3,11 @@ import React from 'react'
 export default function HowItWorks() {
     return (
         <div className=' w-full flex justify-center bg-[#303179] ' > 
-            <div className=' w-full flex pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
-                <div className=' w-full flex flex-col items-center px-16 pt-10 ' >
-                    <h1 className=' text-[48px] text-[#00BAF0] font-bold ' >How Easyswap works</h1>
+            <div className=' w-full flex pt-6 lg:flex-row flex-col lg:pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
+                <div className=' w-full flex flex-col items-center px-6 lg:px-16 pt-10 ' >
+                    <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Easyswap works</h1>
                     <p className=' max-w-lg mt-6 ' >Lorem ipsum dolor sit amet consectetur. Et ultricies auctor quis at etiam nulla.Lorem ipsum dolor sit amet consectetur. Et ultricies auctor quis at etiam nulla.</p>
-                    <div className=' max-w-lg mt-[58px] flex gap-6 ' >
+                    <div className=' max-w-lg mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Add funds to your crypto account to start trading crypto. You can add funds with a variety of payment methods.</p>
                         </div>
                     </div>
-                    <div className=' max-w-lg mt-[40px] flex gap-6 ' >
+                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Complete the identity verification process to secure your account and transactions.</p>
                         </div>
                     </div>
-                    <div className=' max-w-lg mt-[40px] flex gap-6 ' >
+                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@ export default function HowItWorks() {
                         </div>
                     </div>
                 </div>
-                <div className=' w-full flex justify-center ' >
+                <div className=' w-full flex justify-center lg:mt-0 mt-8 ' >
                     <img alt='first' className=' w-[65%] ' src='/images/iPhone.png' />
                 </div>
             </div>

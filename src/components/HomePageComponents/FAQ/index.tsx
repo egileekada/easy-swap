@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function FAQ() {
     return (
-        <div className=' w-full py-20 flex flex-col text-center items-center bg-[#fff] px-14 ' >
+        <div className=' w-full py-8 lg:py-20 flex flex-col text-center items-center bg-[#fff] px-6 lg:px-14 ' >
             <p className=' text-lg font-normal ' >FAQs</p>
-            <p className=' font-bold text-4xl text-[#303179] mt-3  max-w-xl ' >Some questions you might already have</p> 
-            <div className=' w-[750px] flex flex-col mt-12 gap-4 ' >
+            <p className=' font-bold text-2xl lg:text-4xl text-[#303179] mt-3  max-w-xl ' >Some questions you might already have</p> 
+            <div className=' w-full lg:w-[750px] flex flex-col mt-12 gap-4 ' >
                 <div className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                     <p className=' font-medium text-xl ' >Question 1</p>
                     <svg role='button' width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
