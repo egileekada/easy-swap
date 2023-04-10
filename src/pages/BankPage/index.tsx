@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function BankPage() {
     return (
-        <div className=' w-full px-14 ' > 
-            <p className=' font-semibold text-2xl mb-8 mt-14 ' >Bank Information</p>
+        <div className=' w-full px-6 lg:px-14 ' > 
+            <p className=' font-semibold text-lg lg:text-2xl mb-8 mt-14 ' >Bank Information</p>
             <div className=' w-full mt-6 ' >
                 <TableContainer>
                     <Table variant='unstyled'> 

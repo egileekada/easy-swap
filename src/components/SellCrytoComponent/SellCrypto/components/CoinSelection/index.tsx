@@ -25,7 +25,7 @@ export default function CoinSelection() {
             </div>
             {showModal && (
                 <> 
-                    <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-30 bg-white absolute flex flex-col w-[500px] mb-20 rounded-lg px-5 py-4 ' >
+                    <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-30 bg-white absolute flex flex-col w-full lg:w-[500px] mb-20 rounded-lg px-5 py-4 ' >
                         <div className=' w-full flex items-center justify-between ' >
                             <p>Select Network</p>
                             <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >

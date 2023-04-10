@@ -10,6 +10,8 @@ import DashboardLayout from './components/DashboardLayout';
 import SellCryptoPage from './pages/SellCryptoPage';
 import TransactionPage from './pages/TransactionPage';
 import BankPage from './pages/BankPage';
+import Settings from './pages/Settings';
+import DisputePage from './pages/DisputesPage';
 
 function App() {
   return ( 
@@ -25,6 +27,8 @@ function App() {
           <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
           <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
           <Route path="/dashboard/banks" element={<BankPage />} /> 
+          <Route path="/dashboard/dispute" element={<DisputePage />} />
+          <Route path="/dashboard/settings" element={<Settings />} /> 
         </Route>
       </Routes>
     </Router>
