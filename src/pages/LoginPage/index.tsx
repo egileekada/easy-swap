@@ -11,10 +11,10 @@ export default function LoginPage() {
     return (
         <div className=' w-full h-screen pb-20 flex flex-col justify-center items-center ' >
             <Navbar hide={true} />
-            <div className=' w-[560px] flex flex-col items-center text-center ' > 
-                <p className=' text-4xl font-semibold text-[#1E293B] ' >Log in</p>
-                <p className=' text-[#475569] mt-2  max-w-md text-center ' >Hello again! Please enter your login details.</p>
-                <div className=' mt-10 text-left w-full ' > 
+            <div className=' w-full lg:px-0 px-6 lg:w-[560px] flex flex-col lg:items-center lg:text-center ' > 
+                <p className=' text-2xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B] ' >Login to your account</p>
+                <p className=' text-[#475569] mt-2 lg:max-w-md lg:text-center ' >Hello again! Please enter your login details.</p>
+                <div className=' mt-6 lg:mt-10 text-left w-full ' > 
                     <InputComponent title='Email Address' placeholder='Enter Email Address' />
                     <InputComponent pwd={true} title='Password' placeholder='Enter Password' /> 
                 </div>
@@ -23,7 +23,7 @@ export default function LoginPage() {
                     <a href='/resetpwd' className=' font-semibold ' >Forget password</a>
                 </div>
                 <ButtonComponent onClick={()=> navigate("/dashboard")} name="Log in" />
-                <div className=' flex items-center justify-center font-medium text-[#344054] mt-8 gap-2 ' >
+                <div className=' flex items-center bg-[#F2F4F7] rounded h-[45px]  justify-center font-medium text-[#344054] mt-4 lg:mt-8 gap-2 ' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.5005 12.2336C22.5005 11.3702 22.4291 10.7402 22.2744 10.0869H12.2148V13.9835H18.1196C18.0006 14.9519 17.3577 16.4102 15.9291 17.3902L15.9091 17.5206L19.0897 19.9354L19.3101 19.9569C21.3338 18.1252 22.5005 15.4302 22.5005 12.2336Z" fill="#4285F4"/>
                         <path d="M12.212 22.4996C15.1048 22.4996 17.5334 21.5662 19.3072 19.9562L15.9263 17.3895C15.0215 18.0078 13.8072 18.4395 12.212 18.4395C9.37874 18.4395 6.974 16.6079 6.11678 14.0762L5.99113 14.0866L2.68388 16.595L2.64062 16.7128C4.4025 20.1428 8.02155 22.4996 12.212 22.4996Z" fill="#34A853"/>

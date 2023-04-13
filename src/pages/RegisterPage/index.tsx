@@ -11,23 +11,23 @@ export default function RegisterPage() {
     return (
         <div className=' w-full pb-20 flex flex-col items-center ' >
             <Navbar hide={true} />
-            <div className=' w-[560px] flex flex-col items-center text-center mt-8 ' > 
-                <p className=' text-4xl font-semibold text-[#1E293B] ' >Create Account</p>
-                <p className=' text-[#475569] mt-2 max-w-md text-center ' >Get started! It takes less than a minutes.</p>
-                <div className=' mt-10 text-left w-full ' >
+            <div className=' w-full lg:px-0 px-6 lg:w-[560px] flex flex-col lg:items-center lg:text-center mt-8 ' > 
+                <p className='text-3xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B] ' >Create Account</p>
+                <p className=' text-[#475569] mt-2 max-w-md' >Get started! It takes less than a minutes.</p>
+                <div className=' mt-6 lg:mt-10 text-left w-full lg:mb-0 mb-8 ' >
                     <InputComponent title='Full Name' placeholder='Enter Full Name' />
                     <InputComponent title='Email Address' placeholder='Enter Email Address' />
                     <InputComponent pwd={true} title='Password' placeholder='Enter Password' />
                     <InputComponent pwd={true} title='Confirm Password' placeholder='Enter Confirm Password' />
                 </div>
-                <div className=' w-full mt-10 flex gap-2 mb-6 text-[#475569] text-sm font-medium justify-center items-center ' >
+                <div className=' w-full mt-10 hidden lg:flex lg:flex-row flex-col gap-2 mb-6 text-[#475569] text-sm font-medium justify-center items-center ' >
                     <p className=' ' >By clicking on continue, I agree to Easyswap’s</p>
                     <a href='#' className=' font-semibold ' >Privacy Policy</a>
                     <p>and</p>
                     <a href='#' className=' font-semibold ' >Terms of Use</a>
                 </div>
                 <ButtonComponent onClick={()=> navigate("/verifyemail")} name="Create Account" />
-                <div className=' flex items-center justify-center font-medium text-[#344054] mt-8 gap-2 ' >
+                <div className=' flex items-center justify-center font-medium text-[#344054] bg-[#F2F4F7] rounded h-[45px] mt-4 lg:mt-8 gap-2 ' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.5005 12.2336C22.5005 11.3702 22.4291 10.7402 22.2744 10.0869H12.2148V13.9835H18.1196C18.0006 14.9519 17.3577 16.4102 15.9291 17.3902L15.9091 17.5206L19.0897 19.9354L19.3101 19.9569C21.3338 18.1252 22.5005 15.4302 22.5005 12.2336Z" fill="#4285F4"/>
                         <path d="M12.212 22.4996C15.1048 22.4996 17.5334 21.5662 19.3072 19.9562L15.9263 17.3895C15.0215 18.0078 13.8072 18.4395 12.212 18.4395C9.37874 18.4395 6.974 16.6079 6.11678 14.0762L5.99113 14.0866L2.68388 16.595L2.64062 16.7128C4.4025 20.1428 8.02155 22.4996 12.212 22.4996Z" fill="#34A853"/>

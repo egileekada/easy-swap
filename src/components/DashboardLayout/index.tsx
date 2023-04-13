@@ -13,7 +13,7 @@ export default function DashboardLayout() {
 
     return (
         <div className=' w-full h-screen flex flex-col relative flex-1 bg-[#f8f8f8] ' >
-            <Navbar/>
+            <Navbar dashboard={true} />
             <div className=' flex flex-1 overflow-hidden ' >
 
             <div className=' w-full h-full flex flex-1 ' >

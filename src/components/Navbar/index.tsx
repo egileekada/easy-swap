@@ -5,10 +5,11 @@ import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFoo
 import Sidebar from '../DashboardLayout/component/Sidebar'
 
 type props = {
-    hide?: boolean 
+    hide?: boolean,
+    dashboard?: boolean
 }
 
-export default function Navbar({ hide }: props) {
+export default function Navbar({ hide, dashboard }: props) {
 
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -35,9 +36,11 @@ export default function Navbar({ hide }: props) {
                         <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
                     </div>
                 )}
-                <div className=' lg:hidden '>
-                    <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
-                </div>
+                {dashboard && ( 
+                    <div className=' lg:hidden '>
+                        <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
+                    </div>
+                )}
             </div>
                 <div> 
                     <Drawer  
