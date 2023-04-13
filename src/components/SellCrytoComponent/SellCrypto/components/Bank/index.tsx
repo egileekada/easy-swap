@@ -1,9 +1,54 @@
 import { Input } from '@chakra-ui/react'
 import React from 'react'
 
-export default function CoinSelection() {
+export default function BankSelection() {
 
     const [showModal, setShowModal] = React.useState(false)
+
+    const BankList =()=> {
+        return(
+            <> 
+                <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4  z-[200] lg:z-20 bg-white flex flex-col w-full lg:w-[500px] mb-20 rounded-lg px-5 py-4 ' >
+                    <div className=' w-full flex items-center justify-between ' >
+                        <p className='font-bold text-lg '>Select Network</p>
+                        <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div> 
+                    <div className=' w-full flex font-medium pt-6 flex-col gap-3 overflow-y-auto max-h-64 ' >
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
+                            <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
+
+                            </div>
+                            <div className='' >
+                                <p className=' text-[#8994A1] ' >9 Payment Solutions</p> 
+                            </div>
+                        </div>
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
+                            <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
+
+                            </div>
+                            <div className='' >
+                                <p className=' text-[#8994A1] ' >AB Microfinance Bank</p> 
+                            </div>
+                        </div>
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
+                            <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
+
+                            </div>
+                            <div className='' >
+                                <p className=' text-[#8994A1] ' >Abbey Mortgage Bank</p> 
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div className=' fixed z-[100] lg:z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
+            </>
+        )
+    }
 
     return (
         <div className=' w-full relative' >
@@ -25,44 +70,12 @@ export default function CoinSelection() {
             </div>
             {showModal && (
                 <> 
-                    <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-20 bg-white absolute flex flex-col w-full lg:w-[500px] mb-20 rounded-lg px-5 py-4 ' >
-                        <div className=' w-full flex items-center justify-between ' >
-                            <p>Select Network</p>
-                            <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div> 
-                        <div className=' w-full flex font-medium pt-6 flex-col gap-3 overflow-y-auto max-h-64 ' >
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
-                                <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
-
-                                </div>
-                                <div className='' >
-                                    <p className=' text-[#8994A1] ' >9 Payment Solutions</p> 
-                                </div>
-                            </div>
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
-                                <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
-
-                                </div>
-                                <div className='' >
-                                    <p className=' text-[#8994A1] ' >AB Microfinance Bank</p> 
-                                </div>
-                            </div>
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
-                                <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
-
-                                </div>
-                                <div className='' >
-                                    <p className=' text-[#8994A1] ' >Abbey Mortgage Bank</p> 
-                                </div>
-                            </div> 
-                        </div>
+                    <div className=' w-full lg:hidden fixed z-50 inset-0  justify-center items-center h-full flex px-4 flex-col '  > 
+                        <BankList />
+                    </div> 
+                    <div className=' w-full absolute z-20 hidden h-full lg:flex flex-col items-end '  > 
+                        <BankList />
                     </div>
-                    <div className=' fixed z-10 inset-0 ' onClick={()=> setShowModal(false)} />
                 </>
             )}
         </div>

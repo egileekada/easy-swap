@@ -12,9 +12,16 @@ type props = {
 export default function SellCrypto({next}: props) {
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
-            <p className=' text-[#6B6B93] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
+            <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                 <CoinSelection />
+                <div className=' w-full ' > 
+                    <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
+                    <div className=' w-full mb-1   ' >
+                        <Input placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                    </div>
+                    <p className=' text-sm text-[#475467] font-normal  ' >Est Price -- <span className='font-semibold' >NGN</span> 470.55 / <span className='font-semibold'>USDT</span></p>
+                </div>
                 <CoinNetwork />
                 <Bank />
                 <div className=' w-full ' > 
@@ -22,22 +29,24 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full   ' >
                         <Input height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                     </div>
-                    <div className=' flex gap-3 font-normal mt-2 text-[#303179] text-sm ' >
-                        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="warning">
-                                <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179"/>
-                                <g id="Group 12">
-                                    <g id="Path">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70"/>
-                                        <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </g>
-                                    <g id="Path_2">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70"/>
-                                        <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <div className=' flex gap-2 lg:gap-3 font-medium mt-2 text-[#303179] text-sm ' >
+                        <div className=' w-fit mt-[1px] ' >
+                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="warning">
+                                    <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179"/>
+                                    <g id="Group 12">
+                                        <g id="Path">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70"/>
+                                            <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <g id="Path_2">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70"/>
+                                            <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
                                     </g>
                                 </g>
-                            </g>
-                        </svg>
+                            </svg>
+                        </div>
                         The name on your account must match the name provided on your BVN and Easyswap account
                     </div>
                 </div> 

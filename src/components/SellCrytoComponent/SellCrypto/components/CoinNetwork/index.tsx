@@ -5,6 +5,36 @@ export default function CoinNetwork() {
 
     const [showModal, setShowModal] = React.useState(false)
 
+    const NetworkList =()=>{
+        return(
+            <> 
+                <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-[200] lg:z-30 bg-white flex flex-col w-full lg:w-[500px] mb-20 rounded-lg px-5 py-4 ' >
+                    <div className=' w-full flex items-center justify-between ' >
+                        <p className=' font-bold text-lg ' >Select the Network</p>
+                        <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div> 
+                    <div className=' w-full flex pt-4 pb-2 flex-col gap-3 overflow-y-auto max-h-64 ' >
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex py-2 border-b border-[#F2F2F2] items-center gap-3 ' > 
+                            <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
+                        </div>
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex py-2 border-b border-[#F2F2F2] items-center gap-3 ' >
+                            <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
+                        </div>
+                        <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex py-2 border-b border-[#F2F2F2] items-center gap-3 ' >
+                            <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
+                        </div> 
+                    </div>
+                </div>
+                <div className=' fixed z-[100] lg:z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
+            </>
+        )
+    }
+
     return (
         <div className=' w-full relative' >
             <p className=' font-normal text-[#334155] mb-2 ' >Coin network</p>
@@ -25,29 +55,12 @@ export default function CoinNetwork() {
             </div>
             {showModal && (
                 <> 
-                    <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4  z-30 bg-white absolute flex flex-col w-full lg:w-[500px] mb-20 rounded-lg px-5 py-4 ' >
-                        <div className=' w-full flex items-center justify-between ' >
-                            <p>Select the Network</p>
-                            <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
-                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div> 
-                        <div className=' w-full flex pt-4 pb-2 flex-col gap-3 overflow-y-auto max-h-64 ' >
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' > 
-                                <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
-                            </div>
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
-                                <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
-                            </div>
-                            <div role="button" onClick={()=> setShowModal(false)} className=' w-full flex items-center gap-3 ' >
-                                <p className=' font-normal text-[#8994A1] ' >Binance Smart Chain (BEP20)</p> 
-                            </div> 
-                        </div>
+                    <div className=' w-full lg:hidden fixed z-50 inset-0  justify-center items-center h-full flex px-4 flex-col '  > 
+                        <NetworkList />
+                    </div> 
+                    <div className=' w-full absolute z-20 hidden h-full lg:flex flex-col items-end '  > 
+                        <NetworkList />
                     </div>
-                    <div className=' fixed z-10 inset-0 ' onClick={()=> setShowModal(false)} />
                 </>
             )}
         </div>
