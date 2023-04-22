@@ -1,11 +1,14 @@
-import { TableContainer, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
+import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, Select } from '@chakra-ui/react'
 import React from 'react'
 
 export default function BankPage() {
+
+    const [showModal, setShowModal] = React.useState(false)
+
     return (
         <div className=' w-full px-6 lg:px-14 ' > 
             <p className=' font-semibold text-lg lg:text-2xl mb-8 mt-14 ' >Bank Information</p>
-            <div className=' w-full mt-6 ' >
+            <div className=' w-full lg:block hidden mt-6 ' >
                 <TableContainer>
                     <Table variant='unstyled'> 
                         <Thead style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] font-bold bg-[#F9FAFB] text-[#000] ' >
@@ -49,9 +52,38 @@ export default function BankPage() {
                     </Table>
                 </TableContainer>
             </div>
-            <div className=' w-full flex justify-end mt-8 ' > 
-                <button className=' bg-[#303179] text-[#fff] rounded-md px-12 text-sm py-2 font-bold  ' >Add Bank</button>
+            <div className=' w-full lg:hidden ' >
+                <p></p>
             </div>
+            <div className=' w-full flex justify-end mt-8 ' > 
+                <button onClick={()=> setShowModal(true)} className=' bg-[#303179] text-[#fff] rounded-md px-12 text-sm py-2 font-bold  ' >Add Bank</button>
+            </div>
+            {showModal && (
+                <>  
+                    <div className=' w-full fixed z-20 h-full  px-4 inset-0 flex justify-center items-center flex-col '  >  
+                        <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-[200] bg-white w-full  lg:w-[500px] md:w-[500px] rounded-lg px-5 py-4 ' > 
+                            <div className=' w-full flex items-center justify-between ' >
+                                <p className='font-bold text-lg ' >Edit Bank Details</p>
+                                <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <p className=' text-[#475467] font-medium mt-8 mb-2 ' >Bank Name</p> 
+                            <Select fontSize="sm" backgroundColor="white" >
+                                <option>All</option>
+                            </Select>
+                            <p className=' text-[#475467] font-medium mt-4 mb-2 ' >Account Number</p> 
+                            <Input placeholder='Enter Account Number' type='number' />
+                            <button onClick={()=> setShowModal(false)} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                        </div>
+                        <div className=' fixed z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
+                    </div>
+                </>
+            )}
         </div>
     )
 }

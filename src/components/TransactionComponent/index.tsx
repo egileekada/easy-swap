@@ -1,10 +1,15 @@
-import { Select, Table, TableContainer, Tbody, Td, Thead, Tr } from '@chakra-ui/react'
+import { Input, Select, Table, TableContainer, Tbody, Td, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
 
 export default function TransactionComponent() {
+
+    const [tab, setTab] = React.useState(false)
+    const [show, setshow] = React.useState(0)
+    const [showModal, setShowModal] = React.useState(false)
+
     return (
         <div className=' w-full  ' >
-            <div className=' grid grid-cols-auto lg:grid-cols-5 gap-5 font-medium  ' >
+            <div className=' lg:grid grid-cols-auto hidden lg:grid-cols-5 gap-5 font-medium  ' >
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Type</p>
                     <Select fontSize="sm" backgroundColor="white" >
@@ -30,6 +35,7 @@ export default function TransactionComponent() {
                     </Select>
                 </div>
             </div>
+
             <div className=' w-full mt-6 lg:block hidden ' >
             <TableContainer>
                 <Table variant='unstyled'> 
@@ -87,6 +93,74 @@ export default function TransactionComponent() {
                 </Table>
             </TableContainer>
             </div>
+            <div className=' w-full lg:hidden ' >
+                <div className=' w-full flex justify-between items-center  ' >
+                    <div className=' flex text-sm items-center gap-3 ' >
+                        <p role='button' onClick={()=> setTab(false)} className={`  ${tab ? "text-[#667085] font-normal pb-4 border-b-2 border-transparent ": " pb-4 border-b-2 border-[#303179] font-semibold text-[#344054]"} `} >Pending</p>
+                        <p role='button' onClick={()=> setTab(true)} className={`  ${!tab ? "text-[#667085] font-normal pb-4 border-b-2 border-transparent ": " pb-4 border-b-2 border-[#303179] font-semibold text-[#344054]"} `} >Completed</p>  
+                    </div>
+                    <svg role='buttton' onClick={()=> setShowModal(true)} width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 11V17L6 19V11L0 2V0H16V2L10 11ZM2.4037 2L8 10.3944L13.5963 2H2.4037Z" fill="black"/>
+                    </svg>
+                </div>
+                <div className=' w-full mt-12 '  >
+                    <div className=' w-full flex justify-between ' >
+                        <div className=' flex gap-2 ' >
+                            <div className=' w-[30px] h-[30px] bg-green-500 rounded-full ' >
+                                  
+                            </div>
+                            <div>
+                                <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> USDT</p>
+                                <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: 2,000 USDT</p>
+                            </div>
+                        </div>
+                        <div className=' flex flex-col ' >
+                            <div className=' flex items-center gap-2 ' >
+                                <p className=' text-xs text-[#12B76A] font-semibold ' >Success</p>
+                                <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
+                                </svg>
+                            </div>
+                            <p className=' text-sm text-[#333333] mt-auto font-medium ' >NGN 1,400,60</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {showModal && (
+                <>  
+                    <div className=' w-full fixed z-20 h-full px-4 inset-0 flex justify-center items-center flex-col '  >  
+                        <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-[200] lg:w-[500px] md:w-[500px] bg-white w-full rounded-lg px-5 py-4 ' > 
+                            <div className=' w-full flex items-center justify-between ' > 
+                                <p className='font-bold text-lg ' >Filter</p>
+                                <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p className=' text-[#475467] font-semibold mt-5 ' >Status</p>
+                            <div className=' mt-2 flex gap-4 ' >
+                                <p role='button' onClick={()=> setshow(0)} className={`  ${show === 0 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >All</p>
+                                <p role='button' onClick={()=> setshow(1)} className={`  ${show === 1 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >Completed</p>  
+                                <p role='button' onClick={()=> setshow(2)} className={`  ${show === 2 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >Canceled</p>  
+                            </div>
+                            <p className=' text-[#475467] font-semibold mt-5 ' >Date</p>
+                            <div className=' flex gap-3 mt-2 items-center ' >
+                                <Input type='date' fontSize="sm" />
+                                <p className=' text-[#667085] text-sm font-medium ' >to</p>
+                                <Input type='date' fontSize="sm" />
+                            </div>
+                            <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p> 
+                            <Select fontSize="sm" backgroundColor="white" >
+                                <option>All</option>
+                            </Select>
+                            <button onClick={()=> setShowModal(false)} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                        </div>
+                        <div className=' fixed z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
+                    </div>
+                </>
+            )}
         </div>
     )
 }
