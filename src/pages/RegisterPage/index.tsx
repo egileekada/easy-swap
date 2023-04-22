@@ -3,22 +3,154 @@ import Navbar from '../../components/Navbar'
 import InputComponent from '../../components/InputComponent'
 import ButtonComponent from '../../components/ButtonComponent'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import * as yup from 'yup'
+import { useFormik } from 'formik'; 
+import { useLoginCallback, useRegisterCallback } from '../../action/useAuth'
+import { useToast } from '@chakra-ui/react'
 
 export default function RegisterPage() {
 
     const navigate = useNavigate()
+    const [loading, setLoading] = React.useState(false)
+    const [confirmPassword, setConfirmPassword] = React.useState("")
+
+
+    const { handleRegister } = useRegisterCallback()
+    const toast = useToast()
+     
+    const loginSchema = yup.object({ 
+        email: yup.string().email('This email is not valid').required('Your email is required'),
+        fullname: yup.string().required('Required'),
+        password: yup.string().required('Your password is required').min(4, 'A minimium of 4 characters')
+    }) 
+
+    // formik
+    const formik = useFormik({
+        initialValues: {email: '', fullname: '', password: ''},
+        validationSchema: loginSchema,
+        onSubmit: () => {},
+    });  
+    
+    const submit = async (e: any) => { 
+        e.preventDefault(true)
+        setLoading(true);
+        if (!formik.dirty) { 
+            toast({
+                title: 'You have to fill in the form to continue', 
+                status: 'error',  
+                duration: 3000, 
+            }) 
+            setLoading(false);
+            return;
+        }else if (!formik.isValid) {
+            toast({
+                title: 'You have to fill in the form to continue', 
+                status: 'error',  
+                duration: 3000, 
+            }) 
+            setLoading(false);
+            return;
+        } else { 
+
+            const request: any = await handleRegister(JSON.stringify(formik.values))
+
+            console.log(request);
+            
+
+            // if (request.status === 200 || request.status === 201) {    
+            //     localStorage.setItem('token', request?.data?.data?.token);   
+            //     localStorage.setItem('id', request?.data?.data?.user?.id); 
+            //     // navigate("/verifyemail")
+            //     toast({
+            //         title: request?.data?.message, 
+            //         status: 'success',  
+            //         duration: 3000, 
+            //     }) 
+            // }else { 
+            //     toast({
+            //         title: request?.data?.message, 
+            //         status: 'error',  
+            //         duration: 3000, 
+            //     }) 
+            // }
+            setLoading(false);
+        }
+    } 
 
     return (
-        <div className=' w-full pb-20 flex flex-col items-center ' >
+        <form onSubmit={(e)=> submit(e)} className=' w-full pb-20 flex flex-col items-center ' >
             <Navbar hide={true} />
             <div className=' w-full lg:px-0 px-6 lg:w-[560px] flex flex-col lg:items-center lg:text-center mt-8 ' > 
                 <p className='text-3xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B] ' >Create Account</p>
                 <p className=' text-[#475569] mt-2 max-w-md' >Get started! It takes less than a minutes.</p>
                 <div className=' mt-6 lg:mt-10 text-left w-full lg:mb-0 mb-8 ' >
-                    <InputComponent title='Full Name' placeholder='Enter Full Name' />
-                    <InputComponent title='Email Address' placeholder='Enter Email Address' />
-                    <InputComponent pwd={true} title='Password' placeholder='Enter Password' />
-                    <InputComponent pwd={true} title='Confirm Password' placeholder='Enter Confirm Password' />
+                    <InputComponent 
+                        name="fullname"
+                        onChange={formik.handleChange}
+                        onFocus={() =>
+                            formik.setFieldTouched("fullname", true, true)
+                        }  
+                        title='Full Name' placeholder='Enter Full Name' />
+                    <div className="w-full h-auto pt-2">
+                        {formik.touched.fullname && formik.errors.fullname && (
+                            <motion.p
+                                style={{fontFamily:"Inter", fontWeight:"700" }}
+                                initial={{ y: -100, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                className="text-xs text-[#ff0000]">
+                                {formik.errors.fullname}
+                            </motion.p>
+                        )}
+                    </div>
+                    <InputComponent 
+                        name="email"
+                        onChange={formik.handleChange}
+                        onFocus={() =>
+                            formik.setFieldTouched("email", true, true)
+                        }  
+                        title='Email Address' placeholder='Enter Email Address' />
+                    <div className="w-full h-auto pt-2">
+                        {formik.touched.email && formik.errors.email && (
+                            <motion.p
+                                style={{fontFamily:"Inter", fontWeight:"700" }}
+                                initial={{ y: -100, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                className="text-xs text-[#ff0000]">
+                                {formik.errors.email}
+                            </motion.p>
+                        )}
+                    </div>
+                    <InputComponent 
+                        name="password"
+                        onChange={formik.handleChange}
+                        onFocus={() =>
+                            formik.setFieldTouched("password", true, true)
+                        }  
+                        pwd={true} title='Password' placeholder='Enter Password' />
+                    <div className="w-full h-auto pt-2">
+                        {formik.touched.password && formik.errors.password && (
+                            <motion.p
+                                style={{fontFamily:"Inter", fontWeight:"700" }}
+                                initial={{ y: -100, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                className="text-xs text-[#ff0000]">
+                                {formik.errors.password}
+                            </motion.p>
+                        )}
+                    </div>
+                    <InputComponent onChange={(e: any)=> setConfirmPassword(e.target.value)} pwd={true} title='Confirm Password' placeholder='Enter Confirm Password' />
+                    <div className="w-full h-auto pt-2">
+                        {formik.values.password !== confirmPassword && (
+                            <motion.p
+                                style={{fontFamily:"Inter", fontWeight:"700" }}
+                                initial={{ y: -100, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                className="text-xs text-[#ff0000]">
+                                {formik.errors.password}
+                            </motion.p>
+                        )}
+                    </div>
                 </div>
                 <div className=' w-full mt-10 hidden lg:flex lg:flex-row flex-col gap-2 mb-6 text-[#475569] text-sm font-medium justify-center items-center ' >
                     <p className=' ' >By clicking on continue, I agree to Easyswap’s</p>
@@ -26,7 +158,7 @@ export default function RegisterPage() {
                     <p>and</p>
                     <a href='#' className=' font-semibold ' >Terms of Use</a>
                 </div>
-                <ButtonComponent onClick={()=> navigate("/verifyemail")} name="Create Account" />
+                <ButtonComponent  type="submit" disabled={!formik.isValid && formik.values.password === confirmPassword} bgcolor={(formik.isValid && formik.values.password === confirmPassword) ? " bg-[#303179] text-white ": ""} name={loading ? "Loading...": "Create Account"} />
                 <div className=' flex items-center justify-center font-medium text-[#344054] bg-[#F2F4F7] rounded h-[45px] mt-4 lg:mt-8 gap-2 ' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.5005 12.2336C22.5005 11.3702 22.4291 10.7402 22.2744 10.0869H12.2148V13.9835H18.1196C18.0006 14.9519 17.3577 16.4102 15.9291 17.3902L15.9091 17.5206L19.0897 19.9354L19.3101 19.9569C21.3338 18.1252 22.5005 15.4302 22.5005 12.2336Z" fill="#4285F4"/>
@@ -41,6 +173,6 @@ export default function RegisterPage() {
                     <a href='/signin' className=' font-semibold underline ' >Log in</a> 
                 </div>
             </div>
-        </div>
+        </form>
     )
 }

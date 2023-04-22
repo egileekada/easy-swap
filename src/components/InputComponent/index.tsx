@@ -15,7 +15,7 @@ export default function InputComponent({pwd, title, ...rest}: props) {
         <>
             <p className=' text-sm font-medium mt-4 text-[#334155] mb-2 ' >{title}</p>
             <div className=' relative w-full ' >
-                <input {...rest} type={pwd ? !showPassword ? "text":"password" : "text"} className=' px-3 outline-none font-medium border border-[#C9CCCF] rounded-md flex items-center h-[45px] bg-white w-full '  /> 
+                <input {...rest} type={pwd ? !showPassword ? "text":"password" : "text"} className=' text-sm px-3 outline-none font-medium border border-[#C9CCCF] rounded-lg flex items-center h-[50px] bg-white w-full '  /> 
                 {pwd && (
                     <div className=' absolute top-0 right-0 px-4 h-full flex justify-center items-center w-fit z-20 ' > 
                         <svg role='button' onClick={()=> setShowPassword((prev)=> !prev)} className='  ' width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

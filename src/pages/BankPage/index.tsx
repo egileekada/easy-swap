@@ -53,7 +53,17 @@ export default function BankPage() {
                 </TableContainer>
             </div>
             <div className=' w-full lg:hidden ' >
-                <p></p>
+                <div className=' w-full flex justify-between ' >
+                    <div className='' >
+                        <p className=' font-semibold text-[#344054] ' >Bank info</p>
+                        <p className=' font-normal text-[#667085] mt-1 ' >Jay BigJaybos </p>
+                        <p className=' font-semibold text-[#344054] mt-1' >01234567890</p>
+                        <p className=' font-normal text-[#667085] mt-1 ' >GTBank</p>
+                    </div>
+                    <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.41421 14.8895L13.5563 4.74737L12.1421 3.33316L2 13.4753V14.8895H3.41421ZM4.24264 16.8895H0V12.6469L11.435 1.21184C11.8256 0.821313 12.4587 0.821313 12.8492 1.21184L15.6777 4.04026C16.0682 4.43079 16.0682 5.06395 15.6777 5.45448L4.24264 16.8895ZM0 18.8895H18V20.8895H0V18.8895Z" fill="black"/>
+                    </svg>
+                </div>
             </div>
             <div className=' w-full flex justify-end mt-8 ' > 
                 <button onClick={()=> setShowModal(true)} className=' bg-[#303179] text-[#fff] rounded-md px-12 text-sm py-2 font-bold  ' >Add Bank</button>
@@ -63,7 +73,7 @@ export default function BankPage() {
                     <div className=' w-full fixed z-20 h-full  px-4 inset-0 flex justify-center items-center flex-col '  >  
                         <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-[200] bg-white w-full  lg:w-[500px] md:w-[500px] rounded-lg px-5 py-4 ' > 
                             <div className=' w-full flex items-center justify-between ' >
-                                <p className='font-bold text-lg ' >Edit Bank Details</p>
+                                <p className='font-bold text-lg ' >Add Bank Details</p>
                                 <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

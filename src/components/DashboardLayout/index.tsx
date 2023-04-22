@@ -17,9 +17,9 @@ export default function DashboardLayout() {
             <div className=' flex flex-1 overflow-hidden ' >
 
             <div className=' w-full h-full flex flex-1 ' >
-                <div className=' w-fit h-full lg:block hidden ' >
+                {/* <div className=' w-fit h-full lg:block hidden ' >
                     <Sidebar />
-                </div>
+                </div> */}
                 <div className=' w-full h-full flex flex-col overflow-y-auto flex-1 ' >
                     <Outlet />
                 </div>

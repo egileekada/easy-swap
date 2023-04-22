@@ -35,12 +35,12 @@ export default function Sidebar({close, type}: props) {
     }, [navigate])
 
     return (
-        <div className=' w-full lg:w-[320px] h-full overflow-y-auto bg-white pl-5 py-9 ' >
+        <div className=' w-full h-full bg-white pl-5 py-9 ' >
             <p className=' text-[#303179] text-xl font-bold ' >Rashford Martinez</p>
             <div className=' w-full mt-10   ' >
                 {menu.filter((item)=> item !== "Settings" && item !== "Log out").map((item: any)=> {
                     return(
-                        <button onClick={()=>  clickHandler(item)} key={item} className={` ${active === "/dashboard/"+item.replace(/\s/g,'').toLowerCase() ? " border-r-4 border-[#303179] ": ""} flex text-[#344054] my-4 py-2 gap-3 font-medium w-full items-center `} >
+                        <button onClick={()=>  clickHandler(item)} key={item} className={` ${active === "/dashboard/"+item.replace(/\s/g,'').toLowerCase() ? "  ": ""} flex text-[#344054] my-4 py-2 gap-3 font-medium w-full items-center `} >
                             {item === "Home" && (
                                 <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.5 15.6659C15.5 15.8869 15.4122 16.0989 15.2559 16.2552C15.0996 16.4115 14.8877 16.4993 14.6667 16.4993H1.33333C1.11232 16.4993 0.900358 16.4115 0.744078 16.2552C0.587798 16.0989 0.5 15.8869 0.5 15.6659V6.90758C0.499912 6.78059 0.528848 6.65526 0.584597 6.54117C0.640346 6.42707 0.721433 6.32722 0.821667 6.24925L7.48833 1.06425C7.63462 0.950455 7.81467 0.888672 8 0.888672C8.18533 0.888672 8.36538 0.950455 8.51167 1.06425L15.1783 6.24925C15.2786 6.32722 15.3597 6.42707 15.4154 6.54117C15.4712 6.65526 15.5001 6.78059 15.5 6.90758V15.6659ZM13.8333 14.8326V7.31425L8 2.77758L2.16667 7.31425V14.8326H13.8333Z" fill="#344054"/>

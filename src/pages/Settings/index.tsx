@@ -35,7 +35,7 @@ export default function Settings() {
                     </div>
                 </div>
             )}
-            {tab === 1 && (
+            {tab === 2 && (
                 <> 
                     <div role="button" onClick={()=> setTab(0)} className=' flex items-center gap-3 ' >
                         <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ export default function Settings() {
                     <MyProfile />
                 </>
             )}
-            {tab === 2 && (
+            {tab === 1 && (
                 <> 
                     <div role="button" onClick={()=> setTab(0)} className=' flex items-center gap-3 ' >
                         <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">

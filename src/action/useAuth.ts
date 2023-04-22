@@ -3,7 +3,7 @@ import axios from "../config/utils/axios";
 export function useLoginCallback() {
   const handleLogin = async (postData: any): Promise<any> => {    
     try{ 
-        const response = await axios.post('/admin-auth/login', postData,
+        const response = await axios.post('/users/email-login', postData,
         {
           headers: {'Content-Type':'application/json'}, 
         }); 
@@ -13,12 +13,12 @@ export function useLoginCallback() {
     }     
   }
   return { handleLogin }
-}
+} 
 
 export function useRegisterCallback() {
   const handleRegister = async (postData: any): Promise<any> => {    
     try{ 
-        const response = await axios.post('/admin-auth/create-account', postData,
+        const response = await axios.post('/users/email-register', postData,
         {
           headers: {'Content-Type':'application/json'}, 
         }); 
