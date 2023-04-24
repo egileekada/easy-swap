@@ -12,12 +12,14 @@ import TransactionPage from './pages/TransactionPage';
 import BankPage from './pages/BankPage';
 import Settings from './pages/Settings';
 import DisputePage from './pages/DisputesPage';
+import PrivacyPolicy from './pages/PrivacyPolicyPage';
 
 function App() {
   return ( 
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} /> 
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} /> 
         <Route path="/signin" element={<LoginPage />} /> 
         <Route path="/signup" element={<RegisterPage />} /> 
         <Route path="/verifyemail" element={<VerifyEmail />} /> 

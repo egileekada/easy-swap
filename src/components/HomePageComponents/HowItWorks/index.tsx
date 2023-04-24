@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function HowItWorks() {
     return (
-        <div className=' w-full flex justify-center bg-[#303179] ' > 
+        <div className=' w-full flex justify-center font-medium bg-[#303179] ' > 
             <div className=' w-full flex pt-6 lg:flex-row flex-col lg:pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
                 <div className=' w-full flex flex-col items-center px-6 lg:px-16 pt-10 ' >
                     <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Easyswap works</h1>
-                    <p className=' max-w-lg mt-6 ' >Lorem ipsum dolor sit amet consectetur. Et ultricies auctor quis at etiam nulla.Lorem ipsum dolor sit amet consectetur. Et ultricies auctor quis at etiam nulla.</p>
+                    <p className=' max-w-lg mt-6 ' >Complete your transactions within 5 minutes by using the following steps. </p>
                     <div className=' max-w-lg mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
@@ -24,7 +24,7 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 1</p>
-                            <p className=' mt-3 font-medium ' >Add funds to your crypto account to start trading crypto. You can add funds with a variety of payment methods.</p>
+                            <p className=' mt-3 font-medium ' >Select the cryptocurrency of your choice and input the amount you want to sell. The naira amount is calculated automatically using the latest rates. </p>
                         </div>
                     </div>
                     <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
@@ -38,7 +38,7 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 2</p>
-                            <p className=' mt-3 font-medium ' >Complete the identity verification process to secure your account and transactions.</p>
+                            <p className=' mt-3 font-medium ' >Once you’re satisfied with the amount, click on sell crypto to proceed to the next step.</p>
                         </div>
                     </div>
                     <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
@@ -54,12 +54,28 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 3</p>
-                            <p className=' mt-3 font-medium ' >You're good to go! Buy/sell crypto, set up recurring buys for your investments.</p>
+                            <p className=' mt-3 font-medium ' >Complete the registration process to create an account on Ezyswap. Include your default bank account details to receive payment.</p>
+                        </div>
+                    </div>
+                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                        <div className=' w-fit ' >
+                            <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.0013 20.6667C20.0013 25.4533 16.1213 29.3333 11.3346 29.3333C6.54797 29.3333 2.66797 25.4533 2.66797 20.6667C2.66797 15.88 6.54797 12 11.3346 12C11.5613 12 11.8013 12.0133 12.028 12.0267C16.2546 12.36 19.6413 15.7467 19.9746 19.9733C19.988 20.2 20.0013 20.44 20.0013 20.6667Z" fill="#0F4BA7"/>
+                                    <path d="M29.3321 11.3327C29.3321 15.6793 26.1321 19.266 21.9721 19.8927V19.8127C21.5588 14.6393 17.3588 10.4393 12.1455 10.026H12.1055C12.7321 5.86602 16.3188 2.66602 20.6655 2.66602C25.4521 2.66602 29.3321 6.54602 29.3321 11.3327Z" fill="#0F4BA7"/>
+                                    <path d="M7.45464 2.66602H4.0013C3.26797 2.66602 2.66797 3.26602 2.66797 3.99935V7.45268C2.66797 8.63935 4.10797 9.23935 4.94797 8.39935L8.4013 4.94602C9.22797 4.10602 8.6413 2.66602 7.45464 2.66602Z" fill="#0F4BA7"/>
+                                    <path d="M24.5476 29.3324H28.0009C28.7343 29.3324 29.3343 28.7324 29.3343 27.999V24.5457C29.3343 23.359 27.8943 22.759 27.0543 23.599L23.6009 27.0524C22.7743 27.8924 23.3609 29.3324 24.5476 29.3324Z" fill="#0F4BA7"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div className='  ' >
+                            <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 4</p>
+                            <p className=' mt-3 font-medium ' >Send the crypto from any wallet to the unique crypto address generated for your transactions. Once confirmed, payment is automatically sent to your bank account.</p>
                         </div>
                     </div>
                 </div>
                 <div className=' w-full flex justify-center lg:mt-0 mt-8 ' >
-                    <img alt='first' className=' w-[65%] ' src='/images/iPhone.png' />
+                    <img alt='first' className=' w-[65%] object-contain ' src='/images/iPhone.png' />
                 </div>
             </div>
         </div>

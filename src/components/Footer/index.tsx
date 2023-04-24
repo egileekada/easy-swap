@@ -1,6 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Footer() {
+
+    const navigate = useNavigate()
+
     return (
         <>  
             <div className=' w-full bg-[#303179] flex flex-col items-center ' > 
@@ -24,7 +28,7 @@ export default function Footer() {
                         <div className=' w-full flex flex-col lg:mt-0 mt-10  ' >
                             <p className=' text-[#F8FAFC] font-normal ' >Learn more about Easyswap</p>
                             <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
-                            <a href='#' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
+                            <a href='/privacy-policy' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
                             <a href='#' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>
                             <a href='#' className=' text-[#F8FAFC] mt-4 ' >Support</a>
                             <a href='#' className=' text-[#F8FAFC] mt-[64px] ' >Stay in touch</a>

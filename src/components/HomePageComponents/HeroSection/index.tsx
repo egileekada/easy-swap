@@ -3,7 +3,7 @@ import CryptoCalculation from './components/CryptoCalculation'
 
 export default function HeroSection() {
     return (
-        <div className=' bg-[#f8f8f8] lg:h-[70vh] py-6 lg:py-24 items-center w-full justify-center px-6 lg:px-16 flex ' >
+        <div className=' bg-[#f8f8f8] lg:h-[80vh] py-6 lg:py-24 items-center w-full justify-center px-6 lg:px-16 flex ' >
             <div className='  max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
                 <div className=' w-full pt-8 ' >
                     <h1 className=' text-[#303179] text-3xl lg:text-5xl leading-[1.1] font-bold ' >Buy, sell, and swap your cryptocurrencies with ease.</h1>
