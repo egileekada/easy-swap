@@ -12,22 +12,22 @@ export default function CoinSelection({rate, data}: Props) {
     const [showModal, setShowModal] = React.useState(false)
     const [selectCoin, setSelectCoin] = React.useState("")
     const [selectCoinTicker, setSelectCoinTicker] = React.useState("")
+    const [coinImage, setcoinImage] = React.useState("")
     const bitpowr_coin_ticker = [
-        {'coin_name': 'bitcoin', 'coin_ticker': 'BTC'},
-        {'coin_name': 'ethereum', 'coin_ticker': 'ETH'},
-        {'coin_name': 'bsc', 'coin_ticker': 'BSC'},
-        {'coin_name': 'solana', 'coin_ticker': 'SOL'},
-        {'coin_name': 'usdt_tron', 'coin_ticker': 'USDT_TRON'},
-        {'coin_name': 'usdt', 'coin_ticker': 'USDT'}
+        {'coin_name': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
+        {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
+        {'coin_name': 'Tether', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
+        {'coin_name': 'Binance coin', 'coin_ticker': 'BNB', image: '/images/binance.png'}, 
     ]
 
     const CoinList =()=> {
 
-        const clickHandler =(item: any, value: string)=> { 
+        const clickHandler =(item: any, value: string, image:string)=> { 
             data(item)
             setSelectCoinTicker(value)
             setSelectCoin(item)
             setShowModal(false)
+            setcoinImage(image)
         }
 
         return(
@@ -52,12 +52,12 @@ export default function CoinSelection({rate, data}: Props) {
                             </div>
                         </div>
                     </div>  */}
-                    <div className=' w-full flex flex-col gap-3 ppt-6 overflow-y-auto max-h-64 ' >
+                    <div className=' w-full flex flex-col gap-3 pt-6 overflow-y-auto max-h-64 ' >
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
-                                    <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker)} className=' w-full flex items-center gap-3 ' >
-                                        <div className=' w-[40px] h-[40px] rounded-full bg-red-500 ' >
-
+                                    <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image)} className=' w-full flex items-center gap-3 ' >
+                                        <div className=' w-[40px] h-[40px] rounded-full bg-white '>
+                                            <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                         </div>
                                         <div className='' >
                                             <p className=' text-[#333] font-semibold ' >{item?.coin_ticker}</p>
@@ -91,8 +91,8 @@ export default function CoinSelection({rate, data}: Props) {
                 )}
                 <div className=' h-full w-fit pr-2 flex justify-center items-center gap-2  ' >
                     {selectCoinTicker && (
-                        <div className=' w-[24px] h-[24px] rounded-full bg-red-600 ' >
-
+                        <div className=' w-[24px] h-[24px] rounded-full ' >
+                            <img src={coinImage} alt="coin" className=' w-full h-full  rounded-full' />
                         </div>
                     )}
                     <p className=' font-semibold text-xs ' >{selectCoinTicker ? selectCoinTicker: ""}</p>
