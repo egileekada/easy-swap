@@ -6,6 +6,7 @@ import { Input, useToast } from '@chakra-ui/react'
 import ButtonComponent from '../../ButtonComponent'
 import { IUser, UserContext } from '../../../context/userContext'
 import { useBankDetailCallback, useExchangeRateCallback, useSwapCoinCallback } from '../../../action/useAction'
+import { cashFormat } from '../../../config/utils/cashFormat'
 
 type props = {
     next: any
@@ -50,12 +51,13 @@ export default function SellCrypto({next}: props) {
         }
 
         const exchangeRate =async()=> {
+
+            let Str = userContext.sellCrypto?.coin_name.charAt(0).toUpperCase() + userContext.sellCrypto?.coin_name.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": userContext.sellCrypto?.coin_name,
+                    "coin_name": Str,
                     "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
                 }))   
-            console.log(request); 
-            
+            setExchangeRate(request?.data?.total_coin_price_ngn)             
         }
 
         if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
@@ -66,8 +68,8 @@ export default function SellCrypto({next}: props) {
             fetchData()
         }
     }, [userContext.sellCrypto?.coin_name, userContext.sellCrypto?.coin_amount_to_swap, userContext.sellCrypto?.bank_acc_name, userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
-
-
+ 
+    
 
     const submit = async () => { 
         setLoading(true);
@@ -116,7 +118,7 @@ export default function SellCrypto({next}: props) {
                             <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' w-full flex justify-end ' >  
-                            <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> 19,470.55</p>
+                            <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {cashFormat(exchangeRate)}</p>
                         </div>
                     </div>
                 )}
@@ -152,7 +154,7 @@ export default function SellCrypto({next}: props) {
                             </div>
                             The name on your account must match the name provided on your BVN and Easyswap account
                         </div>
-                        {loadingBank ? "Loading" :
+                        {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
                             <> 
                                 {accountName &&
                                     <p className=' mt-2 font-bold  ' >{accountName}</p>

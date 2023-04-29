@@ -42,7 +42,7 @@ export default function CoinSelection({rate, data}: Props) {
                             </svg>
                         </button>
                     </div>
-                    <div className=' w-full py-6 ' > 
+                    {/* <div className=' w-full py-6 ' > 
                         <div className=' w-full relative ' >
                             <Input height="45px" paddingLeft="60px" borderColor="#CBD5E1" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
                             <div className=' h-[45px] absolute border-r border-[#CBD5E1] top-0 px-4 flex items-center ' >
@@ -51,8 +51,8 @@ export default function CoinSelection({rate, data}: Props) {
                                 </svg>
                             </div>
                         </div>
-                    </div> 
-                    <div className=' w-full flex flex-col gap-3 overflow-y-auto max-h-64 ' >
+                    </div>  */}
+                    <div className=' w-full flex flex-col gap-3 ppt-6 overflow-y-auto max-h-64 ' >
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
                                     <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker)} className=' w-full flex items-center gap-3 ' >
