@@ -12,14 +12,18 @@ type props = {
 }
 
 export default function SellCrypto({next}: props) {
-    
-
 
     const userContext: IUser = React.useContext(UserContext); 
-    const toast = useToast()
+    const toast = useToast() 
+
+    React.useEffect(()=> {
+        userContext.setSellCrypto({} as any)
+    }, [])
 
     const [loading, setLoading] = React.useState(false)
+    const [loadingBank, setLoadingBank] = React.useState(false)
     const [exchangeRate, setExchangeRate] = React.useState("")
+    const [accountName, setAccountName] = React.useState("")
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
@@ -36,11 +40,13 @@ export default function SellCrypto({next}: props) {
 
     React.useEffect(()=> {
         const fetchData =async()=> {
+            setLoadingBank(true)
             const request = await handleBankDetail(JSON.stringify({ 
                     "account_number": userContext.sellCrypto?.bank_acc_number,
                     "bank_code": userContext.sellCrypto?.bank_code
             }))   
-            console.log(request); 
+            setAccountName(request?.data?.account_name) 
+            setLoadingBank(false)
         }
 
         const exchangeRate =async()=> {
@@ -49,6 +55,7 @@ export default function SellCrypto({next}: props) {
                     "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
                 }))   
             console.log(request); 
+            
         }
 
         if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
@@ -58,7 +65,7 @@ export default function SellCrypto({next}: props) {
         if(userContext.sellCrypto?.bank_acc_name && userContext.sellCrypto?.bank_acc_number && userContext.sellCrypto?.bank_code){
             fetchData()
         }
-    },)
+    }, [userContext.sellCrypto?.coin_name, userContext.sellCrypto?.coin_amount_to_swap, userContext.sellCrypto?.bank_acc_name, userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
 
 
 
@@ -102,50 +109,69 @@ export default function SellCrypto({next}: props) {
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                 <CoinSelection data={CoinName} />
-                <div className=' w-full ' > 
-                    <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
-                    <div className=' w-full mb-1   ' >
-                        <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                {userContext?.sellCrypto?.coin_name && ( 
+                    <div className=' w-full ' > 
+                        <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
+                        <div className=' w-full mb-1   ' >
+                            <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        </div>
+                        <div className=' w-full flex justify-end ' >  
+                            <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> 19,470.55</p>
+                        </div>
                     </div>
-                    <div className=' w-full flex justify-end ' >  
-                        <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> 19,470.55</p>
-                    </div>
-                </div>
-                <CoinNetwork />
-                <Bank data={BankHandler} />
-                <div className=' w-full ' > 
-                    <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
-                    <div className=' w-full   ' >
-                        <Input placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
-                    </div>
-                    <div className=' flex gap-2 lg:gap-3 font-medium mt-2 text-[#303179] text-sm ' >
-                        <div className=' w-fit mt-[1px] ' >
-                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g id="warning">
-                                    <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179"/>
-                                    <g id="Group 12">
-                                        <g id="Path">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70"/>
-                                            <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </g>
-                                        <g id="Path_2">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70"/>
-                                            <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                )}
+                {userContext?.sellCrypto?.coin_amount_to_swap && ( 
+                    <> 
+                        <CoinNetwork />
+                        <Bank data={BankHandler} />
+                    </>
+                )}
+                {userContext.sellCrypto?.bank_code && ( 
+                    <div className=' w-full ' > 
+                        <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
+                        <div className=' w-full   ' >
+                            <Input placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        </div>
+                        <div className=' flex gap-2 lg:gap-3 font-normal mt-2 text-[#303179] text-sm ' >
+                            <div className=' w-fit mt-[1px] ' >
+                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="warning">
+                                        <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179"/>
+                                        <g id="Group 12">
+                                            <g id="Path">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70"/>
+                                                <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </g>
+                                            <g id="Path_2">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70"/>
+                                                <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </g>
                                         </g>
                                     </g>
-                                </g>
-                            </svg>
+                                </svg>
+                            </div>
+                            The name on your account must match the name provided on your BVN and Easyswap account
                         </div>
-                        The name on your account must match the name provided on your BVN and Easyswap account
+                        {loadingBank ? "Loading" :
+                            <> 
+                                {accountName &&
+                                    <p className=' mt-2 font-bold  ' >{accountName}</p>
+                                }
+                            </>
+                        }
                     </div>
-                </div> 
-                <div className=' w-full ' > 
-                    <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
-                    <div className=' w-full   ' >
-                        <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                )} 
+                {userContext.sellCrypto?.bank_acc_number && ( 
+                    <div className=' w-full ' > 
+                        <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
+                        <div className=' w-full   ' >
+                            <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        </div>
                     </div>
-                </div>
-                <ButtonComponent onClick={()=> submit()} name="Initialize Payment" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
+                )}
+                {(userContext.sellCrypto.phone_number+"").length > 9 && ( 
+                    <ButtonComponent onClick={()=> submit()} name="Initialize Payment" bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
+                )}
             </div>
         </div>
     )
