@@ -11,10 +11,10 @@ export default function SellCryptoPage() {
   const [isShown, setIsShown] = React.useState(false)
 
   return (
-    <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-10 '  >
+    <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >
         {!isShown && (
-          <div className=' w-full lg:w-[680px] flex flex-col items-center mt-6 lg:mt-12 text-sm font-medium rounded-lg bg-white ' > 
-            <p className=' text-3xl font-semibold text-[#303179] lg:pb-0 pb-5 ' >Easyswap Services</p>
+          <div className=' w-full lg:w-[680px] flex flex-col items-center mt-6 lg:mt-4 text-sm font-medium rounded-lg bg-white ' > 
+            <p className=' text-3xl font-semibold mt-6 text-[#303179] lg:pb-0 pb-5 ' >Easyswap Services</p>
             <div  className=" scroll_event w-full flex lg:flex-row overflow-x-auto  " >
               <div className=" w-auto flex lg:w-full gap-5 lg:px-4 ">
                 <div className=' lg:border-b w-auto lg:w-full flex justify-center items-center  gap-3 px-4 lg:px-9 lg:pb-8 pb-4 lg:py-8 lg:border-[#ECEBF5] ' >

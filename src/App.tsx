@@ -13,27 +13,30 @@ import BankPage from './pages/BankPage';
 import Settings from './pages/Settings';
 import DisputePage from './pages/DisputesPage';
 import PrivacyPolicy from './pages/PrivacyPolicyPage';
+import { UserContextProvider } from './context/userContext';
 
 function App() {
   return ( 
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} /> 
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} /> 
-        <Route path="/signin" element={<LoginPage />} /> 
-        <Route path="/signup" element={<RegisterPage />} /> 
-        <Route path="/verifyemail" element={<VerifyEmail />} /> 
-        <Route path="/resetpwd" element={<ResetPwdPage />} /> 
-        <Route path="/dashboard" element={<DashboardLayout />} > 
-          <Route path="/dashboard" element={<Dashboard />} /> 
-          <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
-          <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
-          <Route path="/dashboard/banks" element={<BankPage />} /> 
-          <Route path="/dashboard/dispute" element={<DisputePage />} />
-          <Route path="/dashboard/settings" element={<Settings />} /> 
-        </Route>
-      </Routes>
-    </Router>
+    <UserContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} /> 
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} /> 
+          <Route path="/signin" element={<LoginPage />} /> 
+          <Route path="/signup" element={<RegisterPage />} /> 
+          <Route path="/verifyemail" element={<VerifyEmail />} /> 
+          <Route path="/resetpwd" element={<ResetPwdPage />} /> 
+          <Route path="/dashboard" element={<DashboardLayout />} > 
+            <Route path="/dashboard" element={<Dashboard />} /> 
+            <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
+            <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
+            <Route path="/dashboard/banks" element={<BankPage />} /> 
+            <Route path="/dashboard/dispute" element={<DisputePage />} />
+            <Route path="/dashboard/settings" element={<Settings />} /> 
+          </Route>
+        </Routes>
+      </Router>
+    </UserContextProvider>
   );
 }
 

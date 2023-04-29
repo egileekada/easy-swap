@@ -1,5 +1,5 @@
  
-const liveUrl = "http://eazyswap.herokuapp.com" 
+const liveUrl = "https://eazyswap.herokuapp.com" 
 
 export const BASEURL = {
     URL: liveUrl, 

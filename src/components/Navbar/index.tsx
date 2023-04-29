@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import Sidebar from '../DashboardLayout/component/Sidebar'
+import { useGetDataCallback } from '../../action/useAction'
 
 type props = {
     hide?: boolean,
@@ -13,6 +14,21 @@ export default function Navbar({ hide, dashboard }: props) {
 
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { handleGetData } = useGetDataCallback()
+    const [data, setData] = React.useState({} as any)
+
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            const request: any = await handleGetData("/users/profile")  
+            console.log(request); 
+        }
+
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, []) 
 
     return (
         <div className=' relative w-full h-[62px] ' > 

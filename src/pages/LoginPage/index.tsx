@@ -52,21 +52,21 @@ export default function LoginPage() {
 
             const request: any = await handleLogin(JSON.stringify(formik.values))
 
-            console.log(request);
+            console.log(request?.data?.access_token);
             
 
             if (request.status === 200 || request.status === 201) {    
-                // localStorage.setItem('token', request?.data?.data?.token);   
+                localStorage.setItem('token', request?.data?.access_token);   
                 // localStorage.setItem('id', request?.data?.data?.user?.id); 
-                // // navigate("/dashboard")
-                // toast({
-                //     title: request?.data?.message, 
-                //     status: 'success',  
-                //     duration: 3000, 
-                // }) 
+                navigate("/dashboard")
+                toast({
+                    title: "Login Successful", 
+                    status: 'success',  
+                    duration: 3000, 
+                }) 
             }else { 
                 toast({
-                    title: request?.data?.message, 
+                    title: request?.data?.error?.details[0], 
                     status: 'error',  
                     duration: 3000, 
                 }) 

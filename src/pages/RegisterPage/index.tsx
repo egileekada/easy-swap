@@ -53,27 +53,24 @@ export default function RegisterPage() {
             return;
         } else { 
 
-            const request: any = await handleRegister(JSON.stringify(formik.values))
+            const request: any = await handleRegister(JSON.stringify(formik.values)) 
 
-            console.log(request);
-            
-
-            // if (request.status === 200 || request.status === 201) {    
-            //     localStorage.setItem('token', request?.data?.data?.token);   
-            //     localStorage.setItem('id', request?.data?.data?.user?.id); 
-            //     // navigate("/verifyemail")
-            //     toast({
-            //         title: request?.data?.message, 
-            //         status: 'success',  
-            //         duration: 3000, 
-            //     }) 
-            // }else { 
-            //     toast({
-            //         title: request?.data?.message, 
-            //         status: 'error',  
-            //         duration: 3000, 
-            //     }) 
-            // }
+            if (request.status === 200 || request.status === 201) {    
+                localStorage.setItem('token', request?.data?.data?.token);   
+                localStorage.setItem('id', request?.data?.data?.user?.id); 
+                navigate("/signin")
+                toast({
+                    title: "Registration Successful", 
+                    status: 'success',  
+                    duration: 3000, 
+                }) 
+            }else {  
+                toast({
+                    title: request?.data?.error?.details?.detail, 
+                    status: 'error',  
+                    duration: 3000, 
+                }) 
+            }
             setLoading(false);
         }
     } 

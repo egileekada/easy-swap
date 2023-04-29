@@ -2,32 +2,121 @@ import React from 'react'
 import CoinSelection from './components/CoinSelection'
 import CoinNetwork from './components/CoinNetwork'
 import Bank from './components/Bank'
-import { Input } from '@chakra-ui/react'
+import { Input, useToast } from '@chakra-ui/react'
 import ButtonComponent from '../../ButtonComponent'
+import { IUser, UserContext } from '../../../context/userContext'
+import { useBankDetailCallback, useExchangeRateCallback, useSwapCoinCallback } from '../../../action/useAction'
 
 type props = {
     next: any
 }
 
 export default function SellCrypto({next}: props) {
+    
+
+
+    const userContext: IUser = React.useContext(UserContext); 
+    const toast = useToast()
+
+    const [loading, setLoading] = React.useState(false)
+    const [exchangeRate, setExchangeRate] = React.useState("")
+    
+    const { handleSwapCoin } = useSwapCoinCallback();
+    const { handleBankDetail } = useBankDetailCallback();
+    const { handleExchangeRate } = useExchangeRateCallback();
+    // {
+    //     "coin_name": "string",
+    //     "coin_amount_to_swap": "string",
+    //     "network": "string",
+    //     "phone_number": "string",
+    //     "bank_acc_name": "string",
+    //     "bank_acc_number": "string",
+    //     "bank_code": "string"
+    //     } 
+
+    React.useEffect(()=> {
+        const fetchData =async()=> {
+            const request = await handleBankDetail(JSON.stringify({ 
+                    "account_number": userContext.sellCrypto?.bank_acc_number,
+                    "bank_code": userContext.sellCrypto?.bank_code
+            }))   
+            console.log(request); 
+        }
+
+        const exchangeRate =async()=> {
+            const request = await handleExchangeRate(JSON.stringify({
+                    "coin_name": userContext.sellCrypto?.coin_name,
+                    "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
+                }))   
+            console.log(request); 
+        }
+
+        if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
+            exchangeRate()
+        }
+
+        if(userContext.sellCrypto?.bank_acc_name && userContext.sellCrypto?.bank_acc_number && userContext.sellCrypto?.bank_code){
+            fetchData()
+        }
+    },)
+
+
+
+    const submit = async () => { 
+        setLoading(true);
+        const request = await handleSwapCoin(JSON.stringify(userContext.sellCrypto))   
+        if (request.status === 200) {  
+            toast({
+                title: "Login Successfully",
+                position: "bottom",
+                status: "success",
+                isClosable: true,
+            })
+            const t1 = setTimeout(() => {
+                setLoading(false);  
+                next(true)
+                clearTimeout(t1);
+            }, 1000);  
+        }else {  
+            toast({
+                title: request?.data?.message,
+                position: "bottom",
+                status: "error",
+                isClosable: true,
+            }) 
+            setLoading(false)  
+        } 
+        setLoading(false);
+    }  
+
+    const CoinName =(item: any)=>{
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: "BSC"})
+    }
+
+    const BankHandler =(item: any, code: any)=>{
+        userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code})
+    } 
+    
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
-                <CoinSelection />
+                <CoinSelection data={CoinName} />
                 <div className=' w-full ' > 
                     <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                     <div className=' w-full mb-1   ' >
-                        <Input placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                     </div>
-                    <p className=' text-sm text-[#475467] font-normal  ' >Est Price -- <span className='font-semibold' >NGN</span> 470.55 / <span className='font-semibold'>USDT</span></p>
+                    <div className=' w-full flex justify-end ' >  
+                        <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> 19,470.55</p>
+                    </div>
                 </div>
                 <CoinNetwork />
-                <Bank />
+                <Bank data={BankHandler} />
                 <div className=' w-full ' > 
                     <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                     <div className=' w-full   ' >
-                        <Input height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        <Input placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                     </div>
                     <div className=' flex gap-2 lg:gap-3 font-medium mt-2 text-[#303179] text-sm ' >
                         <div className=' w-fit mt-[1px] ' >
@@ -53,10 +142,10 @@ export default function SellCrypto({next}: props) {
                 <div className=' w-full ' > 
                     <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                     <div className=' w-full   ' >
-                        <Input placeholder='Enter your phone number' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                     </div>
                 </div>
-                <ButtonComponent onClick={()=> next(true)} name="Initialize Payment" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
+                <ButtonComponent onClick={()=> submit()} name="Initialize Payment" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
             </div>
         </div>
     )
