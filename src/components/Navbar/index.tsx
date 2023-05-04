@@ -4,6 +4,7 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import Sidebar from '../DashboardLayout/component/Sidebar'
 import { useGetDataCallback } from '../../action/useAction'
+import { IUser, UserContext } from '../../context/userContext'
 
 type props = {
     hide?: boolean,
@@ -15,12 +16,14 @@ export default function Navbar({ hide, dashboard }: props) {
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const { handleGetData } = useGetDataCallback()
+    const userContext: IUser = React.useContext(UserContext); 
     const [data, setData] = React.useState({} as any)
 
     React.useEffect(()=> { 
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
-            console.log(request); 
+            userContext.setUserInformation(request?.data)
+            // console.log(request); 
         }
 
         // call the function
@@ -53,9 +56,24 @@ export default function Navbar({ hide, dashboard }: props) {
                     <path d="M160.641 8.76916C161.427 8.34102 162.349 8.12695 163.404 8.12695C164.638 8.12695 165.755 8.43833 166.755 9.06497C167.756 9.69161 168.546 10.5868 169.13 11.7467C169.71 12.9104 170.001 14.2571 170.001 15.7945C170.001 17.3319 169.71 18.6864 169.13 19.858C168.55 21.0295 167.756 21.9325 166.755 22.5669C165.755 23.2014 164.638 23.5205 163.404 23.5205C162.369 23.5205 161.45 23.3064 160.656 22.8783C159.862 22.4502 159.24 21.8936 158.792 21.2164V30.4408H154.207V8.34491H158.792V10.4623C159.24 9.76167 159.855 9.1973 160.641 8.76916ZM164.381 13.1012C163.747 12.4473 162.964 12.1242 162.034 12.1242C161.123 12.1242 160.349 12.4551 159.714 13.1167C159.08 13.7784 158.761 14.6814 158.761 15.8257C158.761 16.97 159.076 17.873 159.714 18.5346C160.349 19.1963 161.123 19.5271 162.034 19.5271C162.945 19.5271 163.723 19.1924 164.366 18.523C165.008 17.8535 165.331 16.9466 165.331 15.8023C165.331 14.658 165.016 13.7512 164.381 13.1012Z" fill="#2F327A"/>
                 </svg>
                 {!hide && (
-                    <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
-                        <button onClick={()=> navigate("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
-                        <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
+                    <>
+                        {!userContext.userInfo?.email && ( 
+                            <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
+                                <button onClick={()=> navigate("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
+                                <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
+                            </div>
+                        )}
+                    </>
+                )}
+                {userContext.userInfo?.email && ( 
+                    <div className=' hidden lg:flex items-center h-full ml-auto text-sm gap-2 ' >
+                        <div className=' w-[40px] h-[40px] rounded-full bg-black ' >
+
+                        </div>
+                        <div> 
+                            <p className=' font-medium text-lg ' >{userContext.userInfo?.fullname}</p>
+                            <p className=' font-normal -mt-1 ' >{userContext.userInfo?.email}</p>
+                        </div>
                     </div>
                 )}
             </div>

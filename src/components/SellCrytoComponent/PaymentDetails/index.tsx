@@ -2,6 +2,9 @@ import { Input } from '@chakra-ui/react'
 import React from 'react'
 import ModalLayout from '../../ModalLayout'
 import ButtonComponent from '../../ButtonComponent'
+import { IUser, UserContext } from '../../../context/userContext'
+import { cashFormat } from '../../../config/utils/cashFormat'
+import { useNavigate } from 'react-router-dom'
 
 type props = {
     close: any
@@ -12,6 +15,14 @@ export default function PaymentDetails({close}: props) {
     const [open, setOpen] = React.useState(false)
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
+    const userContext: IUser = React.useContext(UserContext); 
+
+    const navigate = useNavigate()
+
+    const clickHandler =()=> {
+        setOpen(false)
+        navigate("/dashboard")
+    }
 
     return (
         <div className=' w-full mt-4 lg:mt-12 gap-2 lg:bg-transparent bg-white flex lg:flex-row flex-col px-4 lg:px-10 ' >
@@ -27,18 +38,18 @@ export default function PaymentDetails({close}: props) {
                     <p className=' font-bold ' >Order info</p>
                     <div className=' w-full grid grid-cols-2 text-sm gap-3 pt-5 ' > 
                         <p className=' font-medium text-[#475569]  ' >Amount</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >30.900</p>
+                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.transactionDetail?.coin_amount_to_swap}</p>
                         <p className=' font-medium text-[#475569]  ' >Amount in NGN</p>
-                        <p className=' font-medium text-[#475569] text-right ' >1,503,322.81</p>
+                        <p className=' font-medium text-[#475569] text-right ' >{cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
                         <p className=' font-medium text-[#475569] ' >Asset sold</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >USDT</p> 
+                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.transactionDetail?.coin_name}</p> 
                     </div>
                 </div>
                 <div className=' w-full mt-6 ' > 
                     <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Smart Chain Address</p>
                     <div className=' w-full flex items-center lg:gap-4 ' >
                         <div className=' w-full py-3 lg:gap-0 gap-2 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
-                            <p className=' break-all' >0x06e4A48857fd8e6E0D45323B96BF3a7B72b3554b</p>
+                            <p className=' break-all' >{userContext.transactionDetail?.coin_address}</p>
                             <div className='  w-fit lg:hidden ml-auto  ' >
                                 <svg className=' lg:hidden ' width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 3.1275V12.75C1.99985 13.7021 2.36185 14.6186 3.01256 15.3136C3.66327 16.0086 4.55397 16.43 5.504 16.4925L5.75 16.5H12.371C12.2159 16.9386 11.9287 17.3184 11.5488 17.587C11.169 17.8557 10.7152 17.9999 10.25 18H5C3.80653 18 2.66193 17.5259 1.81802 16.682C0.974106 15.8381 0.5 14.6935 0.5 13.5V5.25C0.499756 4.78451 0.643892 4.3304 0.912542 3.95026C1.18119 3.57012 1.56113 3.28266 2 3.1275ZM13.25 0C13.8467 0 14.419 0.237053 14.841 0.65901C15.2629 1.08097 15.5 1.65326 15.5 2.25V12.75C15.5 13.3467 15.2629 13.919 14.841 14.341C14.419 14.7629 13.8467 15 13.25 15H5.75C5.15326 15 4.58097 14.7629 4.15901 14.341C3.73705 13.919 3.5 13.3467 3.5 12.75V2.25C3.5 1.65326 3.73705 1.08097 4.15901 0.65901C4.58097 0.237053 5.15326 0 5.75 0H13.25Z" fill="#667085"/>
@@ -56,7 +67,7 @@ export default function PaymentDetails({close}: props) {
                     <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Transaction Reference</p>
                     <div className=' w-full flex items-center gap-4 ' >
                         <div className=' w-full break-all lg:gap-0 gap-2  py-3 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
-                        <p className=' break-all' >BI471H544123</p>
+                        <p className=' break-all' >{userContext.transactionDetail?.transaction_ref}</p>
                             <div className='  w-fit ml-auto  lg:hidden ' >
                                 <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M2 3.1275V12.75C1.99985 13.7021 2.36185 14.6186 3.01256 15.3136C3.66327 16.0086 4.55397 16.43 5.504 16.4925L5.75 16.5H12.371C12.2159 16.9386 11.9287 17.3184 11.5488 17.587C11.169 17.8557 10.7152 17.9999 10.25 18H5C3.80653 18 2.66193 17.5259 1.81802 16.682C0.974106 15.8381 0.5 14.6935 0.5 13.5V5.25C0.499756 4.78451 0.643892 4.3304 0.912542 3.95026C1.18119 3.57012 1.56113 3.28266 2 3.1275ZM13.25 0C13.8467 0 14.419 0.237053 14.841 0.65901C15.2629 1.08097 15.5 1.65326 15.5 2.25V12.75C15.5 13.3467 15.2629 13.919 14.841 14.341C14.419 14.7629 13.8467 15 13.25 15H5.75C5.15326 15 4.58097 14.7629 4.15901 14.341C3.73705 13.919 3.5 13.3467 3.5 12.75V2.25C3.5 1.65326 3.73705 1.08097 4.15901 0.65901C4.58097 0.237053 5.15326 0 5.75 0H13.25Z" fill="#667085"/>
@@ -79,22 +90,22 @@ export default function PaymentDetails({close}: props) {
                         <p className=' font-medium text-[#475569]  ' >Role</p>
                         <p className=' font-medium text-[#475569] text-right  ' >Sender</p>
                         <p className=' font-medium text-[#475569]  ' >Name</p>
-                        <p className=' font-medium text-[#475569] text-right ' >Big Jay</p>
-                        <p className=' font-medium text-[#475569] ' >Nickname</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >Jayboss</p>
+                        <p className=' font-medium text-[#475569] text-right ' >{userContext.userInfo?.fullname}</p>
+                        <p className=' font-medium text-[#475569] ' >email</p>
+                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.userInfo?.email}</p>
                         <p className=' font-medium text-[#475569]  ' >Phone Number</p>
-                        <p className=' font-medium text-[#475569] text-right ' >+2348123456789</p>
+                        <p className=' font-medium text-[#475569] text-right ' >{userContext.userInfo?.phone}</p>
                     </div>
                 </div>
                 <div className=' w-full lg:w-[420px] pt-9 ' > 
                     <p className=' font-bold ' >Account Details</p>
                     <div className=' w-full grid grid-cols-2 text-sm gap-3 pt-5 ' > 
                         <p className=' font-medium text-[#475569]  ' >Bank</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >Access Bank</p>
+                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.transactionDetail?.bank_acc_name}</p>
                         <p className=' font-medium text-[#475569]  ' >Name</p>
-                        <p className=' font-medium text-[#475569] text-right ' >Big Jay</p>
+                        <p className=' font-medium text-[#475569] text-right ' >{userContext.userInfo?.fullname}</p>
                         <p className=' font-medium text-[#475569] ' >Account Number</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >0044385000</p> 
+                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.transactionDetail?.bank_acc_number}</p> 
                     </div>
                 </div>
                 <div className=' mt-9 w-full lg:w-[420px] flex justify-end gap-7 text-sm ' >
@@ -120,15 +131,15 @@ export default function PaymentDetails({close}: props) {
                                 <div className=' w-[24px] h-[24px] rounded-full bg-green-500 ' >
 
                                 </div>
-                                BUSD
+                                {userContext.transactionDetail?.coin_name}
                             </div>
                             <div className=' flex gap-2 items-center ' > 
-                                <p className=' text-4xl font-bold mt-1 ' >0.0009345</p>
+                                <p className=' text-4xl font-bold mt-1 ' >{userContext.transactionDetail?.coin_amount_to_swap}</p>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3.46257 2.43262C5.21556 0.91688 7.5007 0 10 0C15.5228 0 20 4.47715 20 10C20 12.1361 19.3302 14.1158 18.1892 15.7406L15 10H18C18 5.58172 14.4183 2 10 2C7.84982 2 5.89777 2.84827 4.46023 4.22842L3.46257 2.43262ZM16.5374 17.5674C14.7844 19.0831 12.4993 20 10 20C4.47715 20 0 15.5228 0 10C0 7.86386 0.66979 5.88416 1.8108 4.25944L5 10H2C2 14.4183 5.58172 18 10 18C12.1502 18 14.1022 17.1517 15.5398 15.7716L16.5374 17.5674Z" fill="black"/>
                                 </svg>
                             </div>
-                            <p className=' text-[#647488] text-sm mt-1 font-normal mb-6 ' >Est. amount- NGN 1,503,322.81</p>
+                            <p className=' text-[#647488] text-sm mt-1 font-normal mb-6 ' >Est. amount- NGN {cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
                             <ButtonComponent onClick={()=> setTab(1)} name='Confirm Sell' bgcolor=' bg-[#303179] text-white mt-4 lg:mt-6 ' />
                         </div>
                     </div>
@@ -166,8 +177,8 @@ export default function PaymentDetails({close}: props) {
                                 <path d="M58.7083 73.0003L68.9167 83.2087L89.3333 62.792" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p className=' mt-4 font-bold text-2xl text-[#334155] ' >Order successful</p>
-                            <p className=' text-center font-normal text-[#647488] mt-1 mb-5 ' >Successfully sold 30.900 BUSD</p> 
-                            <ButtonComponent onClick={()=> setOpen(false)} name='Back to home' bgcolor=' bg-[#303179] text-white ' />
+                            <p className=' text-center font-normal text-[#647488] mt-1 mb-5 ' >Successfully sold {userContext.transactionDetail?.coin_amount_to_swap+" "+userContext.transactionDetail?.coin_name}</p> 
+                            <ButtonComponent onClick={()=> clickHandler()} name='Back to home' bgcolor=' bg-[#303179] text-white ' />
                         </div>
                     </div>
                 )}
@@ -178,7 +189,7 @@ export default function PaymentDetails({close}: props) {
                             <p className=' lg:text-center font-normal text-[#647488] mt-1 mb-5 ' >Are you sure you want to cancel the transaction?</p> 
                             
                             <div className='w-full flex justify-end gap-3 text-sm ' >
-                                <button className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >Continue</button>
+                                <button onClick={()=> clickHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >Continue</button>
                                 <button onClick={()=> setOpen(false)} className=' bg-[#D82C0D] text-[#fff] rounded-md px-4 py-2 font-semibold  ' >Cancel</button>
                             </div>
                         </div>

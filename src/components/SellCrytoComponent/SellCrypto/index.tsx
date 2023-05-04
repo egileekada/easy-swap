@@ -48,7 +48,14 @@ export default function SellCrypto({next}: props) {
             }))   
             setAccountName(request?.data?.account_name) 
             setLoadingBank(false)
+        } 
+
+        if(userContext.sellCrypto?.bank_acc_number && userContext.sellCrypto?.bank_code){
+            fetchData()
         }
+    }, [userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
+    
+    React.useEffect(()=> { 
 
         const exchangeRate =async()=> {
 
@@ -62,25 +69,25 @@ export default function SellCrypto({next}: props) {
 
         if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
             exchangeRate()
-        }
+        } 
 
-        if(userContext.sellCrypto?.bank_acc_name && userContext.sellCrypto?.bank_acc_number && userContext.sellCrypto?.bank_code){
-            fetchData()
-        }
-    }, [userContext.sellCrypto?.coin_name, userContext.sellCrypto?.coin_amount_to_swap, userContext.sellCrypto?.bank_acc_name, userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
- 
+    }, [userContext.sellCrypto?.coin_name, userContext.sellCrypto?.coin_amount_to_swap])
     
 
     const submit = async () => { 
         setLoading(true);
         const request = await handleSwapCoin(JSON.stringify(userContext.sellCrypto))   
+
+        console.log(request);
+        
         if (request.status === 200) {  
             toast({
-                title: "Login Successfully",
+                title: "Transaction Successfully",
                 position: "bottom",
                 status: "success",
                 isClosable: true,
             })
+            userContext.setTransactionDetail(request?.data)
             const t1 = setTimeout(() => {
                 setLoading(false);  
                 next(true)
@@ -88,7 +95,7 @@ export default function SellCrypto({next}: props) {
             }, 1000);  
         }else {  
             toast({
-                title: request?.data?.message,
+                title: request?.data?.error?.details[0],
                 position: "bottom",
                 status: "error",
                 isClosable: true,
@@ -99,7 +106,7 @@ export default function SellCrypto({next}: props) {
     }  
 
     const CoinName =(item: any)=>{
-        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: "BSC"})
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: "Bitcoin"})
     }
 
     const BankHandler =(item: any, code: any)=>{
@@ -172,7 +179,7 @@ export default function SellCrypto({next}: props) {
                     </div>
                 )}
                 {(userContext.sellCrypto.phone_number+"").length > 9 && ( 
-                    <ButtonComponent onClick={()=> submit()} name="Initialize Payment" bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
+                    <ButtonComponent onClick={()=> submit()} name={loading ? "Loading...":"Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                 )}
             </div>
         </div>

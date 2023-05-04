@@ -1,11 +1,32 @@
 import { Input, Select, Table, TableContainer, Tbody, Td, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
+import { useGetDataCallback } from '../../action/useAction'
+import { IUser, UserContext } from '../../context/userContext'
 
 export default function TransactionComponent() {
 
     const [tab, setTab] = React.useState(false)
     const [show, setshow] = React.useState(0)
     const [showModal, setShowModal] = React.useState(false)
+
+
+    const { handleGetData } = useGetDataCallback()
+    const userContext: IUser = React.useContext(UserContext); 
+    const [data, setData] = React.useState({} as any)
+
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            const request: any = await handleGetData("/swap/transactions/"+userContext.userInfo?.id)  
+            // userContext.setUserInformation(request?.data)
+            // console.log(request); 
+        }
+
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, []) 
 
     return (
         <div className=' w-full  ' >
