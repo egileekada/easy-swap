@@ -57,11 +57,15 @@ export default function Navbar({ hide, dashboard }: props) {
                 </svg>
                 {!hide && (
                     <>
-                        {!userContext.userInfo?.email && ( 
-                            <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
-                                <button onClick={()=> navigate("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
-                                <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
-                            </div>
+                        {!dashboard && ( 
+                            <>
+                                {!userContext.userInfo?.email && ( 
+                                    <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
+                                        <button onClick={()=> navigate("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
+                                        <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
+                                    </div>
+                                )}
+                            </>
                         )}
                     </>
                 )}

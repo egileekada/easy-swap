@@ -8,7 +8,7 @@ import RateCalculator from '../../components/SellCrytoComponent/RateCalculator'
 export default function SellCryptoPage() {
 
   const [tab, setTab] = React.useState(0)
-  const [isShown, setIsShown] = React.useState(true)
+  const [isShown, setIsShown] = React.useState(false)
 
   return (
     <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >
