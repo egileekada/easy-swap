@@ -66,8 +66,7 @@ export function useExchangeRateCallback() {
         const response = await axios.post('/swap/rate-calculator', postData,
         {
           headers: {
-            'Content-Type':'application/json', 
-            Authorization : `Bearer ${localStorage.getItem('token')}`
+            'Content-Type':'application/json',  
           }, 
         }); 
         return response       
@@ -76,5 +75,22 @@ export function useExchangeRateCallback() {
     }     
   }
   return { handleExchangeRate }
+}  
+
+export function useEmailVerificationCallback() {
+  const handleEmailVerification = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.post('users/verify-otp', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response    
+    }     
+  }
+  return { handleEmailVerification }
 }  
  

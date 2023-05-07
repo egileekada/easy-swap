@@ -8,12 +8,15 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'; 
 import { useLoginCallback, useRegisterCallback } from '../../action/useAuth'
 import { useToast } from '@chakra-ui/react'
+import { IUser, UserContext } from '../../context/userContext'
 
 export default function RegisterPage() {
 
     const navigate = useNavigate()
     const [loading, setLoading] = React.useState(false)
     const [confirmPassword, setConfirmPassword] = React.useState("")
+
+    const userContext: IUser = React.useContext(UserContext); 
 
 
     const { handleRegister } = useRegisterCallback()
@@ -58,7 +61,8 @@ export default function RegisterPage() {
             if (request.status === 200 || request.status === 201) {    
                 localStorage.setItem('token', request?.data?.data?.token);   
                 localStorage.setItem('id', request?.data?.data?.user?.id); 
-                navigate("/signin")
+                userContext.setUserEmail(formik.values.email)
+                navigate("/verifyemail")
                 toast({
                     title: "Registration Successful", 
                     status: 'success',  

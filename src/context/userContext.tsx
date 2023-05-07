@@ -7,6 +7,8 @@ export interface IUser {
   setSellCrypto: Function,  
   transactionDetail: any, 
   setTransactionDetail: Function,  
+  userEmail: any, 
+  setUserEmail: Function,  
 }
 
 export const UserContext = React.createContext({} as IUser); 
@@ -17,6 +19,7 @@ export const UserContextProvider = (props: any) => {
   const [userInfo, setUserInformation] = useState({} as any);   
   const [sellCrypto, setSellCrypto] = useState({} as any);    
   const [transactionDetail, setTransactionDetail] = useState("");    
+  const [userEmail, setUserEmail] = useState("");    
 
   return <UserContext.Provider value={{
       userInfo, 
@@ -25,6 +28,8 @@ export const UserContextProvider = (props: any) => {
       setSellCrypto, 
       transactionDetail, 
       setTransactionDetail, 
+      userEmail, 
+      setUserEmail,  
     }}>
     {
         props.children

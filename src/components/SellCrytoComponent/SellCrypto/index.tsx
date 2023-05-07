@@ -22,6 +22,7 @@ export default function SellCrypto({next}: props) {
     }, [])
 
     const [loading, setLoading] = React.useState(false)
+    const [loadingRate, setLoadingRate] = React.useState(false)
     const [loadingBank, setLoadingBank] = React.useState(false)
     const [exchangeRate, setExchangeRate] = React.useState("")
     const [accountName, setAccountName] = React.useState("")
@@ -58,13 +59,14 @@ export default function SellCrypto({next}: props) {
     React.useEffect(()=> { 
 
         const exchangeRate =async()=> {
-
+            setLoadingRate(true)
             let Str = userContext.sellCrypto?.coin_name.charAt(0).toUpperCase() + userContext.sellCrypto?.coin_name.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
                     "coin_name": Str,
                     "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
                 }))   
-            setExchangeRate(request?.data?.total_coin_price_ngn)             
+            setExchangeRate(request?.data?.total_coin_price_ngn)     
+            setLoadingRate(false)        
         }
 
         if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
@@ -125,7 +127,7 @@ export default function SellCrypto({next}: props) {
                             <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' w-full flex justify-end ' >  
-                            <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {cashFormat(exchangeRate)}</p>
+                            <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
                         </div>
                     </div>
                 )}
