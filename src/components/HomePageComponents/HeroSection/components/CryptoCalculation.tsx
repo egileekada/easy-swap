@@ -1,80 +1,119 @@
 import { Input } from '@chakra-ui/react'
 import React from 'react'
+import { useExchangeRateCallback } from '../../../../action/useAction'
+import { cashFormat } from '../../../../config/utils/cashFormat'
 
 export default function CryptoCalculation() {
 
-    const [isShown, setIsShown] = React.useState(0)
+    const [isShown, setIsShown] = React.useState(false)
 
     const clickHandler =(item: number)=> {
-        if(item ===isShown){ 
-            setIsShown(0)
-        } else { 
-            setIsShown(item)
+        // if(item ===isShown){ 
+        //     setIsShown(0)
+        // } else { 
+        //     setIsShown(item)
+        // }
+    }
+
+    const [value, setValue] = React.useState("")
+    const [loadingRate, setLoadingRate] = React.useState(false) 
+    const [exchangeRate, setExchangeRate] = React.useState("")
+    const [accountName, setAccountName] = React.useState("") 
+    
+    const { handleExchangeRate } = useExchangeRateCallback();
+
+
+    const [selectCoinTicker, setSelectCoinTicker] = React.useState("")
+    const [selectCoin, setSelectCoin] = React.useState("")
+    const [coinImage, setcoinImage] = React.useState("")
+    const bitpowr_coin_ticker = [
+        {'coin_name': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
+        {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
+        {'coin_name': 'Tether', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
+        {'coin_name': 'Binance coin', 'coin_ticker': 'BNB', image: '/images/binance.png'}, 
+    ]
+
+    React.useEffect(()=> { 
+
+        const exchangeRate =async()=> {
+            setLoadingRate(true)
+            let Str = selectCoin.charAt(0).toUpperCase() + selectCoin.slice(1)
+            const request = await handleExchangeRate(JSON.stringify({
+                    "coin_name": selectCoin,
+                    "coin_amount_to_calc": value
+                }))   
+            setExchangeRate(request?.data?.total_coin_price_ngn)     
+            setLoadingRate(false)        
         }
+
+        if(selectCoin && value){
+            exchangeRate()
+        } 
+
+    }, [selectCoin, value])
+
+
+
+    const modalHandler =(item: any, value: string, image:string)=> {  
+        setSelectCoinTicker(value)
+        setSelectCoin(item)
+        setIsShown(false)
+        setcoinImage(image)
     }
 
     return (
         <div className=' w-full lg:mt-0 mt-6 lg:w-[450px] h-fit rounded-lg bg-white py-9 px-6 ' >
-            <p className=' font-bold text-[#303179] mb-4 ' >1 BUSD = 732.29 NGN</p>
-            {/* <div className=' w-full border border-[#94A3B8] h-[60px] rounded-lg px-[26px] flex items-center justify-between ' >
-                <div className=' w-full ' >
-                    <p className=' font-semibold text-[#475569] text-sm ' >Send</p>
-                    <input className=' border-0 font-bold text-lg outline-none ' placeholder="0000" />
-                </div>
-                <div className=' w-fit flex items-center font-bold gap-[10px] ' >
-                    <p className=' ' >BUSD</p>
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 5.35742L9.53674e-07 0.357421L10 0.357422L5 5.35742Z" fill="black"/>
-                    </svg>
-                </div>
-            </div> */}
+            {value && ( 
+                <p className=' font-bold text-[#303179] mb-4 ' >{value} BUSD = {loadingRate? "...": cashFormat(exchangeRate)} NGN</p> 
+            )}
             <div className=' relative w-full border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
                     <p className=' font-semibold text-[#475569] text-sm ' >Send</p>
-                    <input className=' w-full border-0 font-bold text-lg outline-none ' placeholder="0000" />
-                </div>
-                <div onClick={()=> clickHandler(1)} role="button" className=' w-fit flex items-center font-bold gap-[10px] ' >
-                    <p className=' ' >BUSD</p>
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 5.35742L9.53674e-07 0.357421L10 0.357422L5 5.35742Z" fill="black"/>
+                    <input onChange={(e)=> setValue(e.target.value)} type='number'  className=' w-full border-0 font-medium text-lg outline-none ' placeholder="0000" />
+                </div> 
+                <div onClick={()=> setIsShown(true)} role='button' className=' h-full w-fit pr-2 flex justify-center items-center gap-2  ' >
+                    {selectCoinTicker && (
+                        <div className=' w-[24px] h-[24px] rounded-full ' >
+                            <img src={coinImage} alt="coin" className=' w-full h-full  rounded-full' />
+                        </div>
+                    )}
+                    <p className=' font-semibold text-xs ' >{selectCoinTicker ? selectCoinTicker: ""}</p>
+                    <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.98902 6.99763C6.75578 6.99809 6.52974 6.91676 6.35014 6.76775L0.360621 1.77034C0.156761 1.60069 0.0285612 1.3569 0.00422411 1.09261C-0.020113 0.828322 0.0614062 0.565176 0.230848 0.361065C0.40029 0.156954 0.643776 0.0285965 0.90774 0.00422933C1.1717 -0.0201378 1.43452 0.0614814 1.63838 0.231132L6.98902 4.70882L12.3397 0.39105C12.4418 0.308027 12.5593 0.246028 12.6854 0.208615C12.8115 0.171203 12.9438 0.159115 13.0746 0.173047C13.2054 0.186979 13.3321 0.226656 13.4475 0.289797C13.563 0.352938 13.6648 0.438299 13.7472 0.540973C13.8386 0.643741 13.9079 0.764305 13.9506 0.895111C13.9933 1.02592 14.0086 1.16415 13.9954 1.30114C13.9823 1.43813 13.9411 1.57093 13.8743 1.69123C13.8076 1.81152 13.7167 1.91672 13.6074 2.00022L7.61792 6.82772C7.43316 6.95317 7.21173 7.013 6.98902 6.99763V6.99763Z" fill="#101828"/>
                     </svg>
                 </div>
-                {isShown === 1 && ( 
+                {isShown && ( 
                     <> 
-                        <div style={{boxShadow: "0px 8px 20px -4px #1718181F"}} className=' w-[89px] bg-white right-4 z-50 absolute top-3 rounded-lg p-2 ' >
-                            <p role='button' onClick={()=> clickHandler(1)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(1)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(1)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(1)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(1)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
+                        <div style={{boxShadow: "0px 8px 20px -4px #1718181F"}} className=' w-fit bg-white right-4 z-50 absolute top-3 rounded-lg p-2 ' >
+                            {bitpowr_coin_ticker.map((item: any, index: number) => {
+                                return ( 
+                                    <div key={index} role="button" onClick={()=> modalHandler(item?.coin_name, item?.coin_ticker, item?.image)} className=' w-full flex py-2 items-center gap-3 ' >
+                                        <div className=' w-[40px] h-[40px] rounded-full bg-white '>
+                                            <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
+                                        </div>
+                                        <div className='' >
+                                            <p className=' text-[#333] font-semibold ' >{item?.coin_ticker}</p>
+                                            <p className=' font-normal text-[#8994A1] text-sm ' >{item?.coin_name}</p> 
+                                        </div>
+                                    </div> 
+                                )
+                            })}
                         </div>
-                        <div className=' fixed inset-0 z-20 ' onClick={()=> clickHandler(1)} />
+                        <div className=' fixed inset-0 z-20 ' onClick={()=> setIsShown(false)} />
                     </>
                 )}
             </div> 
             <div className=' w-full relative border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
                     <p className=' font-semibold text-[#475569] text-sm ' >Receive</p>
-                    <input className=' w-full border-0 font-bold text-lg outline-none ' placeholder="0000" />
+                    <p className='w-full border-0 font-medium text-lg outline-none '  >{loadingRate? "...": cashFormat(exchangeRate)}</p>
                 </div>
-                <div onClick={()=> clickHandler(2)} role="button" className='  w-fit flex items-center font-bold gap-[10px] ' >
-                    <p className=' ' >BUSD</p>
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className='  w-fit flex items-center font-bold gap-[10px] ' >
+                    <p className=' ' >NGN</p>
+                    {/* <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 5.35742L9.53674e-07 0.357421L10 0.357422L5 5.35742Z" fill="black"/>
-                    </svg>
+                    </svg> */}
                 </div>
-                {isShown === 2 && ( 
-                    <> 
-                        <div style={{boxShadow: "0px 8px 20px -4px #1718181F"}} className=' w-[89px] bg-white right-4 z-50 absolute top-3 rounded-lg p-2 ' >
-                            <p role='button' onClick={()=> clickHandler(2)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(2)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(2)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(2)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                            <p role='button' onClick={()=> clickHandler(2)} className=' text-sm font-semibold p-2 my-1 hover:bg-[#3031791A] rounded ' >BTC</p>
-                        </div>
-                        <div className=' fixed inset-0 z-20 ' onClick={()=> clickHandler(2)} />
-                    </>
-                )}
             </div> 
             <button style={{boxShadow: "0px 1px 0px rgba(0, 0, 0, 0.05)"}} className=' bg-[#303179] font-semibold text-[#FCFCFD] font-sembold w-full mt-6 rounded h-[45px] ' >Sell crypto in minutes</button>
         </div>

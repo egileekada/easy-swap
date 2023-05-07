@@ -12,7 +12,7 @@ export default function CoinSelection({rate, data}: Props) {
     const [showModal, setShowModal] = React.useState(false)
     const [selectCoin, setSelectCoin] = React.useState("")
     const [selectCoinTicker, setSelectCoinTicker] = React.useState("")
-    const [coinImage, setcoinImage] = React.useState("")
+    const [coinImage, setcoinImage] = React.useState('/images/Bitcoin.png')
     const bitpowr_coin_ticker = [
         {'coin_name': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
