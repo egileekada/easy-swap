@@ -23,7 +23,7 @@ export default function Navbar({ hide, dashboard }: props) {
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
             userContext.setUserInformation(request?.data)
-            // console.log(request); 
+            console.log(request?.data); 
         }
 
         // call the function
@@ -32,6 +32,7 @@ export default function Navbar({ hide, dashboard }: props) {
         // make sure to catch any error
         .catch(console.error);;
     }, []) 
+    
 
     return (
         <div className=' relative w-full h-[62px] ' > 

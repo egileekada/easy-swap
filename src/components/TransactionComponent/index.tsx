@@ -2,23 +2,35 @@ import { Input, Select, Table, TableContainer, Tbody, Td, Thead, Tr } from '@cha
 import React from 'react'
 import { useGetDataCallback } from '../../action/useAction'
 import { IUser, UserContext } from '../../context/userContext'
+import { cashFormat } from '../../config/utils/cashFormat'
+import { dateFormat } from '../../config/utils/dateFormat'
 
 export default function TransactionComponent() {
 
     const [tab, setTab] = React.useState(false)
     const [show, setshow] = React.useState(0)
     const [showModal, setShowModal] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
 
 
     const { handleGetData } = useGetDataCallback()
     const userContext: IUser = React.useContext(UserContext); 
-    const [data, setData] = React.useState({} as any)
+    const [data, setData] = React.useState([] as any)
 
     React.useEffect(()=> { 
         const fetchData = async () => {
+            setLoading(true);  
             const request: any = await handleGetData("/swap/transactions/"+userContext.userInfo?.id)  
             // userContext.setUserInformation(request?.data)
-            // console.log(request); 
+            console.log(request?.data); 
+            if(userContext.userInfo?.id){
+                setData(request?.data) 
+            }
+            
+            const t1 = setTimeout(() => {
+                setLoading(false);  
+                clearTimeout(t1);
+            }, 1000);  
         }
 
         // call the function
@@ -26,7 +38,7 @@ export default function TransactionComponent() {
 
         // make sure to catch any error
         .catch(console.error);;
-    }, []) 
+    }, [userContext.userInfo?.id]) 
 
     return (
         <div className=' w-full  ' >
@@ -88,28 +100,48 @@ export default function TransactionComponent() {
                             </Td> 
                         </Tr>
                     </Thead>
-                    <Tbody>  
-                        <Tr style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
-                            <Td>2023-03-04 12:31</Td>  
-                            <Td>Abdulazeez Aiye...</Td>   
-                            <Td>Deposit</Td>  
-                            <Td>USDT</Td> 
-                            <Td>100,000</Td>  
-                            <Td>0xcdadb45afa459de98...</Td> 
-                            <Td>
-                                <div className=' gap-2 flex items-center ' > 
-                                    0xcdadb45afa459de98...
-                                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
-                                    </svg>
-                                </div>
-                            </Td> 
-                            <Td>
-                                <div className=' py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
-                                    Success    
-                                </div>    
-                            </Td>   
-                        </Tr>
+                    <Tbody>
+                        {!loading && (
+                            <> 
+                                {data?.length > 0 && (
+                                    <> 
+                                        {data?.map((item: any, index: number)=> {
+                                            return( 
+                                                <Tr key={index} style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
+                                                    <Td>{dateFormat(item?.created_at)}</Td>  
+                                                    <Td>{userContext?.userInfo?.fullname}</Td>   
+                                                    <Td>Deposit</Td>  
+                                                    <Td>{item?.coin_name}</Td> 
+                                                    <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
+                                                    <Td>{item?.coin_address?.slice(0,17)+"..."}</Td> 
+                                                    <Td>
+                                                        {item?.trans_hash && (
+                                                            <div className=' gap-2 flex items-center ' > 
+                                                                {item?.trans_hash?.slice(0,17)+"..."}
+                                                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
+                                                                </svg>
+                                                            </div>
+                                                        )}
+                                                    </Td> 
+                                                    <Td>
+                                                        {item?.transaction_status === "PENDING" ? (
+                                                            <div className=' py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                Pending    
+                                                            </div> 
+                                                        ): ( 
+                                                            <div className=' py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                                Success    
+                                                            </div> 
+                                                        )}   
+                                                    </Td>   
+                                                </Tr>
+                                            )
+                                        })}
+                                    </>
+                                )}
+                            </>
+                        )}
                     </Tbody> 
                 </Table>
             </TableContainer>
@@ -123,28 +155,40 @@ export default function TransactionComponent() {
                     <svg role='buttton' onClick={()=> setShowModal(true)} width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 11V17L6 19V11L0 2V0H16V2L10 11ZM2.4037 2L8 10.3944L13.5963 2H2.4037Z" fill="black"/>
                     </svg>
-                </div>
-                <div className=' w-full mt-12 '  >
-                    <div className=' w-full flex justify-between ' >
-                        <div className=' flex gap-2 ' >
-                            <div className=' w-[30px] h-[30px] bg-green-500 rounded-full ' >
-                                  
-                            </div>
-                            <div>
-                                <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> USDT</p>
-                                <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: 2,000 USDT</p>
-                            </div>
-                        </div>
-                        <div className=' flex flex-col ' >
-                            <div className=' flex items-center gap-2 ' >
-                                <p className=' text-xs text-[#12B76A] font-semibold ' >Success</p>
-                                <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
-                                </svg>
-                            </div>
-                            <p className=' text-sm text-[#333333] mt-auto font-medium ' >NGN 1,400,60</p>
-                        </div>
-                    </div>
+                </div> 
+                <div className=' w-full mt-12 flex flex-col gap-4 '  >
+                    {!loading && (
+                        <> 
+                            {data?.length > 0 && (
+                                <> 
+                                    {data.map((item: any, index: number)=> {
+                                        return( 
+                                            <div key={index} className=' w-full flex justify-between ' >
+                                                <div className=' flex gap-2 ' >
+                                                    <div className=' w-[30px] h-[30px] bg-green-500 rounded-full ' >
+                                                        
+                                                    </div>
+                                                    <div>
+                                                        <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> {item?.coin_name}</p>
+                                                        <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {cashFormat(item?.coin_amount_to_swap, 5)} {item?.coin_name}</p>
+                                                    </div>
+                                                </div>
+                                                <div className=' flex flex-col ' >
+                                                    <div className=' flex items-center gap-2 ' >
+                                                        <p className={ item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>Success</p>
+                                                        <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
+                                                        </svg>
+                                                    </div>
+                                                    <p className=' text-sm text-[#333333] mt-auto font-medium ' >NGN {cashFormat(item?.ngn_equivalent)}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
             {showModal && (
