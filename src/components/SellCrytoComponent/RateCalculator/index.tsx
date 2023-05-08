@@ -31,10 +31,7 @@ export default function RateCalculator() {
 
         if(coinData && value){
             exchangeRate()
-        } 
-
-        console.log("hell");
-        
+        }  
 
     }, [coinData, value])
 
