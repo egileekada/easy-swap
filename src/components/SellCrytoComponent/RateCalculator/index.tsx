@@ -37,7 +37,7 @@ export default function RateCalculator() {
 
 
 
-    const CoinName =(item: any)=>{
+    const CoinName =(item: any, net: any)=>{
         setCoinData(item)
     }
 

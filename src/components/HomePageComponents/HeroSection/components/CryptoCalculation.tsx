@@ -29,10 +29,10 @@ export default function CryptoCalculation() {
     const [selectCoin, setSelectCoin] = React.useState("")
     const [coinImage, setcoinImage] = React.useState("")
     const bitpowr_coin_ticker = [
-        {'coin_name': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
+        {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
-        {'coin_name': 'Tether', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
-        // {'coin_name': 'Binance coin', 'coin_ticker': 'BNB', image: '/images/binance.png'}, 
+        {'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
+        {'coin_name': 'Tether Tron', 'network': 'TRON', 'coin_ticker': 'USDT_TRON', image: '/images/tether.webp'}, 
     ]
 
     React.useEffect(()=> { 

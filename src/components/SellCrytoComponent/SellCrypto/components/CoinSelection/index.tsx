@@ -4,10 +4,11 @@ import { IUser, UserContext } from '../../../../../context/userContext'
 
 interface Props {
     rate?: boolean,
-    data?: any
+    data?: any,
+    network?: any
 }
 
-export default function CoinSelection({rate, data}: Props) {
+export default function CoinSelection({rate, data, network}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
     const [selectCoin, setSelectCoin] = React.useState("")
@@ -15,16 +16,16 @@ export default function CoinSelection({rate, data}: Props) {
     const userContext: IUser = React.useContext(UserContext); 
     const [coinImage, setcoinImage] = React.useState('/images/Bitcoin.png')
     const bitpowr_coin_ticker = [
-        {'coin_name': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
-        {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
-        {'coin_name': 'Tether', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
-        {'coin_name': 'Binance coin', 'coin_ticker': 'BNB', image: '/images/binance.png'}, 
+        {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
+        // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
+        {'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
+        {'coin_name': 'Tether Tron', 'network': 'TRON', 'coin_ticker': 'USDT_TRON', image: '/images/tether.webp'}, 
     ]
 
     const CoinList =()=> {
 
-        const clickHandler =(item: any, value: string, image:string)=> { 
-            data(item)
+        const clickHandler =(item: any, value: string, image:string, net:string)=> { 
+            data(item, net) 
             setSelectCoinTicker(value)
             setSelectCoin(item)
             setShowModal(false)
@@ -56,7 +57,7 @@ export default function CoinSelection({rate, data}: Props) {
                     <div className=' w-full flex flex-col gap-3 pt-6 overflow-y-auto max-h-64 ' >
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
-                                    <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image)} className=' w-full flex items-center gap-3 ' >
+                                    <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex items-center gap-3 ' >
                                         <div className=' w-[40px] h-[40px] rounded-full bg-white '>
                                             <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                         </div>

@@ -62,7 +62,7 @@ export default function SellCrypto({next}: props) {
             setLoadingRate(true)
             let Str = userContext.sellCrypto?.coin_name.charAt(0).toUpperCase() + userContext.sellCrypto?.coin_name.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": Str,
+                    "coin_name": ( userContext.sellCrypto?.coin_name === "Bitcoin" ? "":userContext.sellCrypto?.coin_name === "Tether" ? "USDT": "USDT_TRON"),
                     "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
                 }))   
             setExchangeRate(request?.data?.total_coin_price_ngn)     
@@ -107,8 +107,8 @@ export default function SellCrypto({next}: props) {
         setLoading(false);
     }  
 
-    const CoinName =(item: any)=>{
-        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: "Bitcoin"})
+    const CoinName =(item: any, net: any)=>{
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: net})
     }
 
     const BankHandler =(item: any, code: any)=>{
