@@ -71,10 +71,7 @@ export default function CryptoCalculation() {
     React.useEffect(()=> { 
         const fetchData = async () => {
             setLoading(true);  
-            const request: any = await handleGetData("/swap/usd-rate")  
-            
-            console.log(request?.data?.usdt_ngn_rate);  
-            
+            const request: any = await handleGetData("/swap/usd-rate")   
             setRate(request?.data?.usdt_ngn_rate)
 
             const t1 = setTimeout(() => {
