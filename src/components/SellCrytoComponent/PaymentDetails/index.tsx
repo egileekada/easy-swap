@@ -38,7 +38,7 @@ export default function PaymentDetails({close}: props) {
                     <p className=' font-bold ' >Order info</p>
                     <div className=' w-full grid grid-cols-2 text-sm gap-3 pt-5 ' > 
                         <p className=' font-medium text-[#475569]  ' >Amount</p>
-                        <p className=' font-medium text-[#475569] text-right  ' >{userContext.transactionDetail?.coin_amount_to_swap}</p>
+                        <p className=' font-medium text-[#475569] text-right  ' >{parseFloat(userContext.transactionDetail?.coin_amount_to_swap)}</p>
                         <p className=' font-medium text-[#475569]  ' >Amount in NGN</p>
                         <p className=' font-medium text-[#475569] text-right ' >{cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
                         <p className=' font-medium text-[#475569] ' >Asset sold</p>
@@ -134,7 +134,7 @@ export default function PaymentDetails({close}: props) {
                                 {userContext.transactionDetail?.coin_name}
                             </div>
                             <div className=' flex gap-2 items-center ' > 
-                                <p className=' text-4xl font-bold mt-1 ' >{userContext.transactionDetail?.coin_amount_to_swap}</p>
+                                <p className=' text-4xl font-bold mt-1 ' >{parseFloat(userContext.transactionDetail?.coin_amount_to_swap)}</p>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M3.46257 2.43262C5.21556 0.91688 7.5007 0 10 0C15.5228 0 20 4.47715 20 10C20 12.1361 19.3302 14.1158 18.1892 15.7406L15 10H18C18 5.58172 14.4183 2 10 2C7.84982 2 5.89777 2.84827 4.46023 4.22842L3.46257 2.43262ZM16.5374 17.5674C14.7844 19.0831 12.4993 20 10 20C4.47715 20 0 15.5228 0 10C0 7.86386 0.66979 5.88416 1.8108 4.25944L5 10H2C2 14.4183 5.58172 18 10 18C12.1502 18 14.1022 17.1517 15.5398 15.7716L16.5374 17.5674Z" fill="black"/>
                                 </svg>
@@ -177,7 +177,7 @@ export default function PaymentDetails({close}: props) {
                                 <path d="M58.7083 73.0003L68.9167 83.2087L89.3333 62.792" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                             <p className=' mt-4 font-bold text-2xl text-[#334155] ' >Order successful</p>
-                            <p className=' text-center font-normal text-[#647488] mt-1 mb-5 ' >Successfully sold {userContext.transactionDetail?.coin_amount_to_swap+" "+userContext.transactionDetail?.coin_name}</p> 
+                            <p className=' text-center font-normal text-[#647488] mt-1 mb-5 ' >Successfully sold {parseFloat(userContext.transactionDetail?.coin_amount_to_swap)+" "+userContext.transactionDetail?.coin_name}</p> 
                             <ButtonComponent onClick={()=> clickHandler()} name='Back to home' bgcolor=' bg-[#303179] text-white ' />
                         </div>
                     </div>

@@ -191,6 +191,21 @@ export default function TransactionComponent() {
                     )}
                 </div>
             </div>
+
+            {!loading && (
+                <> 
+                    {data?.length < 1 && (
+                        <div className=' w-full flex justify-center pt-6 font-semibold lg:text-xl ' >
+                            <p>No Record Found</p>
+                        </div>
+                    )}
+                </>
+            )}
+            {loading && (
+                <div className=' w-full flex justify-center pt-6 font-semibold lg:text-xl ' >
+                    <p>Loading...</p>
+                </div>
+            )}
             {showModal && (
                 <>  
                     <div className=' w-full fixed z-20 h-full px-4 inset-0 flex justify-center items-center flex-col '  >  

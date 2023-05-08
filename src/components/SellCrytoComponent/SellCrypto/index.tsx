@@ -114,6 +114,10 @@ export default function SellCrypto({next}: props) {
     const BankHandler =(item: any, code: any)=>{
         userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code})
     } 
+
+    const GetAmount =(item: any)=> {
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": item.target.value})
+    }
     
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
@@ -124,7 +128,7 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1   ' >
-                            <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": e.target.value})} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' w-full flex justify-end ' >  
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
