@@ -77,9 +77,9 @@ export default function LoginPage() {
     } 
 
     return (
-        <form onSubmit={(e)=> submit(e)} className=' w-full lg:h-auto h-screen overflow-auto justify-center pb-20 flex flex-col  items-center ' >
+        <form onSubmit={(e)=> submit(e)} className=' w-full lg:h-auto h-screen overflow-auto lg:justify-center pb-20 flex flex-col  lg:items-center ' >
             <Navbar hide={true} />
-            <div className=' w-full lg:px-0 px-6 lg:w-[500px] lg:mt-12 flex flex-col lg:items-center lg:text-center ' > 
+            <div className=' w-full lg:px-0 px-6 lg:w-[500px] mt-20 lg:mt-12 flex flex-col lg:items-center lg:text-center ' > 
                 <p className=' text-2xl lg:text-3xl font-bold lg:font-semibold text-[#1E293B] ' >Login to your account</p>
                 <p className=' text-[#475569] mt-2 lg:max-w-md lg:text-center ' >Hello again! Please enter your login details.</p>
                 <div className=' mt-6 lg:mt-10 text-left w-full ' > 

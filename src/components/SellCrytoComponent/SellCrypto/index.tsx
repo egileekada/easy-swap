@@ -51,7 +51,7 @@ export default function SellCrypto({next}: props) {
             setLoadingBank(false)
         } 
 
-        if(userContext.sellCrypto?.bank_acc_number && userContext.sellCrypto?.bank_code){
+        if(userContext.sellCrypto?.bank_acc_number?.length === 10 && userContext.sellCrypto?.bank_code){
             fetchData()
         }
     }, [userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
