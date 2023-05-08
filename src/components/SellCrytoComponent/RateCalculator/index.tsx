@@ -22,7 +22,7 @@ export default function RateCalculator() {
             setLoadingRate(true)
             let Str = coinData.charAt(0).toUpperCase() + coinData.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": coinData,
+                    "coin_name": ( coinData === "Bitcoin" ? Str:coinData === "Tether" ? "USDT": "USDT_TRON"),
                     "coin_amount_to_calc": value+""
                 }))   
             setExchangeRate(request?.data?.total_coin_price_ngn)     

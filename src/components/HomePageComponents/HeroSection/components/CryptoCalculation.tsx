@@ -36,7 +36,7 @@ export default function CryptoCalculation() {
             setLoadingRate(true)
             let Str = selectCoin.charAt(0).toUpperCase() + selectCoin.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": ( selectCoin === "Bitcoin" ? "":selectCoin === "Tether" ? "USDT": "USDT_TRON"),
+                    "coin_name": ( selectCoin === "Bitcoin" ? selectCoin:selectCoin === "Tether" ? "USDT": "USDT_TRON"),
                     "coin_amount_to_calc": value
                 }))   
             setExchangeRate(request?.data?.total_coin_price_ngn)     
@@ -117,8 +117,8 @@ export default function CryptoCalculation() {
                                             <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                         </div>
                                         <div className='' >
-                                            <p className=' text-[#333] font-semibold ' >{item?.coin_ticker}</p>
-                                            <p className=' font-normal text-[#8994A1] text-sm ' >{item?.coin_name}</p> 
+                                            <p className=' text-[#333] font-semibold text-sm ' >{item?.coin_ticker}</p>
+                                            <p className=' font-normal text-[#8994A1] text-xs ' >{item?.coin_name}</p> 
                                         </div>
                                     </div> 
                                 )
