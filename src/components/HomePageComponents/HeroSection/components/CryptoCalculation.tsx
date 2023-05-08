@@ -1,26 +1,21 @@
 import { Input } from '@chakra-ui/react'
 import React from 'react'
-import { useExchangeRateCallback } from '../../../../action/useAction'
+import { useExchangeRateCallback, useGetDataCallback } from '../../../../action/useAction'
 import { cashFormat } from '../../../../config/utils/cashFormat'
 import { IUser, UserContext } from '../../../../context/userContext'
 import { useNavigate } from 'react-router-dom'
 
 export default function CryptoCalculation() {
 
-    const [isShown, setIsShown] = React.useState(false)
-
-    const clickHandler =(item: number)=> {
-        // if(item ===isShown){ 
-        //     setIsShown(0)
-        // } else { 
-        //     setIsShown(item)
-        // }
-    }
-
+    const [isShown, setIsShown] = React.useState(false) 
     const [value, setValue] = React.useState("")
     const [loadingRate, setLoadingRate] = React.useState(false) 
+    const [loading, setLoading] = React.useState(false) 
     const [exchangeRate, setExchangeRate] = React.useState("")
-    const [accountName, setAccountName] = React.useState("") 
+    const [rate, setRate] = React.useState("") 
+
+
+    const { handleGetData } = useGetDataCallback() 
     
     const { handleExchangeRate } = useExchangeRateCallback();
     const navigate = useNavigate()
@@ -73,11 +68,32 @@ export default function CryptoCalculation() {
         } 
     }
 
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            setLoading(true);  
+            const request: any = await handleGetData("/swap/usd-rate")  
+            
+            console.log(request?.data?.usdt_ngn_rate);  
+            
+            setRate(request?.data?.usdt_ngn_rate)
+
+            const t1 = setTimeout(() => {
+                setLoading(false);  
+                clearTimeout(t1);
+            }, 1000);  
+        }
+
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, []) 
+
     return (
         <div className=' w-full lg:mt-0 mt-6 lg:w-[450px] h-fit rounded-lg bg-white py-9 px-6 ' >
-            {value && selectCoin && ( 
-                <p className=' font-bold text-[#303179] mb-4 ' >{value} {selectCoinTicker ? selectCoinTicker: ""} = {loadingRate? "...": cashFormat(exchangeRate)} NGN</p> 
-            )}
+            
+            <p className=' font-bold text-[#303179] mb-4 ' >1 USDT = {loadingRate? "...": cashFormat(rate)} NGN</p> 
             <div className=' relative w-full border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
                     <p className=' font-semibold text-[#475569] text-sm ' >Send</p>
@@ -121,10 +137,7 @@ export default function CryptoCalculation() {
                     <p className='w-full border-0 font-medium text-lg outline-none '  >{loadingRate? "...": cashFormat(exchangeRate)}</p>
                 </div>
                 <div className='  w-fit flex items-center font-bold gap-[10px] ' >
-                    <p className=' ' >NGN</p>
-                    {/* <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 5.35742L9.53674e-07 0.357421L10 0.357422L5 5.35742Z" fill="black"/>
-                    </svg> */}
+                    <p className=' ' >NGN</p> 
                 </div>
             </div> 
             <button onClick={SubmitHandler} disabled={cashFormat(exchangeRate) === "0"? true: false} style={{boxShadow: "0px 1px 0px rgba(0, 0, 0, 0.05)"}} className={` ${cashFormat(exchangeRate) === "0" ? " bg-[#F1F1F1] text-[#667085]" : " bg-[#303179] text-[#FCFCFD] "}  font-semibold font-sembold w-full mt-6 rounded h-[45px] `} >Sell crypto in minutes</button>
