@@ -36,7 +36,7 @@ export default function CryptoCalculation() {
             setLoadingRate(true)
             let Str = selectCoin.charAt(0).toUpperCase() + selectCoin.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": selectCoin,
+                    "coin_name": ( selectCoin === "Bitcoin" ? "":selectCoin === "Tether" ? "USDT": "USDT_TRON"),
                     "coin_amount_to_calc": value
                 }))   
             setExchangeRate(request?.data?.total_coin_price_ngn)     
