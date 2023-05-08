@@ -76,7 +76,7 @@ export default function CryptoCalculation() {
     return (
         <div className=' w-full lg:mt-0 mt-6 lg:w-[450px] h-fit rounded-lg bg-white py-9 px-6 ' >
             {value && selectCoin && ( 
-                <p className=' font-bold text-[#303179] mb-4 ' >{value} BUSD = {loadingRate? "...": cashFormat(exchangeRate)} NGN</p> 
+                <p className=' font-bold text-[#303179] mb-4 ' >{value} {selectCoinTicker ? selectCoinTicker: ""} = {loadingRate? "...": cashFormat(exchangeRate)} NGN</p> 
             )}
             <div className=' relative w-full border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
