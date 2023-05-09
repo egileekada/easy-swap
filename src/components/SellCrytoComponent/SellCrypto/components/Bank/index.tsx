@@ -17,7 +17,7 @@ export default function BankSelection({rate, data}: Props) {
     const [searchBank, setSearchBank] = React.useState("") 
 
     React.useEffect(()=> { 
-        axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG%27', {
+        axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
             headers: {
                 'X-API-KEY': 'PUBK_TEST_565fadf6-6e72-4832-9be7-7bdd7ffcb4b7'
               }

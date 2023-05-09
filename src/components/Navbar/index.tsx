@@ -27,8 +27,7 @@ export default function Navbar({ hide, dashboard }: props) {
             const request: any = await handleGetData("/users/profile")  
             userContext.setUserInformation(request?.data) 
         }
-        setPathName(window.location.pathname)
-        console.log(window.location.pathname);
+        setPathName(window.location.pathname)  
         
         // call the function
         fetchData()
@@ -44,14 +43,14 @@ export default function Navbar({ hide, dashboard }: props) {
 
     return (
         <div className=' relative w-full h-[62px] ' >  
-            <div className=' w-full fixed z-40 top-0 h-[62px] py-2 flex items-center px-4 lg:px-20 bg-white ' > 
+            <div className=' w-full fixed z-40 top-0 h-[62px] py-2 flex items-center lg:pr-20 pr-3 px-2 lg:px-20 bg-white ' > 
                 
                 {dashboard && ( 
-                    <div className=' mr-3 '>
+                    <div className=' lg:mr-4 lg:ml-0 ml-5 '>
                         <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
                     </div>
                 )}
-                <svg role='button' onClick={()=> navigate("/")} className=' mr-auto lg:ml-0 ml-3 ' width="170" height="40" viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg role='button' onClick={()=> navigate("/")} className=' mr-auto lg:ml-0 ml-3 w-[130px] lg:w-[170px] ' viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50.6464 24.8677C50.444 24.6847 50.1365 24.7314 49.9886 24.9572C48.1865 27.6934 44.3255 30.92 40.6046 32.002C37.0121 33.0451 34.9531 32.2978 34.3849 30.3401C33.7388 28.1176 36.2531 26.5374 39.6393 24.7742C44.7575 22.1548 51.3664 18.8153 49.1829 11.3034C47.6455 6.01395 41.6593 2.72117 33.3612 5.13432C32.1546 5.48461 31.0376 5.91276 29.9984 6.40317C24.0511 0.241854 15.8581 -1.04646 8.54469 3.47236C-0.372292 8.97979 -2.38455 19.695 2.85822 28.1877C8.49409 37.3149 18.497 39.3193 27.2349 34.3957C29.7298 38.6499 35.3307 40.4831 42.862 38.2918C48.35 36.696 53.1101 33.3293 55.5466 29.2892L50.6464 24.8677ZM8.2411 16.7797C8.18661 14.2459 9.21414 11.5253 12.3279 9.59865C15.5584 7.60196 18.4425 7.87831 20.6065 9.03039C22.3074 9.93727 22.4125 12.3348 20.77 13.3507L12.0243 18.753C10.4207 19.7417 8.28391 18.6596 8.2411 16.7797ZM14.6943 27.6739C13.4527 26.8916 13.4761 25.0623 14.7255 24.2916L26.0906 17.2701C30.5511 14.7519 30.734 14.5962 35.1399 11.4864C37.6971 9.68038 40.4255 11.1555 40.9588 12.981C41.527 14.9387 39.254 16.3788 35.9378 18.1264C32.2636 20.0102 27.7059 22.365 26.2697 26.4479C25.8843 26.7476 25.4912 27.0278 25.0942 27.273C21.2643 29.6395 17.4928 29.441 14.6943 27.6739Z" fill="#00BAF0"/>
                     <path d="M75.2624 16.9233H64.8859C64.9559 17.8535 65.2556 18.5619 65.785 19.0562C66.3104 19.5466 66.9604 19.7918 67.7311 19.7918C68.8754 19.7918 69.6694 19.3092 70.117 18.3439H74.9978C74.7487 19.3286 74.2972 20.2122 73.6433 20.9984C72.9894 21.7846 72.172 22.4035 71.1912 22.8472C70.2065 23.2948 69.1089 23.5166 67.8945 23.5166C66.4272 23.5166 65.1233 23.2053 63.979 22.5786C62.8347 21.952 61.9395 21.0607 61.2973 19.8969C60.6551 18.7331 60.332 17.3748 60.332 15.8218C60.332 14.2688 60.6512 12.9065 61.2856 11.7467C61.92 10.5868 62.8113 9.69161 63.9556 9.06497C65.0999 8.43833 66.4116 8.12695 67.8984 8.12695C69.3463 8.12695 70.6346 8.43054 71.7595 9.03772C72.8843 9.6449 73.7678 10.5129 74.4023 11.6377C75.0367 12.7625 75.3558 14.0781 75.3558 15.5805C75.3403 16.0086 75.313 16.4562 75.2624 16.9233ZM70.6463 14.3739C70.6463 13.5877 70.3777 12.961 69.8406 12.4979C69.3035 12.0347 68.634 11.8012 67.8284 11.8012C67.0577 11.8012 66.4116 12.0269 65.8823 12.4706C65.3529 12.9182 65.0299 13.5526 64.9014 14.3739H70.6463Z" fill="#2F327A"/>
                     <path d="M80.7041 19.5221H87.1924V23.3014H75.582V19.6544L81.8017 12.1192H75.6326V8.33984H87.0562V11.9868L80.7041 19.5221Z" fill="#2F327A"/>
@@ -99,6 +98,22 @@ export default function Navbar({ hide, dashboard }: props) {
                             <div className=' fixed inset-0 z-20 ' onClick={()=> setShow(false)} />
                         )}
                     </div>
+                )}
+
+                {!userContext.userInfo?.email && ( 
+                    <button onClick={()=> navigate("/signin")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
+                        Get Started
+                    </button>
+                )}
+
+                {userContext.userInfo?.email && ( 
+                    <>
+                        {!pathName.includes("dashboard") && (
+                            <button onClick={()=> navigate("/dashboard")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
+                                Dashboard
+                            </button>
+                        )}
+                    </>
                 )}
             </div>
                 <div> 

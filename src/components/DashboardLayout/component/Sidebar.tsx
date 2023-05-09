@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext, IUser } from '../../../context/userContext';
 
 type props = {
     close?: any;
@@ -8,6 +9,7 @@ type props = {
 
 export default function Sidebar({close, type}: props) {
 
+    const userContext: IUser = React.useContext(UserContext); 
     const navigate = useNavigate()
     const menu =["Home", "Sell Crypto", "Transactions History", "Banks", "Dispute", "Settings", "Log out"]
 
@@ -26,6 +28,7 @@ export default function Sidebar({close, type}: props) {
         if(type){
             close()
         }
+        userContext.setSellCrypto({})
     }
 
     React.useEffect(()=> {

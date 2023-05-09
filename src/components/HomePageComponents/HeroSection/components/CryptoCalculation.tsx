@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 export default function CryptoCalculation() {
 
     const [isShown, setIsShown] = React.useState(false) 
-    const [value, setValue] = React.useState("")
+    const [value, setValue] = React.useState(0)
     const [loadingRate, setLoadingRate] = React.useState(false) 
     const [loading, setLoading] = React.useState(false) 
     const [exchangeRate, setExchangeRate] = React.useState("")
@@ -20,9 +20,10 @@ export default function CryptoCalculation() {
     const { handleExchangeRate } = useExchangeRateCallback();
     const navigate = useNavigate()
 
-    const [selectCoinTicker, setSelectCoinTicker] = React.useState("")
-    const [selectCoin, setSelectCoin] = React.useState("")
-    const [coinImage, setcoinImage] = React.useState("")
+    const [selectCoinTicker, setSelectCoinTicker] = React.useState("BTC")
+    const [selectCoin, setSelectCoin] = React.useState("Bitcoin")
+    const [coinImage, setcoinImage] = React.useState('/images/Bitcoin.png')
+    const [network, setNetwork] = React.useState('Bitcoin')
     const bitpowr_coin_ticker = [
         {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
@@ -51,21 +52,26 @@ export default function CryptoCalculation() {
 
     const userContext: IUser = React.useContext(UserContext);
     
-    const modalHandler =(item: any, value: string, image:string)=> {  
+    const modalHandler =(item: any, value: string, image:string, net: string)=> {  
         setSelectCoinTicker(value)
         setSelectCoin(item)
         setIsShown(false)
-
-        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: "Bitcoin"})
+        setNetwork(net) 
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: net})
         setcoinImage(image)
-    }
+    } 
 
     const SubmitHandler =()=> { 
         if(userContext.userInfo?.email){
-            navigate("/dashboard/sellcrypto")
+            navigate("/dashboard/sellcrypto") 
         } else { 
             navigate("/signin")
         } 
+    }
+    
+    const handleAmount =(item: any)=> { 
+        setValue(item)
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": item+""})
     }
 
     React.useEffect(()=> { 
@@ -87,14 +93,16 @@ export default function CryptoCalculation() {
         .catch(console.error);;
     }, []) 
 
+    console.log(userContext.sellCrypto);
+    
     return (
         <div className=' w-full lg:mt-0 mt-6 lg:w-[400px] h-fit border-[1.5px] border-[#D0D5DD] rounded-lg bg-white py-9 px-6 ' >
             
-            <p className=' font-bold text-[#303179] mb-4 ' >1 USD = {loadingRate? "...": cashFormat(rate)} NGN</p> 
+            <p className=' font-bold text-[#303179] mb-4 ' >{rate && "1 USD = "+(loadingRate? "...": cashFormat(rate))+" NGN"}</p> 
             <div className=' relative w-full border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
                     <p className=' font-semibold text-[#475569] text-sm ' >Send</p>
-                    <input onChange={(e)=> setValue(e.target.value)} type='number'  className=' w-full border-0 font-medium text-lg outline-none ' placeholder="0000" />
+                    <input onChange={(e)=> handleAmount(e.target.value)} type='number' className=' w-full border-0 font-medium text-lg outline-none ' placeholder="0000" />
                 </div> 
                 <div onClick={()=> setIsShown(true)} role='button' className=' h-full w-fit pr-2 flex justify-center items-center gap-2  ' >
                     {selectCoinTicker && (
@@ -112,7 +120,7 @@ export default function CryptoCalculation() {
                         <div style={{boxShadow: "0px 8px 20px -4px #1718181F"}} className=' w-fit bg-white right-4 z-50 absolute top-3 rounded-lg p-2 ' >
                             {bitpowr_coin_ticker.map((item: any, index: number) => {
                                 return ( 
-                                    <div key={index} role="button" onClick={()=> modalHandler(item?.coin_name, item?.coin_ticker, item?.image)} className=' w-full flex py-2 items-center gap-3 ' >
+                                    <div key={index} role="button" onClick={()=> modalHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex py-2 items-center gap-3 ' >
                                         <div className=' w-[40px] h-[40px] rounded-full bg-white '>
                                             <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                         </div>

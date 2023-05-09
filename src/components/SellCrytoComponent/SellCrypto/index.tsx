@@ -25,7 +25,10 @@ export default function SellCrypto({next}: props) {
     const [loadingRate, setLoadingRate] = React.useState(false)
     const [loadingBank, setLoadingBank] = React.useState(false)
     const [exchangeRate, setExchangeRate] = React.useState("")
+    const [coinName, setcoinName] = React.useState("")
     const [accountName, setAccountName] = React.useState("")
+    const [network, setNetwork] = React.useState("")
+    const [value, setValue] = React.useState("")
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
@@ -44,8 +47,8 @@ export default function SellCrypto({next}: props) {
         const fetchData =async()=> {
             setLoadingBank(true)
             const request = await handleBankDetail(JSON.stringify({ 
-                    "account_number": userContext.sellCrypto?.bank_acc_number,
-                    "bank_code": userContext.sellCrypto?.bank_code
+                "account_number": userContext.sellCrypto?.bank_acc_number,
+                "bank_code": userContext.sellCrypto?.bank_code
             }))   
             setAccountName(request?.data?.account_name) 
             setLoadingBank(false)
@@ -55,32 +58,31 @@ export default function SellCrypto({next}: props) {
             fetchData()
         }
     }, [userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
+
+    console.log(coinName); 
     
     React.useEffect(()=> { 
 
         const exchangeRate =async()=> {
             setLoadingRate(true)
-            let Str = userContext.sellCrypto?.coin_name.charAt(0).toUpperCase() + userContext.sellCrypto?.coin_name.slice(1)
+            let Str = coinName.charAt(0).toUpperCase() + coinName.slice(1)
             const request = await handleExchangeRate(JSON.stringify({
-                    "coin_name": ( userContext.sellCrypto?.coin_name === "Bitcoin" ? Str:userContext.sellCrypto?.coin_name === "Tether" ? "USDT": "USDT_TRON"),
-                    "coin_amount_to_calc": userContext.sellCrypto?.coin_amount_to_swap
+                    "coin_name": ( coinName === "Bitcoin" ? Str:coinName === "Tether" ? "USDT": "USDT_TRON"),
+                    "coin_amount_to_calc": value
                 }))   
             setExchangeRate(request?.data?.total_coin_price_ngn)     
             setLoadingRate(false)        
         }
 
-        if(userContext.sellCrypto?.coin_name && userContext.sellCrypto?.coin_amount_to_swap){
+        if(coinName && value){
             exchangeRate()
         } 
 
-    }, [userContext.sellCrypto?.coin_name, userContext.sellCrypto?.coin_amount_to_swap])
-    
+    }, [coinName, value]) 
 
     const submit = async () => { 
         setLoading(true);
         const request = await handleSwapCoin(JSON.stringify(userContext.sellCrypto))   
-
-        console.log(request);
         
         if (request.status === 200) {  
             toast({
@@ -107,8 +109,16 @@ export default function SellCrypto({next}: props) {
         setLoading(false);
     }  
 
-    const CoinName =(item: any, net: any)=>{
+    const CoinName =(item: any, net: any, val?:any)=>{
         userContext.setSellCrypto({...userContext.sellCrypto, "coin_name": item, network: net})
+        setcoinName(item)
+        setNetwork(net)
+        if(val > -1){
+            setValue(val)
+
+            console.log(val);
+            userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": val})
+        }
     }
 
     const BankHandler =(item: any, code: any)=>{
@@ -116,19 +126,21 @@ export default function SellCrypto({next}: props) {
     } 
 
     const GetAmount =(item: any)=> {
+        setValue(item.target.value)
         userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": item.target.value})
-    }
+    } 
     
+
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                 <CoinSelection data={CoinName} />
-                {userContext?.sellCrypto?.coin_name && ( 
+                {coinName && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1   ' >
-                            <Input onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input value={value} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' w-full flex justify-end ' >  
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
