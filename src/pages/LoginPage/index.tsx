@@ -89,6 +89,7 @@ export default function LoginPage() {
                         onFocus={() =>
                             formik.setFieldTouched("email", true, true)
                         }  
+                        email={true}
                         title='Email Address' placeholder='Enter Email Address' />
                     <div className="w-full h-auto pt-2">
                         {formik.touched.email && formik.errors.email && (

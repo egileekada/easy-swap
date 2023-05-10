@@ -120,5 +120,55 @@ export function useEditUserCallback() {
   }
   return { handleEditUser }
 }  
- 
- 
+
+export function useGetOTPCallback() {
+  const handleGetOTP = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.post('users/password-reset-request', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handleGetOTP }
+}   
+
+export function useResetPasswordCallback() {
+  const handleResetPassword = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.post('users/password-reset', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handleResetPassword }
+}  
+
+export function useChangePasswordCallback() {
+  const handleChangePassword = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.post('users/change-password', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handleChangePassword }
+}  

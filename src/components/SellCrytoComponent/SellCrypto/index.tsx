@@ -149,7 +149,7 @@ export default function SellCrypto({next}: props) {
                 )}
                 {userContext?.sellCrypto?.coin_amount_to_swap && ( 
                     <> 
-                        <CoinNetwork />
+                        <CoinNetwork network={network} />
                         <Bank data={BankHandler} />
                     </>
                 )}
