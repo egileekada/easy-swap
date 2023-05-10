@@ -1,17 +1,36 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 export default function Footer() {
 
     const navigate = useNavigate()
+    
+    const controls = useAnimation(); 
+    const controls2 = useAnimation(); 
+    const controls3 = useAnimation(); 
+    const controls4 = useAnimation(); 
+    const [ ref, inView ]  = useInView();  
+    const [ ref2, inView2 ] = useInView();     
+
+    React.useEffect(() => { 
+        if (inView) {
+            controls.start({ x: 0});
+        } 
+        if (inView2) {
+            controls2.start({ x: 0});
+        }  
+    }, [controls, controls2, controls3, controls4, inView, inView2]) 
 
     return (
         <>  
             <div className=' w-full bg-[#303179] flex flex-col items-center ' > 
                 <div className='w-[1366px] max-[1366px]:w-full px-6 lg:px-20' > 
-                    <div className=' w-full pt-8 lg:pt-20 flex lg:flex-row flex-col bg-[#303179]  ' >
-                        <div className=' w-full ' >
-                            <p className=' text-2xl lg:text-5xl font-semibold lg:leading-[60px] text-[#F8FAFC] lg:max-w-[530px] ' >Your easiest way to send, spend, and earn with crypto</p>
+                    <div className=' w-full pt-8 lg:pt-20 gap-6 flex lg:flex-row flex-col bg-[#303179]  ' >
+                        <motion.div ref={ref} initial={{x: -200}} animate={controls}  
+                            transition={{ ease: "easeOut", duration: 1 }} className=' w-full ' >
+                            <p className=' text-2xl lg:text-4xl font-semibold lg:leading-[50px] text-[#F8FAFC] lg:max-w-[430px] ' >Your easiest way to send, spend, and earn with crypto</p>
                             <div className=' flex items-center mt-8 gap-2 ' >
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.5614 9.66624L9.40936 2.51424L11.2947 0.628906L21.6654 10.9996L11.2947 21.3702L9.40936 19.4849L16.5614 12.3329H0.332031V9.66624H16.5614Z" fill="#00BAF0"/>
@@ -24,8 +43,9 @@ export default function Footer() {
                                 </svg>
                                 <p className=' text-lg text-[#00BAF0] ' >Got a question? Talk to us</p>
                             </div>
-                        </div>
-                        <div className=' w-full flex flex-col lg:mt-0 mt-10  ' >
+                        </motion.div>
+                        <motion.div ref={ref} initial={{x: +200}} animate={controls}  
+                            transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col lg:mt-0 mt-10  ' >
                             <p className=' text-[#F8FAFC] font-normal ' >Learn more about Easyswap</p>
                             <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
                             <a href='/privacy-policy' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
@@ -47,7 +67,7 @@ export default function Footer() {
                                 </svg>
                             </div>
                             <p></p>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className=' w-full flex lg:items-center pb-8 pt-6 bg-[#303179] flex-col lg:flex-row lg:justify-between ' >
                         <svg width="170" height="40" viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">

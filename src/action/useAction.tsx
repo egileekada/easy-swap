@@ -88,7 +88,7 @@ export function useEmailVerificationCallback() {
         }); 
         return response       
     } catch(err: any) { 
-      return err?.response    
+      return err?.response
     }     
   }
   return { handleEmailVerification }
@@ -97,18 +97,19 @@ export function useEmailVerificationCallback() {
 export function useEditUserCallback() {
   const handleEditUser = async (postData: any, image: any): Promise<any> => {    
 
-    const formData = new FormData() 
-
-    formData.append("email", postData.email)
+    const formData = new FormData()  
+    
     formData.append("fullname", postData.fullname)
-    // formData.append("photo", image)
+    if(image){
+      formData.append("photo", image)
+    }
     formData.append("phone", postData.phone)
 
     try{ 
         const response = await axios.put('users/profile', formData,
         {
           headers: {
-            'Content-Type': image.type, 
+            'Content-Type': (image ? image.type: 'application/json'), 
             Authorization : `Bearer ${localStorage.getItem('token')}`
           }, 
         }); 

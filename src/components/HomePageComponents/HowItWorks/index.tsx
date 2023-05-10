@@ -1,10 +1,30 @@
 import React from 'react'
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-export default function HowItWorks() {
+export default function HowItWorks() { 
+    
+    const controls = useAnimation(); 
+    const controls2 = useAnimation(); 
+    const controls3 = useAnimation(); 
+    const controls4 = useAnimation(); 
+    const [ ref, inView ]  = useInView();  
+    const [ ref2, inView2 ] = useInView();     
+
+    React.useEffect(() => { 
+        if (inView) {
+            controls.start({ x: 0});
+        } 
+        if (inView2) {
+            controls2.start({ x: 0});
+        }  
+    }, [controls, controls2, controls3, controls4, inView, inView2]) 
+
     return (
         <div className=' w-full flex justify-center font-medium bg-[#303179] ' > 
             <div className=' w-full flex pt-6 lg:flex-row flex-col lg:pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
-                <div className=' w-full flex flex-col items-center px-6 lg:px-16 pt-10 ' >
+                <motion.div ref={ref} initial={{x: -200}} animate={controls}  
+                    transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col items-center px-6 lg:px-16 pt-10 ' >
                     <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Easyswap works</h1>
                     <p className=' max-w-lg mt-6 ' >Complete your transactions within 5 minutes by using the following steps. </p>
                     <div className=' max-w-lg mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
@@ -73,10 +93,11 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Send the crypto from any wallet to the unique crypto address generated for your transactions. Once confirmed, payment is automatically sent to your bank account.</p>
                         </div>
                     </div>
-                </div>
-                <div className=' w-full flex justify-center lg:mt-0 mt-8 ' >
+                </motion.div>
+                <motion.div ref={ref2} initial={{x: +200}} animate={controls}  
+                        transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex justify-center lg:mt-0 mt-8 ' >
                     <img alt='first' className=' w-[65%] object-contain ' src='/images/iPhone.png' />
-                </div>
+                </motion.div>
             </div>
         </div>
     )

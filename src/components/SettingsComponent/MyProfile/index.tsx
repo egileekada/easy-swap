@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'; 
 import { useEditUserCallback } from '../../../action/useAction'
 import { IUser, UserContext } from '../../../context/userContext'
+import { BASEURL } from '../../../config/BasicUrl/Url'
 
 export default function MyProfile() {
     
@@ -17,10 +18,7 @@ export default function MyProfile() {
     const [imageFile, SetImageFile] = React.useState(''); 
     const loginSchema = yup.object({ 
         email: yup.string().email('This email is not valid').required('Your email is required')
-    }) 
-
-    console.log(userContext.userInfo);
-    
+    })      
 
     const handleImageChange = (e: any ) => {
 
@@ -51,10 +49,11 @@ export default function MyProfile() {
     React.useEffect(()=> {
        formik.setFieldValue("fullname", userContext.userInfo.fullname) 
        formik.setFieldValue("email", userContext.userInfo.email) 
+       SetImage(BASEURL.URL+""+userContext.userInfo.photo)
        formik.setFieldValue("phone", userContext.userInfo.phone) 
     }, [])
 
-    console.log(formik.values);
+    console.log(userContext.userInfo);
     
     
     const submit = async (e: any) => { 
@@ -78,13 +77,10 @@ export default function MyProfile() {
             return;
         }else { 
 
-            const request: any = await handleEditUser(formik.values, imageFile)             
-
-            console.log(request);
-            
+            const request: any = await handleEditUser(formik.values, imageFile)     
 
             if (request.status === 200 || request.status === 201) {    
-                
+                userContext.setUserInformation({...userContext.userInfo, fullname: request?.data?.fullname, phone: request?.data?.phone, photo: request?.data?.photo})
                 toast({
                     title: "Update Successful", 
                     status: 'success',  

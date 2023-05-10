@@ -1,14 +1,37 @@
 import React from 'react'
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 export default function FAQ() {
 
+    const controls = useAnimation(); 
+    const controls2 = useAnimation(); 
+    const controls3 = useAnimation(); 
+    const controls4 = useAnimation(); 
+    const [ ref, inView ]  = useInView();  
+    const [ ref2, inView2 ] = useInView();     
+
+
     const [tab, setTab] = React.useState("one")
+
+    React.useEffect(() => { 
+        if (inView) {
+            controls.start({ x: 0});
+        } 
+        if (inView2) {
+            controls2.start({ scale: 1});
+        }  
+    }, [controls, controls2, controls3, controls4, inView, inView2]) 
 
     return (
         <div className=' w-full py-8 lg:py-20 flex flex-col text-center items-center bg-[#fff] px-6 lg:px-14 ' >
-            <p className=' text-lg font-normal ' >FAQs</p>
-            <p className=' font-bold text-2xl lg:text-4xl text-[#303179] mt-3  max-w-xl ' >Some questions you might already have</p> 
-            <div className=' w-full lg:w-[750px] flex flex-col mt-12 gap-4 ' >
+            <motion.div ref={ref2} initial={{ scale: 0}} animate={controls2}  
+                transition={{ ease: "easeOut", duration: 1 }} > 
+                <p className=' text-lg font-normal ' >FAQs</p>
+                <p className=' font-bold text-2xl lg:text-4xl text-[#303179] mt-3  max-w-xl ' >Some questions you might already have</p> 
+            </motion.div>
+            <motion.div ref={ref} initial={{x: -200}} animate={controls}  
+                transition={{ ease: "easeOut", duration: 1 }} className=' w-full lg:w-[750px] flex flex-col mt-12 gap-4 ' >
                 <div className=' w-full ' > 
                     <div role='button' onClick={()=> setTab("one")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl ' >Question 1</p>
@@ -79,7 +102,7 @@ export default function FAQ() {
                         </div>
                     ) }
                 </div> 
-            </div>
+            </motion.div>
         </div>
     )
 }
