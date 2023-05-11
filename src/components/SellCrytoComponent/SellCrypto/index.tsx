@@ -147,8 +147,7 @@ export default function SellCrypto({next}: props) {
     }
 
     const BankHandler =(item: any, code: any)=>{
-        userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code})
-        setAcountNumber(item)
+        userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code}) 
         setBankName(item)
         setBankCode(code)
     } 
