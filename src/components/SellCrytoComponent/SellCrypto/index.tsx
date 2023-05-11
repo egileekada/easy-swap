@@ -32,16 +32,7 @@ export default function SellCrypto({next}: props) {
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
-    const { handleExchangeRate } = useExchangeRateCallback();
-    // {
-    //     "coin_name": "string",
-    //     "coin_amount_to_swap": "string",
-    //     "network": "string",
-    //     "phone_number": "string",
-    //     "bank_acc_name": "string",
-    //     "bank_acc_number": "string",
-    //     "bank_code": "string"
-    //     } 
+    const { handleExchangeRate } = useExchangeRateCallback(); 
 
     React.useEffect(()=> {
         const fetchData =async()=> {
@@ -82,7 +73,15 @@ export default function SellCrypto({next}: props) {
 
     const submit = async () => { 
         setLoading(true);
-        const request = await handleSwapCoin(JSON.stringify(userContext.sellCrypto))   
+        const request = await handleSwapCoin(JSON.stringify({
+            "coin_amount_to_swap":value,
+            "bank_acc_name": userContext.sellCrypto.bank_acc_name,
+            "bank_code": userContext.sellCrypto.bank_acc_name,
+            "bank_acc_number": userContext.sellCrypto.bank_acc_name,
+            "phone_number": userContext.sellCrypto.bank_acc_name,
+            "coin_name": coinName,
+            "network": network
+        }))   
         
         if (request.status === 200) {  
             toast({

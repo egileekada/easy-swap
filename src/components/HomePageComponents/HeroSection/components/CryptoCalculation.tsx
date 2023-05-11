@@ -62,6 +62,7 @@ export default function CryptoCalculation() {
     } 
 
     const SubmitHandler =()=> { 
+        userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": value+"", "coin_name": selectCoin, network: network})
         if(userContext.userInfo?.email){
             navigate("/dashboard/sellcrypto") 
         } else { 

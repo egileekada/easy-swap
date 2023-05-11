@@ -24,15 +24,15 @@ export default function CoinSelection({rate, data, network}: Props) {
         {'coin_name': 'Tether Tron', 'network': 'TRON', 'coin_ticker': 'USDT_TRON', image: '/images/tether.webp'}, 
     ]
 
-    const CoinList =()=> {
+    const clickHandler =(item: any, value: string, image:string, net:string)=> { 
+        data(item, net) 
+        setSelectCoinTicker(value)
+        setSelectCoin(item)
+        setShowModal(false)
+        setcoinImage(image)
+    }
 
-        const clickHandler =(item: any, value: string, image:string, net:string)=> { 
-            data(item, net) 
-            setSelectCoinTicker(value)
-            setSelectCoin(item)
-            setShowModal(false)
-            setcoinImage(image)
-        }
+    const CoinList =()=> {
 
         return(
             <>
@@ -78,14 +78,12 @@ export default function CoinSelection({rate, data, network}: Props) {
             setAmount(userContext.sellCrypto?.coin_amount_to_swap)
         }
     }, [userContext.sellCrypto?.coin_name])
-
+  
  
-    React.useEffect(()=>{ 
-        data(selectCoin, selectedNetwork, amount)  
-
-        console.log("Coin "+selectCoin+",Network "+selectedNetwork+",Amount "+amount);
+    React.useEffect(()=>{  
+        data(selectCoin, selectedNetwork, amount)   
         
-    }, [selectedNetwork, selectCoin, amount])     
+    }, [selectedNetwork, selectCoin, amount])   
 
     return (
         <div className=' w-full lg:relative' >
