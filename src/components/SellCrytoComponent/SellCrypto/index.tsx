@@ -60,10 +60,12 @@ export default function SellCrypto({next}: props) {
             const request: any = await handleGetData("/swap/bank-details")  
             
             console.log(request?.data);
-            setAccountName(request?.data?.account_name)
-            // setBankCode
-            setAcountNumber(request?.data?.account_number)
-            setBankName(request?.data?.bank_name) 
+            if(request?.data?.account_name) {
+                setAccountName(request?.data?.account_name)
+                // setBankCode
+                setAcountNumber(request?.data?.account_number)
+                setBankName(request?.data?.bank_name) 
+            }
 
             const t1 = setTimeout(() => {
                 setLoading(false);  
