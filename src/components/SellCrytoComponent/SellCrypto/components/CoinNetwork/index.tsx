@@ -1,15 +1,20 @@
-import { Input } from '@chakra-ui/react'
+import { Input, Select } from '@chakra-ui/react'
 import React from 'react'
 import { IUser, UserContext } from '../../../../../context/userContext';
 
 type Props= {
     network?: any
+    data?: any
 }
 
-export default function CoinNetwork({network}: Props) {
+export default function CoinNetwork({network, data}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
-    const userContext: IUser = React.useContext(UserContext); 
+    const userContext: IUser = React.useContext(UserContext);  
+
+    const changeHandler =(item: any)=> {
+        data(item)
+    }  
 
     const NetworkList =()=>{
         return(
@@ -44,7 +49,13 @@ export default function CoinNetwork({network}: Props) {
     return (
         <div className=' w-full relative' >
             <p className=' font-normal text-[#334155] mb-2 ' >Coin network</p>
-            <div className=' cursor-not-allowed w-full rounded-lg border border-[#CBD5E1] flex items-center justify-between h-[45px] bg-[#F8FAFC] relative ' >
+
+            <Select value={network} disabled={network === "Bitcoin"? true: false} onChange={(e)=> changeHandler(e.target.value)} placeholder={network === "Bitcoin"? network: 'Select Network'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  >
+                <option>BSC</option>
+                <option>TRON</option>
+                <option>ETHEREUM</option>
+            </Select>
+            {/* <div className=' cursor-not-allowed w-full rounded-lg border border-[#CBD5E1] flex items-center justify-between h-[45px] bg-[#F8FAFC] relative ' >
                 <div className=' flex items-center ' >
                     <div className=' h-full z-10 flex items-center pl-3 ' > 
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +69,7 @@ export default function CoinNetwork({network}: Props) {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.00025 7.00025C5.74425 7.00025 5.48825 6.90225 5.29325 6.70725L0.29325 1.70725C-0.09775 1.31625 -0.09775 0.68425 0.29325 0.29325C0.68425 -0.09775 1.31625 -0.09775 1.70725 0.29325L6.00025 4.58625L10.2933 0.29325C10.6842 -0.09775 11.3162 -0.09775 11.7072 0.29325C12.0982 0.68425 12.0982 1.31625 11.7072 1.70725L6.70725 6.70725C6.51225 6.90225 6.25625 7.00025 6.00025 7.00025Z" fill="#5C5F62"/>
                     </svg>
                 </div>
-            </div>
+            </div> */}
             {showModal && (
                 <> 
                     <div className=' w-full lg:hidden fixed z-50 inset-0  justify-center items-center h-full flex px-4 flex-col '  > 

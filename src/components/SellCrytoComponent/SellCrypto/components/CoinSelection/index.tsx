@@ -11,17 +11,17 @@ interface Props {
 export default function CoinSelection({rate, data, network}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
-    const [selectCoin, setSelectCoin] = React.useState("Bitcoin")
+    const [selectCoin, setSelectCoin] = React.useState("Tether")
     const [amount, setAmount] = React.useState("")
-    const [selectedNetwork, setSelectedNetwork] = React.useState("Bitcoin")
-    const [selectCoinTicker, setSelectCoinTicker] = React.useState("BTC")
+    const [selectedNetwork, setSelectedNetwork] = React.useState("ERC20")
+    const [selectCoinTicker, setSelectCoinTicker] = React.useState("USDT")
     const userContext: IUser = React.useContext(UserContext); 
-    const [coinImage, setcoinImage] = React.useState('/images/Bitcoin.png')
+    const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
     const bitpowr_coin_ticker = [
         {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
         {'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp'}, 
-        {'coin_name': 'Tether Tron', 'network': 'TRON', 'coin_ticker': 'USDT_TRON', image: '/images/tether.webp'}, 
+        // {'coin_name': 'Tether Tron', 'network': 'TRON', 'coin_ticker': 'USDT_TRON', image: '/images/tether.webp'}, 
     ]
 
     const clickHandler =(item: any, value: string, image:string, net:string)=> { 

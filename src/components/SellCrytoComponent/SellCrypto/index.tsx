@@ -128,6 +128,10 @@ export default function SellCrypto({next}: props) {
         setValue(item.target.value)
         userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": item.target.value})
     } 
+
+    const ChangeNetwork =(item: any)=> {
+        setNetwork(item)
+    }
     
 
     return (
@@ -148,7 +152,7 @@ export default function SellCrypto({next}: props) {
                 )}
                 {userContext?.sellCrypto?.coin_amount_to_swap && ( 
                     <> 
-                        <CoinNetwork network={network} />
+                        <CoinNetwork data={ChangeNetwork} network={network} />
                         <Bank data={BankHandler} />
                     </>
                 )}
