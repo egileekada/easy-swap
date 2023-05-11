@@ -76,9 +76,9 @@ export default function SellCrypto({next}: props) {
         const request = await handleSwapCoin(JSON.stringify({
             "coin_amount_to_swap":value,
             "bank_acc_name": userContext.sellCrypto.bank_acc_name,
-            "bank_code": userContext.sellCrypto.bank_acc_name,
-            "bank_acc_number": userContext.sellCrypto.bank_acc_name,
-            "phone_number": userContext.sellCrypto.bank_acc_name,
+            "bank_code": userContext.sellCrypto.bank_code,
+            "bank_acc_number": userContext.sellCrypto.bank_acc_number,
+            "phone_number": userContext.sellCrypto.phone_number,
             "coin_name": (coinName === "Bitcoin" ? "Bitcoin":coinName === "Tether" ? "USDT": "USDT_TRON"),
             "network": network
         }))   
@@ -139,7 +139,7 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1   ' >
-                            <Input value={value} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} value={value} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' w-full flex justify-end ' >  
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
@@ -156,7 +156,7 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
-                            <Input placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' flex gap-2 lg:gap-3 font-normal mt-2 text-[#303179] text-sm ' >
                             <div className=' w-fit mt-[1px] ' >
@@ -191,7 +191,7 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
-                            <Input onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                     </div>
                 )}
