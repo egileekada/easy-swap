@@ -153,7 +153,7 @@ export default function BankPage() {
                     <>
                         {data?.account_number ? "" :  
                             <div className=' w-full flex justify-center pt-8 text-lg font-semibold ' >
-                                NO Records Found
+                                No Records Found
                             </div>
                         }
                     </>
