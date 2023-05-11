@@ -5,7 +5,7 @@ import Bank from './components/Bank'
 import { Input, useToast } from '@chakra-ui/react'
 import ButtonComponent from '../../ButtonComponent'
 import { IUser, UserContext } from '../../../context/userContext'
-import { useBankDetailCallback, useExchangeRateCallback, useSwapCoinCallback } from '../../../action/useAction'
+import { useBankDetailCallback, useExchangeRateCallback, useGetDataCallback, useSwapCoinCallback } from '../../../action/useAction'
 import { cashFormat } from '../../../config/utils/cashFormat'
 
 type props = {
@@ -29,28 +29,54 @@ export default function SellCrypto({next}: props) {
     const [accountName, setAccountName] = React.useState("")
     const [network, setNetwork] = React.useState("")
     const [value, setValue] = React.useState("")
+    const [bankCode, setBankCode] = React.useState("")
+    const [AcountNumber, setAcountNumber] = React.useState("")
+    const [bankName, setBankName] = React.useState("")
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
     const { handleExchangeRate } = useExchangeRateCallback(); 
+    const { handleGetData } = useGetDataCallback()
 
     React.useEffect(()=> {
         const fetchData =async()=> {
             setLoadingBank(true)
             const request = await handleBankDetail(JSON.stringify({ 
-                "account_number": userContext.sellCrypto?.bank_acc_number,
-                "bank_code": userContext.sellCrypto?.bank_code
+                "account_number": AcountNumber,
+                "bank_code": bankCode
             }))   
             setAccountName(request?.data?.account_name) 
             setLoadingBank(false)
         } 
 
-        if(userContext.sellCrypto?.bank_acc_number?.length === 10 && userContext.sellCrypto?.bank_code){
+        if(AcountNumber?.length === 10 && bankCode){
             fetchData()
         }
-    }, [userContext.sellCrypto?.bank_acc_number, userContext.sellCrypto?.bank_code])
+    }, [AcountNumber, bankCode])
 
-    console.log(coinName); 
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            setLoading(true);  
+            const request: any = await handleGetData("/swap/bank-details")  
+            
+            console.log(request?.data);
+            setAccountName(request?.data?.account_name)
+            // setBankCode
+            setAcountNumber(request?.data?.account_number)
+            setBankName(request?.data?.bank_name) 
+
+            const t1 = setTimeout(() => {
+                setLoading(false);  
+                clearTimeout(t1);
+            }, 1000);  
+        }
+
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, []) 
     
     React.useEffect(()=> { 
 
@@ -75,11 +101,11 @@ export default function SellCrypto({next}: props) {
         setLoading(true);
         const request = await handleSwapCoin(JSON.stringify({
             "coin_amount_to_swap":value,
-            "bank_acc_name": userContext.sellCrypto.bank_acc_name,
+            "bank_acc_name": bankName,
             "bank_code": userContext.sellCrypto.bank_code,
-            "bank_acc_number": userContext.sellCrypto.bank_acc_number,
+            "bank_acc_number": AcountNumber,
             "phone_number": userContext.sellCrypto.phone_number,
-            "coin_name": (coinName === "Bitcoin" ? "Bitcoin":coinName === "Tether" ? "USDT": "USDT_TRON"),
+            "coin_name": (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"),
             "network": network
         }))   
         
@@ -122,6 +148,9 @@ export default function SellCrypto({next}: props) {
 
     const BankHandler =(item: any, code: any)=>{
         userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code})
+        setAcountNumber(item)
+        setBankName(item)
+        setBankCode(code)
     } 
 
     const GetAmount =(item: any)=> {
@@ -132,7 +161,20 @@ export default function SellCrypto({next}: props) {
     const ChangeNetwork =(item: any)=> {
         setNetwork(item)
     }
-    
+
+    const ChangeAccountNumber =(item: any)=> {
+        userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": item})
+        setAcountNumber(item)
+    }
+
+    const ChangePhoneNumber= (item: any)=> {
+        userContext.setSellCrypto({...userContext.sellCrypto, "phone_number":item})
+    }
+
+    const ChangeBankCode =(item: any)=> {
+        setBankCode(item)
+        userContext.setSellCrypto({...userContext.sellCrypto, "bank_code": item})
+    }    
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
@@ -153,14 +195,14 @@ export default function SellCrypto({next}: props) {
                 {userContext?.sellCrypto?.coin_amount_to_swap && ( 
                     <> 
                         <CoinNetwork data={ChangeNetwork} network={network} />
-                        <Bank data={BankHandler} />
+                        <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />
                     </>
                 )}
-                {userContext.sellCrypto?.bank_code && ( 
+                {userContext?.sellCrypto?.coin_amount_to_swap && (bankCode || accountName) && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
-                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} placeholder='Enter Account Number' onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_number": e.target.value})} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input value={AcountNumber} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} placeholder='Enter Account Number' onChange={(e)=> ChangeAccountNumber(e.target.value)} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                         <div className=' flex gap-2 lg:gap-3 font-normal mt-2 text-[#303179] text-sm ' >
                             <div className=' w-fit mt-[1px] ' >
@@ -191,11 +233,11 @@ export default function SellCrypto({next}: props) {
                         }
                     </div>
                 )} 
-                {userContext.sellCrypto?.bank_acc_number && ( 
+                {userContext?.sellCrypto?.coin_amount_to_swap && AcountNumber && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
-                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={(e)=> userContext.setSellCrypto({...userContext.sellCrypto, "phone_number": e.target.value})} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={(e)=> ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                         </div>
                     </div>
                 )}

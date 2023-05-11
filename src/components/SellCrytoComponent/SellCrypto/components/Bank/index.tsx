@@ -7,10 +7,12 @@ import { usBankDetailsCallback } from '../../../../../action/useAction';
 
 interface Props {
     rate?: boolean,
-    data?: any
+    data?: any,
+    holder?: any,
+    code?: any
 }
 
-export default function BankSelection({rate, data}: Props) {
+export default function BankSelection({rate, data, holder, code}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
@@ -31,6 +33,18 @@ export default function BankSelection({rate, data}: Props) {
             setLoading(false)
         })
     }, []) 
+
+    React.useEffect(()=> {
+        if(holder){
+            if(!loading){
+                {dataInfo?.map((item: any, index: number)=> { 
+                    if(holder === item?.name){
+                        code(item?.code)
+                    }
+                })} 
+            }
+        }
+    },[loading])
 
     const clickHandler =(name: string, code: any)=>{
         setBankName(name)
@@ -109,8 +123,7 @@ export default function BankSelection({rate, data}: Props) {
                 </div>
             </div> */}
             {!loading && (
-                <Select onChange={(e)=> changeHandler(e.target.value)} placeholder='Select Bank' fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  >
-                    
+                <Select onChange={(e)=> changeHandler(e.target.value)} placeholder={holder? holder:'Select Bank'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  > 
                     {dataInfo?.map((item: any, index: number)=> { 
                         return(  
                             <option key={index} value={item?.name+","+item.code} >{item?.name}</option> 
