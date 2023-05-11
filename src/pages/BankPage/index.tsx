@@ -10,6 +10,7 @@ export default function BankPage() {
     const [loading, setLoading] = React.useState(false) 
     const [accountName, setAccountName] = React.useState("")
     const [bank_code, setBankNo] = React.useState("")
+    const [data, setData] = React.useState({} as any)
     const [bank_name, setBankName] = React.useState("")
     const [account_number, setAccountNo] = React.useState("")
 
@@ -24,8 +25,9 @@ export default function BankPage() {
             setLoading(true);  
             const request: any = await handleGetData("/swap/bank-details")  
             
-            console.log(request);
-            
+            console.log(request?.data);
+            setData(request?.data)
+
             const t1 = setTimeout(() => {
                 setLoading(false);  
                 clearTimeout(t1);
@@ -93,6 +95,21 @@ export default function BankPage() {
         setLoading(false)
     }
 
+//     data
+// : 
+// account_name
+// : 
+// "EGILEONISOFIEN   EKADA"
+// account_number
+// : 
+// "2122299111"
+// bank_code
+// : 
+// ""
+// bank_name
+// : 
+// "Zenith Bank Plc"
+
 
     return (
         <div className=' w-full px-6 lg:px-14 ' > 
@@ -111,35 +128,36 @@ export default function BankPage() {
                                 <Td>
                                     Bank Name
                                 </Td>
-                                <Td>
+                                {/* <Td>
                                     Status
-                                </Td> 
+                                </Td>  */}
                             </Tr>
                         </Thead>
                         <Tbody>  
-                            <Tr style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' > 
-                                <Td>01234567890</Td>   
-                                <Td>Jay BigJaybos</Td>  
-                                <Td>GTBank</Td>  
-                                <Td>
-                                    <div className=' py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
-                                        Success    
-                                    </div>    
-                                </Td>   
-                            </Tr>
-                            <Tr style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' > 
-                                <Td>01234567890</Td>   
-                                <Td>Jay BigJaybos</Td>  
-                                <Td>GTBank</Td>  
-                                <Td>
-                                    <div className=' py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
-                                        Not Active    
-                                    </div>    
-                                </Td>   
-                            </Tr>
+                            {!loading && ( 
+                                <Tr style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' > 
+                                    <Td>{data?.account_number}</Td>   
+                                    <Td>{data?.account_name}</Td>  
+                                    <Td>{data?.bank_name}</Td>   
+                                </Tr> 
+                            )}
                         </Tbody> 
                     </Table>
                 </TableContainer>
+                {loading && (
+                    <div className=' w-full flex justify-center pt-8 text-lg font-semibold ' >
+                        Loading...
+                    </div>
+                )}
+                {!loading && (
+                    <>
+                        {data?.account_number ? "" :  
+                            <div className=' w-full flex justify-center pt-8 text-lg font-semibold ' >
+                                NO Records Found
+                            </div>
+                        }
+                    </>
+                )}
             </div>
             <div className=' w-full lg:hidden ' >
                 <div className=' w-full flex justify-between ' >
@@ -157,8 +175,8 @@ export default function BankPage() {
                     </div>
                 </div>
             </div>
-            <div className=' w-full flex justify-end mt-8 ' > 
-                <button onClick={()=> setShowModal(true)} className=' bg-[#303179] text-[#fff] rounded-md px-12 text-sm py-2 font-bold  ' >Add Bank</button>
+            <div className=' w-full flex justify-end mt-4 ' > 
+                <button onClick={()=> setShowModal(true)} className=' bg-[#303179] text-[#fff] rounded-md px-6 text-sm py-2 font-bold  ' >{data?.account_number ? "Update Bank Details" : "Add Bank"}</button>
             </div>
             {showModal && (
                 <>  
@@ -183,7 +201,9 @@ export default function BankPage() {
                                     }
                                 </>
                             }
-                            <button onClick={submit} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                            <button onClick={submit} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >
+                                {loading ? "Loading..." : "Confirm"}
+                            </button>
                         </div>
                         <div className=' fixed z-10 inset-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
                     </div>
