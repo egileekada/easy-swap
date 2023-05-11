@@ -12,18 +12,17 @@ export default function CryptoCalculation() {
     const [loadingRate, setLoadingRate] = React.useState(false) 
     const [loading, setLoading] = React.useState(false) 
     const [exchangeRate, setExchangeRate] = React.useState("")
-    const [rate, setRate] = React.useState("") 
-
+    const [rate, setRate] = React.useState("")  
 
     const { handleGetData } = useGetDataCallback() 
     
     const { handleExchangeRate } = useExchangeRateCallback();
     const navigate = useNavigate()
 
-    const [selectCoinTicker, setSelectCoinTicker] = React.useState("BTC")
-    const [selectCoin, setSelectCoin] = React.useState("Bitcoin")
-    const [coinImage, setcoinImage] = React.useState('/images/Bitcoin.png')
-    const [network, setNetwork] = React.useState('Bitcoin')
+    const [selectCoinTicker, setSelectCoinTicker] = React.useState("USDT")
+    const [selectCoin, setSelectCoin] = React.useState("Tether")
+    const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
+    const [network, setNetwork] = React.useState('ERC20')
     const bitpowr_coin_ticker = [
         {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},

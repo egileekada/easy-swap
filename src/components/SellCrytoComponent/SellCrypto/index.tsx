@@ -79,7 +79,7 @@ export default function SellCrypto({next}: props) {
             "bank_code": userContext.sellCrypto.bank_acc_name,
             "bank_acc_number": userContext.sellCrypto.bank_acc_name,
             "phone_number": userContext.sellCrypto.bank_acc_name,
-            "coin_name": coinName,
+            "coin_name": (coinName === "Bitcoin" ? "Bitcoin":coinName === "Tether" ? "USDT": "USDT_TRON"),
             "network": network
         }))   
         

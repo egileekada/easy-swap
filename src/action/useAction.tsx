@@ -172,3 +172,21 @@ export function useChangePasswordCallback() {
   }
   return { handleChangePassword }
 }  
+
+export function usBankDetailsCallback() {
+  const handlBankDetails = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.post('swap/bank-details', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handlBankDetails }
+}  

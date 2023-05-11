@@ -1,9 +1,98 @@
-import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, Select } from '@chakra-ui/react'
+import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, Select, useToast } from '@chakra-ui/react'
 import React from 'react'
+import { usBankDetailsCallback, useBankDetailCallback, useGetDataCallback } from '../../action/useAction'
+import Bank from '../../components/SellCrytoComponent/SellCrypto/components/Bank'
 
 export default function BankPage() {
 
     const [showModal, setShowModal] = React.useState(false)
+    const [loadingBank, setLoadingBank] = React.useState(false) 
+    const [loading, setLoading] = React.useState(false) 
+    const [accountName, setAccountName] = React.useState("")
+    const [bank_code, setBankNo] = React.useState("")
+    const [bank_name, setBankName] = React.useState("")
+    const [account_number, setAccountNo] = React.useState("")
+
+    const { handleBankDetail } = useBankDetailCallback(); 
+
+    const { handleGetData } = useGetDataCallback()
+    const {handlBankDetails} = usBankDetailsCallback()
+    const toast = useToast() 
+
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            setLoading(true);  
+            const request: any = await handleGetData("/swap/bank-details")  
+            
+            console.log(request);
+            
+            const t1 = setTimeout(() => {
+                setLoading(false);  
+                clearTimeout(t1);
+            }, 1000);  
+        }
+
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, [showModal]) 
+
+    React.useEffect(()=> {
+        const fetchData =async()=> {
+            setLoadingBank(true)
+            const request = await handleBankDetail(JSON.stringify({ 
+                "account_number": account_number,
+                "bank_code": bank_code
+            }))   
+            setAccountName(request?.data?.account_name) 
+            setLoadingBank(false)
+        } 
+
+        if(account_number?.length === 10 && bank_code){
+            fetchData()
+        }
+    }, [account_number, bank_code])
+
+
+
+    const BankHandler =(item: any, code: any)=>{
+        // userContext.setSellCrypto({...userContext.sellCrypto, "bank_acc_name": item, "bank_code": code})
+        setBankName(item)
+        setBankNo(code)
+    } 
+
+    const submit =async()=> {
+        setLoading(true)
+
+        const request = await handlBankDetails(JSON.stringify({
+            "account_name": accountName,
+            "account_number": account_number,
+            "bank_name": bank_name
+        }))
+
+        console.log(request); 
+
+        if (request.status === 200 || request.status === 201) {      
+            // localStorage.setItem('id', request?.data?.data?.user?.id);  
+            toast({
+                title: "Bank Details Added", 
+                status: 'success',  
+                duration: 3000, 
+            }) 
+            setShowModal(false)
+        }else { 
+            toast({
+                title: "Error Ocurred", 
+                status: 'error',  
+                duration: 3000, 
+            }) 
+        }
+
+        setLoading(false)
+    }
+
 
     return (
         <div className=' w-full px-6 lg:px-14 ' > 
@@ -75,7 +164,7 @@ export default function BankPage() {
                 <>  
                     <div className=' w-full fixed z-20 h-full  px-4 inset-0 flex justify-center items-center flex-col '  >  
                         <div style={{boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)"}} className=' mt-4 z-[200] bg-white w-full  lg:w-[500px] md:w-[500px] rounded-lg px-5 py-4 ' > 
-                            <div className=' w-full flex items-center justify-between ' >
+                            <div className=' w-full mb-7 flex items-center justify-between ' >
                                 <p className='font-bold text-lg ' >Add Bank Details</p>
                                 <button onClick={()=> setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,17 +172,20 @@ export default function BankPage() {
                                         <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
-                            </div>
-                            
-                            <p className=' text-[#475467] font-medium mt-8 mb-2 ' >Bank Name</p> 
-                            <Select fontSize="sm" backgroundColor="white" >
-                                <option>All</option>
-                            </Select>
-                            <p className=' text-[#475467] font-medium mt-4 mb-2 ' >Account Number</p> 
-                            <Input placeholder='Enter Account Number' type='number' />
-                            <button onClick={()=> setShowModal(false)} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                            </div> 
+                            <Bank data={BankHandler} />
+                            <p className=' text-[#475467] font-semibold text-sm mt-4 mb-2 ' >Account Number</p> 
+                            <Input onChange={(e)=> setAccountNo(e.target.value)} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1" placeholder='Enter Account Number' type='number' /> 
+                            {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
+                                <> 
+                                    {accountName &&
+                                        <p className=' mt-2 font-bold  ' >{accountName}</p>
+                                    }
+                                </>
+                            }
+                            <button onClick={submit} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
                         </div>
-                        <div className=' fixed z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
+                        <div className=' fixed z-10 inset-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
                     </div>
                 </>
             )}
