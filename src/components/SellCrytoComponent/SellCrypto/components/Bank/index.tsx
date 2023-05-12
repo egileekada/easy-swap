@@ -24,7 +24,7 @@ export default function BankSelection({rate, data, holder, code}: Props) {
         setLoading(true)
         axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
             headers: {
-                'X-API-KEY': configValue 
+                'X-API-KEY': "PUBK_TEST_a4662520-ad4f-4e52-bac8-c53bb0fc9443" 
               }
             }
         )

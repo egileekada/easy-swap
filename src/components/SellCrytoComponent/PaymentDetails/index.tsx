@@ -14,6 +14,7 @@ type props = {
 export default function PaymentDetails({close}: props) {
 
     const [open, setOpen] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
     const toast = useToast()
@@ -29,13 +30,21 @@ export default function PaymentDetails({close}: props) {
     }
 
     const CancelTnxHandler =async()=> {
+        setLoading(true)
         const request = await handlTnxStatus(JSON.stringify({
             "transaction_status": "FAILED"
-        }), userContext.transactionDetail?.id )
-
-        console.log(request);
+        }), userContext.transactionDetail?.id ) 
         
-    }
+        toast({
+            title: 'Transaction Have been Cancelled', 
+            status: 'success',  
+            duration: 3000, 
+        }) 
+        setLoading(false)
+        setOpen(false)
+        navigate("/dashboard")
+        
+    } 
 
     return (
         <div className=' w-full mt-4 lg:mt-12 gap-2 lg:bg-transparent bg-white flex lg:flex-row flex-col px-4 lg:px-10 ' >
@@ -202,7 +211,9 @@ export default function PaymentDetails({close}: props) {
                             <p className=' lg:text-center font-normal text-[#647488] mt-1 mb-5 ' >Are you sure you want to cancel the transaction?</p> 
                             
                             <div className='w-full flex justify-end gap-3 text-sm ' >
-                                <button onClick={()=> CancelTnxHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >Continue</button>
+                                <button onClick={()=> CancelTnxHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >
+                                    {loading? "Loading..." : "Continue"}
+                                </button>
                                 <button onClick={()=> setOpen(false)} className=' bg-[#D82C0D] text-[#fff] rounded-md px-4 py-2 font-semibold  ' >Cancel</button>
                             </div>
                         </div>
