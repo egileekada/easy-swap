@@ -26,7 +26,14 @@ export default function Navbar({ hide, dashboard }: props) {
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
             userContext.setUserInformation(request?.data) 
+            if(pathName.includes("dashboard")){
+                if(!request?.data){
+                    localStorage.clear()
+                    navigate("/signin")
+                }
+            }
         }
+
         setPathName(window.location.pathname)  
         
         // call the function
