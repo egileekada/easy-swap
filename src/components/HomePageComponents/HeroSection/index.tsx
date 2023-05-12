@@ -3,6 +3,7 @@ import CryptoCalculation from './components/CryptoCalculation'
 import * as animationData from './Animation.json'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { motion, useAnimation } from 'framer-motion';
+// import video from './video.mp4'
 import { useInView } from 'react-intersection-observer';
 
 export default function HeroSection() {
@@ -35,8 +36,8 @@ export default function HeroSection() {
 
     return (
         <> 
-            <div className=' bg-[#f8f8f8] lg:h-[80vh] py-6 lg:py-24 items-center w-full justify-center px-6 lg:px-16 flex ' >
-                <div className='  max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
+            <div className=' bg-[#f8f8f8] lg:h-[80vh] relative py-6 lg:py-24 items-center w-full justify-center px-6 lg:px-16 flex ' >
+                <div className='   z-20 max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
                     <motion.div  ref={ref} initial={{x: -200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}  className=' w-full pt-8 ' >
                         <h1 className=' text-[#303179] text-3xl lg:text-5xl leading-[1.1] font-bold ' >Buy, sell, and swap your cryptocurrencies with ease.</h1>
@@ -48,6 +49,16 @@ export default function HeroSection() {
                         <CryptoCalculation />
                     </motion.div>
                 </div>
+
+      <video className=' absolute inset-0 z-10 lg:w-[100%] h-[100vh] lg:h-[80vh] '
+            autoPlay={true} 
+            loop={true}
+            controls={false} 
+            playsInline
+            muted   >
+      <source src="/video.mp4" type="video/mp4"/>
+     </video>
+                {/* <video width={300} height={300} src='./video.mp4' /> */}
                 {/* <Player
                     autoplay
                     loop
