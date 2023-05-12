@@ -6,6 +6,7 @@ import { IUser, UserContext } from '../../../context/userContext'
 import { cashFormat } from '../../../config/utils/cashFormat'
 import { useNavigate } from 'react-router-dom'
 import { uesTnxStatusCallback } from '../../../action/useAction'
+import CopyButtton from '../../CopyButton'
 
 type props = {
     close: any
@@ -46,6 +47,8 @@ export default function PaymentDetails({close}: props) {
         
     } 
 
+    console.log(userContext.transactionDetail); 
+
     return (
         <div className=' w-full mt-4 lg:mt-12 gap-2 lg:bg-transparent bg-white flex lg:flex-row flex-col px-4 lg:px-10 ' >
             <div className=' w-full bg-white p-0 pb-4 lg:p-9 lg:pb-12 rounded-lg ' >
@@ -69,7 +72,9 @@ export default function PaymentDetails({close}: props) {
                 </div>
                 <div className=' w-full mt-6 ' > 
                     <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Smart Chain Address</p>
-                    <div className=' w-full flex items-center lg:gap-4 ' >
+
+                    <CopyButtton text={userContext.transactionDetail?.coin_address} />
+                    {/* <div className=' w-full flex items-center lg:gap-4 ' >
                         <div className=' w-full py-3 lg:gap-0 gap-2 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
                             <p className=' break-all' >{userContext.transactionDetail?.coin_address}</p>
                             <div className='  w-fit lg:hidden ml-auto  ' >
@@ -83,11 +88,12 @@ export default function PaymentDetails({close}: props) {
                                 <path d="M4.34045 4V1C4.34045 0.734784 4.44741 0.48043 4.63779 0.292893C4.82817 0.105357 5.08638 0 5.35562 0H17.5376C17.8069 0 18.0651 0.105357 18.2555 0.292893C18.4458 0.48043 18.5528 0.734784 18.5528 1V15C18.5528 15.2652 18.4458 15.5196 18.2555 15.7071C18.0651 15.8946 17.8069 16 17.5376 16H14.4921V19C14.4921 19.552 14.0353 20 13.4698 20H1.30206C1.16818 20.0008 1.03547 19.9755 0.911546 19.9256C0.78762 19.8757 0.674922 19.8022 0.579928 19.7093C0.484934 19.6164 0.409516 19.5059 0.358008 19.3841C0.3065 19.2624 0.279916 19.1319 0.279785 19L0.282831 5C0.282831 4.448 0.739656 4 1.3051 4H4.34045ZM2.31316 6L2.31012 18H12.4618V6H2.31316ZM6.37079 4H14.4921V14H16.5225V2H6.37079V4Z" fill="#5C5F62"/>
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className=' w-full mt-4 ' > 
                     <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Transaction Reference</p>
-                    <div className=' w-full flex items-center gap-4 ' >
+                    <CopyButtton text={userContext.transactionDetail?.transaction_ref} />
+                    {/* <div className=' w-full flex items-center gap-4 ' >
                         <div className=' w-full break-all lg:gap-0 gap-2  py-3 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
                         <p className=' break-all' >{userContext.transactionDetail?.transaction_ref}</p>
                             <div className='  w-fit ml-auto  lg:hidden ' >
@@ -101,7 +107,7 @@ export default function PaymentDetails({close}: props) {
                                 <path d="M4.34045 4V1C4.34045 0.734784 4.44741 0.48043 4.63779 0.292893C4.82817 0.105357 5.08638 0 5.35562 0H17.5376C17.8069 0 18.0651 0.105357 18.2555 0.292893C18.4458 0.48043 18.5528 0.734784 18.5528 1V15C18.5528 15.2652 18.4458 15.5196 18.2555 15.7071C18.0651 15.8946 17.8069 16 17.5376 16H14.4921V19C14.4921 19.552 14.0353 20 13.4698 20H1.30206C1.16818 20.0008 1.03547 19.9755 0.911546 19.9256C0.78762 19.8757 0.674922 19.8022 0.579928 19.7093C0.484934 19.6164 0.409516 19.5059 0.358008 19.3841C0.3065 19.2624 0.279916 19.1319 0.279785 19L0.282831 5C0.282831 4.448 0.739656 4 1.3051 4H4.34045ZM2.31316 6L2.31012 18H12.4618V6H2.31316ZM6.37079 4H14.4921V14H16.5225V2H6.37079V4Z" fill="#5C5F62"/>
                             </svg>
                         </div>
-                    </div>
+                    </div> */}
                 </div> 
                 <p className=' mt-6 font-medium text-sm  ' >We would credit the bank account provided below once the transaction is confirmed as successfulsuccessful on the crypto network.</p>
             </div>

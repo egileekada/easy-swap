@@ -4,6 +4,7 @@ import { useGetDataCallback } from '../../action/useAction'
 import { IUser, UserContext } from '../../context/userContext'
 import { cashFormat } from '../../config/utils/cashFormat'
 import { dateFormat } from '../../config/utils/dateFormat'
+import CopyButtton from '../CopyButton'
 
 export default function TransactionComponent() {
 
@@ -98,6 +99,9 @@ export default function TransactionComponent() {
                             <Td>
                                 Status
                             </Td> 
+                            {/* <Td>
+                                Payout Status
+                            </Td>  */}
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -111,9 +115,11 @@ export default function TransactionComponent() {
                                                     <Td>{dateFormat(item?.created_at)}</Td>  
                                                     <Td>{userContext?.userInfo?.fullname}</Td>   
                                                     <Td>Deposit</Td>  
-                                                    <Td>{item?.coin_name}</Td> 
+                                                    <Td>{parseFloat(item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
                                                     <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
-                                                    <Td>{item?.coin_address?.slice(0,17)+"..."}</Td> 
+                                                    <Td>
+                                                        <CopyButtton text={item?.coin_address} type={true} />    
+                                                    </Td> 
                                                     <Td>
                                                         {item?.trans_hash && (
                                                             <div className=' gap-2 flex items-center ' > 
@@ -139,6 +145,21 @@ export default function TransactionComponent() {
                                                             </div> 
                                                         )}   
                                                     </Td>   
+                                                    {/* <Td>
+                                                        {item?.transaction_status === "FAILED" ? (
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                Failed    
+                                                            </div> 
+                                                        ): item?.transaction_status === "PENDING" ? (
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >
+                                                                Pending    
+                                                            </div> 
+                                                        ):( 
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                                Success    
+                                                            </div> 
+                                                        )}   
+                                                    </Td>   */}
                                                 </Tr>
                                             )
                                         })}
