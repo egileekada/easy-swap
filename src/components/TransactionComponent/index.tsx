@@ -127,7 +127,7 @@ export default function TransactionComponent() {
                                                     <Td>
                                                         {item?.transaction_status === "FAILED" ? (
                                                             <div className=' py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
-                                                                Pending    
+                                                                Failed    
                                                             </div> 
                                                         ): item?.transaction_status === "PENDING" ? (
                                                             <div className=' py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >

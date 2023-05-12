@@ -194,7 +194,7 @@ export function usBankDetailsCallback() {
 export function uesTnxStatusCallback() {
   const handlTnxStatus = async (postData: any, index: any): Promise<any> => {    
     try{  
-        const response = await axios.post('swap/update-swap/'+index, postData,
+        const response = await axios.put('swap/update-swap/'+index, postData,
         {
           headers: {
             'Content-Type':'application/json',  
