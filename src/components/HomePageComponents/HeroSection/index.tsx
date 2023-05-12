@@ -50,14 +50,22 @@ export default function HeroSection() {
                     </motion.div>
                 </div>
 
-      <video className=' absolute inset-0 z-10 lg:w-[100%] h-[100vh] lg:h-[80vh] '
-            autoPlay={true} 
-            loop={true}
-            controls={false} 
-            playsInline
-            muted   >
-      <source src="/video.mp4" type="video/mp4"/>
-     </video>
+                <video className=' absolute lg:block hidden inset-0 z-10 lg:w-[100%] h-[100vh] lg:h-[80vh] '
+                        autoPlay={true} 
+                        loop={true}
+                        controls={false} 
+                        playsInline
+                        muted   >
+                <source src="/video.mp4" type="video/mp4"/>
+                </video>
+                <video className=' absolute lg:hidden inset-0 z-10 lg:w-[100%] h-[100vh] lg:h-[80vh] '
+                        autoPlay={true} 
+                        loop={true}
+                        controls={false} 
+                        playsInline
+                        muted   >
+                <source src="/mvideo.mp4" type="video/mp4"/>
+                </video>
                 {/* <video width={300} height={300} src='./video.mp4' /> */}
                 {/* <Player
                     autoplay
