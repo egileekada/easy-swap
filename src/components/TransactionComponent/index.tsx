@@ -126,15 +126,15 @@ export default function TransactionComponent() {
                                                     </Td> 
                                                     <Td>
                                                         {item?.transaction_status === "FAILED" ? (
-                                                            <div className=' py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                 Failed    
                                                             </div> 
                                                         ): item?.transaction_status === "PENDING" ? (
-                                                            <div className=' py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >
                                                                 Pending    
                                                             </div> 
                                                         ):( 
-                                                            <div className=' py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
                                                                 Success    
                                                             </div> 
                                                         )}   

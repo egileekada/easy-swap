@@ -58,7 +58,7 @@ export default function VerifyEmail() {
                     <div className=' mt-8 w-full hidden lg:flex justify-center ' > 
                         <Stack>
                             <HStack gap="16px">
-                                <PinInput onComplete={handleComplete}  >
+                                <PinInput autoFocus={true} onComplete={handleComplete}  >
                                     <PinInputField width="60px" height="60px" />
                                     <PinInputField  width="60px" height="60px" />
                                     <PinInputField  width="60px" height="60px" />
