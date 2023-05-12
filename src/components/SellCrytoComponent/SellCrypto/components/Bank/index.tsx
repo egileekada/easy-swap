@@ -19,12 +19,13 @@ export default function BankSelection({rate, data, holder, code}: Props) {
     const [dataInfo, setDataInfo] = React.useState([] as any)
     const [bankName, setBankName] = React.useState("")
     const [searchBank, setSearchBank] = React.useState("") 
+    const configValue: string = (process.env.PUBLICKEY as string)
 
     React.useEffect(()=> { 
         setLoading(true)
         axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
             headers: {
-                'X-API-KEY': 'PUBK_TEST_565fadf6-6e72-4832-9be7-7bdd7ffcb4b7'
+                'X-API-KEY': process.env.PUBLICKEY 
               }
             }
         )
