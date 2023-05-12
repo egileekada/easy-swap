@@ -1,10 +1,11 @@
-import { Input } from '@chakra-ui/react'
+import { Input, useToast } from '@chakra-ui/react'
 import React from 'react'
 import ModalLayout from '../../ModalLayout'
 import ButtonComponent from '../../ButtonComponent'
 import { IUser, UserContext } from '../../../context/userContext'
 import { cashFormat } from '../../../config/utils/cashFormat'
 import { useNavigate } from 'react-router-dom'
+import { uesTnxStatusCallback } from '../../../action/useAction'
 
 type props = {
     close: any
@@ -15,13 +16,25 @@ export default function PaymentDetails({close}: props) {
     const [open, setOpen] = React.useState(false)
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
+    const toast = useToast()
     const userContext: IUser = React.useContext(UserContext); 
+
+    const {handlTnxStatus} = uesTnxStatusCallback()
 
     const navigate = useNavigate()
 
     const clickHandler =()=> {
         setOpen(false)
         navigate("/dashboard")
+    }
+
+    const CancelTnxHandler =async()=> {
+        const request = await handlTnxStatus(JSON.stringify({
+            "transaction_status": "FAILED"
+        }), userContext.transactionDetail?.id )
+
+        console.log(request);
+        
     }
 
     return (
@@ -189,7 +202,7 @@ export default function PaymentDetails({close}: props) {
                             <p className=' lg:text-center font-normal text-[#647488] mt-1 mb-5 ' >Are you sure you want to cancel the transaction?</p> 
                             
                             <div className='w-full flex justify-end gap-3 text-sm ' >
-                                <button onClick={()=> clickHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >Continue</button>
+                                <button onClick={()=> CancelTnxHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >Continue</button>
                                 <button onClick={()=> setOpen(false)} className=' bg-[#D82C0D] text-[#fff] rounded-md px-4 py-2 font-semibold  ' >Cancel</button>
                             </div>
                         </div>

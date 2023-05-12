@@ -92,22 +92,7 @@ export default function BankPage() {
         }
 
         setLoading(false)
-    }
-
-//     data
-// : 
-// account_name
-// : 
-// "EGILEONISOFIEN   EKADA"
-// account_number
-// : 
-// "2122299111"
-// bank_code
-// : 
-// ""
-// bank_name
-// : 
-// "Zenith Bank Plc"
+    } 
 
 
     return (

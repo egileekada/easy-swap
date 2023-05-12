@@ -189,4 +189,22 @@ export function usBankDetailsCallback() {
     }     
   }
   return { handlBankDetails }
+}   
+
+export function uesTnxStatusCallback() {
+  const handlTnxStatus = async (postData: any, index: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('swap/update-swap/'+index, postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handlTnxStatus }
 }  

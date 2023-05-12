@@ -103,7 +103,7 @@ export default function SellCrypto({next}: props) {
         setLoading(true);
         const request = await handleSwapCoin(JSON.stringify({
             "coin_amount_to_swap":value,
-            "bank_acc_name": bankName,
+            "bank_acc_name": accountName,
             "bank_code": userContext.sellCrypto.bank_code,
             "bank_acc_number": AcountNumber,
             "phone_number": userContext.sellCrypto.phone_number,

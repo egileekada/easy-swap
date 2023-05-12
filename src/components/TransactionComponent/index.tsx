@@ -125,11 +125,15 @@ export default function TransactionComponent() {
                                                         )}
                                                     </Td> 
                                                     <Td>
-                                                        {item?.transaction_status === "PENDING" ? (
+                                                        {item?.transaction_status === "FAILED" ? (
                                                             <div className=' py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                 Pending    
                                                             </div> 
-                                                        ): ( 
+                                                        ): item?.transaction_status === "PENDING" ? (
+                                                            <div className=' py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >
+                                                                Pending    
+                                                            </div> 
+                                                        ):( 
                                                             <div className=' py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
                                                                 Success    
                                                             </div> 
@@ -175,12 +179,12 @@ export default function TransactionComponent() {
                                                 </div>
                                                 <div className=' flex flex-col ' >
                                                     <div className=' flex items-center gap-2 ' >
-                                                        <p className={ item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{ item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
+                                                        <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#FFFF00] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{ item?.transaction_status === "FAILED" ? "Failed":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
                                                         </svg>
                                                     </div>
-                                                    <p className=' text-sm text-[#333333] mt-3 font-medium ' >NGN {cashFormat(item?.ngn_equivalent)}</p>
+                                                    <p className=' text-sm text-[#333333] mt-2 font-medium ' >NGN {cashFormat(item?.ngn_equivalent)}</p>
                                                 </div>
                                             </div>
                                         )

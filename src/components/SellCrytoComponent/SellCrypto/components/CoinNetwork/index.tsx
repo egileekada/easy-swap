@@ -51,9 +51,10 @@ export default function CoinNetwork({network, data}: Props) {
             <p className=' font-normal text-[#334155] mb-2 ' >Coin network</p>
 
             <Select value={network} disabled={network === "Bitcoin"? true: false} onChange={(e)=> changeHandler(e.target.value)} placeholder={network === "Bitcoin"? network: 'Select Network'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  >
-                <option>BSC</option>
-                <option>TRON</option>
-                <option>ETHEREUM</option>
+            
+                <option value={"BSC"} >BEP- 20</option>
+                <option value={"TRON"}>TRC 20</option>
+                <option value={"ETHEREUM"}>ERC -20</option>
             </Select>
             {/* <div className=' cursor-not-allowed w-full rounded-lg border border-[#CBD5E1] flex items-center justify-between h-[45px] bg-[#F8FAFC] relative ' >
                 <div className=' flex items-center ' >
