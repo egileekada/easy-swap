@@ -126,7 +126,7 @@ export default function SellCrypto({next}: props) {
             }, 1000);  
         }else {  
             toast({
-                title: request?.data?.error?.details[0],
+                title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"),
                 position: "bottom",
                 status: "error",
                 isClosable: true,

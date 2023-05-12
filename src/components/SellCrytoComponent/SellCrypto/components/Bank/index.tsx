@@ -19,11 +19,7 @@ export default function BankSelection({rate, data, holder, code}: Props) {
     const [dataInfo, setDataInfo] = React.useState([] as any)
     const [bankName, setBankName] = React.useState("")
     const [searchBank, setSearchBank] = React.useState("") 
-    const configValue: string = (process.env.REACT_APP_MY_ENV_VAL as string)
-
-    console.log(configValue);
-    
-
+    const configValue: string = (process.env.REACT_APP_MY_ENV_VAL as string) 
     React.useEffect(()=> { 
         setLoading(true)
         axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
