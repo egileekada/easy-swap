@@ -7,6 +7,7 @@ import ButtonComponent from '../../ButtonComponent'
 import { IUser, UserContext } from '../../../context/userContext'
 import { useBankDetailCallback, useExchangeRateCallback, useGetDataCallback, useSwapCoinCallback } from '../../../action/useAction'
 import { cashFormat } from '../../../config/utils/cashFormat'
+import { useNavigate } from 'react-router-dom'
 
 type props = {
     next: any
@@ -15,6 +16,8 @@ type props = {
 export default function SellCrypto({next}: props) {
 
     const userContext: IUser = React.useContext(UserContext); 
+
+    const navigate = useNavigate()
     const toast = useToast() 
 
     React.useEffect(()=> {
@@ -101,39 +104,43 @@ export default function SellCrypto({next}: props) {
 
     const submit = async () => { 
         setLoading(true);
-        const request = await handleSwapCoin(JSON.stringify({
-            "coin_amount_to_swap":value,
-            "bank_acc_name": bankName,
-            "bank_code": userContext.sellCrypto.bank_code,
-            "bank_acc_number": AcountNumber,
-            "phone_number": userContext.sellCrypto.phone_number,
-            "coin_name": (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"),
-            "network": network
-        }))   
-        
-        if (request.status === 200) {  
-            toast({
-                title: "Transaction Successfully",
-                position: "bottom",
-                status: "success",
-                isClosable: true,
-            })
-            userContext.setTransactionDetail(request?.data)
-            const t1 = setTimeout(() => {
-                setLoading(false);  
-                next(true)
-                clearTimeout(t1);
-            }, 1000);  
-        }else {  
-            toast({
-                title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"),
-                position: "bottom",
-                status: "error",
-                isClosable: true,
-            }) 
-            setLoading(false)  
-        } 
-        setLoading(false);
+        if(!userContext.userInfo?.email) {
+            navigate("/signin")
+        } else { 
+            const request = await handleSwapCoin(JSON.stringify({
+                "coin_amount_to_swap":value,
+                "bank_acc_name": bankName,
+                "bank_code": userContext.sellCrypto.bank_code,
+                "bank_acc_number": AcountNumber,
+                "phone_number": userContext.sellCrypto.phone_number,
+                "coin_name": (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"),
+                "network": network
+            }))   
+            
+            if (request.status === 200) {  
+                toast({
+                    title: "Transaction Successfully",
+                    position: "bottom",
+                    status: "success",
+                    isClosable: true,
+                })
+                userContext.setTransactionDetail(request?.data)
+                const t1 = setTimeout(() => {
+                    setLoading(false);  
+                    next(true)
+                    clearTimeout(t1);
+                }, 1000);  
+            }else {  
+                toast({
+                    title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"),
+                    position: "bottom",
+                    status: "error",
+                    isClosable: true,
+                }) 
+                setLoading(false)  
+            } 
+            setLoading(false);
+        }
     }  
 
     const CoinName =(item: any, net: any, val?:any)=>{

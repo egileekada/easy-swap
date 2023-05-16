@@ -6,6 +6,7 @@ import ReasonWhySection from '../../components/HomePageComponents/ReasonWhySecti
 import OurClients from '../../components/HomePageComponents/OurClients'
 import FAQ from '../../components/HomePageComponents/FAQ'
 import Footer from '../../components/Footer'
+import SellCryptoPage from '../SellCryptoPage'
 
 export default function HomePage() {
     return (
@@ -13,6 +14,7 @@ export default function HomePage() {
             <Navbar />
             <HeroSection />
             <HowItWorks />
+            <SellCryptoPage />
             <ReasonWhySection /> 
             <OurClients />
             <FAQ />
