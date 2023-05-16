@@ -64,6 +64,7 @@ export default function MyProfile() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -72,6 +73,7 @@ export default function MyProfile() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -85,12 +87,14 @@ export default function MyProfile() {
                     title: "Update Successful", 
                     status: 'success',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }else { 
                 toast({
                     title: "Error Occured", 
                     status: 'error',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }
             setLoading(false);

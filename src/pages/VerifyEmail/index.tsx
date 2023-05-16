@@ -42,7 +42,8 @@ export default function VerifyEmail() {
             toast({
                 title: request?.data?.error?.details?.detail, 
                 status: 'error',  
-                duration: 3000, 
+                duration: 3000,  
+                position: "top"
             }) 
         }
         setLoading(false); 

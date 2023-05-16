@@ -81,6 +81,7 @@ export default function BankPage() {
                 title: "Bank Details Added", 
                 status: 'success',  
                 duration: 3000, 
+                position: "top"
             }) 
             setShowModal(false)
         }else { 
@@ -88,6 +89,7 @@ export default function BankPage() {
                 title: "Error Ocurred", 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
         }
 

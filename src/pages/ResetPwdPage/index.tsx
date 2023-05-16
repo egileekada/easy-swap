@@ -31,12 +31,14 @@ export default function ResetPwdPage() {
                 title: "Otp Sent", 
                 status: 'success',  
                 duration: 3000, 
+                position: "top"
             }) 
         }else { 
             toast({
                 title: request.data.error.message, 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
         }
         setLoading(false);
@@ -56,12 +58,14 @@ export default function ResetPwdPage() {
                 title: "Update Successful", 
                 status: 'success',  
                 duration: 3000, 
+                position: "top"
             }) 
         }else { 
             toast({
                 title: request.data.error.message, 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
         }
         setLoading(false);

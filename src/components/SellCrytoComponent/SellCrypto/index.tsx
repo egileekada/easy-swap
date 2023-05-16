@@ -120,7 +120,7 @@ export default function SellCrypto({next}: props) {
             if (request.status === 200) {  
                 toast({
                     title: "Transaction Successfully",
-                    position: "bottom",
+                    position: "top",
                     status: "success",
                     isClosable: true,
                 })
@@ -132,8 +132,8 @@ export default function SellCrypto({next}: props) {
                 }, 1000);  
             }else {  
                 toast({
-                    title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"),
-                    position: "bottom",
+                    title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"), 
+                    position: "top",
                     status: "error",
                     isClosable: true,
                 }) 

@@ -38,6 +38,7 @@ export default function LoginPage() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -46,6 +47,7 @@ export default function LoginPage() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -64,12 +66,14 @@ export default function LoginPage() {
                     title: "Login Successful", 
                     status: 'success',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }else { 
                 toast({
                     title: request?.data?.error?.details[0], 
                     status: 'error',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }
             setLoading(false);

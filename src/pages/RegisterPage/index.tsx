@@ -43,6 +43,7 @@ export default function RegisterPage() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -51,6 +52,7 @@ export default function RegisterPage() {
                 title: 'You have to fill in the form to continue', 
                 status: 'error',  
                 duration: 3000, 
+                position: "top"
             }) 
             setLoading(false);
             return;
@@ -67,12 +69,14 @@ export default function RegisterPage() {
                     title: "Registration Successful", 
                     status: 'success',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }else {  
                 toast({
                     title: request?.data?.error?.details?.detail, 
                     status: 'error',  
                     duration: 3000, 
+                    position: "top"
                 }) 
             }
             setLoading(false);
