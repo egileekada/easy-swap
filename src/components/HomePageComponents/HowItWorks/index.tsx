@@ -22,12 +22,12 @@ export default function HowItWorks() {
 
     return (
         <div className=' w-full flex justify-center font-medium bg-[#303179] ' > 
-            <div className=' w-full flex pt-6 lg:flex-row flex-col lg:pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
+            <div className=' max-w-[1440px] flex pt-6 lg:flex-row flex-col lg:pt-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
                 <motion.div ref={ref} initial={{x: -200}} animate={controls}  
-                    transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col items-center px-6 lg:px-16 pt-10 ' >
+                    transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col px-6 lg:px-16 pt-10 ' >
                     <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Easyswap works</h1>
-                    <p className=' max-w-lg mt-6 ' >Complete your transactions within 5 minutes by using the following steps. </p>
-                    <div className=' max-w-lg mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
+                    <p className=' max-w-2xl mt-6 ' >Complete your transactions within 5 minutes by using the following steps. </p>
+                    <div className=' max-w-2xl mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +47,7 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Select the cryptocurrency of your choice and input the amount you want to sell. The naira amount is calculated automatically using the latest rates. </p>
                         </div>
                     </div>
-                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +61,7 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Once you’re satisfied with the amount, click on sell crypto to proceed to the next step.</p>
                         </div>
                     </div>
-                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@ export default function HowItWorks() {
                             <p className=' mt-3 font-medium ' >Complete the registration process to create an account on Ezyswap. Include your default bank account details to receive payment.</p>
                         </div>
                     </div>
-                    <div className=' max-w-lg mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +96,7 @@ export default function HowItWorks() {
                 </motion.div>
                 <motion.div ref={ref2} initial={{x: +200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex justify-center lg:mt-0 mt-8 ' >
-                    <img alt='first' className=' w-[65%] object-contain ' src='/images/iPhone.png' />
+                    <img alt='first' className=' h-[100%] object-contain ' src='/images/iPhone.png' />
                 </motion.div>
             </div>
         </div>
