@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import React from 'react' 
 
 type props = {
@@ -9,14 +10,21 @@ export default function CopyButtton({type, text}: props) {
 
     const [copySuccess, setCopySuccess] = React.useState('');
     const textAreaRef: any = React.useRef(null);
+    const toast = useToast()
 
     function copyToClipboard(item: any) { 
         navigator.clipboard.writeText(item)
-        setCopySuccess('Copied!');
-        const t1 = setTimeout(() => {
-            setCopySuccess('');
-            clearTimeout(t1); 
-        }, 2000); 
+        // setCopySuccess('Copied!');
+        toast({
+            title: 'Transaction Have been Cancelled', 
+            status: 'success',  
+            duration: 3000, 
+            position:"top"
+        }) 
+        // const t1 = setTimeout(() => {
+        //     setCopySuccess('');
+        //     clearTimeout(t1); 
+        // }, 2000); 
     };
 
     return ( 

@@ -1,4 +1,4 @@
-import { Input, useToast } from '@chakra-ui/react'
+import { Checkbox, Input, useToast } from '@chakra-ui/react'
 import React from 'react'
 import ModalLayout from '../../ModalLayout'
 import ButtonComponent from '../../ButtonComponent'
@@ -16,6 +16,7 @@ export default function PaymentDetails({close}: props) {
 
     const [open, setOpen] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
+    const [Checked, setChecked] = React.useState(false)
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
     const toast = useToast()
@@ -40,14 +41,13 @@ export default function PaymentDetails({close}: props) {
             title: 'Transaction Have been Cancelled', 
             status: 'success',  
             duration: 3000, 
+            position:"top"
         }) 
         setLoading(false)
         setOpen(false)
         navigate("/dashboard")
         
-    } 
-
-    console.log(userContext.transactionDetail); 
+    }  
 
     return (
         <div className=' w-full mt-4 lg:mt-12 gap-2 lg:bg-transparent bg-white flex lg:flex-row flex-col px-4 lg:px-10 ' >
@@ -145,7 +145,7 @@ export default function PaymentDetails({close}: props) {
                 {tab === 0 && ( 
                     <div className=' rounded-lg px-4 lg:px-8 py-9 ' >
                         <div className=' w-full flex items-center justify-between ' >
-                            <p className=' text-2xl font-bold' >Confirm Sale</p>
+                            <p className=' text-2xl font-bold' >Initiate a Deposit </p>
                             <button onClick={()=> setOpen(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -153,7 +153,7 @@ export default function PaymentDetails({close}: props) {
                                 </svg>
                             </button>
                         </div>
-                        <p className=' text-[#667085] mt-3 lg:mt-1  ' >Please, confirm the asset you want to sell</p>
+                        <p className=' text-[#667085] mt-3 lg:mt-1  ' >Please make sure that the network you copied on our platform matches the network you are transferring to.</p>
                         <div className=' text-[#080707] w-full flex flex-col items-center ' >
                             <div className=' flex items-center gap-2 mt-4 lg:mt-6 ' >
                                 <div className=' w-[24px] h-[24px] rounded-full bg-green-500 ' >
@@ -167,8 +167,15 @@ export default function PaymentDetails({close}: props) {
                                     <path d="M3.46257 2.43262C5.21556 0.91688 7.5007 0 10 0C15.5228 0 20 4.47715 20 10C20 12.1361 19.3302 14.1158 18.1892 15.7406L15 10H18C18 5.58172 14.4183 2 10 2C7.84982 2 5.89777 2.84827 4.46023 4.22842L3.46257 2.43262ZM16.5374 17.5674C14.7844 19.0831 12.4993 20 10 20C4.47715 20 0 15.5228 0 10C0 7.86386 0.66979 5.88416 1.8108 4.25944L5 10H2C2 14.4183 5.58172 18 10 18C12.1502 18 14.1022 17.1517 15.5398 15.7716L16.5374 17.5674Z" fill="black"/>
                                 </svg>
                             </div>
-                            <p className=' text-[#647488] text-sm mt-1 font-normal mb-6 ' >Est. amount- NGN {cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
-                            <ButtonComponent onClick={()=> setTab(1)} name='Confirm Sell' bgcolor=' bg-[#303179] text-white mt-4 lg:mt-6 ' />
+                            <p className=' text-[#647488] text-sm mt-1 font-normal mb-6 ' >I will receive- NGN {cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
+                            <div className=' px-[26px] py-[30px] w-full bg-[#F7F8FF] rounded-lg ' >
+                                <p className=' text-sm font-medium ' ><span className=' font-bold ' >Disclaimer:</span> Before any payments can be received, please ensure that you have submitted a deposit request. Failure to initiate a deposit request will result in our inability to process payments to your bank account.</p>
+                                <div className=' flex items-center mt-4 gap-3 ' >
+                                    <Checkbox onChange={(e)=> setChecked(e.target.checked)}  />
+                                    <p className=' text-sm font-medium '>I agree and accepts EzySwap Sell Disclaimer</p>
+                                </div>
+                            </div>
+                            <ButtonComponent onClick={()=> setTab(1)} name='Confirm Sell' bgcolor={Checked ? ' bg-[#303179] text-white mt-4 lg:mt-6 ': ' bg-[#E4E7EC] text-[#475467] mt-4 lg:mt-6 '} />
                         </div>
                     </div>
                 )}
