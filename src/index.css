@@ -4,4 +4,14 @@
 
 html, body {
   font-family: 'Inter', sans-serif !important; 
+  scroll-behavior: smooth !important;
+} 
+
+.scroll_event::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth !important;
+}
+
+.scroll_event{
+  scroll-behavior: smooth !important;
 }

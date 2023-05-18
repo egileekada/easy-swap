@@ -32,7 +32,7 @@ export default function ReasonWhySection() {
         <div className=' w-full py-20 flex lg:px-0 px-6  flex-col items-center ' >
             <motion.div ref={ref4} initial={{x: -200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}> 
-                <p className=' text-center text-lg font-normal ' >Here are a few reasons why you should chose Easyswap</p>
+                {/* <p className=' text-center text-lg font-normal ' >Here are a few reasons why you should chose Easyswap</p> */}
                 <p className=' text-center text-[#303179] font-bold text-3xl lg:text-4xl lg:max-w-2xl mt-3 ' >A Trusted and Secured Crypto Exchange Platform</p>
             </motion.div>
             <div className=' xl:w-[1366px]  lg:w-full mt-8 px-0 lg:px-14 flex lg:flex-row flex-col lg:gap-12 ' >
