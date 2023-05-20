@@ -3,8 +3,7 @@ import CryptoCalculation from './components/CryptoCalculation'
 import * as animationData from './Animation.json'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { motion, useAnimation } from 'framer-motion';
-// import video from './video.mp4'
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'; 
 
 export default function HeroSection() {
 
