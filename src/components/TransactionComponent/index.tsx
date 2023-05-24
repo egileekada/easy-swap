@@ -46,8 +46,8 @@ export default function TransactionComponent() {
             <div className=' lg:grid grid-cols-auto hidden lg:grid-cols-5 gap-5 font-medium  ' >
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Type</p>
-                    <Select fontSize="sm" backgroundColor="white" >
-                        <option>Deposit</option>
+                    <Select disabled={true} fontSize="sm" backgroundColor="white" >
+                        <option>Sell</option>
                     </Select>
                 </div>
                 <div className=' w-full ' >
@@ -131,7 +131,11 @@ export default function TransactionComponent() {
                                                         )}
                                                     </Td> 
                                                     <Td>
-                                                        {item?.transaction_status === "FAILED" ? (
+                                                        {item?.payout_status === "Success" ? (
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                                PayOut Success    
+                                                            </div> 
+                                                        ):item?.transaction_status === "FAILED" ? (
                                                             <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                 Failed    
                                                             </div> 
@@ -141,7 +145,7 @@ export default function TransactionComponent() {
                                                             </div> 
                                                         ):( 
                                                             <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
-                                                                Success    
+                                                                Deposit Success    
                                                             </div> 
                                                         )}   
                                                     </Td>   
