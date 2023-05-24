@@ -8,10 +8,11 @@ import { IUser, UserContext } from '../../context/userContext'
 
 type props = {
     hide?: boolean,
-    dashboard?: boolean
+    dashboard?: boolean,
+    settings?: boolean
 }
 
-export default function Navbar({ hide, dashboard }: props) {
+export default function Navbar({ hide, dashboard, settings }: props) {
 
     const navigate = useNavigate()
     
@@ -109,9 +110,11 @@ export default function Navbar({ hide, dashboard }: props) {
                                     <p className=' font-medium text-base ' >{userContext.userInfo?.fullname}</p>
                                     <p className=' font-normal -mt-1 text-sm ' >{userContext.userInfo?.email.length < 12 ? userContext.userInfo?.email :userContext.userInfo?.email?.slice(0,12)+"..."}</p>
                                 </div> 
-                                <div className=' ml-5 '>
-                                    <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
-                                </div> 
+                                {!settings && ( 
+                                    <div className=' ml-5 '>
+                                        <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
+                                    </div> 
+                                )}
                             </div>
                         )}
                         {show && 
