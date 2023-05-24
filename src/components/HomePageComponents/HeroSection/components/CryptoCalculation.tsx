@@ -102,7 +102,7 @@ export default function CryptoCalculation() {
             <div className=' relative w-full border border-[#94A3B8] h-[60px] mt-4 rounded-lg px-4 lg:px-[26px] flex items-center justify-between ' >
                 <div className=' w-full ' >
                     <p className=' font-semibold text-[#475569] text-sm ' >Send</p>
-                    <input onChange={(e)=> handleAmount(e.target.value)} type='number' className=' w-full border-0 font-medium text-lg outline-none ' placeholder="0000" />
+                    <input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e)=> handleAmount(e.target.value)} type='number' className=' w-full border-0 font-medium text-lg outline-none ' placeholder="0000" />
                 </div> 
                 <div onClick={()=> setIsShown(true)} role='button' className=' h-full w-fit pr-2 flex justify-center items-center gap-2  ' >
                     {selectCoinTicker && (

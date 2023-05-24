@@ -92,15 +92,28 @@ export default function Navbar({ hide, dashboard }: props) {
                         <div className=' w-[40px] h-[40px] rounded-full bg-black ' >
 
                         </div>
-                        <div role='button' onClick={()=> setShow(true)} className=' flex items-center ' > 
-                            <div> 
-                                <p className=' font-medium text-base ' >{userContext.userInfo?.fullname}</p>
-                                <p className=' font-normal -mt-1 text-sm ' >{userContext.userInfo?.email.length < 12 ? userContext.userInfo?.email :userContext.userInfo?.email?.slice(0,12)+"..."}</p>
+                        {!dashboard && ( 
+                            <div role='button' onClick={()=> setShow(true)} className=' flex items-center ' > 
+                                <div> 
+                                    <p className=' font-medium text-base ' >{userContext.userInfo?.fullname}</p>
+                                    <p className=' font-normal -mt-1 text-sm ' >{userContext.userInfo?.email.length < 12 ? userContext.userInfo?.email :userContext.userInfo?.email?.slice(0,12)+"..."}</p>
+                                </div> 
+                                <svg role='button' onClick={()=> setShow(true)} width="14" height="7" className=' ml-2' viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.98902 6.99763C6.75578 6.99809 6.52974 6.91676 6.35014 6.76775L0.360621 1.77034C0.156761 1.60069 0.0285612 1.3569 0.00422411 1.09261C-0.020113 0.828322 0.0614062 0.565176 0.230848 0.361065C0.40029 0.156954 0.643776 0.0285965 0.90774 0.00422933C1.1717 -0.0201378 1.43452 0.0614814 1.63838 0.231132L6.98902 4.70882L12.3397 0.39105C12.4418 0.308027 12.5593 0.246028 12.6854 0.208615C12.8115 0.171203 12.9438 0.159115 13.0746 0.173047C13.2054 0.186979 13.3321 0.226656 13.4475 0.289797C13.563 0.352938 13.6648 0.438299 13.7472 0.540973C13.8386 0.643741 13.9079 0.764305 13.9506 0.895111C13.9933 1.02592 14.0086 1.16415 13.9954 1.30114C13.9823 1.43813 13.9411 1.57093 13.8743 1.69123C13.8076 1.81152 13.7167 1.91672 13.6074 2.00022L7.61792 6.82772C7.43316 6.95317 7.21173 7.013 6.98902 6.99763V6.99763Z" fill="#101828"/>
+                                </svg> 
                             </div>
-                            <svg role='button' onClick={()=> setShow(true)} width="14" height="7" className=' ml-2' viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.98902 6.99763C6.75578 6.99809 6.52974 6.91676 6.35014 6.76775L0.360621 1.77034C0.156761 1.60069 0.0285612 1.3569 0.00422411 1.09261C-0.020113 0.828322 0.0614062 0.565176 0.230848 0.361065C0.40029 0.156954 0.643776 0.0285965 0.90774 0.00422933C1.1717 -0.0201378 1.43452 0.0614814 1.63838 0.231132L6.98902 4.70882L12.3397 0.39105C12.4418 0.308027 12.5593 0.246028 12.6854 0.208615C12.8115 0.171203 12.9438 0.159115 13.0746 0.173047C13.2054 0.186979 13.3321 0.226656 13.4475 0.289797C13.563 0.352938 13.6648 0.438299 13.7472 0.540973C13.8386 0.643741 13.9079 0.764305 13.9506 0.895111C13.9933 1.02592 14.0086 1.16415 13.9954 1.30114C13.9823 1.43813 13.9411 1.57093 13.8743 1.69123C13.8076 1.81152 13.7167 1.91672 13.6074 2.00022L7.61792 6.82772C7.43316 6.95317 7.21173 7.013 6.98902 6.99763V6.99763Z" fill="#101828"/>
-                            </svg>
-                        </div>
+                        )}
+                        {dashboard && ( 
+                            <div role='button' className=' flex items-center ' > 
+                                <div> 
+                                    <p className=' font-medium text-base ' >{userContext.userInfo?.fullname}</p>
+                                    <p className=' font-normal -mt-1 text-sm ' >{userContext.userInfo?.email.length < 12 ? userContext.userInfo?.email :userContext.userInfo?.email?.slice(0,12)+"..."}</p>
+                                </div> 
+                                <div className=' ml-5 '>
+                                    <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
+                                </div> 
+                            </div>
+                        )}
                         {show && 
                             <div className=' absolute flex flex-col font-semibold right-0 top-12 bg-white z-50 p-2 rounded-lg text-[#202223]  ' style={{boxShadow: "0px 3px 6px -3px rgba(23, 24, 24, 0.08), 0px 8px 20px -4px rgba(23, 24, 24, 0.12)"}} >
                                 <button onClick={()=> navigate("/dashboard")} disabled={pathName.includes("dashboard")} className={pathName.includes("dashboard") ? ' p-2 rounded-[4px] bg-[#3031791A] ':' p-2 rounded-[4px] hover:bg-[#3031791A] '} >Profile</button>

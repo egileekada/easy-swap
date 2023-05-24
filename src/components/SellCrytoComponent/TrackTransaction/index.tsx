@@ -11,7 +11,7 @@ export default function TrackTransaction() {
                 <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                     <div className=' w-full   ' >
                     <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
-                        <Input height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                        <Input  onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                     </div>
                     <CoinNetwork />
                     <ButtonComponent name="Track Transaction" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
