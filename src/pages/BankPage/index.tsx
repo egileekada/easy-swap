@@ -8,6 +8,7 @@ export default function BankPage() {
     const [showModal, setShowModal] = React.useState(false)
     const [loadingBank, setLoadingBank] = React.useState(false) 
     const [loading, setLoading] = React.useState(false) 
+    const [Check, setCheck] = React.useState(false) 
     const [accountName, setAccountName] = React.useState("")
     const [bank_code, setBankNo] = React.useState("")
     const [data, setData] = React.useState({} as any)
@@ -38,7 +39,7 @@ export default function BankPage() {
 
         // make sure to catch any error
         .catch(console.error);;
-    }, [showModal]) 
+    }, [Check]) 
 
     React.useEffect(()=> {
         const fetchData =async()=> {
@@ -77,6 +78,7 @@ export default function BankPage() {
 
         if (request.status === 200 || request.status === 201) {      
             // localStorage.setItem('id', request?.data?.data?.user?.id);  
+            setCheck((prev)=> !prev)
             toast({
                 title: "Bank Details Added", 
                 status: 'success',  
@@ -114,9 +116,9 @@ export default function BankPage() {
                                 <Td>
                                     Bank Name
                                 </Td>
-                                {/* <Td>
-                                    Status
-                                </Td>  */}
+                                <Td>
+                                    Edit
+                                </Td> 
                             </Tr>
                         </Thead>
                         <Tbody>  
@@ -125,6 +127,11 @@ export default function BankPage() {
                                     <Td>{data?.account_number}</Td>   
                                     <Td>{data?.account_name}</Td>  
                                     <Td>{data?.bank_name}</Td>   
+                                    <Td>
+                                        <svg role='button' onClick={()=> setShowModal(true)} width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3.41421 14.8895L13.5563 4.74737L12.1421 3.33316L2 13.4753V14.8895H3.41421ZM4.24264 16.8895H0V12.6469L11.435 1.21184C11.8256 0.821313 12.4587 0.821313 12.8492 1.21184L15.6777 4.04026C16.0682 4.43079 16.0682 5.06395 15.6777 5.45448L4.24264 16.8895ZM0 18.8895H18V20.8895H0V18.8895Z" fill="black"/>
+                                        </svg>
+                                    </Td>
                                 </Tr> 
                             )}
                         </Tbody> 
