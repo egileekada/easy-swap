@@ -17,11 +17,9 @@ export default function DashboardLayout() {
 
     React.useEffect(()=> { 
 
-        let pathName = window.location.pathname
-
-        console.log(pathName);
+        let pathName = window.location.pathname 
         
-        if(pathName.includes("setting")){
+        if(pathName.includes("setting") || pathName.includes("support")){
             setSetting(true)
         } else {
             setSetting(false)

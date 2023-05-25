@@ -208,3 +208,21 @@ export function uesTnxStatusCallback() {
   }
   return { handlTnxStatus }
 }  
+
+export function useDisputeCallback() {
+  const handlDispute = async (postData: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('swap/support', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handlDispute }
+}  
