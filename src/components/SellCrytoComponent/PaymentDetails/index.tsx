@@ -225,9 +225,9 @@ export default function PaymentDetails({close}: props) {
                             
                             <div className='w-full flex justify-end gap-3 text-sm ' >
                                 <button onClick={()=> CancelTnxHandler()} className=' font-semibold text-[#202223] rounded-md border border-[#BABFC3] px-4 py-2 ' >
-                                    {loading? "Loading..." : "Continue"}
+                                    {loading? "Loading..." : "Yes"}
                                 </button>
-                                <button onClick={()=> setOpen(false)} className=' bg-[#D82C0D] text-[#fff] rounded-md px-4 py-2 font-semibold  ' >Cancel</button>
+                                <button onClick={()=> setOpen(false)} className=' bg-[#D82C0D] text-[#fff] rounded-md px-4 py-2 font-semibold  ' >No</button>
                             </div>
                         </div>
                     </div>
