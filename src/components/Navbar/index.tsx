@@ -129,24 +129,16 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                     </div>
                 )}
 
-                <div className=' ml-auto lg:hidden '>
-                    <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
-                </div> 
-
                 {!userContext.userInfo?.email && ( 
                     <button onClick={()=> navigate("/signin")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
                         Get Started
                     </button>
                 )}
 
-                {userContext.userInfo?.email && ( 
-                    <>
-                        {!pathName.includes("dashboard") && (
-                            <button onClick={()=> navigate("/dashboard")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
-                                Dashboard
-                            </button>
-                        )}
-                    </>
+                {userContext.userInfo?.email && (  
+                   <div className=' ml-auto lg:hidden '>
+                        <HamburgerIcon onClick={()=> onOpen()} role='button' boxSize="25px" />
+                    </div> 
                 )}
             </div>
                 <div> 

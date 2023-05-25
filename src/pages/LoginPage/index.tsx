@@ -141,7 +141,7 @@ export default function LoginPage() {
                 </div> */}
                 <GoogleButton />
                 <div className=' w-full mt-10 flex gap-2 text-[#475569] text-sm font-medium justify-center items-center ' >
-                    <p className=' ' >Log in with Google </p>
+                    <p className=' ' >Don’t have an account? </p>
                     <a href='/signup' className=' font-semibold underline ' >Sign up</a> 
                 </div>
             </div>

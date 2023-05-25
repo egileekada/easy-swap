@@ -21,7 +21,7 @@ export default function Sidebar({close, type}: props) {
             navigate("/dashboard")
         } else if(item === "Log out"){
             localStorage.clear()
-            navigate("/")
+            navigate(0)
         } else{ 
             navigate("/dashboard/"+route)
         }

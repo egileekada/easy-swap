@@ -21,8 +21,8 @@ export default function HowItWorks() {
     }, [controls, controls2, controls3, controls4, inView, inView2]) 
 
     return (
-        <div className=' w-full flex justify-center font-medium bg-[#303179] ' > 
-            <div className=' max-w-[1440px] flex pt-6 lg:flex-row flex-col lg:pt-24 lg:pb-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
+        <div className=' w-full flex lg:justify-center font-medium bg-[#303179] ' > 
+            <div className=' max-w-[1440px] flex pt-20 lg:flex-row flex-col lg:pt-24 lg:pb-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
                 <motion.div ref={ref} initial={{x: -200}} animate={controls}  
                     transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col px-6 lg:pl-16 pt-10 ' >
                     <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Ezyswap works</h1>

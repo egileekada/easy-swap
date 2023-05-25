@@ -159,12 +159,12 @@ export default function RegisterPage() {
                 </div>
                 <div className=' w-full mt-10 hidden lg:flex lg:flex-row flex-col gap-2 mb-6 text-[#475569] text-sm font-medium justify-center items-center ' >
                     <p className=' ' >By clicking on continue, I agree to Easyswap’s</p>
-                    <a href='#' className=' font-semibold ' >Privacy Policy</a>
+                    <a href='#' className=' font-semibold underline ' >Privacy Policy</a>
                     <p>and</p>
-                    <a href='#' className=' font-semibold ' >Terms of Use</a>
+                    <a href='#' className=' font-semibold underline' >Terms of Use</a>
                 </div>
                 <ButtonComponent  type="submit" disabled={!formik.isValid && formik.values.password === confirmPassword} bgcolor={(formik.isValid && formik.values.password === confirmPassword) ? " bg-[#303179] text-white ": ""} name={loading ? "Loading...": "Create Account"} />
-                <div className=' flex items-center justify-center font-medium text-[#344054] bg-[#F2F4F7] rounded h-[45px] mt-4 lg:mt-8 gap-2 ' >
+                <div className=' w-full flex items-center justify-center font-medium text-[#344054] bg-[#F2F4F7] rounded h-[45px] mt-4 lg:mt-8 gap-2 ' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22.5005 12.2336C22.5005 11.3702 22.4291 10.7402 22.2744 10.0869H12.2148V13.9835H18.1196C18.0006 14.9519 17.3577 16.4102 15.9291 17.3902L15.9091 17.5206L19.0897 19.9354L19.3101 19.9569C21.3338 18.1252 22.5005 15.4302 22.5005 12.2336Z" fill="#4285F4"/>
                         <path d="M12.212 22.4996C15.1048 22.4996 17.5334 21.5662 19.3072 19.9562L15.9263 17.3895C15.0215 18.0078 13.8072 18.4395 12.212 18.4395C9.37874 18.4395 6.974 16.6079 6.11678 14.0762L5.99113 14.0866L2.68388 16.595L2.64062 16.7128C4.4025 20.1428 8.02155 22.4996 12.212 22.4996Z" fill="#34A853"/>

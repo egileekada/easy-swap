@@ -68,7 +68,7 @@ export default function RateCalculator() {
                         </div> 
                         <p>NGN</p>
                     </div> 
-                    <ButtonComponent name="Track Transaction" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
+                    <ButtonComponent name="Sell crypto in minutes" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
                 </div>
             </div>
         </div>

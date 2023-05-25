@@ -97,7 +97,7 @@ export default function FAQ() {
                     </div>
                     {tab.includes("five") && (
                         <div className=' px-6 pt-4 pb-6 ' > 
-                            <p className=' font-bold text-xl mt-6 text-left ' >Is Ezyswap secure?</p>
+                            {/* <p className=' font-bold text-xl mt-6 text-left ' >Is Ezyswap secure?</p> */}
                             <p className=' mt-2 font-medium text-left ' >Ezyswap is safe, and you can do transactions with full assurance. We integrate the latest security measures to safeguard your details and transactions.</p>
                         </div>
                     ) }
