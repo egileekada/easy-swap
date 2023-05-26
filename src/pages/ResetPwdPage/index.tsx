@@ -52,7 +52,7 @@ export default function ResetPwdPage() {
             "password": pwd
         }))   
 
-        if (request.status === 200 || request.status === 201) {     
+        if (request?.status === 200 || request?.status === 201) {     
             navigate("/signin")
             toast({
                 title: "Update Successful", 

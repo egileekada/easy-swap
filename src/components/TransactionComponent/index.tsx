@@ -55,9 +55,7 @@ export default function TransactionComponent() {
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Date</p>
-                    <Select fontSize="sm" backgroundColor="white" >
-                        <option>This month</option>
-                    </Select>
+                    <Input fontSize="sm" backgroundColor="white" type='date' />
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Assets</p>
@@ -247,9 +245,7 @@ export default function TransactionComponent() {
                             </div>
                             <p className=' text-[#475467] font-semibold mt-5 ' >Date</p>
                             <div className=' flex gap-3 mt-2 items-center ' >
-                                <Input type='date' fontSize="sm" />
-                                <p className=' text-[#667085] text-sm font-medium ' >to</p>
-                                <Input type='date' fontSize="sm" />
+                                <Input type='date' fontSize="sm" /> 
                             </div>
                             <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p> 
                             <Select fontSize="sm" backgroundColor="white" >
