@@ -24,8 +24,11 @@ export default function TransactionComponent() {
             const request: any = await handleGetData("/swap/transactions/"+userContext.userInfo?.id)  
             // userContext.setUserInformation(request?.data)
             console.log(request?.data); 
-            if(userContext.userInfo?.id){
-                setData(request?.data) 
+            if(userContext.userInfo?.id){ 
+                let newArray: any = [...request?.data]
+                newArray.reverse()
+                setData(newArray)
+                // setData(request?.data) 
             }
             
             const t1 = setTimeout(() => {
@@ -109,7 +112,7 @@ export default function TransactionComponent() {
                             <> 
                                 {data?.length > 0 && (
                                     <> 
-                                        {data.reverse()?.map((item: any, index: number)=> {
+                                        {data.map((item: any, index: number)=> {
                                             return( 
                                                 <Tr key={index} style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
                                                     <Td>{dateFormat(item?.created_at)}</Td>  
@@ -178,7 +181,7 @@ export default function TransactionComponent() {
                         <> 
                             {data?.length > 0 && (
                                 <> 
-                                    {data.reverse()?.map((item: any, index: number)=> {
+                                    {data?.map((item: any, index: number)=> {
                                         return( 
                                             <div key={index} className=' w-full flex justify-between ' >
                                                 <div className=' flex gap-2 ' >
