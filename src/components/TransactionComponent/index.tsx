@@ -118,16 +118,19 @@ export default function TransactionComponent() {
                                                     <Td>{parseFloat(item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
                                                     <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
                                                     <Td>
-                                                        <CopyButtton text={item?.coin_address} type={true} />    
+                                                        <CopyButtton hide={true} text={item?.coin_address} type={true} />    
                                                     </Td> 
                                                     <Td>
                                                         {item?.trans_hash && (
-                                                            <div className=' gap-2 flex items-center ' > 
-                                                                {item?.trans_hash?.slice(0,17)+"..."}
-                                                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
-                                                                </svg>
-                                                            </div>
+
+                                                            <CopyButtton text={item?.trans_hash} type={true} />  
+                                                            // <div className=' gap-2 flex items-center ' > 
+
+                                                            //     {item?.trans_hash?.slice(0,17)+"..."}
+                                                            //     <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            //         <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
+                                                            //     </svg>
+                                                            // </div>
                                                         )}
                                                     </Td> 
                                                     <Td>
@@ -140,7 +143,7 @@ export default function TransactionComponent() {
                                                                 Cancelled    
                                                             </div> 
                                                         ): item?.transaction_status === "PENDING" ? (
-                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FFFF00] rounded-[10px] ' >
+                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                 Pending    
                                                             </div> 
                                                         ):( 
@@ -175,7 +178,7 @@ export default function TransactionComponent() {
                         <> 
                             {data?.length > 0 && (
                                 <> 
-                                    {data.reverse().map((item: any, index: number)=> {
+                                    {data.reverse()?.map((item: any, index: number)=> {
                                         return( 
                                             <div key={index} className=' w-full flex justify-between ' >
                                                 <div className=' flex gap-2 ' >
@@ -188,8 +191,8 @@ export default function TransactionComponent() {
                                                     </div>
                                                 </div>
                                                 <div className=' flex flex-col ' >
-                                                    <div className=' flex items-center gap-2 ' >
-                                                        <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#FFFF00] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{ item?.transaction_status === "FAILED" ? "Cancelled":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
+                                                    <div className=' flex items-center justify-end gap-2 ' >
+                                                        <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{ item?.transaction_status === "FAILED" ? "Cancelled":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
                                                         </svg>
