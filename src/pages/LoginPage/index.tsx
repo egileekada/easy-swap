@@ -124,7 +124,7 @@ export default function LoginPage() {
                 </div>
                 <div className=' w-full mt-3 flex gap-2 mb-6 text-[#475569] text-sm font-medium justify-end items-center ' >
                      
-                    <a href='/resetpwd' className=' font-semibold ' >Forget password</a>
+                    <a href='/resetpwd' className=' font-semibold ' >Forgot password</a>
                 </div>
                 <ButtonComponent type="submit" disabled={!formik.isValid} bgcolor={formik.isValid ? " bg-[#303179] text-white ": ""} name={loading ? "Loading...": "Log in"} />
                 {/* <div role='button' className='  flex items-center lg:bg-transparent bg-[#F2F4F7] rounded h-[45px]  justify-center font-medium text-[#344054] mt-4 lg:mt-8 gap-2 ' >
