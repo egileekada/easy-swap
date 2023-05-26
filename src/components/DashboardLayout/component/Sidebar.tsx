@@ -10,6 +10,7 @@ type props = {
 export default function Sidebar({close, type}: props) {
 
     const userContext: IUser = React.useContext(UserContext); 
+
     const navigate = useNavigate()
     const menu =["Home", "Sell Crypto", "Transactions History", "Banks", "Support", "Settings", "Log out"]
 

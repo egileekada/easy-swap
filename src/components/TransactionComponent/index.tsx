@@ -46,7 +46,34 @@ export default function TransactionComponent() {
         .catch(console.error);;
     }, [userContext.userInfo?.id])  
 
-    
+    const [date, setDate] = React.useState("")
+    const [assets, setAssets] = React.useState("")
+    const [status, setstatus] = React.useState("" as any)
+
+    React.useEffect(()=> { 
+
+        let newArray: any = []
+
+        if(date){
+            newArray.push(date)
+        } else if(assets){
+            newArray.push(assets)
+        } else if(status){
+            newArray.push(status)
+        }
+
+        const clickHandler =async () => { 
+            const request: any = await handlSortTnx({
+                multi_sort: newArray
+            })  
+
+            console.log(request);
+            
+        } 
+
+        clickHandler()
+        
+    }, [date, assets, status])
 
     return (
         <div className=' w-full  ' >
@@ -59,18 +86,24 @@ export default function TransactionComponent() {
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Date</p>
-                    <Input fontSize="sm" backgroundColor="white" type='date' />
+                    <Input onChange={(e)=> setDate(e.target.value)} fontSize="sm" backgroundColor="white" type='date' />
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Assets</p>
-                    <Select fontSize="sm" backgroundColor="white" >
-                        <option>All</option>
+                    <Select placeholder='All' onChange={(e)=> setAssets(e.target.value)} fontSize="sm" backgroundColor="white" > 
+                        <option>BTC</option>
+                        <option>USDT</option>
+                        <option>USDT_BSC</option>
+                        <option>USDT_TRON</option>
                     </Select>
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Status</p>
-                    <Select fontSize="sm" backgroundColor="white" >
-                        <option>All</option>
+                    <Select placeholder='All' onChange={(e)=> setstatus(e.target.value)} fontSize="sm" backgroundColor="white" >
+                        
+                        <option>FAILED</option>
+                        <option>PENDING</option>
+                        <option>SUCCESS</option> 
                     </Select>
                 </div>
             </div>

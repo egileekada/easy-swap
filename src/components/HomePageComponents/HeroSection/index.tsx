@@ -4,6 +4,7 @@ import * as animationData from './Animation.json'
 import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; 
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroSection() {
 
@@ -16,6 +17,8 @@ export default function HeroSection() {
           preserveAspectRatio: 'xMidYMid slice'
         }
     };
+
+    const navigate = useNavigate()
 
     const controls = useAnimation(); 
     const controls2 = useAnimation(); 
@@ -41,7 +44,7 @@ export default function HeroSection() {
                         transition={{ ease: "easeOut", duration: 1 }}  className=' w-full pt-8 ' >
                         <h1 className=' text-[#303179] text-3xl lg:text-5xl xl:text-6xl leading-[1.1] font-bold ' >Buy, sell, and swap your cryptocurrencies with ease.</h1>
                         <p className=' font-normal mt-4 ' >Eyswap enables you to sell your crypto and receive Naira instantly. No waits or delays!! Sign-up today and experience the power of quick payments.</p>
-                        <button className=' mt-8 border-[#303179] border font-semibold text-[#303179] rounded-[10px] px-5 h-[46px] ' >How it works</button>
+                        <button onClick={()=> navigate("/dashboard/sellcrypto")} className=' mt-8 border-[#303179] border font-semibold text-[#303179] rounded-[10px] px-5 h-[46px] ' >Swap Now</button>
                     </motion.div>
                     <motion.div ref={ref2} initial={{ scale: 0}} animate={controls2}  
                     transition={{ ease: "easeOut", duration: 1 }}   className=' w-full flex justify-end  ' >

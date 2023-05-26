@@ -230,7 +230,7 @@ export function useDisputeCallback() {
 export function useSortTnxCallback() {
   const handlSortTnx = async (postData: any): Promise<any> => {    
     try{  
-        const response = await axios.post('swap/support', postData,
+        const response = await axios.post('swap/swap-sort', postData,
         {
           headers: {
             'Content-Type':'application/json',  

@@ -22,9 +22,9 @@ export default function HowItWorks() {
 
     return (
         <div className=' w-full flex lg:justify-center font-medium bg-[#303179] ' > 
-            <div className=' max-w-[1440px] flex pt-20 lg:flex-row flex-col lg:pt-24 lg:pb-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
+            <div className=' max-w-[1440px] flex pt-12 lg:flex-row flex-col lg:pt-24 lg:pb-24 pb-12  text-[#F0EBEB] text-lg bg-[#303179] ' >
                 <motion.div ref={ref} initial={{x: -200}} animate={controls}  
-                    transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col px-6 lg:pl-16 pt-10 ' >
+                    transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-col px-6 lg:px-16 pt-10 ' >
                     <h1 className=' text-3xl lg:text-[48px] text-[#00BAF0] font-bold ' >How Ezyswap works</h1>
                     <p className=' max-w-2xl mt-6 ' >Complete your transactions within 5 minutes by using the following steps. </p>
                     <div className=' max-w-2xl mt-8 lg:mt-[58px] flex lg:flex-row flex-col gap-6 ' >
@@ -44,10 +44,10 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 1</p>
-                            <p className=' mt-3 font-medium ' >Select the cryptocurrency of your choice and input the amount you want to sell. The naira amount is calculated automatically using the latest rates. </p>
+                            <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Select the cryptocurrency of your choice and input the amount you want to sell. The naira amount is calculated automatically using the latest rates. </p>
                         </div>
                     </div>
-                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-12 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,10 +58,10 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 2</p>
-                            <p className=' mt-3 font-medium ' >Once you’re satisfied with the amount, click on sell crypto to proceed to the next step.</p>
+                            <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Once you’re satisfied with the amount, click on sell crypto to proceed to the next step.</p>
                         </div>
                     </div>
-                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-12 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,10 +74,10 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 3</p>
-                            <p className=' mt-3 font-medium ' >Complete the registration process to create an account on Ezyswap. Include your default bank account details to receive payment.</p>
+                            <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Complete the registration process to create an account on Ezyswap. Include your default bank account details to receive payment.</p>
                         </div>
                     </div>
-                    <div className=' max-w-2xl mt-6 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
+                    <div className=' max-w-2xl mt-12 lg:mt-[40px] flex lg:flex-row flex-col gap-6 ' >
                         <div className=' w-fit ' >
                             <div className=' w-[72px] h-[72px] rounded-lg bg-white flex justify-center items-center ' >
                                 <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@ export default function HowItWorks() {
                         </div>
                         <div className='  ' >
                             <p className=' text-[#00BAF0] text-2xl font-semibold ' >Step 4</p>
-                            <p className=' mt-3 font-medium ' >Send the crypto from any wallet to the unique crypto address generated for your transactions. Once confirmed, payment is automatically sent to your bank account.</p>
+                            <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Send the crypto from any wallet to the unique crypto address generated for your transactions. Once confirmed, payment is automatically sent to your bank account.</p>
                         </div>
                     </div>
                 </motion.div>
