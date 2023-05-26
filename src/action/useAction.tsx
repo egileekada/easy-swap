@@ -226,3 +226,21 @@ export function useDisputeCallback() {
   }
   return { handlDispute }
 }  
+
+export function useSortTnxCallback() {
+  const handlSortTnx = async (postData: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('swap/support', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handlSortTnx }
+}  

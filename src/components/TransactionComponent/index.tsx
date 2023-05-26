@@ -1,6 +1,6 @@
 import { Input, Select, Table, TableContainer, Tbody, Td, Thead, Tr } from '@chakra-ui/react'
 import React from 'react'
-import { useGetDataCallback } from '../../action/useAction'
+import { useGetDataCallback, useSortTnxCallback } from '../../action/useAction'
 import { IUser, UserContext } from '../../context/userContext'
 import { cashFormat } from '../../config/utils/cashFormat'
 import { dateFormat } from '../../config/utils/dateFormat'
@@ -15,6 +15,8 @@ export default function TransactionComponent() {
 
 
     const { handleGetData } = useGetDataCallback()
+    const { handlSortTnx } = useSortTnxCallback()
+    
     const userContext: IUser = React.useContext(UserContext); 
     const [data, setData] = React.useState([] as any)
 
@@ -42,7 +44,9 @@ export default function TransactionComponent() {
 
         // make sure to catch any error
         .catch(console.error);;
-    }, [userContext.userInfo?.id]) 
+    }, [userContext.userInfo?.id])  
+
+    
 
     return (
         <div className=' w-full  ' >

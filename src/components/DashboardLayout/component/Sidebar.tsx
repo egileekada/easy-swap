@@ -41,7 +41,7 @@ export default function Sidebar({close, type}: props) {
     }, [navigate])
 
     return (
-        <div className=' w-full h-full bg-white pl-5 py-9 ' >
+        <div className=' w-full h-full overflow-y-auto bg-white pl-5 py-9 ' >
             <p className=' text-[#303179] text-xl font-bold ' >{userContext.userInfo?.fullname}</p>
             <div className=' w-full mt-10   ' >
                 {menu.filter((item)=> item !== "Settings" && item !== "Log out").map((item: any)=> {
