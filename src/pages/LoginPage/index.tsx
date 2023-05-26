@@ -58,7 +58,7 @@ export default function LoginPage() {
             if (request?.status === 200 || request?.status === 201) {    
                 localStorage.setItem('token', request?.data?.access_token);   
                 // localStorage.setItem('id', request?.data?.data?.user?.id); 
-                navigate("/dashboard")
+                navigate("/")
                 toast({
                     title: "Login Successful", 
                     status: 'success',  
