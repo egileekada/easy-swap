@@ -91,9 +91,7 @@ export default function CryptoCalculation() {
 
         // make sure to catch any error
         .catch(console.error);;
-    }, []) 
-
-    console.log(userContext.sellCrypto);
+    }, [])  
     
     return (
         <div className=' w-full lg:mt-0 mt-6 lg:w-[400px] h-fit border-[1.5px] border-[#D0D5DD] rounded-lg bg-white py-9 px-6 ' >

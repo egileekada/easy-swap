@@ -53,12 +53,9 @@ export default function LoginPage() {
             return;
         }else { 
 
-            const request: any = await handleLogin(JSON.stringify(formik.values))
+            const request: any = await handleLogin(JSON.stringify(formik.values))            
 
-            console.log(request?.data?.access_token);
-            
-
-            if (request.status === 200 || request.status === 201) {    
+            if (request?.status === 200 || request?.status === 201) {    
                 localStorage.setItem('token', request?.data?.access_token);   
                 // localStorage.setItem('id', request?.data?.data?.user?.id); 
                 navigate("/dashboard")

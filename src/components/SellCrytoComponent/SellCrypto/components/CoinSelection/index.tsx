@@ -147,4 +147,4 @@ export default function CoinSelection({rate, data, network}: Props) {
             )}
         </div>
     )
-}
+} 

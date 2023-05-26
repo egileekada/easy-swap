@@ -6,6 +6,7 @@ import SelectCurrency from '../SellCrypto/components/SelectCurrency'
 import { useExchangeRateCallback } from '../../../action/useAction'
 import { cashFormat } from '../../../config/utils/cashFormat'
 import { IUser, UserContext } from '../../../context/userContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function RateCalculator() {
 
@@ -15,6 +16,8 @@ export default function RateCalculator() {
     const [exchangeRate, setExchangeRate] = React.useState("")
     const { handleExchangeRate } = useExchangeRateCallback();
     const userContext: IUser = React.useContext(UserContext); 
+
+    const navigate = useNavigate()
     
     React.useEffect(()=> { 
 
@@ -45,6 +48,16 @@ export default function RateCalculator() {
         setValue(item?.target.value)
     }
 
+    const clickHandler =()=> {
+        if(!userContext.userInfo?.email) {
+            navigate("/signin")
+        } else { 
+            userContext.setSellCrypto({...userContext.sellCrypto, "coin_amount_to_swap": value+""})
+            navigate("/dashboard/sellcrypto")  
+        }
+        
+    }
+
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
             <p className=' text-[#6B6B93] font-medium text-lg ' >Track your transaction status here</p>
@@ -53,7 +66,7 @@ export default function RateCalculator() {
                     <div className=' w-full flex  bg-[#F5F5F5] px-6 rounded-t-xl items-center h-[104px] ' > 
                         <div>
                             <p className=' text-sm font-medium text-[#475467] ' >You Have</p>
-                            <Input onChange={GetAmount} type="number"   placeholder='0000' fontSize="lg" borderColor="#F5F5F5" backgroundColor="#F5F5F5" borderWidth="0px" paddingLeft="0px" borderRadius="4px" outline="none" focusBorderColor='#F5F5F5'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={GetAmount} type="number"   placeholder='0000' fontSize="lg" borderColor="#F5F5F5" backgroundColor="#F5F5F5" borderWidth="0px" paddingLeft="0px" borderRadius="4px" outline="none" focusBorderColor='#F5F5F5'  />
                         </div> 
                         <CoinSelection data={CoinName} rate={true} />
                     </div>
@@ -67,8 +80,8 @@ export default function RateCalculator() {
                             <p className='' >{loadingRate? "...": cashFormat(exchangeRate)}</p> 
                         </div> 
                         <p>NGN</p>
-                    </div> 
-                    <ButtonComponent name="Sell crypto in minutes" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
+                    </div>  
+                    <ButtonComponent onClick={()=> clickHandler()} name="Sell crypto in minutes" bgcolor=' text-[#F1F1F1] bg-[#303179] mt-4  ' />
                 </div>
             </div>
         </div>
