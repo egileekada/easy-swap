@@ -5,6 +5,7 @@ import { IUser, UserContext } from '../../context/userContext'
 import { cashFormat } from '../../config/utils/cashFormat'
 import { dateFormat } from '../../config/utils/dateFormat'
 import CopyButtton from '../CopyButton'
+import { useNavigate } from 'react-router-dom'
 
 export default function TransactionComponent() {
 
@@ -19,6 +20,9 @@ export default function TransactionComponent() {
     
     const userContext: IUser = React.useContext(UserContext); 
     const [data, setData] = React.useState([] as any)
+    
+    const [payload, setPayload] = React.useState({} as any)
+    const nav = useNavigate()
 
     React.useEffect(()=> { 
         const fetchData = async () => {
@@ -29,8 +33,7 @@ export default function TransactionComponent() {
             if(userContext.userInfo?.id){ 
                 let newArray: any = [...request?.data]
                 newArray.reverse()
-                setData(newArray)
-                // setData(request?.data) 
+                setData(newArray) 
             }
             
             const t1 = setTimeout(() => {
@@ -38,42 +41,56 @@ export default function TransactionComponent() {
                 clearTimeout(t1);
             }, 1000);  
         }
-
-        // call the function
-        fetchData()
-
-        // make sure to catch any error
-        .catch(console.error);;
-    }, [userContext.userInfo?.id])  
-
-    const [date, setDate] = React.useState("")
-    const [assets, setAssets] = React.useState("")
-    const [status, setstatus] = React.useState("" as any)
-
-    React.useEffect(()=> { 
-
-        let newArray: any = []
-
-        if(date){
-            newArray.push(date)
-        } else if(assets){
-            newArray.push(assets)
-        } else if(status){
-            newArray.push(status)
-        }
-
-        const clickHandler =async () => { 
-            const request: any = await handlSortTnx({
-                multi_sort: newArray
-            })  
-
-            console.log(request);
-            
+  
+        const clickHandler =async () => {   
+            const request: any = await handlSortTnx(payload)   
+            console.log(request); 
+            if(userContext.userInfo?.id){ 
+                let newArray: any = [...request?.data]
+                newArray.reverse()
+                setData(newArray) 
+            }
         } 
+        if(payload?.coin_name || payload?.trans_status || payload?.date ){
+            clickHandler()
+            .catch(console.error);
+        } else {
 
-        clickHandler()
+            // call the function
+            fetchData()
+
+            // make sure to catch any error
+            .catch(console.error);
+        }
+    }, [userContext.userInfo?.id, payload?.coin_name, payload?.trans_status, payload?.date])  
+
+    // React.useEffect(()=> {   
+    //     const clickHandler =async () => {   
+    //         const request: any = await handlSortTnx(payload)   
+    //         console.log(request); 
+    //     } 
         
-    }, [date, assets, status])
+    // }, [payload])
+
+    const clearHandler =()=> { 
+        setPayload({} as any)
+        nav(0)
+    }
+    
+    const changeHandler =(item: any, name: any)=> {
+
+
+        console.log(item.target.value);
+        
+
+        if(name === "Date"){
+            setPayload({...payload, date: item.target.value })
+        } else if(name === "Assets"){
+            setPayload({...payload, coin_name: item.target.value })
+        } else if(name === "Status"){
+            setPayload({...payload, trans_status: item.target.value })
+        }
+    }
 
     return (
         <div className=' w-full  ' >
@@ -86,25 +103,30 @@ export default function TransactionComponent() {
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Date</p>
-                    <Input onChange={(e)=> setDate(e.target.value)} fontSize="sm" backgroundColor="white" type='date' />
+                    <Input onChange={(e)=> changeHandler(e, "Date")} value={payload?.date} fontSize="sm" backgroundColor="white" type='date' />
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Assets</p>
-                    <Select placeholder='All' onChange={(e)=> setAssets(e.target.value)} fontSize="sm" backgroundColor="white" > 
+                    <Select placeholder='All' value={payload?.coin_name} onChange={(e)=> changeHandler(e, "Assets")} fontSize="sm" backgroundColor="white" > 
                         <option>BTC</option>
                         <option>USDT</option>
                         <option>USDT_BSC</option>
                         <option>USDT_TRON</option>
                     </Select>
                 </div>
-                <div className=' w-full ' >
+                <div className=' w-full flex flex-col justify-center relative ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Status</p>
-                    <Select placeholder='All' onChange={(e)=> setstatus(e.target.value)} fontSize="sm" backgroundColor="white" >
-                        
+                    <Select placeholder='All'  value={payload?.trans_status} onChange={(e)=>  changeHandler(e, "Status")} fontSize="sm" backgroundColor="white" > 
                         <option>FAILED</option>
                         <option>PENDING</option>
                         <option>SUCCESS</option> 
                     </Select>
+                    {(payload?.coin_name || payload?.trans_status || payload?.date )&& (
+                        <svg role='button' onClick={()=> clearHandler()} className=' absolute -right-12 top-12 ' width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    )}
                 </div>
             </div>
 
@@ -202,11 +224,7 @@ export default function TransactionComponent() {
             </TableContainer>
             </div>
             <div className=' w-full lg:hidden ' >
-                <div className=' w-full flex justify-between items-center  ' >
-                    <div className=' flex text-sm items-center gap-3 ' >
-                        <p role='button' onClick={()=> setTab(false)} className={`  ${tab ? "text-[#667085] font-normal pb-4 border-b-2 border-transparent ": " pb-4 border-b-2 border-[#303179] font-semibold text-[#344054]"} `} >Pending</p>
-                        <p role='button' onClick={()=> setTab(true)} className={`  ${!tab ? "text-[#667085] font-normal pb-4 border-b-2 border-transparent ": " pb-4 border-b-2 border-[#303179] font-semibold text-[#344054]"} `} >Completed</p>  
-                    </div>
+                <div className=' w-full flex justify-end items-center  ' > 
                     <svg role='buttton' onClick={()=> setShowModal(true)} width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 11V17L6 19V11L0 2V0H16V2L10 11ZM2.4037 2L8 10.3944L13.5963 2H2.4037Z" fill="black"/>
                     </svg>
@@ -274,20 +292,31 @@ export default function TransactionComponent() {
                                     </svg>
                                 </button>
                             </div>
-                            <p className=' text-[#475467] font-semibold mt-5 ' >Status</p>
-                            <div className=' mt-2 flex gap-4 ' >
-                                <p role='button' onClick={()=> setshow(0)} className={`  ${show === 0 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >All</p>
-                                <p role='button' onClick={()=> setshow(1)} className={`  ${show === 1 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >Completed</p>  
-                                <p role='button' onClick={()=> setshow(2)} className={`  ${show === 2 ?  " pb-1 border-b-2 border-[#303179] font-semibold text-[#344054]":"text-[#667085] font-normal pb-1 border-b-2 border-transparent "} `} >Canceled</p>  
-                            </div>
+                            <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Status</p> 
+                            <Select value={payload?.trans_status} placeholder='All' onChange={(e)=> changeHandler(e, "Status")} fontSize="sm" backgroundColor="white" > 
+                                <option>FAILED</option>
+                                <option>PENDING</option>
+                                <option>SUCCESS</option> 
+                            </Select>
                             <p className=' text-[#475467] font-semibold mt-5 ' >Date</p>
                             <div className=' flex gap-3 mt-2 items-center ' >
-                                <Input type='date' fontSize="sm" /> 
+                                <Input onChange={(e)=> changeHandler(e, "Date")} type='date' fontSize="sm" /> 
                             </div>
                             <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p> 
-                            <Select fontSize="sm" backgroundColor="white" >
-                                <option>All</option>
+                            <Select placeholder='All' value={payload?.coin_name} onChange={(e)=> changeHandler(e, "Assets")} fontSize="sm" backgroundColor="white"  >
+                                <option>BTC</option>
+                                <option>USDT</option>
+                                <option>USDT_BSC</option>
+                                <option>USDT_TRON</option>
                             </Select>
+                    {(payload?.coin_name || payload?.trans_status || payload?.date )&& (
+
+                        <button onClick={()=> clearHandler()} className=' border bg-white border-[#303179] mt-5 text-[#303179] rounded-md w-full text-sm py-3 font-bold  ' >Clear All</button>
+                        // <svg role='button' onClick={()=> clearHandler()} className=' absolute -right-12 top-12 ' width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        //     <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        //     <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        // </svg>
+                    )}
                             <button onClick={()=> setShowModal(false)} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
                         </div>
                         <div className=' fixed z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={()=> setShowModal(false)} />
