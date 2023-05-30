@@ -76,6 +76,7 @@ export default function HowItWorks() {
                             <p className=' text-[#00BAF0] text-2xl font-semibold lg:hidden' >Step 3</p>
                         </div>
                         <div className='  ' >
+                            <p className=' text-[#00BAF0] text-2xl font-semibold lg:block hidden' >Step 3</p>
                             <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Complete the registration process to create an account on Ezyswap. Include your default bank account details to receive payment.</p>
                         </div>
                     </div>
@@ -91,6 +92,7 @@ export default function HowItWorks() {
                             <p className=' text-[#00BAF0] text-2xl font-semibold lg:hidden' >Step 4</p>
                         </div>
                         <div className='  ' >
+                            <p className=' text-[#00BAF0] text-2xl font-semibold lg:block hidden' >Step 4</p>
                             <p className=' mt-3 font-normal text-sm lg:text-base  lg:font-medium ' >Send the crypto from any wallet to the unique crypto address generated for your transactions. Once confirmed, payment is automatically sent to your bank account.</p>
                         </div>
                     </div>
