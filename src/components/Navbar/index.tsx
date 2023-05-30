@@ -27,17 +27,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
 
-            if(request?.data){
-                userContext.setUserInformation(request?.data) 
-            } else {
-                navigate("/signin")
-            }
-            if(pathName.includes("dashboard")){
-                if(!request?.data){
-                    localStorage.clear()
-                    navigate("/signin")
-                }
-            }
+            userContext.setUserInformation(request?.data)  
         } 
         setPathName(window.location.pathname)  
         
@@ -47,6 +37,15 @@ export default function Navbar({ hide, dashboard, settings }: props) {
         // make sure to catch any error
         .catch(console.error);;
     }, []) 
+
+    React.useEffect(()=> { 
+        if(pathName.includes("dashboard")){
+            if(!userContext.userInfo.fullname){
+                localStorage.clear()
+                navigate("/signin")
+            }
+        }
+    }, [userContext.userInfo])
     
     const LogOut =()=> {
         localStorage.clear()
