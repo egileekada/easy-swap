@@ -19,7 +19,7 @@ import { GoogleAuthProvider } from './context/useGoogleAuth';
 function App() {
   return ( 
     <UserContextProvider>
-      {/* <GoogleAuthProvider> */}
+      <GoogleAuthProvider>
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} /> 
@@ -38,7 +38,7 @@ function App() {
             </Route>
           </Routes>
         </Router>
-      {/* </GoogleAuthProvider> */}
+      </GoogleAuthProvider>
     </UserContextProvider>
   );
 }

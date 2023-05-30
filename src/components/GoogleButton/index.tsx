@@ -10,10 +10,13 @@ export default function GoogleButton() {
  
     const handleSignIn = async () => {
         const googleUser = await signIn() // if you need immediate access to `googleUser`, get it from signIn() directly
+
+        console.log(googleUser);
+        
       }
-      const responseGoogle = (response: any) => {
-        console.log(response);
-      }
+    //   const responseGoogle = (response: any) => {
+    //     console.log(response);
+    //   }
     
     return (
         <> 
