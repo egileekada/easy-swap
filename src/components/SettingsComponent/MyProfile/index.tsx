@@ -49,7 +49,7 @@ export default function MyProfile() {
     React.useEffect(()=> {
        formik.setFieldValue("fullname", userContext.userInfo.fullname) 
        formik.setFieldValue("email", userContext.userInfo.email) 
-       SetImage(BASEURL.URL+""+userContext.userInfo.photo)
+       SetImage(userContext.userInfo.photo)
        formik.setFieldValue("phone", userContext.userInfo.phone) 
     }, [])
 
@@ -105,6 +105,9 @@ export default function MyProfile() {
 // "email": "user@example.com",
 // "password": "string",
 // "phone": "string",
+
+console.log();
+
 
     return (
         <div className=' w-full flex flex-col items-center lg:p-10 ' >
