@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 export default function TransactionComponent() {
 
     const [tab, setTab] = React.useState(false)
-    const [show, setshow] = React.useState(0)
+    const [show, setshow] = React.useState(-1)
     const [showModal, setShowModal] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
 
@@ -64,24 +64,12 @@ export default function TransactionComponent() {
         }
     }, [userContext.userInfo?.id, payload?.coin_name, payload?.trans_status, payload?.date])  
 
-    // React.useEffect(()=> {   
-    //     const clickHandler =async () => {   
-    //         const request: any = await handlSortTnx(payload)   
-    //         console.log(request); 
-    //     } 
-        
-    // }, [payload])
-
     const clearHandler =()=> { 
         setPayload({} as any)
         nav(0)
     }
     
-    const changeHandler =(item: any, name: any)=> {
-
-
-        console.log(item.target.value);
-        
+    const changeHandler =(item: any, name: any)=> {        
 
         if(name === "Date"){
             setPayload({...payload, date: item.target.value })
@@ -131,99 +119,99 @@ export default function TransactionComponent() {
             </div>
 
             <div className=' w-full mt-6 lg:block hidden ' >
-            <TableContainer>
-                <Table variant='unstyled'> 
-                    <Thead style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] font-bold bg-[#F9FAFB] text-[#000] ' >
-                        <Tr> 
-                            <Td>
-                                Date
-                            </Td>
-                            <Td>
-                                Full Name
-                            </Td>
-                            <Td>
-                                Type
-                            </Td>
-                            <Td>
-                                Asset
-                            </Td>
-                            <Td>
-                                Amount
-                            </Td>
-                            <Td>
-                                Deposit Wallet
-                            </Td>
-                            <Td>
-                                Txn Hash
-                            </Td> 
-                            <Td>
-                                Status
-                            </Td> 
-                            {/* <Td>
-                                Payout Status
-                            </Td>  */}
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        {!loading && (
-                            <> 
-                                {data?.length > 0 && (
-                                    <> 
-                                        {data.map((item: any, index: number)=> {
-                                            return( 
-                                                <Tr key={index} style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
-                                                    <Td>{dateFormat(item?.created_at)}</Td>  
-                                                    <Td>{userContext?.userInfo?.fullname}</Td>   
-                                                    <Td>Deposit</Td>  
-                                                    <Td>{parseFloat(item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
-                                                    <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
-                                                    <Td>
-                                                        <CopyButtton hide={true} text={item?.coin_address} type={true} />    
-                                                    </Td> 
-                                                    <Td>
-                                                        {item?.trans_hash && (
+                <TableContainer>
+                    <Table variant='unstyled'> 
+                        <Thead style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] font-bold bg-[#F9FAFB] text-[#000] ' >
+                            <Tr> 
+                                <Td>
+                                    Date
+                                </Td>
+                                <Td>
+                                    Full Name
+                                </Td>
+                                <Td>
+                                    Type
+                                </Td>
+                                <Td>
+                                    Asset
+                                </Td>
+                                <Td>
+                                    Amount
+                                </Td>
+                                <Td>
+                                    Deposit Wallet
+                                </Td>
+                                <Td>
+                                    Txn Hash
+                                </Td> 
+                                <Td>
+                                    Status
+                                </Td> 
+                                {/* <Td>
+                                    Payout Status
+                                </Td>  */}
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {!loading && (
+                                <> 
+                                    {data?.length > 0 && (
+                                        <> 
+                                            {data.map((item: any, index: number)=> {
+                                                return( 
+                                                    <Tr key={index} style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
+                                                        <Td>{dateFormat(item?.created_at)}</Td>  
+                                                        <Td>{userContext?.userInfo?.fullname}</Td>   
+                                                        <Td>Deposit</Td>  
+                                                        <Td>{parseFloat(item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
+                                                        <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
+                                                        <Td>
+                                                            <CopyButtton hide={true} text={item?.coin_address} type={true} />    
+                                                        </Td> 
+                                                        <Td>
+                                                            {item?.trans_hash && (
 
-                                                            <CopyButtton text={item?.trans_hash} type={true} />  
-                                                            // <div className=' gap-2 flex items-center ' > 
+                                                                <CopyButtton text={item?.trans_hash} type={true} />  
+                                                                // <div className=' gap-2 flex items-center ' > 
 
-                                                            //     {item?.trans_hash?.slice(0,17)+"..."}
-                                                            //     <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            //         <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
-                                                            //     </svg>
-                                                            // </div>
-                                                        )}
-                                                    </Td> 
-                                                    <Td>
-                                                        {item?.payout_status === "Success" ? (
-                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
-                                                                PayOut Successful   
-                                                            </div> 
-                                                        ):item?.transaction_status === "FAILED" ? (
-                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
-                                                                Cancelled    
-                                                            </div> 
-                                                        ): item?.transaction_status === "PENDING" ? (
-                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
-                                                                Pending    
-                                                            </div> 
-                                                        ):( 
-                                                            <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
-                                                                Deposit Successful  
-                                                            </div> 
-                                                        )}   
-                                                    </Td>    
-                                                </Tr>
-                                            )
-                                        })}
-                                    </>
-                                )}
-                            </>
-                        )}
-                    </Tbody> 
-                </Table>
-            </TableContainer>
+                                                                //     {item?.trans_hash?.slice(0,17)+"..."}
+                                                                //     <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                //         <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
+                                                                //     </svg>
+                                                                // </div>
+                                                            )}
+                                                        </Td> 
+                                                        <Td>
+                                                            {item?.payout_status === "Success" ? (
+                                                                <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                                    PayOut Successful   
+                                                                </div> 
+                                                            ):item?.transaction_status === "FAILED" ? (
+                                                                <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                    Cancelled    
+                                                                </div> 
+                                                            ): item?.transaction_status === "PENDING" ? (
+                                                                <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                    Pending    
+                                                                </div> 
+                                                            ):( 
+                                                                <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
+                                                                    Deposit Successful  
+                                                                </div> 
+                                                            )}   
+                                                        </Td>    
+                                                    </Tr>
+                                                )
+                                            })}
+                                        </>
+                                    )}
+                                </>
+                            )}
+                        </Tbody> 
+                    </Table>
+                </TableContainer>
             </div>
-            <div className=' w-full lg:hidden ' >
+            <div className=' w-full lg:hidden -mt-[50px] ' >
                 <div className=' w-full flex justify-end items-center  ' > 
                     <svg role='buttton' onClick={()=> setShowModal(true)} width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 11V17L6 19V11L0 2V0H16V2L10 11ZM2.4037 2L8 10.3944L13.5963 2H2.4037Z" fill="black"/>
@@ -247,14 +235,64 @@ export default function TransactionComponent() {
                                                     </div>
                                                 </div>
                                                 <div className=' flex flex-col ' >
-                                                    <div className=' flex items-center justify-end gap-2 ' >
-                                                        <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{ item?.transaction_status === "FAILED" ? "Cancelled":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
+                                                    <div role='button' onClick={()=> setshow(index)} className=' flex items-center justify-end gap-2 ' >
+                                                        <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{item?.transaction_status === "FAILED" ? "Cancelled":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
                                                         </svg>
                                                     </div>
                                                     <p className=' text-sm text-[#333333] mt-2 font-medium ' >NGN {cashFormat(item?.ngn_equivalent)}</p>
-                                                </div>
+                                                </div> 
+                                                {show === index && (
+                                                    <div className=' w-full  fixed bg-white overflow-y-auto inset-0 z-[100]  ' >
+                                                        <div className=' bg-[#303179] w-full pt-9 pb-6 px-6 ' >
+                                                            <svg role='button' onClick={()=> setshow(-1)}  width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M5.67578 13.6455C5.67578 13.9092 5.79004 14.1729 5.99219 14.3662L11.793 20.1582C12.0039 20.3604 12.2324 20.457 12.4873 20.457C13.041 20.457 13.4453 20.0615 13.4453 19.5254C13.4453 19.2441 13.3398 19.0068 13.1553 18.8311L11.1777 16.8271L8.62891 14.498L10.6768 14.6211H21.3291C21.9092 14.6211 22.3135 14.2168 22.3135 13.6455C22.3135 13.0654 21.9092 12.6611 21.3291 12.6611H10.6768L8.6377 12.7842L11.1777 10.4551L13.1553 8.45117C13.3398 8.27539 13.4453 8.03809 13.4453 7.75684C13.4453 7.2207 13.041 6.8252 12.4873 6.8252C12.2324 6.8252 11.9951 6.92188 11.7666 7.1416L5.99219 12.916C5.79004 13.1094 5.67578 13.373 5.67578 13.6455Z" fill="#F9FAFB"/>
+                                                            </svg>
+                                                            <div className=' w-full flex items-center text-white justify-between mt-2 ' >
+                                                                <div> 
+                                                                    <p className=' font-semibold text-[26px] ' >Sell order pending</p>
+                                                                    <p className=' font-normal text-base ' >You successfully sold {parseFloat(item?.coin_amount_to_swap)} {item?.coin_name}</p>
+                                                                </div>
+                                                                {(item?.transaction_status === "FAILED" || item?.transaction_status === "PENDING") ? (
+                                                                    <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M14.2469 1.09131L17.9658 3.80412L22.5691 3.79536L23.9832 8.17605L27.7124 10.8747L26.2816 15.2499L27.7124 19.6251L23.9832 22.3237L22.5691 26.7044L17.9658 26.6957L14.2469 29.4085L10.5279 26.6957L5.92466 26.7044L4.5105 22.3237L0.78125 19.6251L2.21207 15.2499L0.78125 10.8747L4.5105 8.17605L5.92466 3.79536L10.5279 3.80412L14.2469 1.09131Z" fill="#F04438" stroke="#F97066" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        <path d="M9.29297 15.2501L12.8326 18.7897L19.9119 11.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    </svg>
+                                                                ) : (
+                                                                    <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M14.2469 1.09131L17.9658 3.80412L22.5691 3.79536L23.9832 8.17605L27.7124 10.8747L26.2816 15.2499L27.7124 19.6251L23.9832 22.3237L22.5691 26.7044L17.9658 26.6957L14.2469 29.4085L10.5279 26.6957L5.92466 26.7044L4.5105 22.3237L0.78125 19.6251L2.21207 15.2499L0.78125 10.8747L4.5105 8.17605L5.92466 3.79536L10.5279 3.80412L14.2469 1.09131Z" fill="#40B274" stroke="#009845" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        <path d="M9.29297 15.2501L12.8326 18.7897L19.9119 11.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    </svg>
+                                                                )} 
+                                                            </div>
+                                                        </div>
+                                                        <div className=' w-full p-6 ' >
+                                                            <p className=' text-[#344054] text-lg font-semibold ' >Transaction Details</p>
+                                                            <p className=' text-[#667085] text-sm mt-1 ' >These are the details of the trade you selected</p>
+                                                            <div className=' w-full flex justify-between items-center mt-9 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Date</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{dateFormat(item?.created_at)}</p>
+                                                            </div>
+                                                            <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Rate</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{cashFormat(item?.current_usdt_ngn_rate)}</p>
+                                                            </div>
+                                                            <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Asset Amount</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{parseFloat(item?.coin_amount_to_swap)}</p>
+                                                            </div>
+                                                            <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Cash Value</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{cashFormat(item?.ngn_equivalent)}</p>
+                                                            </div>
+                                                            <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Transaction ID</p>
+                                                                <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.transaction_ref} type={true} />   </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         )
                                     })}

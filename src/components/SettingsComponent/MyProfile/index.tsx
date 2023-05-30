@@ -99,14 +99,7 @@ export default function MyProfile() {
             }
             setLoading(false);
         }
-    } 
-// "photo": "http://example.com",
-// "fullname": "string",
-// "email": "user@example.com",
-// "password": "string",
-// "phone": "string",
-
-console.log();
+    }   
 
 
     return (
