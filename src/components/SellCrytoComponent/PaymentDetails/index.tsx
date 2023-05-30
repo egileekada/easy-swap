@@ -64,7 +64,7 @@ export default function PaymentDetails({close}: props) {
                         <p className=' font-bold ' >Order info</p>
                         <div className=' w-full grid grid-cols-2 text-sm gap-3 pt-5 ' > 
                             <p className=' font-medium text-[#475569]  ' >Amount</p>
-                            {/* <p className=' font-bold text-[#475569] text-right  ' >{parseFloat(userContext.transactionDetail?.coin_amount_to_swap)} {userContext.transactionDetail?.coin_name.includes("USDT") ? "USDT": "BTC"}</p> */}
+                            <p className=' font-bold text-[#475569] text-right  ' >{parseFloat(userContext.transactionDetail?.coin_amount_to_swap)} {userContext.transactionDetail?.coin_name?.includes("USDT") ? "USDT": "BTC"}</p>
                             <p className=' font-medium text-[#475569]  ' >Amount in Naira</p>
                             <p className=' font-medium text-[#475569] text-right ' >NGN {cashFormat(userContext.transactionDetail?.ngn_equivalent)}</p>
                             <p className=' font-medium text-[#475569] ' >Asset sold</p>
