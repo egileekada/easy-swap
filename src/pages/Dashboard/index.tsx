@@ -54,7 +54,7 @@ export default function Dashboard() {
                                         <p className=' text-[#344054] font-normal text-sm ' >Bank</p>
                                         <p className=' text lg:text-xl font-bold text-[#303179] ' >{data?.bank_name}</p>
                                     </div>
-                                    <div className=' lg:block hidden ' >
+                                    <div className=' block ' >
                                         <p className=' text-[#344054] font-normal text-sm ' >Account Name</p>
                                         <p className=' text lg:text-xl font-bold text-[#303179] ' >{data?.account_name}</p>
                                     </div>

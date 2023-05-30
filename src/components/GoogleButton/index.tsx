@@ -4,7 +4,11 @@ import { useGoogleCallback } from '../../action/useAction';
 import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
-export default function GoogleButton() {
+interface Props {
+    name?: any
+}
+
+export default function GoogleButton({ name }:Props) {
 
     const [access_token, setToken] = React.useState("")
     const {handlGoogle} = useGoogleCallback()
@@ -55,7 +59,7 @@ export default function GoogleButton() {
                     <path d="M6.119 14.0765C5.89281 13.4232 5.76191 12.7231 5.76191 11.9998C5.76191 11.2764 5.89281 10.5765 6.1071 9.92313L6.10111 9.78398L2.75239 7.23535L2.64283 7.28642C1.91667 8.70977 1.5 10.3081 1.5 11.9998C1.5 13.6915 1.91667 15.2897 2.64283 16.7131L6.119 14.0765Z" fill="#FBBC05"/>
                     <path d="M12.2121 5.55997C14.224 5.55997 15.5811 6.41163 16.3549 7.12335L19.3787 4.23C17.5216 2.53834 15.1049 1.5 12.2121 1.5C8.02158 1.5 4.40251 3.85665 2.64062 7.28662L6.1049 9.92332C6.97403 7.39166 9.37878 5.55997 12.2121 5.55997Z" fill="#EB4335"/>
                 </svg>
-                <p>Log in with Google</p>
+                <p>{name}</p>
             </div> 
         </>
     )
