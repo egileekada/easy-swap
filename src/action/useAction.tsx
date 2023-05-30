@@ -244,3 +244,20 @@ export function useSortTnxCallback() {
   }
   return { handlSortTnx }
 }  
+
+export function useGoogleCallback() {
+  const handlGoogle = async (postData: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('users/google-auth', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',   
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handlGoogle }
+}  

@@ -1,19 +1,20 @@
 import React from "react";
 import { useGoogleLogin } from "react-use-googlelogin";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const GoogleAuthContext = React.createContext({} as any);
 
 export const GoogleAuthProvider = (props: any) => {
   const googleAuth = useGoogleLogin({
-    clientId: "727859404694-0c3ti1r9ndvqk6f2tq817lsbvas8aqt4.apps.googleusercontent.com", // Your clientID from Google.
+    clientId: "802643163548-8um3vi6jea67go2j5kib1bt7l5ji0mv4.apps.googleusercontent.com", // Your clientID from Google.
     // clientId:  process.env.GOOGLE_CLIENT_ID // Your clientID from Google.
   }); 
   
 
-  return (
-    <GoogleAuthContext.Provider value={googleAuth}>
+  return ( 
+    <GoogleOAuthProvider clientId="802643163548-8um3vi6jea67go2j5kib1bt7l5ji0mv4.apps.googleusercontent.com">
       {props.children}
-    </GoogleAuthContext.Provider>
+    </GoogleOAuthProvider>
   );
 };
 
