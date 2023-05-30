@@ -28,6 +28,13 @@ export default function Navbar({ hide, dashboard, settings }: props) {
             const request: any = await handleGetData("/users/profile")  
 
             userContext.setUserInformation(request?.data)  
+
+            if(pathName.includes("dashboard")){
+                if(!request?.data.fullname){
+                    localStorage.clear()
+                    navigate("/signin")
+                }
+            }
         } 
         setPathName(window.location.pathname)  
         
@@ -36,16 +43,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
 
         // make sure to catch any error
         .catch(console.error);;
-    }, []) 
-
-    React.useEffect(()=> { 
-        if(pathName.includes("dashboard")){
-            if(!userContext.userInfo.fullname){
-                localStorage.clear()
-                navigate("/signin")
-            }
-        }
-    }, [userContext.userInfo])
+    }, [])  
     
     const LogOut =()=> {
         localStorage.clear()
@@ -122,7 +120,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                         )}
                         {show && 
                             <div className=' absolute flex flex-col font-semibold right-0 top-12 bg-white z-50 p-2 rounded-lg text-[#202223]  ' style={{boxShadow: "0px 3px 6px -3px rgba(23, 24, 24, 0.08), 0px 8px 20px -4px rgba(23, 24, 24, 0.12)"}} >
-                                <button onClick={()=> navigate("/dashboard")} disabled={pathName.includes("dashboard")} className={pathName.includes("dashboard") ? ' p-2 rounded-[4px] bg-[#3031791A] ':' p-2 rounded-[4px] hover:bg-[#3031791A] '} >Profile</button>
+                                <button onClick={()=> navigate("/dashboard/sellcrypto")} disabled={pathName.includes("dashboard")} className={pathName.includes("dashboard") ? ' p-2 rounded-[4px] bg-[#3031791A] ':' p-2 rounded-[4px] hover:bg-[#3031791A] '} >Dashboard</button>
                                 <button onClick={LogOut} className=' p-2 mt-2 rounded-[4px] hover:bg-[#3031791A] ' >Log Out</button>
                             </div>
                         }

@@ -12,7 +12,7 @@ export default function SellCryptoPage() {
 
   return (
     <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >
-        {!isShown && (
+        {isShown && (
           <div className=' w-full lg:w-[680px] flex flex-col items-center mt-6 lg:mt-4 text-sm font-medium rounded-lg bg-white ' > 
             <p className=' text-3xl font-semibold mt-6 text-[#303179] lg:pb-0 pb-5 ' >Ezyswap Services</p>
             <div  className=" scroll_event w-full flex lg:flex-row overflow-x-auto  " >
@@ -38,7 +38,7 @@ export default function SellCryptoPage() {
             </div>
           </div>
         )}
-        {isShown && ( 
+        {!isShown && ( 
           <PaymentDetails close={setIsShown} />
         )}
     </div>
