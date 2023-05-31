@@ -15,6 +15,7 @@ import DisputePage from './pages/DisputesPage';
 import PrivacyPolicy from './pages/PrivacyPolicyPage';
 import { UserContextProvider } from './context/userContext';
 import { GoogleAuthProvider } from './context/useGoogleAuth';
+import Verification from './pages/Verification';
 
 function App() {
   return ( 
@@ -34,7 +35,8 @@ function App() {
               <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
               <Route path="/dashboard/banks" element={<BankPage />} /> 
               <Route path="/dashboard/support" element={<DisputePage />} />
-              <Route path="/dashboard/settings" element={<Settings />} /> 
+              <Route path="/dashboard/settings" element={<Settings />} />
+              <Route path="/dashboard/verfication" element={<Verification />} />
             </Route>
           </Routes>
         </Router>

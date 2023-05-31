@@ -260,4 +260,21 @@ export function useGoogleCallback() {
     }     
   }
   return { handlGoogle }
+}   
+
+export function useVerifyUserCallback() {
+  const handleVerifyUser = async (postData: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('users/create-user-kyc', postData,
+        {
+          headers: {
+            'Content-Type':'application/json',   
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handleVerifyUser }
 }  

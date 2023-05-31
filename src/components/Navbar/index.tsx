@@ -30,8 +30,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
             userContext.setUserInformation(request?.data)  
 
             if(pathName.includes("dashboard")){
-                if(!request?.data.fullname){
-                    localStorage.clear()
+                if(!request?.data.fullname){ 
                     navigate("/signin")
                 }
             }

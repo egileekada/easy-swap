@@ -142,6 +142,7 @@ export default function PaymentDetails({close}: props) {
                         <button onClick={()=> {setSize("xl");setTab(0);setOpen(true)}} className=' bg-[#303179] text-[#fff] rounded-md px-6 lg:px-6 py-2 font-semibold  ' >I’ve Made Payment</button>
                     </div>
                 </div>
+                
                 <ModalLayout open={open} size={size} close={setOpen} >
                     {tab === 0 && ( 
                         <div className=' rounded-lg px-4 lg:px-8 py-9 ' >
