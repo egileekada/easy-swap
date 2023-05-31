@@ -163,7 +163,7 @@ export default function TransactionComponent() {
                                                         <Td>{dateFormat(item?.created_at)}</Td>  
                                                         <Td>{userContext?.userInfo?.fullname}</Td>   
                                                         <Td>Deposit</Td>  
-                                                        <Td>{parseFloat(item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
+                                                        <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
                                                         <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
                                                         <Td>
                                                             <CopyButtton hide={true} text={item?.coin_address} type={true} />    
@@ -172,13 +172,6 @@ export default function TransactionComponent() {
                                                             {item?.trans_hash && (
 
                                                                 <CopyButtton text={item?.trans_hash} type={true} />  
-                                                                // <div className=' gap-2 flex items-center ' > 
-
-                                                                //     {item?.trans_hash?.slice(0,17)+"..."}
-                                                                //     <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                //         <path d="M2.71304 2.75V0.875C2.71304 0.70924 2.77601 0.550269 2.8881 0.433058C3.00019 0.315848 3.15222 0.25 3.31074 0.25H10.4831C10.6416 0.25 10.7936 0.315848 10.9057 0.433058C11.0178 0.550269 11.0808 0.70924 11.0808 0.875V9.625C11.0808 9.79076 11.0178 9.94973 10.9057 10.0669C10.7936 10.1842 10.6416 10.25 10.4831 10.25H8.68998V12.125C8.68998 12.47 8.42102 12.75 8.08811 12.75H0.924144C0.845324 12.7505 0.767188 12.7347 0.694224 12.7035C0.621261 12.6723 0.554908 12.6264 0.498979 12.5683C0.44305 12.5102 0.398647 12.4412 0.368321 12.3651C0.337994 12.289 0.322343 12.2074 0.322266 12.125L0.324059 3.375C0.324059 3.03 0.593021 2.75 0.925937 2.75H2.71304ZM1.51945 4L1.51765 11.5H7.4946V4H1.51945ZM3.90843 2.75H8.68998V9H9.88537V1.5H3.90843V2.75Z" fill="#5C5F62"/>
-                                                                //     </svg>
-                                                                // </div>
                                                             )}
                                                         </Td> 
                                                         <Td>
