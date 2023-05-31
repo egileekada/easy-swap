@@ -76,7 +76,7 @@ export default function ResetPwdPage() {
              {tab === 0 && (
                 <> 
                     <Navbar hide={true} />
-                    <div className=' w-[560px] flex flex-col items-center text-center mt-8 ' > 
+                    <div className='  w-full px-6 lg:w-[560px] flex flex-col lg:items-center text-center mt-8 ' > 
                         <p className=' text-4xl font-semibold text-[#1E293B] ' >Reset password</p>
                         <p className=' text-[#475569] mt-2 max-w-md text-center ' >Please enter your email address below, and we’ll send you a password reset link</p>
                         <div className=' mt-8 text-left mb-7 w-full ' > 
@@ -93,7 +93,7 @@ export default function ResetPwdPage() {
             {tab === 1 && (
                 <> 
                     <Navbar hide={true} />
-                    <div className=' w-[560px] flex flex-col items-center text-center mt-20 ' > 
+                    <div className=' w-full px-6 lg:w-[560px] flex flex-col lg:items-center text-center mt-20 ' > 
                         <p className=' text-4xl font-semibold text-[#1E293B] ' >Change Password</p>
                         <p className=' text-[#475569] mt-2 max-w-md text-center ' >We have sent an otp to {email}</p>
                         <div className=' mt-8 text-left mb-7 w-full flex flex-col gap-4 ' > 
