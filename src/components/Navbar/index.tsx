@@ -27,10 +27,12 @@ export default function Navbar({ hide, dashboard, settings }: props) {
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
 
-            userContext.setUserInformation(request?.data)  
+            userContext.setUserInformation(request?.data) 
+            console.log(request?.data);
+             
 
             if(pathName.includes("dashboard")){
-                if(!request?.data.email){ 
+                if(!request?.data.id){ 
                     navigate("/signin")
                 }
             }
