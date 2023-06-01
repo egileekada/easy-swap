@@ -73,27 +73,24 @@ export default function ResetPwdPage() {
 
     return (
         <div className='w-full h-screen flex-1 pb-20 flex flex-col items-center ' >
-             {tab === 0 && (
-                <> 
-                    <Navbar hide={true} />
-                    <div className='  w-full px-6 lg:w-[560px] flex flex-col lg:items-center text-center mt-8 ' > 
-                        <p className=' text-4xl font-semibold text-[#1E293B] ' >Reset password</p>
-                        <p className=' text-[#475569] mt-2 max-w-md text-center ' >Please enter your email address below, and we’ll send you a password reset link</p>
-                        <div className=' mt-8 text-left mb-7 w-full ' > 
-                            <InputComponent email={true} onChange={(e: any)=> setEmail(e.target.value)} title='Email Address' placeholder='Enter Email Address' /> 
-                        </div> 
-                        <ButtonComponent disabled={email ? false: true} bgcolor={!email? "" :' bg-[#303179] text-[#fff]'} onClick={SubmitEmail} name={loading ? "Loading..." : "Continue"} /> 
-                        <div className=' w-full mt-8 flex gap-2 text-[#475569] text-sm font-medium justify-center items-center ' >
-                            <p className=' ' >Remember password?</p>
-                            <a href='/signin' className=' font-semibold underline ' >Sign in</a> 
-                        </div>
+            <Navbar hide={true} />
+             {tab === 0 && ( 
+                <div className='  w-full px-6 my-auto lg:w-[560px] flex flex-col lg:items-center text-center lg:pt-0 pt-8 ' > 
+                    <p className=' text-4xl font-semibold text-[#1E293B] ' >Reset password</p>
+                    <p className=' text-[#475569] mt-2 max-w-md text-center ' >Please enter your email address below, and we’ll send you a password reset link</p>
+                    <div className=' mt-8 text-left mb-7 w-full ' > 
+                        <InputComponent email={true} onChange={(e: any)=> setEmail(e.target.value)} title='Email Address' placeholder='Enter Email Address' /> 
                     </div> 
-                </>
+                    <ButtonComponent disabled={email ? false: true} bgcolor={!email? "" :' bg-[#303179] text-[#fff]'} onClick={SubmitEmail} name={loading ? "Loading..." : "Continue"} /> 
+                    <div className=' w-full mt-8 flex gap-2 text-[#475569] text-sm font-medium justify-center items-center ' >
+                        <p className=' ' >Remember password?</p>
+                        <a href='/signin' className=' font-semibold underline ' >Sign in</a> 
+                    </div>
+                </div>  
              )} 
             {tab === 1 && (
                 <> 
-                    <Navbar hide={true} />
-                    <div className=' w-full px-6 lg:w-[560px] flex flex-col lg:items-center text-center mt-20 ' > 
+                    <div className=' w-full my-auto px-6 lg:w-[560px] flex flex-col lg:items-center text-center lg:pt-0 pt-8 ' > 
                         <p className=' text-4xl font-semibold text-[#1E293B] ' >Change Password</p>
                         <p className=' text-[#475569] mt-2 max-w-md text-center ' >We have sent an otp to {email}</p>
                         <div className=' mt-8 text-left mb-7 w-full flex flex-col gap-2 ' > 

@@ -91,7 +91,7 @@ export default function VerifyEmail() {
                 </form> 
             )}
             {tab && ( 
-                <div className=' w-full lg:w-[560px] text-center ' > 
+                <div className=' w-full lg:w-[560px] text-center my-auto ' > 
                     <p className='  text-2xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B] ' >Welcome to Easyswap</p>
                     <p className=' text-[#475569] mt-2 ' >Account created successfully 🎉 </p>  
                     <ButtonComponent onClick={()=> navigate("/signin")} bgcolor={' mt-10 bg-[#303179] text-[#fff]'} name="Get Started" />
