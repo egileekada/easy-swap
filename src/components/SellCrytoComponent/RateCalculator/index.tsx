@@ -60,7 +60,7 @@ export default function RateCalculator() {
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
-            <p className=' text-[#6B6B93] font-medium text-lg ' >Track your transaction status here</p>
+            {/* <p className=' text-[#6B6B93] font-medium text-lg ' >Track your transaction status here</p> */}
             <div className=' w-full ' > 
                 <div className=' w-full mt-10 flex flex-col items-center gap-4 pb-8 ' >
                     <div className=' w-full flex  bg-[#F5F5F5] px-6 rounded-t-xl items-center h-[104px] ' > 
