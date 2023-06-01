@@ -159,7 +159,7 @@ export default function RegisterPage() {
                     </div>
                 </div>
                 <div className=' w-full mt-10 hidden lg:flex lg:flex-row flex-col gap-2 mb-6 text-[#475569] text-sm font-medium justify-center items-center ' >
-                    <p className=' ' >By clicking on continue, I agree to Easyswap’s</p>
+                    <p className=' ' >By clicking on Create Account, I agree to Easyswap’s</p>
                     <a href='#' className=' font-semibold underline ' >Privacy Policy</a>
                     <p>and</p>
                     <a href='#' className=' font-semibold underline' >Terms of Use</a>
