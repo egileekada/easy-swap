@@ -8,6 +8,7 @@ import { dateFormat } from '../../config/utils/dateFormat'
 export default function Verification() {
 
     const [isShow, setIsShow] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const [open, setOpen] = React.useState(false)
     const [data, setData] = React.useState({}as any) 
     const [size, setSize] = React.useState("xl")
@@ -20,11 +21,11 @@ export default function Verification() {
     const { handleGetData } = useGetDataCallback()
     
     React.useEffect(()=> { 
+        setLoading(true)
         const fetchData = async () => {
             const request: any = await handleGetData("/users/retrieve-user-kyc")  
-            setData(request?.data)
-            // userContext.setUserInformation(request?.data) 
-            console.log(request?.data); 
+            setData(request?.data) 
+            setLoading(false)
         }  
         
         // call the function
@@ -92,31 +93,35 @@ export default function Verification() {
                             <p className=' font-normal ' >Review time: 72 hours</p>
                         </div>
                     </div>
-                    {!data?.kyc_verified && (
+                    {!loading && (
                         <> 
-                            {!data.first_name && (
+                            {!data?.kyc_verified && (
                                 <> 
-                                    <button  onClick={() => setOpen(true)} className=' bg-[#303179] hidden lg:block text-white  w-full h-[56px] mt-10 ' >{data?.kyc_verified ? "Verified": data?.first_name ? "Pending":"Verify Now"}</button>
-                                    <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button>
+                                    {!data.first_name && (
+                                        <> 
+                                            <button  onClick={() => setOpen(true)} className=' bg-[#303179] hidden lg:block text-white  w-full h-[56px] mt-10 ' >{data?.kyc_verified ? "Verified": data?.first_name ? "Pending":"Verify Now"}</button>
+                                            <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button>
+                                        </>
+                                    )}
+                                    {data.country_of_residence === "Nigeria" && (
+                                        <> 
+                                            <div className=' flex items-center gap-3 mt-10 mb-4 ' >
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8 15.5C3.85786 15.5 0.5 12.1421 0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8C15.5 12.1421 12.1421 15.5 8 15.5ZM8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14ZM8.75 8H11.75V9.5H7.25V4.25H8.75V8Z" fill="#FEC84B"/>
+                                                </svg>
+                                                {dateFormat(data?.updated_at)}
+                                            </div>
+                                            <button disabled={true} className=' bg-[#FEC84B] rounded-[24px] font-semibold text-sm w-[150px] h-[47px] text-[#202223] ' >Under review</button>
+                                            {/* <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button> */}
+                                        </>
+                                    )} 
                                 </>
                             )}
-                            {data.country_of_residence === "Nigeria" && (
+                            {data?.kyc_verified && (
                                 <> 
-                                    <div className=' flex items-center gap-3 mt-10 mb-4 ' >
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 15.5C3.85786 15.5 0.5 12.1421 0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8C15.5 12.1421 12.1421 15.5 8 15.5ZM8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14ZM8.75 8H11.75V9.5H7.25V4.25H8.75V8Z" fill="#FEC84B"/>
-                                        </svg>
-                                        {dateFormat(data?.updated_at)}
-                                    </div>
-                                    <button disabled={true} className=' bg-[#FEC84B] rounded-[24px] font-semibold text-sm w-[150px] h-[47px] text-[#202223] ' >Under review</button>
-                                    {/* <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button> */}
+                                    <button disabled={true} className=' bg-[#00BAF0] text-white  w-full h-[56px] mt-10 ' >Verified</button> 
                                 </>
-                            )} 
-                        </>
-                    )}
-                    {data?.kyc_verified && (
-                        <> 
-                            <button disabled={true} className=' bg-[#00BAF0] text-white  w-full h-[56px] mt-10 ' >Verified</button> 
+                            )}
                         </>
                     )}
                 </div>
@@ -145,7 +150,7 @@ export default function Verification() {
             </ModalLayout>
             {isShow && (
                 <div className=' fixed lg:hidden inset-0 z-[300] overflow-y-auto ' > 
-                    <VerificationModal />
+                    <VerificationModal close={setIsShow}/>
                 </div>
             )}
         </div>

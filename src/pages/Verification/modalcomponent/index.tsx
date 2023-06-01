@@ -156,7 +156,12 @@ export default function VerificationModal({close}: Props) {
                             </svg>
                         }
                         <p className=' font-bold text-lg text-black ' >Identity Verification Process</p>
-                        <svg role='button' onClick={()=> close()} width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg role='button' className=' lg:block hidden ' onClick={()=> close()} width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="20.6422" cy="20" rx="20.4" ry="20" fill="#EFEFFE"/>
+                            <path d="M26.0821 14.666L15.2021 25.3327" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15.2021 14.666L26.0821 25.3327" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg role='button' className=' lg:hidden ' onClick={()=> close(false)} width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <ellipse cx="20.6422" cy="20" rx="20.4" ry="20" fill="#EFEFFE"/>
                             <path d="M26.0821 14.666L15.2021 25.3327" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M15.2021 14.666L26.0821 25.3327" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -387,7 +392,7 @@ export default function VerificationModal({close}: Props) {
                 </div>
             )}
             {isShown === 2 && ( 
-                <div className=' w-full lg:h-auto h-screen bg-white px-6 pt-8 flex flex-col items-center ' >
+                <div className=' w-full lg:h-auto h-screen bg-white px-6 pt-8 flex flex-col lg:justify-start justify-center items-center ' >
                     <svg width="207" height="206" viewBox="0 0 207 206" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="103.5" cy="103" r="103" fill="#BFE5D0"/>
                         <path d="M103.5 56.333L115.758 65.2744L130.93 65.2455L135.591 79.6843L147.882 88.579L143.166 103L147.882 117.42L135.591 126.315L130.93 140.754L115.758 140.725L103.5 149.666L91.2421 140.725L76.0699 140.754L71.4088 126.315L59.1172 117.42L63.8332 103L59.1172 88.579L71.4088 79.6843L76.0699 65.2455L91.2421 65.2744L103.5 56.333Z" fill="#40B274" stroke="#009845" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>

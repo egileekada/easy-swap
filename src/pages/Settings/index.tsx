@@ -36,7 +36,7 @@ export default function Settings() {
                             <p className=' mt-1 font-normal lg:text-left text-center ' >Periodically change you password for security  </p>
                         </div>
                     </div>
-                    <div role="button" onClick={()=> navigate("/dashboard/verfication")} className=' lg:w-[423px] flex lg:flex-row flex-col  gap-4 px-6 rounded-xl bg-[#F6F7FF] border border-[#D0D5DD] h-[247px] justify-center items-center ' >
+                    {/* <div role="button" onClick={()=> navigate("/dashboard/verfication")} className=' lg:w-[423px] flex lg:flex-row flex-col  gap-4 px-6 rounded-xl bg-[#F6F7FF] border border-[#D0D5DD] h-[247px] justify-center items-center ' >
                         <div className=' w-fit ' >
                             <div className=' w-[60px] bg-[#303179] h-[60px] rounded-full flex justify-center items-center ' >
                                 <svg width="30" height="21" viewBox="0 0 30 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@ export default function Settings() {
                             <p className=' text-2xl font-semibold lg:text-left text-center text-[#303179] ' >Verification</p>
                             <p className=' mt-1 font-normal lg:text-left text-center ' >Verify your identity with a simple click</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             )}
             {tab === 2 && (

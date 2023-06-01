@@ -36,7 +36,7 @@ function App() {
               <Route path="/dashboard/banks" element={<BankPage />} /> 
               <Route path="/dashboard/support" element={<DisputePage />} />
               <Route path="/dashboard/settings" element={<Settings />} />
-              <Route path="/dashboard/verfication" element={<Verification />} />
+              <Route path="/dashboard/verification" element={<Verification />} />
             </Route>
           </Routes>
         </Router>
