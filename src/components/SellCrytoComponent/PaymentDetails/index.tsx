@@ -158,8 +158,8 @@ export default function PaymentDetails({close}: props) {
                             <p className=' text-[#667085] mt-3 lg:mt-1  ' >Please make sure that the network you copied on our platform matches the network you are transferring to.</p>
                             <div className=' text-[#080707] w-full flex flex-col items-center ' >
                                 <div className=' flex items-center gap-2 mt-4 lg:mt-6 ' >
-                                    <div className=' w-[24px] h-[24px] rounded-full bg-green-500 ' >
-
+                                    <div className=' w-[24px] h-[24px] rounded-full flex justify-center items-center ' >
+                                        <img src={userContext.transactionDetail?.coin_name.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
                                     </div>
                                     {userContext.transactionDetail?.coin_name}
                                 </div>

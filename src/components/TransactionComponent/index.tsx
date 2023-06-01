@@ -218,17 +218,17 @@ export default function TransactionComponent() {
                                     {data?.map((item: any, index: number)=> {
                                         return( 
                                             <div key={index} className=' w-full flex justify-between ' >
-                                                <div className=' flex gap-2 ' >
-                                                    <div className=' w-[30px] h-[30px] bg-green-500 rounded-full ' >
-                                                        
+                                                <div role='button' onClick={()=> setshow(index)} className=' flex gap-2 ' >
+                                                    <div className=' w-[30px] h-[30px] flex justify-center items-center rounded-full ' > 
+                                                        <img src={item?.coin_name.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
                                                     </div>
                                                     <div>
                                                         <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> {item?.coin_name}</p>
                                                         <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {cashFormat(item?.coin_amount_to_swap, 5)} {item?.coin_name}</p>
                                                     </div>
                                                 </div>
-                                                <div className=' flex flex-col ' >
-                                                    <div role='button' onClick={()=> setshow(index)} className=' flex items-center justify-end gap-2 ' >
+                                                <div role='button' onClick={()=> setshow(index)} className=' flex flex-col ' >
+                                                    <div  className=' flex items-center justify-end gap-2 ' >
                                                         <p className={ item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold":item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold":' text-xs text-[#12B76A] font-semibold ' }>{item?.transaction_status === "FAILED" ? "Cancelled":item?.transaction_status === "PENDING" ? "Pending": "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
@@ -281,8 +281,14 @@ export default function TransactionComponent() {
                                                             </div>
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Transaction ID</p>
-                                                                <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.transaction_ref} type={true} />   </p>
+                                                                <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.transaction_ref}  type={true} />   </p>
                                                             </div>
+                                                            {item?.trans_hash && ( 
+                                                                <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                    <p className=' text-[#252525] text-base font-medium ' >Transaction Hash</p>
+                                                                    <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.trans_hash}  type={true} />   </p>
+                                                                </div>
+                                                            )}
                                                         </div>
                                                     </div>
                                                 )}
