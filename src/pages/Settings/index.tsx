@@ -12,7 +12,7 @@ export default function Settings() {
     return (
         <div className=' w-full p-6 lg:p-14 ' >
             {tab === 0 && ( 
-                <div className=' w-full grid lg:grid-cols-2 grid-cols-1 gap-6 ' >
+                <div className=' w-fit grid lg:grid-cols-2 grid-cols-1 gap-6 ' >
                     <div role="button" onClick={()=> setTab(2)} className=' lg:w-[423px] flex lg:flex-row flex-col  gap-4 px-6 rounded-xl bg-[#F6F7FF] border border-[#D0D5DD] h-[247px] justify-center items-center ' >
                         <div className=' w-fit ' >
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">

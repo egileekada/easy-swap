@@ -3,6 +3,7 @@ import ModalLayout from '../../components/ModalLayout'
 import VerificationModal from './modalcomponent'
 import { IUser, UserContext } from '../../context/userContext'
 import { useGetDataCallback } from '../../action/useAction'
+import { dateFormat } from '../../config/utils/dateFormat'
 
 export default function Verification() {
 
@@ -91,8 +92,33 @@ export default function Verification() {
                             <p className=' font-normal ' >Review time: 72 hours</p>
                         </div>
                     </div>
-                    <button onClick={() => setOpen(true)} className=' bg-[#303179] hidden lg:block text-white  w-full h-[56px] mt-10 ' >Verify Now</button>
-                    <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button>
+                    {!data?.kyc_verified && (
+                        <> 
+                            {!data.first_name && (
+                                <> 
+                                    <button  onClick={() => setOpen(true)} className=' bg-[#303179] hidden lg:block text-white  w-full h-[56px] mt-10 ' >{data?.kyc_verified ? "Verified": data?.first_name ? "Pending":"Verify Now"}</button>
+                                    <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button>
+                                </>
+                            )}
+                            {data.country_of_residence === "Nigeria" && (
+                                <> 
+                                    <div className=' flex items-center gap-3 mt-10 mb-4 ' >
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 15.5C3.85786 15.5 0.5 12.1421 0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8C15.5 12.1421 12.1421 15.5 8 15.5ZM8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14ZM8.75 8H11.75V9.5H7.25V4.25H8.75V8Z" fill="#FEC84B"/>
+                                        </svg>
+                                        {dateFormat(data?.updated_at)}
+                                    </div>
+                                    <button disabled={true} className=' bg-[#FEC84B] rounded-[24px] font-semibold text-sm w-[150px] h-[47px] text-[#202223] ' >Under review</button>
+                                    {/* <button onClick={() => setIsShow(true)} className=' bg-[#303179] lg:hidden text-white  w-full h-[56px] mt-10 ' >Verify Now</button> */}
+                                </>
+                            )} 
+                        </>
+                    )}
+                    {data?.kyc_verified && (
+                        <> 
+                            <button disabled={true} className=' bg-[#00BAF0] text-white  w-full h-[56px] mt-10 ' >Verified</button> 
+                        </>
+                    )}
                 </div>
                 <div className={tab === 2 ? ' w-full lg:w-[318px] lg:block ' : ' w-full lg:w-[318px] hidden lg:block '}>
                     <p className=' font-bold text-[24px]  ' >V-VIP</p>
