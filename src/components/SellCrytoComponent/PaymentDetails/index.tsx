@@ -215,7 +215,7 @@ export default function PaymentDetails({close}: props) {
                                 </svg>
                                 <p className=' mt-4 font-bold text-2xl text-[#334155] ' >Order successful</p>
                                 <p className=' text-center font-normal text-[#647488] mt-1 mb-5 ' >Successfully sold {parseFloat(userContext.transactionDetail?.coin_amount_to_swap)+" "+userContext.transactionDetail?.coin_name}</p> 
-                                <ButtonComponent onClick={()=> clickHandler()} name='Back to home' bgcolor=' bg-[#303179] text-white ' />
+                                <ButtonComponent onClick={()=> clickHandler()} name='Back to Transactions' bgcolor=' bg-[#303179] text-white ' />
                             </div>
                         </div>
                     )}

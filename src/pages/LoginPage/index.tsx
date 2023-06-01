@@ -33,6 +33,7 @@ export default function LoginPage() {
     const submit = async (e: any) => { 
         e.preventDefault(true)
         setLoading(true);
+        
         if (!formik.dirty) { 
             toast({
                 title: 'You have to fill in the form to continue', 
