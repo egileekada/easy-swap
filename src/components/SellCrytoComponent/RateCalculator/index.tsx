@@ -66,7 +66,7 @@ export default function RateCalculator() {
                     <div className=' w-full flex  bg-[#F5F5F5] px-6 rounded-t-xl items-center h-[104px] ' > 
                         <div>
                             <p className=' text-sm font-medium text-[#475467] ' >You Have</p>
-                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={GetAmount} type="number"   placeholder='0000' fontSize="lg" borderColor="#F5F5F5" backgroundColor="#F5F5F5" borderWidth="0px" paddingLeft="0px" borderRadius="4px" outline="none" focusBorderColor='#F5F5F5'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })}  onChange={GetAmount} type="number"   placeholder='0' fontSize="lg" borderColor="#F5F5F5" backgroundColor="#F5F5F5" borderWidth="0px" paddingLeft="0px" borderRadius="4px" outline="none" focusBorderColor='#F5F5F5'  />
                         </div> 
                         <CoinSelection data={CoinName} rate={true} />
                     </div>
