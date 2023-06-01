@@ -200,13 +200,13 @@ export default function SellCrypto({next}: props) {
                         </div>
                     </div>
                 )}
-                {userContext?.sellCrypto?.coin_amount_to_swap && ( 
+                {(Number(userContext?.sellCrypto?.coin_amount_to_swap)>= 20  && Number(userContext?.sellCrypto?.coin_amount_to_swap))&& ( 
                     <> 
                         <CoinNetwork data={ChangeNetwork} network={network} />
                         <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />
                     </>
                 )}
-                {userContext?.sellCrypto?.coin_amount_to_swap && (bankCode || accountName) && ( 
+                {Number(userContext?.sellCrypto?.coin_amount_to_swap) >= 20 && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
@@ -241,7 +241,7 @@ export default function SellCrypto({next}: props) {
                         }
                     </div>
                 )} 
-                {userContext?.sellCrypto?.coin_amount_to_swap && AcountNumber && ( 
+                {Number(userContext?.sellCrypto?.coin_amount_to_swap) >= 20 && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 && userContext?.sellCrypto?.coin_amount_to_swap && AcountNumber && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
