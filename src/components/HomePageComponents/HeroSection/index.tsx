@@ -38,7 +38,7 @@ export default function HeroSection() {
 
     return (
         <div className=' w-full flex justify-center bg-[#f8f8f8]  ' > 
-            <div className=' bg-[#f8f8f8] lg:h-[80vh]  relative py-6 lg:py-24 items-center max-w-[1440px] justify-center px-6 lg:px-16 flex ' >
+            <div className=' bg-[#f8f8f8] lg:h-[80vh] h-full relative lg:pb-24 pb-24 py-6 lg:py-24 lg:items-center max-w-[1440px] lg:justify-center px-6 lg:px-16 flex ' >
                 <div className='   z-20 max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
                     <motion.div  ref={ref} initial={{x: -200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}  className=' w-full pt-8 ' >
@@ -47,7 +47,7 @@ export default function HeroSection() {
                         <button onClick={()=> navigate("/dashboard/sellcrypto")} className=' mt-8 border-[#303179] border font-semibold text-[#303179] rounded-[10px] px-5 h-[46px] ' >Swap Now</button>
                     </motion.div>
                     <motion.div ref={ref2} initial={{ scale: 0}} animate={controls2}  
-                    transition={{ ease: "easeOut", duration: 1 }}   className=' w-full flex justify-end  ' >
+                    transition={{ ease: "easeOut", duration: 1 }}   className=' w-full flex lg:justify-end  ' >
                         <CryptoCalculation />
                     </motion.div>
                 </div>
