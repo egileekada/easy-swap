@@ -263,12 +263,13 @@ export function useGoogleCallback() {
 }   
 
 export function useVerifyUserCallback() {
-  const handleVerifyUser = async (postData: any): Promise<any> => {    
+  const handleVerifyUser = async (postData: any, image?: any): Promise<any> => {    
     try{  
         const response = await axios.post('users/create-user-kyc', postData,
         {
           headers: {
-            'Content-Type':'application/json',   
+            'Content-Type': image.type,  
+            Authorization : `Bearer ${localStorage.getItem('token')}` 
           }, 
         }); 
         return response       

@@ -19,6 +19,7 @@ export default function SupportChat() {
         setLoading(true)
         
         const request: any = await handlDispute(JSON.stringify({
+            subject: subject,
             message: message
         }))
 
@@ -58,7 +59,7 @@ export default function SupportChat() {
                 </div>
                 <textarea onChange={(e)=> setMessage(e.target.value)} className=' p-4 border w-full h-[200px] ' />
                 <div className=' w-full flex pt-4 justify-end ' >
-                    <button onClick={submit} disabled={(message || !loading) ? false:true} className={` h-[50px] text-sm font-semibold w-[220px] ${message ? "bg-[#303179] text-white": "bg-[#F2F4F7] text-[#475467] "} rounded-lg `} >
+                    <button onClick={submit} disabled={((message && subject) || !loading) ? false:true} className={` h-[50px] text-sm font-semibold w-[220px] ${(message && subject) ? "bg-[#303179] text-white": "bg-[#F2F4F7] text-[#475467] "} rounded-lg `} >
                         {loading ? "Loading...": "Submit ticket"}
                     </button>
                 </div>
