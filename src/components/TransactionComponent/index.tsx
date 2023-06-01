@@ -85,9 +85,7 @@ export default function TransactionComponent() {
             <div className=' lg:grid grid-cols-auto hidden lg:grid-cols-5 gap-5 font-medium  ' >
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Type</p>
-                    <Select disabled={true} fontSize="sm" backgroundColor="white" >
-                        <option>Sell</option>
-                    </Select>
+                    <Input placeholder='Sell' disabled={true} fontSize="sm" backgroundColor="white" />
                 </div>
                 <div className=' w-full ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Date</p>
