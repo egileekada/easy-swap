@@ -50,10 +50,10 @@ export default function VerifyEmail() {
     } 
 
     return (
-        <div className=' w-full h-screen flex-1 pb-20 flex flex-col items-center lg:px-0 px-6 justify-center ' >
+        <div className=' w-full h-screen flex-1 pb-20 flex flex-col items-center lg:px-0 px-6 ' >
             <Navbar hide={true} />
             {!tab && ( 
-                <form onSubmit={submit} className=' w-full lg:w-[560px] lg:text-center ' > 
+                <form onSubmit={submit} className=' w-full lg:w-[560px] my-auto lg:text-center ' > 
                     <p className=' text-2xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B]' >Verify your email address</p>
                     <p className=' text-[#475569] mt-2 lg:text-base text-sm ' >We emailed you a six-digit code to {userContext.userEmail} Enter the code below to confirm your email address</p>
                     <div className=' mt-8 w-full hidden lg:flex justify-center ' > 

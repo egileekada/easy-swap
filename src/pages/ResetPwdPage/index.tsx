@@ -96,7 +96,7 @@ export default function ResetPwdPage() {
                     <div className=' w-full px-6 lg:w-[560px] flex flex-col lg:items-center text-center mt-20 ' > 
                         <p className=' text-4xl font-semibold text-[#1E293B] ' >Change Password</p>
                         <p className=' text-[#475569] mt-2 max-w-md text-center ' >We have sent an otp to {email}</p>
-                        <div className=' mt-8 text-left mb-7 w-full flex flex-col gap-4 ' > 
+                        <div className=' mt-8 text-left mb-7 w-full flex flex-col gap-2 ' > 
                             <InputComponent number={true} onChange={(e: any)=> setOtp(e.target.value)} title='Enter OTP' placeholder='Enter OTP' /> 
                             <InputComponent autoComplete="off" onChange={(e: any)=> setPwd(e.target.value)} title='Enter Password' placeholder='Enter Password' pwd={true} /> 
                         </div> 
