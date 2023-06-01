@@ -85,7 +85,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                 )}
                 {userContext.userInfo?.email && ( 
                     <div className=' hidden relative lg:flex items-center h-full ml-auto text-sm gap-2 ' >
-                        <div className=' w-[40px] h-[40px] rounded-full  ' >
+                        <div role='button' onClick={()=> navigate("/dashboard/settings")} className=' w-[40px] h-[40px] rounded-full  ' >
                             <img className=' w-full h-full rounded-full ' src={userContext.userInfo.photo ? userContext.userInfo.photo: "/images/person.webp"} alt='image' />
                         </div>
                         {!dashboard && ( 
