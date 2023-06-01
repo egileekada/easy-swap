@@ -17,25 +17,18 @@ export default function Navbar({ hide, dashboard, settings }: props) {
     const navigate = useNavigate()
     
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const { handleGetData } = useGetDataCallback()
     const userContext: IUser = React.useContext(UserContext); 
     const [show, setShow] = React.useState(false)
     const [pathName, setPathName] = React.useState(window.location.pathname)
 
+    const { handleGetData } = useGetDataCallback()
 
     React.useEffect(()=> { 
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
 
             userContext.setUserInformation(request?.data) 
-            console.log(request?.data);
-             
-
-            if(pathName.includes("dashboard")){
-                if(!request?.data.id){ 
-                    navigate("/signin")
-                }
-            }
+            console.log(request?.data); 
         } 
         setPathName(window.location.pathname)  
         

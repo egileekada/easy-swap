@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "../config/utils/axios"; 
+import Dashboard from "../pages/Dashboard";
 
  
 export function useGetDataCallback() {
@@ -14,10 +15,12 @@ export function useGetDataCallback() {
             }, 
         }); 
         return response       
-    } catch(err: any) {   
-      if(err?.response.data.error === "Unauthorized"){
-        navigate("/")
-      } 
+    } catch(err: any) {    
+      if(window.location.pathname.includes("dashboard")){
+        if(err?.response.data.error?.message === "Request not authorized"){
+          navigate("/")
+        } 
+      }
       return err?.response    
     }     
   }

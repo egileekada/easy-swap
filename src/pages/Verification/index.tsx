@@ -2,15 +2,36 @@ import React from 'react'
 import ModalLayout from '../../components/ModalLayout'
 import VerificationModal from './modalcomponent'
 import { IUser, UserContext } from '../../context/userContext'
+import { useGetDataCallback } from '../../action/useAction'
 
 export default function Verification() {
 
     const [isShow, setIsShow] = React.useState(false)
     const [open, setOpen] = React.useState(false)
+    const [data, setData] = React.useState({}as any) 
     const [size, setSize] = React.useState("xl")
     const userContext: IUser = React.useContext(UserContext);  
 
     const [tab, setTab] = React.useState(0)
+
+
+
+    const { handleGetData } = useGetDataCallback()
+    
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            const request: any = await handleGetData("/users/retrieve-user-kyc")  
+            setData(request?.data)
+            // userContext.setUserInformation(request?.data) 
+            console.log(request?.data); 
+        }  
+        
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, [])  
 
     return (
         <div className=' w-full py-12  ' >
@@ -94,7 +115,7 @@ export default function Verification() {
                 </div>
             </div>
             <ModalLayout open={open} size={size} close={setOpen}>
-                <VerificationModal />
+                <VerificationModal close={setOpen} />
             </ModalLayout>
             {isShow && (
                 <div className=' fixed lg:hidden inset-0 z-[300] overflow-y-auto ' > 

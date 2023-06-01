@@ -160,11 +160,11 @@ export default function TransactionComponent() {
                                             {data.map((item: any, index: number)=> {
                                                 return( 
                                                     <Tr key={index} style={{boxShadow: "inset 0px -1px 0px #E1E3E5"}} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
-                                                        <Td>{dateFormat(item?.created_at)}</Td>  
+                                                        <Td>{dateFormat(item?.updated_at)}</Td>  
                                                         <Td>{userContext?.userInfo?.fullname}</Td>   
                                                         <Td>Deposit</Td>  
                                                         <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
-                                                        <Td>{cashFormat(item?.ngn_equivalent)}</Td>  
+                                                        <Td>{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn :item?.ngn_equivalent)}</Td>  
                                                         <Td>
                                                             <CopyButtton hide={true} text={item?.coin_address} type={true} />    
                                                         </Td> 
@@ -175,7 +175,7 @@ export default function TransactionComponent() {
                                                             )}
                                                         </Td> 
                                                         <Td>
-                                                            {item?.payout_status === "Success" ? (
+                                                            {item?.payout_status === "SUCCESS" ? (
                                                                 <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
                                                                     PayOut Successful   
                                                                 </div> 
@@ -234,7 +234,7 @@ export default function TransactionComponent() {
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E"/>
                                                         </svg>
                                                     </div>
-                                                    <p className=' text-sm text-[#333333] mt-2 font-medium ' >NGN {cashFormat(item?.ngn_equivalent)}</p>
+                                                    <p className=' text-sm text-[#333333] mt-2 font-medium ' >NGN {cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn :item?.ngn_equivalent)}</p>
                                                 </div> 
                                                 {show === index && (
                                                     <div className=' w-full  fixed bg-white overflow-y-auto inset-0 z-[100]  ' >
@@ -265,7 +265,7 @@ export default function TransactionComponent() {
                                                             <p className=' text-[#667085] text-sm mt-1 ' >These are the details of the trade you selected</p>
                                                             <div className=' w-full flex justify-between items-center mt-9 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Date</p>
-                                                                <p className=' text-[#344054] font-semibold ' >{dateFormat(item?.created_at)}</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{dateFormat(item?.updated_at)}</p>
                                                             </div>
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Rate</p>
@@ -273,11 +273,11 @@ export default function TransactionComponent() {
                                                             </div>
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Asset Amount</p>
-                                                                <p className=' text-[#344054] font-semibold ' >{parseFloat(item?.coin_amount_to_swap)}</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)}</p>
                                                             </div>
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Cash Value</p>
-                                                                <p className=' text-[#344054] font-semibold ' >{cashFormat(item?.ngn_equivalent)}</p>
+                                                                <p className=' text-[#344054] font-semibold ' >{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn :item?.ngn_equivalent)}</p>
                                                             </div>
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Transaction ID</p>
