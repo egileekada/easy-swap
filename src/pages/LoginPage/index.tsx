@@ -54,7 +54,10 @@ export default function LoginPage() {
             return;
         }else { 
 
-            const request: any = await handleLogin(JSON.stringify(formik.values))            
+            const request: any = await handleLogin(JSON.stringify({
+                email: formik.values.email.toLocaleLowerCase(),
+                password: formik.values.password
+            }))            
 
             if (request?.status === 200 || request?.status === 201) {    
                 localStorage.setItem('token', request?.data?.access_token);   
