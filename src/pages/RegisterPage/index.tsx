@@ -59,7 +59,9 @@ export default function RegisterPage() {
             return;
         } else { 
 
-            const request: any = await handleRegister(JSON.stringify(formik.values)) 
+            const request: any = await handleRegister(JSON.stringify(
+                {email: formik.values.email.toLocaleLowerCase(), fullname: '', password: ''}
+            )) 
 
             if (request.status === 200 || request.status === 201) {    
                 localStorage.setItem('token', request?.data?.data?.token);   
