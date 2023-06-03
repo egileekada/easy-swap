@@ -16,6 +16,7 @@ import PrivacyPolicy from './pages/PrivacyPolicyPage';
 import { UserContextProvider } from './context/userContext';
 import { GoogleAuthProvider } from './context/useGoogleAuth';
 import Verification from './pages/Verification';
+import PaymentDetails from './components/SellCrytoComponent/PaymentDetails';
 
 function App() {
   return ( 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/dashboard" element={<DashboardLayout />} > 
               <Route path="/dashboard" element={<Dashboard />} /> 
               <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
+              <Route path="/dashboard/tnxinfo" element={<PaymentDetails />} /> 
               <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
               <Route path="/dashboard/banks" element={<BankPage />} /> 
               <Route path="/dashboard/support" element={<DisputePage />} />

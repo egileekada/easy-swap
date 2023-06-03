@@ -6,6 +6,7 @@ import { cashFormat } from '../../config/utils/cashFormat'
 import { dateFormat } from '../../config/utils/dateFormat'
 import CopyButtton from '../CopyButton'
 import { useNavigate } from 'react-router-dom'
+import ButtonComponent from '../ButtonComponent'
 
 export default function TransactionComponent() {
 
@@ -17,6 +18,8 @@ export default function TransactionComponent() {
 
     const { handleGetData } = useGetDataCallback()
     const { handlSortTnx } = useSortTnxCallback()
+
+    const navigate = useNavigate()
     
     const userContext: IUser = React.useContext(UserContext); 
     const [data, setData] = React.useState([] as any)
@@ -78,6 +81,11 @@ export default function TransactionComponent() {
         } else if(name === "Status"){
             setPayload({...payload, trans_status: item.target.value })
         }
+    }
+
+    const infoHandler =(item: any)=> {
+        userContext.setTransactionDetail(item)
+        navigate("/dashboard/tnxinfo")
     }
 
     return (
@@ -182,7 +190,7 @@ export default function TransactionComponent() {
                                                                     Cancelled    
                                                                 </div> 
                                                             ): item?.transaction_status === "PENDING" ? (
-                                                                <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                <div role='button' onClick={()=> infoHandler(item)} className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                     Pending    
                                                                 </div> 
                                                             ):( 
@@ -286,6 +294,9 @@ export default function TransactionComponent() {
                                                                     <p className=' text-[#252525] text-base font-medium ' >Transaction Hash</p>
                                                                     <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.trans_hash}  type={true} />   </p>
                                                                 </div>
+                                                            )}
+                                                            {item?.transaction_status === "PENDING" && (
+                                                                <ButtonComponent onClick={()=> infoHandler(item)} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-8  '} />
                                                             )}
                                                         </div>
                                                     </div>

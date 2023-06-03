@@ -126,8 +126,9 @@ export default function SellCrypto({next}: props) {
                 })
                 userContext.setTransactionDetail(request?.data)
                 const t1 = setTimeout(() => {
-                    setLoading(false);  
-                    next(true)
+                    setLoading(false); 
+                    navigate("/dashboard/tnxinfo") 
+                    // next(true)
                     clearTimeout(t1);
                 }, 1000);  
             }else {  
@@ -194,14 +195,14 @@ export default function SellCrypto({next}: props) {
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1 relative flex ' >
                             <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} value={value} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
-                            <p className=' text-sm text-[#475467] font-medium absolute bottom-3 z-20 right-3 ' >min $20</p>
+                            <p className=' text-sm text-[#475467] font-medium absolute bottom-3 z-20 right-3 ' >min $20 - max $1000</p>
                         </div>
                         <div className=' w-full flex justify-end ' >  
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
                         </div>
                     </div>
                 )}
-                {(Number(userContext?.sellCrypto?.coin_amount_to_swap)>= 20  && Number(userContext?.sellCrypto?.coin_amount_to_swap))&& ( 
+                {(Number(userContext?.sellCrypto?.coin_amount_to_swap)>= 20  && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 )&& ( 
                     <> 
                         <CoinNetwork data={ChangeNetwork} network={network} />
                         <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />

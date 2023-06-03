@@ -9,7 +9,7 @@ import { uesTnxStatusCallback } from '../../../action/useAction'
 import CopyButtton from '../../CopyButton'
 
 type props = {
-    close: any
+    close?: any
 }
 
 export default function PaymentDetails({close}: props) {
@@ -54,7 +54,7 @@ export default function PaymentDetails({close}: props) {
             <div className=' max-[1036px]:w-full mt-4 lg:mt-12 gap-2 lg:bg-transparent bg-white flex lg:flex-row flex-col px-4 lg:px-10 ' >
                 <div className=' w-full bg-white p-0 pb-4 lg:p-9 lg:pb-12 rounded-lg ' >
                     <div className=' flex items-center gap-3 ' >
-                        <svg role="button" onClick={()=> close()} width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg role="button" onClick={()=> navigate(-1)} width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.675781 7.64551C0.675781 7.90918 0.790039 8.17285 0.992188 8.36621L6.79297 14.1582C7.00391 14.3604 7.23242 14.457 7.4873 14.457C8.04102 14.457 8.44531 14.0615 8.44531 13.5254C8.44531 13.2441 8.33984 13.0068 8.15527 12.8311L6.17773 10.8271L3.62891 8.49805L5.67676 8.62109H16.3291C16.9092 8.62109 17.3135 8.2168 17.3135 7.64551C17.3135 7.06543 16.9092 6.66113 16.3291 6.66113H5.67676L3.6377 6.78418L6.17773 4.45508L8.15527 2.45117C8.33984 2.27539 8.44531 2.03809 8.44531 1.75684C8.44531 1.2207 8.04102 0.825195 7.4873 0.825195C7.23242 0.825195 6.99512 0.921875 6.7666 1.1416L0.992188 6.91602C0.790039 7.10938 0.675781 7.37305 0.675781 7.64551Z" fill="#080707"/>
                         </svg>
                         <p className=' font-bold text-xl  ' >Transaction Details</p>
