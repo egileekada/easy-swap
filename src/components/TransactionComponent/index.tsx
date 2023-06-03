@@ -172,7 +172,7 @@ export default function TransactionComponent() {
                                                         <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
                                                         <Td>{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn :item?.ngn_equivalent)}</Td>  
                                                         <Td>
-                                                            <CopyButtton hide={true} text={item?.coin_address} type={true} />    
+                                                            <CopyButtton text={item?.coin_address} type={true} />    
                                                         </Td> 
                                                         <Td>
                                                             {item?.trans_hash && (
@@ -288,6 +288,10 @@ export default function TransactionComponent() {
                                                             <div className=' w-full flex justify-between items-center mt-6 ' >
                                                                 <p className=' text-[#252525] text-base font-medium ' >Transaction ID</p>
                                                                 <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.transaction_ref}  type={true} />   </p>
+                                                            </div>
+                                                            <div className=' w-full flex justify-between items-center mt-6 ' >
+                                                                <p className=' text-[#252525] text-base font-medium ' >Deposit Wallet</p>
+                                                                <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.coin_address}  type={true} />   </p>
                                                             </div>
                                                             {item?.trans_hash && ( 
                                                                 <div className=' w-full flex justify-between items-center mt-6 ' >
