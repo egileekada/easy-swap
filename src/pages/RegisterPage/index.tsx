@@ -60,7 +60,7 @@ export default function RegisterPage() {
         } else { 
 
             const request: any = await handleRegister(JSON.stringify(
-                {email: formik.values.email.toLocaleLowerCase(), fullname: '', password: ''}
+                {email: formik.values.email.toLocaleLowerCase(), fullname: formik.values.fullname, password: formik.values.password }
             )) 
 
             if (request.status === 200 || request.status === 201) {    
