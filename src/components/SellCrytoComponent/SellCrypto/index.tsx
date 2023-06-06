@@ -7,7 +7,8 @@ import ButtonComponent from '../../ButtonComponent'
 import { IUser, UserContext } from '../../../context/userContext'
 import { useBankDetailCallback, useExchangeRateCallback, useGetDataCallback, useSwapCoinCallback } from '../../../action/useAction'
 import { cashFormat } from '../../../config/utils/cashFormat'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom' 
+import { useFormik } from 'formik'; 
 
 type props = {
     next: any
@@ -35,11 +36,39 @@ export default function SellCrypto({next}: props) {
     const [bankCode, setBankCode] = React.useState("")
     const [AcountNumber, setAcountNumber] = React.useState("")
     const [bankName, setBankName] = React.useState("")
+    const [finalValue, setfinalValue] = React.useState("")
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
     const { handleExchangeRate } = useExchangeRateCallback(); 
     const { handleGetData } = useGetDataCallback()
+
+
+    // console.log({
+    //     "coin_amount_to_swap": finalValue,
+    //     "bank_acc_name": bankName,
+    //     "bank_code": userContext.sellCrypto.bank_code,
+    //     "bank_acc_number": AcountNumber,
+    //     "phone_number": userContext.sellCrypto.phone_number,
+    //     "coin_name": (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"),
+    //     "network": network
+    // });
+    const formik = useFormik({
+        initialValues: {coin_amount_to_swap: '', bank_acc_name: '',bank_code: '', bank_acc_number: '',phone_number: '', coin_name: '', network: ''}, 
+        onSubmit: () => {},
+    });  
+
+
+
+    React.useEffect(()=> {
+        formik.setFieldValue("coin_amount_to_swap", value)
+        formik.setFieldValue("bank_acc_name", bankName)
+        formik.setFieldValue("bank_code", userContext.sellCrypto.bank_code)
+        formik.setFieldValue("bank_acc_number", AcountNumber)
+        formik.setFieldValue("phone_number",  userContext.sellCrypto.phone_number)
+        formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"))
+        formik.setFieldValue("network", network)
+    }, [value, bankName, userContext.sellCrypto.bank_code, AcountNumber, userContext.sellCrypto.phone_number, coinName, network])
 
     React.useEffect(()=> {
         const fetchData =async()=> {
@@ -56,6 +85,8 @@ export default function SellCrypto({next}: props) {
             fetchData()
         }
     }, [AcountNumber, bankCode])
+
+
 
     React.useEffect(()=> { 
         const fetchData = async () => {
@@ -104,18 +135,34 @@ export default function SellCrypto({next}: props) {
 
     const submit = async () => { 
         setLoading(true);
+        console.log(value);
+        console.log(formik.values);
+        
         if(!userContext.userInfo?.email) {
             navigate("/signin")
-        } else { 
-            const request = await handleSwapCoin(JSON.stringify({
-                "coin_amount_to_swap":value,
-                "bank_acc_name": bankName,
-                "bank_code": userContext.sellCrypto.bank_code,
-                "bank_acc_number": AcountNumber,
-                "phone_number": userContext.sellCrypto.phone_number,
-                "coin_name": (coinName === "Bitcoin" ? "Bitcoin":network === "BSC" ? "USDT_BSC":network === "TRON" ? "USDT_TRON": "USDT"),
-                "network": network
-            }))   
+        } else if(Number(formik.values.coin_amount_to_swap) <= 20) {
+            toast({
+                title: ("Minimum Of 20 Dollars"), 
+                position: "top",
+                status: "error",
+                isClosable: true,
+            }) 
+        } else if(Number(formik.values.coin_amount_to_swap) >= 1000) {
+            toast({
+                title: ("maximum Of 1000 Dollars"), 
+                position: "top",
+                status: "error",
+                isClosable: true,
+            }) 
+        } else if(!formik.values.bank_code) {
+            toast({
+                title: ("Please Reenter Your Bank Information"), 
+                position: "top",
+                status: "error",
+                isClosable: true,
+            }) 
+        }else { 
+            const request = await handleSwapCoin(formik.values)   
             
             if (request.status === 200) {  
                 toast({
@@ -142,6 +189,7 @@ export default function SellCrypto({next}: props) {
             } 
             setLoading(false);
         }
+        setLoading(false);
     }  
 
     const CoinName =(item: any, net: any, val?:any)=>{
@@ -194,7 +242,7 @@ export default function SellCrypto({next}: props) {
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1 relative flex ' >
-                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} value={value} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
+                            <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} value={formik.values.coin_amount_to_swap} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
                             <p className=' text-sm text-[#475467] font-medium absolute bottom-3 z-20 right-3 ' >min $20 - max $1000</p>
                         </div>
                         <div className=' w-full flex justify-end ' >  
@@ -202,13 +250,13 @@ export default function SellCrypto({next}: props) {
                         </div>
                     </div>
                 )}
-                {(Number(userContext?.sellCrypto?.coin_amount_to_swap)>= 20  && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 )&& ( 
+                {(Number(formik.values.coin_amount_to_swap)>= 20  && Number(formik.values.coin_amount_to_swap) <= 1000 )&& ( 
                     <> 
                         <CoinNetwork data={ChangeNetwork} network={network} />
                         <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />
                     </>
                 )}
-                {Number(userContext?.sellCrypto?.coin_amount_to_swap) >= 20 && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
+                {Number(formik.values.coin_amount_to_swap) >= 20 && Number(formik.values.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
@@ -243,7 +291,7 @@ export default function SellCrypto({next}: props) {
                         }
                     </div>
                 )} 
-                {Number(userContext?.sellCrypto?.coin_amount_to_swap) >= 20 && Number(userContext?.sellCrypto?.coin_amount_to_swap) <= 1000 && userContext?.sellCrypto?.coin_amount_to_swap && AcountNumber && ( 
+                {Number(formik.values.coin_amount_to_swap) >= 20 && Number(formik.values.coin_amount_to_swap) <= 1000 && formik.values.bank_acc_number && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >

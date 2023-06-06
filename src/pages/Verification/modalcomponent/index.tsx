@@ -271,7 +271,7 @@ export default function VerificationModal({close}: Props) {
                                 <> 
                                     <div className=' mt-4 w-full flex lg:flex-row flex-col  gap-6 ' >
                                         <div className=' w-full ' >
-                                            <p className=' mb-2 ' >What is your card number?</p>
+                                            <p className=' mb-2 ' >What is your ID number?</p>
                                             <Input 
                                                 name="govt_id_number"
                                                 onChange={formik.handleChange}
