@@ -227,7 +227,7 @@ export default function SellCrypto({next}: props) {
         userContext.setSellCrypto({...userContext.sellCrypto, "bank_code": item})
     }    
 
-    const [open, setOpen] = React.useState(true)
+    const [open, setOpen] = React.useState(false)
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >

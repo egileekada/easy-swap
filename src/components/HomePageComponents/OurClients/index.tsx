@@ -47,7 +47,7 @@ export default function OurClients() {
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >Ezyswap is one of the best platforms I have used to sell my crypto for naira within minutes easily.</p>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I've been using <a target="_blank" href='https://twitter.com/ezyswap_' >@ezyswap_ </a> for a while now, and I must say it's one of the best in the market. Seamless transactions, competitive rates, and a wide range of cryptocurrencies to choose from.</p>
                                 <div className=' mt-auto ' >
                                     <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
                                     <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
