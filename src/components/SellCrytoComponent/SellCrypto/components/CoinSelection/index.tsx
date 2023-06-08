@@ -47,6 +47,26 @@ export default function CoinSelection({rate, data, network}: Props) {
                         </button>
                     </div> 
                     <div className=' w-full flex flex-col gap-3 pt-6 overflow-y-auto max-h-64 ' >
+                        <div className=' py-[10px] w-full px-[10px] mb-5 gap-[8px] bg-[#F7F8FF] flex' >
+                            <div className=' w-fit ' > 
+                                <svg className=' w-[14px] mt-[3px] ' viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="warning">
+                                        <circle id="Oval" cx="55.9932" cy="56.0068" r="55.9932" fill="#303179"/>
+                                        <g id="Group 12">
+                                            <g id="Path">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M55.7529 29.8733V61.5716V29.8733Z" fill="#98A2B3"/>
+                                                <path d="M55.7529 29.8733V61.5716" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </g>
+                                            <g id="Path_2">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M55.9164 79.4068V80.9493V79.4068Z" fill="#98A2B3"/>
+                                                <path d="M55.9164 79.4068V80.9493" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <p className=' text-sm font-normal text-black leading-[20px] ' >Please note that only supported networks on Ezyswap platform are shown, if you deposit via another network, your assets may be lost.</p>
+                        </div>
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
                                     <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex items-center gap-3 ' >

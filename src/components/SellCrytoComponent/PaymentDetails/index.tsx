@@ -74,7 +74,7 @@ export default function PaymentDetails({close}: props) {
                     <div className=' w-full mt-6 ' > 
                         <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Smart Chain Address</p>
 
-                        <CopyButtton text={userContext.transactionDetail?.coin_address} />
+                        <CopyButtton text={userContext.transactionDetail?.coin_address} hide={true} />
                         {/* <div className=' w-full flex items-center lg:gap-4 ' >
                             <div className=' w-full py-3 lg:gap-0 gap-2 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
                                 <p className=' break-all' >{userContext.transactionDetail?.coin_address}</p>
@@ -93,7 +93,7 @@ export default function PaymentDetails({close}: props) {
                     </div>
                     <div className=' w-full mt-4 ' > 
                         <p className=' font-bold text-[15px] text-[#334155] mb-2 ' >Transaction Reference</p>
-                        <CopyButtton text={userContext.transactionDetail?.transaction_ref} />
+                        <CopyButtton text={userContext.transactionDetail?.transaction_ref} hide={true} />
                         {/* <div className=' w-full flex items-center gap-4 ' >
                             <div className=' w-full break-all lg:gap-0 gap-2  py-3 px-4 bg-[#F9FAFB] border flex text-sm font-bold items-center  border-[#D0D5DD] rounded-lg ' >
                             <p className=' break-all' >{userContext.transactionDetail?.transaction_ref}</p>

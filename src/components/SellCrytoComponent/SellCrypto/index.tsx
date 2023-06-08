@@ -9,6 +9,7 @@ import { useBankDetailCallback, useExchangeRateCallback, useGetDataCallback, use
 import { cashFormat } from '../../../config/utils/cashFormat'
 import { useNavigate } from 'react-router-dom' 
 import { useFormik } from 'formik'; 
+import ModalLayout from '../../ModalLayout'
 
 type props = {
     next: any
@@ -36,7 +37,7 @@ export default function SellCrypto({next}: props) {
     const [bankCode, setBankCode] = React.useState("")
     const [AcountNumber, setAcountNumber] = React.useState("")
     const [bankName, setBankName] = React.useState("")
-    const [finalValue, setfinalValue] = React.useState("")
+    const [show, setShow] = React.useState(true)
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
@@ -85,9 +86,7 @@ export default function SellCrypto({next}: props) {
             fetchData()
         }
     }, [AcountNumber, bankCode])
-
-
-
+    
     React.useEffect(()=> { 
         const fetchData = async () => {
             setLoading(true);  
@@ -141,12 +140,7 @@ export default function SellCrypto({next}: props) {
         if(!userContext.userInfo?.email) {
             navigate("/signin")
         } else if(Number(formik.values.coin_amount_to_swap) <= 20) {
-            toast({
-                title: ("Minimum Of 20 Dollars"), 
-                position: "top",
-                status: "error",
-                isClosable: true,
-            }) 
+             setOpen(true)
         } else if(Number(formik.values.coin_amount_to_swap) >= 1000) {
             toast({
                 title: ("maximum Of 1000 Dollars"), 
@@ -233,6 +227,8 @@ export default function SellCrypto({next}: props) {
         userContext.setSellCrypto({...userContext.sellCrypto, "bank_code": item})
     }    
 
+    const [open, setOpen] = React.useState(true)
+
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
@@ -250,13 +246,13 @@ export default function SellCrypto({next}: props) {
                         </div>
                     </div>
                 )}
-                {(Number(formik.values.coin_amount_to_swap)>= 20  && Number(formik.values.coin_amount_to_swap) <= 1000 )&& ( 
+                {(formik.values.coin_amount_to_swap)&& ( 
                     <> 
                         <CoinNetwork data={ChangeNetwork} network={network} />
                         <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />
                     </>
                 )}
-                {Number(formik.values.coin_amount_to_swap) >= 20 && Number(formik.values.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
+                {formik.values.coin_amount_to_swap && Number(formik.values.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
@@ -291,7 +287,7 @@ export default function SellCrypto({next}: props) {
                         }
                     </div>
                 )} 
-                {Number(formik.values.coin_amount_to_swap) >= 20 && Number(formik.values.coin_amount_to_swap) <= 1000 && formik.values.bank_acc_number && ( 
+                {formik.values.coin_amount_to_swap && Number(formik.values.coin_amount_to_swap) <= 1000 && formik.values.bank_acc_number && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
@@ -302,7 +298,30 @@ export default function SellCrypto({next}: props) {
                 {(userContext.sellCrypto.phone_number+"").length > 9 && ( 
                     <ButtonComponent onClick={()=> submit()} name={loading ? "Loading...":"Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                 )}
-            </div>
+            </div> 
+            <ModalLayout open={open} size={"md"} close={setOpen} >
+                <div className=' w-full bg-white p-6 pb-[35px] pt-[40px] ' > 
+                    <div className=' w-full flex items-center justify-center ' > 
+                        <svg className=' w-[90px] lg:w-[112px] ' viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="warning">
+                                <circle id="Oval" cx="55.9932" cy="56.0068" r="55.9932" fill="#303179"/>
+                                <g id="Group 12">
+                                    <g id="Path">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M55.7529 29.8733V61.5716V29.8733Z" fill="#98A2B3"/>
+                                        <path d="M55.7529 29.8733V61.5716" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <g id="Path_2">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M55.9164 79.4068V80.9493V79.4068Z" fill="#98A2B3"/>
+                                        <path d="M55.9164 79.4068V80.9493" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p className=' font-normal text-[#1D2939] text-center text-sm leading-[20px] my-6 ' >Oops! The amount you entered is below our minimum requirement of $20. Please kindly enter an amount that meets or exceeds the minimum threshold to proceed with your transaction. Thank you for your understanding and cooperation!</p>
+                    <ButtonComponent onClick={()=> setOpen(false)} name={"Try Again"} bgcolor={' text-[#F1F1F1] text-base bg-[#303179] mt-4  '} />
+                </div>
+            </ModalLayout>
         </div>
     )
 }
