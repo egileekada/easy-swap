@@ -42,100 +42,116 @@ export default function OurClients() {
                     <div className=" scroll_event w-auto flex gap-5 lg:px-4 ">
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1650050214814703617/V9R4uw-Z_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I've been using <a target="_blank" href='https://twitter.com/ezyswap_' >@ezyswap_ </a> for a while now, and I must say it's one of the best in the market. Seamless transactions, competitive rates, and a wide range of cryptocurrencies to choose from.</p>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I've been using <a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> for a while now, and I must say it's one of the best in the market. Seamless transactions, competitive rates, and a wide range of cryptocurrencies to choose from.</p>
                                 <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
                                 </div>
+                                <a  target="_blank" href='https://twitter.com/tom__tom1/status/1661048199912607744?t=2ftfFPJLAr09JYWNnLkxXg&s=19' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >tomtom</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@tom__tom1</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1658171613991378944/Czo8AB2R_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I endorse Ezyswap, It is fast, cheap, and very secure.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I've been using <a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> for both buying and selling cryptocurrencies, and I must say they offer competitive rates. Their transparent fee structure ensures that I get the best value for my trades</p>
+                                <a  target="_blank" href='https://twitter.com/Ghyfty4/status/1661051996789522447?t=gH4YZG_3-I5KJD3-UoQWRg&s=19' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >Gifted</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@Ghyfty4</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1480389641731821571/Man6s6Iw_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I must admit that Ezyswap surpassed my expectations. Transactions are fast and cheap with no problems.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I love the flexibility <a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> offers. Whether I want to buy USDT, ETH, or BTC, the process is seamless and efficient. Their wide range of available cryptocurrencies makes it a one-stop platform for all my trading needs.</p>
+                                <a  target="_blank" href='https://twitter.com/geejayholufunm1/status/1661449261945442321?t=ziVSUX0EP6rpLP2MzjsMxQ&s=19' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >Adejumoke Gbadebo</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@geejayholufunm1</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1663851276776423424/SXPzffc-_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I must admit that Ezyswap surpassed my expectations. Transactions are fast and cheap with no problems.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I can't say enough good things about <a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> Their customer service is exceptional, always responsive and helpful. I had an issue with a transaction, and they resolved it promptly. Great support team!</p>
+                                <a  target="_blank" href='https://twitter.com/Austin__Ik/status/1661268382186962945?t=K7zuKkC1bmwgPbTOka2pCw&s=19' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >SmartScripts</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@Austin__Ik</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1633505070284242944/W0Aijju6_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I must admit that Ezyswap surpassed my expectations. Transactions are fast and cheap with no problems.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >If you're looking for a reliable platform to buy/sell ETH, look no further than <a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> They offer a secure and hassle-free experience. Impressed with their service!</p>
+                                <a  target="_blank" href='https://twitter.com/durojaiyeadeba3/status/1661248887720644608?t=k7dI_An_KoU5HA4UvfgZkw&s=19' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >duro_bayo 👑</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@durojaiyeadeba3</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1533401758449512450/i8SeCE6g_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I must admit that Ezyswap surpassed my expectations. Transactions are fast and cheap with no problems.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' ><a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> is incredibly flexible. Buying USDT, ETH, or BTC is seamless and efficient. They offer a wide range of cryptocurrencies, making it a one-stop platform for all my trading needs.</p>
+                                <a  target="_blank" href='https://twitter.com/Buildinghomes01/status/1662086277338996742' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >Online contractor🏡🏠</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@Buildinghomes01</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                         <div className=' w-[85vw] lg:w-[350px] flex flex-col items-center ' >
                             <div className=' w-fit h-fit ' > 
-                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' bg-blue-600 lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-
+                                <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1635705505132732416/SmuasBEC_400x400.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
-                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' >I must admit that Ezyswap surpassed my expectations. Transactions are fast and cheap with no problems.</p>
-                                <div className=' mt-auto ' >
-                                    <p className=' text-xl text-[#121212] font-bold mt-4 ' >Name Lastname</p>
-                                    <p className=' font-semibold  text-[#12121280] ' >Position @company</p>
-                                </div>
+                                <p className=' text-[#12121280]  font-medium leading-[24px] mb-auto lg:text-base text-sm ' ><a target="_blank" href='https://twitter.com/ezyswap_' className=' text-blue-400 hover:underline ' >@ezyswap_ </a> is the epitome of flexibility. From purchasing USDT, ETH, or BTC to its seamless and efficient process, they cater to all my trading needs. With a diverse selection of cryptocurrencies, it's the ultimate one-stop platform.</p>
+                                <a  target="_blank" href='https://twitter.com/galvaninat/status/1662086188029624321' role='button'  className=' mt-auto ' >
+                                    <>
+                                        <p className=' text-xl text-[#121212] font-bold mt-4 ' >galvainish</p>
+                                        <p className=' font-semibold  text-[#12121280] ' >@galvaninat</p>
+                                    </>
+                                </a>
                             </div>
                         </div> 
                     </div>
