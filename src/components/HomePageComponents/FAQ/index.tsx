@@ -23,6 +23,14 @@ export default function FAQ() {
         }  
     }, [controls, controls2, controls3, controls4, inView, inView2]) 
 
+    const clickHandler =(item: any)=> {
+        if(tab === item){
+            setTab("zero")
+        } else {
+            setTab(item)
+        }
+    }
+
     return (
         <div className=' w-full py-8 lg:py-20 flex flex-col text-center items-center bg-[#fff] px-6 lg:px-14 ' >
             <motion.div ref={ref2} initial={{ scale: 0}} animate={controls2}  
@@ -33,7 +41,7 @@ export default function FAQ() {
             <motion.div ref={ref} initial={{x: -200}} animate={controls}  
                 transition={{ ease: "easeOut", duration: 1 }} className=' w-full lg:w-[750px] flex flex-col mt-12 gap-4 ' >
                 <div className=' w-full ' > 
-                    <div role='button' onClick={()=> setTab("one")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
+                    <div role='button' onClick={()=> clickHandler("one")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl text-left ' >What is Ezyswap?</p>
                         <div className="w-fit" >
 
@@ -50,7 +58,7 @@ export default function FAQ() {
                     ) }
                 </div> 
                 <div className=' w-full ' > 
-                    <div role='button' onClick={()=> setTab("two")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
+                    <div role='button' onClick={()=> clickHandler("two")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl text-left ' >What is the current exchange rate?</p>
                         <div className="w-fit ml-3" >
                             <svg className={tab.includes("two") ? "": " -rotate-90"} role='button' width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +74,7 @@ export default function FAQ() {
                     ) }
                 </div> 
                 <div className=' w-full ' > 
-                    <div role='button' onClick={()=> setTab("three")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
+                    <div role='button' onClick={()=> clickHandler("three")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl text-left ' >How soon will I get an alert?</p>
                         <div className="w-fit ml-3" >
                             <svg className={tab.includes("three") ? "": " -rotate-90"} role='button' width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +90,7 @@ export default function FAQ() {
                     ) }
                 </div> 
                 <div className=' w-full ' > 
-                    <div role='button' onClick={()=> setTab("four")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
+                    <div role='button' onClick={()=> clickHandler("four")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl text-left ' >How do I calculate my money?</p>
                         <div className="w-fit ml-3" >
                             <svg className={tab.includes("four") ? "": " -rotate-90"} role='button' width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +106,7 @@ export default function FAQ() {
                     ) }
                 </div> 
                 <div className=' w-full ' > 
-                    <div role='button' onClick={()=> setTab("five")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
+                    <div role='button' onClick={()=> clickHandler("five")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >
                         <p className=' font-medium text-xl text-left ' >Is Ezyswap secure?</p>
                         <div className="w-fit ml-3" >
                             <svg className={tab.includes("five") ? "": " -rotate-90"} role='button' width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">

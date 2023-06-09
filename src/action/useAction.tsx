@@ -18,7 +18,7 @@ export function useGetDataCallback() {
     } catch(err: any) {    
       if(window.location.pathname.includes("dashboard")){
         if(err?.response.data.error?.message === "Request not authorized"){
-          navigate("/")
+          navigate("/signin")
         } 
       }
       return err?.response    

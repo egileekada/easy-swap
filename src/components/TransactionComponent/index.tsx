@@ -250,18 +250,20 @@ export default function TransactionComponent() {
                                                             </svg>
                                                             <div className=' w-full flex items-center text-white justify-between mt-2 ' >
                                                                 <div> 
-                                                                    <p className=' font-semibold text-[26px] ' >Sell order pending</p>
+                                                                    <p className=' font-semibold text-[26px] ' >Sell order {item?.transaction_status === "FAILED" ? "Cancelled" :  item?.transaction_status === "PENDING" ? "pending" : "completed"}</p>
                                                                     <p className=' font-normal text-base ' >You successfully sold {parseFloat(item?.coin_amount_to_swap)} {item?.coin_name}</p>
                                                                 </div>
                                                                 {(item?.transaction_status === "FAILED" || item?.transaction_status === "PENDING") ? (
-                                                                    <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.2469 1.09131L17.9658 3.80412L22.5691 3.79536L23.9832 8.17605L27.7124 10.8747L26.2816 15.2499L27.7124 19.6251L23.9832 22.3237L22.5691 26.7044L17.9658 26.6957L14.2469 29.4085L10.5279 26.6957L5.92466 26.7044L4.5105 22.3237L0.78125 19.6251L2.21207 15.2499L0.78125 10.8747L4.5105 8.17605L5.92466 3.79536L10.5279 3.80412L14.2469 1.09131Z" fill="#F04438" stroke="#F97066" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                        <path d="M9.29297 15.2501L12.8326 18.7897L19.9119 11.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <circle cx="31.25" cy="31.25" r="31.25" fill="#FECDCA"/>
+                                                                        <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#F04438" stroke="#F97066" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
                                                                     </svg>
                                                                 ) : (
-                                                                    <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.2469 1.09131L17.9658 3.80412L22.5691 3.79536L23.9832 8.17605L27.7124 10.8747L26.2816 15.2499L27.7124 19.6251L23.9832 22.3237L22.5691 26.7044L17.9658 26.6957L14.2469 29.4085L10.5279 26.6957L5.92466 26.7044L4.5105 22.3237L0.78125 19.6251L2.21207 15.2499L0.78125 10.8747L4.5105 8.17605L5.92466 3.79536L10.5279 3.80412L14.2469 1.09131Z" fill="#40B274" stroke="#009845" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                        <path d="M9.29297 15.2501L12.8326 18.7897L19.9119 11.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                    <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <circle cx="31.25" cy="31.25" r="31.25" fill="#BFE5D0"/>
+                                                                        <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#40B274" stroke="#009845" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                        <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>
                                                                     </svg>
                                                                 )} 
                                                             </div>
@@ -299,7 +301,7 @@ export default function TransactionComponent() {
                                                                     <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.trans_hash}  type={true} />   </p>
                                                                 </div>
                                                             )}
-                                                            {item?.transaction_status === "PENDING" && (
+                                                            {item?.transaction_status !== "FAILED" && (
                                                                 <ButtonComponent onClick={()=> infoHandler(item)} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-8  '} />
                                                             )}
                                                         </div>
