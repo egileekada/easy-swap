@@ -77,8 +77,7 @@ export default function VerifyEmail() {
                                     <PinInputField />
                                     <PinInputField />
                                     <PinInputField/>
-                                    <PinInputField />
-                                    <PinInputField />
+                                    <PinInputField /> 
                                 </PinInput>
                             </HStack>
                         </Stack>
