@@ -49,7 +49,7 @@ export default function Footer() {
                             <div className=' w-full flex flex-col ' >
                                 <p className=' text-[#F8FAFC] font-normal ' >Learn more about Easyswap</p>
                                 <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
-                                <a href='/privacy-policy' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
+                                <a href='/legal-matters' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
                                 <a href='#' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>
                                 <a href='#' className=' text-[#F8FAFC] mt-4 ' >Support</a>
                             </div>

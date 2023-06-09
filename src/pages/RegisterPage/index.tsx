@@ -161,7 +161,7 @@ export default function RegisterPage() {
                     </div>
                 </div>
                 <p className=' w-full lg:mt-10 mb-6 text-[#475569] text-sm font-medium ' >
-                    <p className=' text-center ' >By clicking on Create Account, I agree to Easyswap’s <a href='#' className=' font-semibold underline ' >Privacy Policy</a> to <a href='#' className=' font-semibold underline' >Terms of Use</a></p>
+                    <p className=' text-center ' >By clicking on Create Account, I agree to Easyswap’s <a href='/privacy-policy' className=' font-semibold underline ' >Privacy Policy</a> to <a href='/termofservice' className=' font-semibold underline' >Terms of Use</a></p>
                      
                 </p>
                 <ButtonComponent  type="submit" disabled={!formik.isValid && formik.values.password === confirmPassword} bgcolor={(formik.isValid && formik.values.password === confirmPassword) ? " bg-[#303179] text-white ": ""} name={loading ? "Loading...": "Create Account"} /> 

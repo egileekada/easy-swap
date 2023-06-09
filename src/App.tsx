@@ -17,6 +17,10 @@ import { UserContextProvider } from './context/userContext';
 import { GoogleAuthProvider } from './context/useGoogleAuth';
 import Verification from './pages/Verification';
 import PaymentDetails from './components/SellCrytoComponent/PaymentDetails';
+import LegalMatters from './pages/Legal-Matters';
+import TermOfService from './pages/Legal-Matters/termsofservice';
+import Policy from './pages/Legal-Matters/policy';
+import KycPolicy from './pages/Legal-Matters/kyc-policy';
 
 function App() {
   return ( 
@@ -25,7 +29,10 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} /> 
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} /> 
+            <Route path="/privacy-policy" element={<Policy />} /> 
+            <Route path="/kyc-policy" element={<KycPolicy />} /> 
+            <Route path="/legal-matters" element={<LegalMatters />} />
+            <Route path="/termofservice" element={<TermOfService />} />
             <Route path="/signin" element={<LoginPage />} /> 
             <Route path="/signup" element={<RegisterPage />} /> 
             <Route path="/verifyemail" element={<VerifyEmail />} /> 
