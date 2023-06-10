@@ -141,7 +141,7 @@ export default function VerificationModal({close}: Props) {
     
     const closeHandler =()=> {
         setIsShown(0)
-        navigate("/dashboard/settings")
+        navigate(0)
         close()
     }
 
@@ -271,14 +271,14 @@ export default function VerificationModal({close}: Props) {
                                 <> 
                                     <div className=' mt-4 w-full flex lg:flex-row flex-col  gap-6 ' >
                                         <div className=' w-full ' >
-                                            <p className=' mb-2 ' >What is your ID number?</p>
+                                            <p className=' mb-2 ' >Enter your {formik.values.govt_id_type === "National Identity Number" ? "NIN":formik.values.govt_id_type === "International Passport" ? "passport": "License"} number?</p>
                                             <Input 
                                                 name="govt_id_number"
                                                 onChange={formik.handleChange}
                                                 onFocus={() =>
                                                     formik.setFieldTouched("govt_id_number", true, true)
                                                 }  
-                                                placeholder='Enter Card Number' border="1px solid #D0D5DD" height="50px" fontSize="14px" color="#101828" />
+                                                 border="1px solid #D0D5DD" height="50px" fontSize="14px" color="#101828" />
                                             <div className="w-full h-auto pt-2">
                                                 {formik.touched.govt_id_number && formik.errors.govt_id_number && (
                                                     <motion.p
@@ -392,7 +392,7 @@ export default function VerificationModal({close}: Props) {
                 </div>
             )}
             {isShown === 2 && ( 
-                <div className=' w-full lg:h-auto h-screen bg-white px-6 pt-8 flex flex-col lg:justify-start justify-center items-center ' >
+                <div className=' w-full lg:h-auto h-screen bg-white px-6 py-8 flex flex-col lg:justify-start justify-center items-center ' >
                     <svg width="207" height="206" viewBox="0 0 207 206" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="103.5" cy="103" r="103" fill="#BFE5D0"/>
                         <path d="M103.5 56.333L115.758 65.2744L130.93 65.2455L135.591 79.6843L147.882 88.579L143.166 103L147.882 117.42L135.591 126.315L130.93 140.754L115.758 140.725L103.5 149.666L91.2421 140.725L76.0699 140.754L71.4088 126.315L59.1172 117.42L63.8332 103L59.1172 88.579L71.4088 79.6843L76.0699 65.2455L91.2421 65.2744L103.5 56.333Z" fill="#40B274" stroke="#009845" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round"/>

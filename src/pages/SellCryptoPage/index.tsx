@@ -19,7 +19,9 @@ export default function SellCryptoPage() {
   React.useEffect(()=> {  
       const fetchData = async () => {
           const request: any = await handleGetData("/users/retrieve-user-kyc")  
-          setData(request?.data)  
+          if(request){
+            setData(request?.data)  
+          }
       }  
       
       // call the function
@@ -29,7 +31,7 @@ export default function SellCryptoPage() {
       .catch(console.error);;
   }, [])  
 
-  console.log(data);
+  console.log(data?.kyc_verified);
   
 
   return (
@@ -49,7 +51,7 @@ export default function SellCryptoPage() {
             </div>
             <div className=' w-full flex justify-center items-center gap-3 px-4 lg:px-9 py-8 pb-2 ' >
               {tab === 0 && (
-                <SellCrypto next={setIsShown} />
+                <SellCrypto next={setIsShown} kyc={data?.kyc_verified} />
               )}
               {tab === 1 && (
                 <TrackTransaction  />

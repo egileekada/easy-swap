@@ -12,10 +12,11 @@ import { useFormik } from 'formik';
 import ModalLayout from '../../ModalLayout'
 
 type props = {
-    next: any
-}
+    next: any,
+    kyc?: boolean
+ }
 
-export default function SellCrypto({next}: props) {
+export default function SellCrypto({next, kyc}: props) {
 
     const userContext: IUser = React.useContext(UserContext); 
 
@@ -37,7 +38,7 @@ export default function SellCrypto({next}: props) {
     const [bankCode, setBankCode] = React.useState("")
     const [AcountNumber, setAcountNumber] = React.useState("")
     const [bankName, setBankName] = React.useState("")
-    const [show, setShow] = React.useState(true)
+    const [AmountData, setAmountData] = React.useState("0")
     
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
@@ -128,17 +129,17 @@ export default function SellCrypto({next}: props) {
         if(!userContext.userInfo?.email) {
             navigate("/signin")
         } else if(Number(formik.values.coin_amount_to_swap) < 20) {
+            setAmountData("20")
              setOpen(true)
-        } else if(Number(formik.values.coin_amount_to_swap) >= 1000) {
+        } else if(Number(formik.values.coin_amount_to_swap) > 1000 && !kyc) { 
+            setAmountData("1000")
+             setOpen(true)
+        } else if(Number(formik.values.coin_amount_to_swap) > 50000 && kyc) {
+            setAmountData("50,000")
+             setOpen(true)
+        }  else if(!formik.values.bank_code) {
             toast({
-                title: ("maximum Of 1000 Dollars"), 
-                position: "top",
-                status: "error",
-                isClosable: true,
-            }) 
-        } else if(!formik.values.bank_code) {
-            toast({
-                title: ("Please Reenter Your Bank Information"), 
+                title: ("Please Enter Your Bank Information"), 
                 position: "top",
                 status: "error",
                 isClosable: true,
@@ -226,7 +227,7 @@ export default function SellCrypto({next}: props) {
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1 relative flex ' >
                             <Input onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} value={formik.values.coin_amount_to_swap} onChange={GetAmount} placeholder='Enter Amount' height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1'  />
-                            <p className=' text-sm text-[#475467] font-medium absolute bottom-3 z-20 right-3 ' >min $20 - max $1000</p>
+                            <p className=' text-sm text-[#475467] font-medium absolute bottom-3 z-20 right-3 ' >min $20 - max {kyc ? "$50,000" : "$1000"}</p>
                         </div>
                         <div className=' w-full flex justify-end ' >  
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate? "...": cashFormat(exchangeRate)}</p>
@@ -241,7 +242,7 @@ export default function SellCrypto({next}: props) {
                         )}
                     </>
                 )}
-                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && Number(formik.values.coin_amount_to_swap) <= 1000 && (bankCode || accountName) && ( 
+                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && (bankCode || accountName) && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
                         <div className=' w-full   ' >
@@ -276,7 +277,7 @@ export default function SellCrypto({next}: props) {
                         }
                     </div>
                 )} 
-                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && Number(formik.values.coin_amount_to_swap) <= 1000 && formik.values.bank_acc_number && ( 
+                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && formik.values.bank_acc_number && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
@@ -307,7 +308,11 @@ export default function SellCrypto({next}: props) {
                             </g>
                         </svg>
                     </div>
-                    <p className=' font-normal text-[#1D2939] text-center text-sm leading-[20px] my-6 ' >Oops! The amount you entered is below our minimum requirement of $20. Please kindly enter an amount that meets or exceeds the minimum threshold to proceed with your transaction. Thank you for your understanding and cooperation!</p>
+                    {AmountData === "20" ?
+                        <p className=' font-normal text-[#1D2939] text-center text-sm leading-[20px] my-6 ' >Oops! The amount you entered is below our minimum requirement of $20. Please kindly enter an amount that meets or exceeds the minimum threshold to proceed with your transaction. Thank you for your understanding and cooperation!</p>:
+
+                        <p className=' font-normal text-[#1D2939] text-center text-sm leading-[20px] my-6 ' >Oops! The amount you entered is above our maximum requirement of ${AmountData}. Please kindly enter an amount that meets the maximum threshold to proceed with your transaction. Thank you for your understanding and cooperation!</p>
+                    }
                     <ButtonComponent onClick={()=> setOpen(false)} name={"Try Again"} bgcolor={' text-[#F1F1F1] text-base bg-[#303179] mt-4  '} />
                 </div>
             </ModalLayout>
