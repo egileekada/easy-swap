@@ -4,11 +4,33 @@ import { Input } from '@chakra-ui/react'
 import PaymentDetails from '../../components/SellCrytoComponent/PaymentDetails'
 import TrackTransaction from '../../components/SellCrytoComponent/TrackTransaction'
 import RateCalculator from '../../components/SellCrytoComponent/RateCalculator'
+import { useGetDataCallback } from '../../action/useAction'
 
 export default function SellCryptoPage() {
 
   const [tab, setTab] = React.useState(0)
   const [isShown, setIsShown] = React.useState(false)
+
+  const [data, setData] = React.useState({}as any) 
+
+
+  const { handleGetData } = useGetDataCallback()
+  
+  React.useEffect(()=> {  
+      const fetchData = async () => {
+          const request: any = await handleGetData("/users/retrieve-user-kyc")  
+          setData(request?.data)  
+      }  
+      
+      // call the function
+      fetchData()
+
+      // make sure to catch any error
+      .catch(console.error);;
+  }, [])  
+
+  console.log(data);
+  
 
   return (
     <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >

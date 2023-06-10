@@ -19,7 +19,7 @@ export default function Sidebar({close, type}: props) {
     const clickHandler =(item: any)=>{
         let route = item.replace(/\s/g,'').toLowerCase()
         if(item === "Home"){
-            navigate("/dashboard")
+            navigate("/")
         } else if(item === "Log out"){
             localStorage.clear()
             navigate(0)

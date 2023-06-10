@@ -38,10 +38,10 @@ function App() {
             <Route path="/verifyemail" element={<VerifyEmail />} /> 
             <Route path="/resetpwd" element={<ResetPwdPage />} /> 
             <Route path="/dashboard" element={<DashboardLayout />} > 
-              <Route path="/dashboard" element={<Dashboard />} /> 
+              <Route path="/dashboard/transactionshistory" element={<Dashboard />} /> 
               <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} /> 
               <Route path="/dashboard/tnxinfo" element={<PaymentDetails />} /> 
-              <Route path="/dashboard/transactionshistory" element={<TransactionPage />} /> 
+              <Route path="/dashboard/transactionshistory" element={<Dashboard />} /> 
               <Route path="/dashboard/banks" element={<BankPage />} /> 
               <Route path="/dashboard/support" element={<DisputePage />} />
               <Route path="/dashboard/settings" element={<Settings />} />
