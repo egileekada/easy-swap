@@ -149,7 +149,7 @@ export default function SellCrypto({next, kyc}: props) {
             
             if (request.status === 200) {  
                 toast({
-                    title: "Transaction Successful",
+                    title: "Order Successful",
                     position: "top",
                     status: "success",
                     isClosable: true,

@@ -282,3 +282,21 @@ export function useVerifyUserCallback() {
   }
   return { handleVerifyUser }
 }  
+
+export function useSendOtpCallback() {
+  const handleSendOtp = async (postData: any): Promise<any> => {    
+    try{  
+        const response = await axios.post('users/resend-otp', postData,
+        {
+          headers: {
+            'Content-Type': 'application/json',  
+            Authorization : `Bearer ${localStorage.getItem('token')}` 
+          }, 
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response
+    }     
+  }
+  return { handleSendOtp }
+}  
