@@ -251,7 +251,7 @@ export default function TransactionComponent() {
                                                             <div className=' w-full flex items-center text-white justify-between mt-2 ' >
                                                                 <div> 
                                                                     <p className=' font-semibold text-[26px] ' >Sell order {item?.transaction_status === "FAILED" ? "Cancelled" :  item?.transaction_status === "PENDING" ? "pending" : "completed"}</p>
-                                                                    <p className=' font-normal text-base ' >You successfully sold {parseFloat(item?.coin_amount_to_swap)} {item?.coin_name}</p>
+                                                                    <p className=' font-normal text-base ' >{item?.transaction_status === "FAILED" ? "Your order has been successfully canceled": item?.transaction_status === "PENDING" ? "Your order is pending":  "You successfully sold "+parseFloat(item?.coin_amount_to_swap)+" "+item?.coin_name}</p>
                                                                 </div>
                                                                 {(item?.transaction_status === "FAILED" || item?.transaction_status === "PENDING") ? (
                                                                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">

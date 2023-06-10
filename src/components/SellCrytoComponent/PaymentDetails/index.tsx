@@ -28,7 +28,7 @@ export default function PaymentDetails({close}: props) {
 
     const clickHandler =()=> {
         setOpen(false)
-        navigate("/dashboard")
+        navigate("/dashboard/transactionshistory")
     }
 
     const CancelTnxHandler =async()=> {
@@ -45,7 +45,7 @@ export default function PaymentDetails({close}: props) {
         }) 
         setLoading(false)
         setOpen(false)
-        navigate("/dashboard")
+        navigate("/dashboard/transactionshistory")
         
     }  
 
