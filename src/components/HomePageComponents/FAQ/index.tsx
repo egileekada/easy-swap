@@ -8,11 +8,11 @@ export default function FAQ() {
     const controls2 = useAnimation(); 
     const controls3 = useAnimation(); 
     const controls4 = useAnimation(); 
-    const [ ref, inView ]  = useInView();  
+    const [ ref, inView ]  = useInView();                               
     const [ ref2, inView2 ] = useInView();     
 
 
-    const [tab, setTab] = React.useState("one")
+    const [tab, setTab] = React.useState("zero")
 
     React.useEffect(() => { 
         if (inView) {
