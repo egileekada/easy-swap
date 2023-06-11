@@ -301,7 +301,7 @@ export default function TransactionComponent() {
                                                                     <p className=' text-[#344054] font-semibold ' ><CopyButtton text={item?.trans_hash}  type={true} />   </p>
                                                                 </div>
                                                             )}
-                                                            {item?.transaction_status !== "FAILED" && (
+                                                            {item?.transaction_status === "PENDING" && (
                                                                 <ButtonComponent onClick={()=> infoHandler(item)} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-8  '} />
                                                             )}
                                                         </div>
