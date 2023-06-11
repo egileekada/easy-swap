@@ -68,7 +68,16 @@ export default function SellCrypto({next, kyc}: props) {
             const request = await handleBankDetail(JSON.stringify({ 
                 "account_number": AcountNumber,
                 "bank_code": bankCode
-            }))   
+            }))    
+            if(request.data?.status === 500 || !request?.data?.account_name){ 
+                toast({
+                    title: ("Incorrect Acount Details"), 
+                    position: "top",
+                    status: "error",
+                    isClosable: true,
+                }) 
+            }
+            
             setAccountName(request?.data?.account_name) 
             setLoadingBank(false)
         } 
@@ -277,7 +286,7 @@ export default function SellCrypto({next, kyc}: props) {
                         }
                     </div>
                 )} 
-                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && formik.values.bank_acc_number && ( 
+                {formik.values.network !== "ERC20" && accountName && formik.values.coin_amount_to_swap && formik.values.bank_acc_number && ( 
                     <div className=' w-full ' > 
                         <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
                         <div className=' w-full   ' >
