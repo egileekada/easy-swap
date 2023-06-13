@@ -61,6 +61,13 @@ export default function BankSelection({rate, data, holder, code, bank}: Props) {
         setSearchBank(item)
     }  
 
+    const changeHandlerBank =(item: any)=> {
+        let feedArray=item.split(","); 
+
+        data(feedArray[0], feedArray[1]) 
+        // setSearchBank(item)
+    }  
+
     const BankList =()=> {
         return(
             <> 
@@ -125,7 +132,7 @@ export default function BankSelection({rate, data, holder, code, bank}: Props) {
             {bank && (
                 <> 
                     {!loading && (
-                        <Select onChange={(e)=> changeHandler(e.target.value)} placeholder={holder? holder:'Select Bank'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  > 
+                        <Select onChange={(e)=> changeHandlerBank(e.target.value)} placeholder={holder? holder:'Select Bank'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  > 
                             {dataInfo?.map((item: any, index: number)=> { 
                                 return(  
                                     <option key={index} value={item?.name+","+item.code} >{item?.name}</option> 

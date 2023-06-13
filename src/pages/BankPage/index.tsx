@@ -99,6 +99,8 @@ export default function BankPage() {
         setLoading(false)
     } 
 
+    console.log(bank_code);
+    
 
     return (
         <div className=' w-full px-6 lg:px-14 ' > 
