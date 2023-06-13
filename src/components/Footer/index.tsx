@@ -50,7 +50,7 @@ export default function Footer() {
                                 <p className=' text-[#F8FAFC] font-normal ' >Learn more about Easyswap</p>
                                 <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
                                 <a href='/legal-matters' className=' text-[#F8FAFC] mt-4 ' >Policy & Terms</a>
-                                <a href='#' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>
+                                <a href='#faq' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>
                                 <a href='#' className=' text-[#F8FAFC] mt-4 ' >Support</a>
                             </div>
                             <div className=' w-full lg:mt-[64px]  ' >
@@ -89,7 +89,7 @@ export default function Footer() {
                                     <path d="M0.164079 20.9994C0.164079 9.4931 9.49116 0.166016 20.9974 0.166016C32.5037 0.166016 41.8307 9.4931 41.8307 20.9994C41.8307 32.5056 32.5037 41.8327 20.9974 41.8327H0.164079L6.26616 35.7306C4.32874 33.7982 2.79228 31.502 1.74508 28.9739C0.697884 26.4458 0.160591 23.7357 0.164079 20.9994ZM10.2224 37.666H20.9974C24.2938 37.666 27.5161 36.6885 30.2569 34.8572C32.9977 33.0258 35.1339 30.4228 36.3954 27.3774C37.6569 24.332 37.9869 20.9809 37.3438 17.7478C36.7007 14.5148 35.1134 11.5451 32.7825 9.21424C30.4516 6.88336 27.4819 5.29602 24.2489 4.65293C21.0159 4.00984 17.6648 4.3399 14.6194 5.60136C11.5739 6.86282 8.97094 8.99903 7.13959 11.7398C5.30823 14.4807 4.33075 17.703 4.33075 20.9994C4.33075 25.4827 6.10366 29.6764 9.212 32.7848L12.1578 35.7306L10.2224 37.666ZM12.6641 23.0827H29.3307C29.3307 25.2928 28.4528 27.4124 26.89 28.9752C25.3272 30.538 23.2075 31.416 20.9974 31.416C18.7873 31.416 16.6677 30.538 15.1049 28.9752C13.5421 27.4124 12.6641 25.2928 12.6641 23.0827Z" fill="#303179"/>
                                 </svg>
                             </div> */}
-                            <p className=' text-sm lg:mr-[100px] lg:text-right text-center mt-3 lg:mt-1 text-[#F8FAFC] ' >© 2022 Ezyswap. All rights reserved</p>
+                            <p className=' text-sm lg:mr-[100px] lg:text-right text-center mt-3 lg:mt-1 text-[#F8FAFC] ' >© 2023 Ezyswap. All rights reserved</p>
                         </div>
                     </div>
                 </div>

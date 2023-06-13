@@ -69,7 +69,7 @@ export default function SellCrypto({next, kyc}: props) {
                 "account_number": AcountNumber,
                 "bank_code": bankCode
             }))    
-            if(request.data?.status === 500 || !request?.data?.account_name){ 
+            if(request?.data?.status === 500 || !request?.data?.account_name){ 
                 toast({
                     title: ("Incorrect Acount Details"), 
                     position: "top",

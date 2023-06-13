@@ -32,7 +32,7 @@ export default function FAQ() {
     }
 
     return (
-        <div className=' w-full py-8 lg:py-20 flex flex-col text-center items-center bg-[#fff] px-6 lg:px-14 ' >
+        <div id="faq" className=' w-full py-8 lg:py-20 flex flex-col text-center items-center bg-[#fff] px-6 lg:px-14 ' >
             <motion.div ref={ref2} initial={{ scale: 0}} animate={controls2}  
                 transition={{ ease: "easeOut", duration: 1 }} > 
                 <p className=' text-lg font-normal ' >FAQs</p>

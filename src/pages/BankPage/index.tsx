@@ -207,7 +207,7 @@ export default function BankPage() {
                                     </svg>
                                 </button>
                             </div> 
-                            <Bank data={BankHandler} />
+                            <Bank data={BankHandler} bank={true} />
                             <p className=' text-[#475467] font-semibold text-sm mt-4 mb-2 ' >Account Number</p> 
                             <Input onChange={(e)=> setAccountNo(e.target.value)} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1" placeholder='Enter Account Number' type='number' /> 
                             {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
