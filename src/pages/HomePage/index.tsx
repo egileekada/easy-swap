@@ -7,10 +7,25 @@ import OurClients from '../../components/HomePageComponents/OurClients'
 import FAQ from '../../components/HomePageComponents/FAQ'
 import Footer from '../../components/Footer'
 import SellCryptoPage from '../SellCryptoPage'
+import {Helmet} from "react-helmet";
 
-export default function HomePage() {
+export default function HomePage() { 
+
     return (
         <div className=' w-screen h-full relative overflow-x-hidden   ' >
+            <Helmet>
+                <script type="text/javascript">
+                    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                    (function(){
+                        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                        s1.async=true;
+                        s1.src='https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
+                        s1.charset='UTF-8';
+                        s1.setAttribute('crossorigin','*');
+                        s0.parentNode.insertBefore(s1,s0);
+                        })();
+                </script>
+            </Helmet>
             <Navbar />
             <HeroSection />
             <HowItWorks />
