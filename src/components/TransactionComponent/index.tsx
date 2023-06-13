@@ -103,9 +103,14 @@ export default function TransactionComponent() {
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Assets</p>
                     <Select placeholder='All' value={payload?.coin_name} onChange={(e)=> changeHandler(e, "Assets")} fontSize="sm" backgroundColor="white" > 
                         <option>BTC</option>
-                        <option>USDT</option>
-                        <option>USDT_BSC</option>
-                        <option>USDT_TRON</option>
+                        <option value={"USDT"} >USDT(ERC-20)</option>
+                        <option value={"USDT_BSC"} >USDT(BEP- 20)</option>
+                        <option value={"USDT_TRON"}>USDT(TRC- 20)</option>
+
+                {/* <option value={"BSC"} >BEP- 20</option>
+                <option value={"TRON"}></option>
+                <option value={"TRON"}>TRC- 20</option>
+                <option value={"ETHEREUM"}>ERC -20</option> */}
                     </Select>
                 </div>
                 <div className=' w-full flex flex-col justify-center relative ' >
