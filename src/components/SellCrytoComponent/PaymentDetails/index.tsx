@@ -38,7 +38,7 @@ export default function PaymentDetails({close}: props) {
         }), userContext.transactionDetail?.id ) 
         
         toast({
-            title: 'Transaction Have been Cancelled', 
+            title: 'Your Transaction Has Been Cancelled Successfully  ', 
             status: 'success',  
             duration: 3000, 
             position:"top"

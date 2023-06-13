@@ -10,7 +10,7 @@ import SellCryptoPage from '../SellCryptoPage'
 
 export default function HomePage() {
     return (
-        <div className=' w-full h-full relative overflow-x-hidden   ' >
+        <div className=' w-screen h-full relative overflow-x-hidden   ' >
             <Navbar />
             <HeroSection />
             <HowItWorks />

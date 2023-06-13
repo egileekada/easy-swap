@@ -32,7 +32,7 @@ export default function TransactionComponent() {
             setLoading(true);  
             const request: any = await handleGetData("/swap/transactions/"+userContext.userInfo?.id)  
             // userContext.setUserInformation(request?.data)
-            console.log(request?.data); 
+            
             if(userContext.userInfo?.id){ 
                 let newArray: any = [...request?.data]
                 newArray.reverse()
@@ -46,8 +46,7 @@ export default function TransactionComponent() {
         }
   
         const clickHandler =async () => {   
-            const request: any = await handlSortTnx(payload)   
-            console.log(request); 
+            const request: any = await handlSortTnx(payload)    
             if(userContext.userInfo?.id){ 
                 let newArray: any = [...request?.data]
                 newArray.reverse()
@@ -346,7 +345,7 @@ export default function TransactionComponent() {
                             </div>
                             <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Status</p> 
                             <Select value={payload?.trans_status} placeholder='All' onChange={(e)=> changeHandler(e, "Status")} fontSize="sm" backgroundColor="white" > 
-                                <option>FAILED</option>
+                                <option value={"FAILED"} >CANCELLED</option>
                                 <option>PENDING</option>
                                 <option>SUCCESS</option> 
                             </Select>
@@ -357,9 +356,9 @@ export default function TransactionComponent() {
                             <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p> 
                             <Select placeholder='All' value={payload?.coin_name} onChange={(e)=> changeHandler(e, "Assets")} fontSize="sm" backgroundColor="white"  >
                                 <option>BTC</option>
-                                <option>USDT</option>
-                                <option>USDT_BSC</option>
-                                <option>USDT_TRON</option>
+                                <option value={"USDT"} >USDT(ERC-20)</option>
+                                <option value={"USDT_BSC"} >USDT(BEP- 20)</option>
+                                <option value={"USDT_TRON"}>USDT(TRC- 20)</option> 
                             </Select>
                     {(payload?.coin_name || payload?.trans_status || payload?.date )&& (
 
