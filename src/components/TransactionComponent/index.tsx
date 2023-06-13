@@ -105,12 +105,7 @@ export default function TransactionComponent() {
                         <option>BTC</option>
                         <option value={"USDT"} >USDT(ERC-20)</option>
                         <option value={"USDT_BSC"} >USDT(BEP- 20)</option>
-                        <option value={"USDT_TRON"}>USDT(TRC- 20)</option>
-
-                {/* <option value={"BSC"} >BEP- 20</option>
-                <option value={"TRON"}></option>
-                <option value={"TRON"}>TRC- 20</option>
-                <option value={"ETHEREUM"}>ERC -20</option> */}
+                        <option value={"USDT_TRON"}>USDT(TRC- 20)</option> 
                     </Select>
                 </div>
                 <div className=' w-full flex flex-col justify-center relative ' >
