@@ -111,7 +111,7 @@ export default function TransactionComponent() {
                 <div className=' w-full flex flex-col justify-center relative ' >
                     <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >Status</p>
                     <Select placeholder='All'  value={payload?.trans_status} onChange={(e)=>  changeHandler(e, "Status")} fontSize="sm" backgroundColor="white" > 
-                        <option>FAILED</option>
+                        <option value={"FAILED"} >CANCELLED</option>
                         <option>PENDING</option>
                         <option>SUCCESS</option> 
                     </Select>
