@@ -20,6 +20,7 @@ export default function BankSelection({rate, data, holder, code, bank}: Props) {
     const [dataInfo, setDataInfo] = React.useState([] as any)
     const [bankName, setBankName] = React.useState("")
     const [searchBank, setSearchBank] = React.useState("")  
+    const userContext: IUser = React.useContext(UserContext);  
     const configValue: string = (process.env.REACT_APP_MY_ENV_VAL as string) 
     React.useEffect(()=> { 
         setLoading(true)
@@ -105,6 +106,8 @@ export default function BankSelection({rate, data, holder, code, bank}: Props) {
         )
     }
 
+    // bank_acc_name
+
     return (
         <div className=' w-full relative' >
             <p className=' font-semibold text-sm text-[#334155] mb-2 ' >Select Bank</p>
@@ -118,7 +121,7 @@ export default function BankSelection({rate, data, holder, code, bank}: Props) {
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.4453 0.16795C6.7812 -0.0559832 7.21881 -0.0559832 7.55471 0.16795L13.5547 4.16795C13.804 4.33413 13.9656 4.60333 13.9951 4.90146C14.0247 5.1996 13.919 5.49526 13.7071 5.70711L13 6.41421V11.0004C13.5845 11.2223 14 11.7876 14 12.45C14 13.306 13.306 14 12.45 14H1.55C0.693958 14 0 13.306 0 12.45C0 11.7876 0.415462 11.2223 1.00001 11.0004V6.41421L0.292899 5.70711C0.0810543 5.49526 -0.024649 5.1996 0.00487213 4.90146C0.0343934 4.60333 0.196029 4.33413 0.445305 4.16795L6.4453 0.16795ZM9 6C9.55228 6 10 6.44772 10 7V10C10 10.5523 9.55228 11 9 11C8.44771 11 8 10.5523 8 10V7C8 6.44772 8.44771 6 9 6ZM6 7C6 6.44772 5.55228 6 5 6C4.44772 6 4 6.44772 4 7V10C4 10.5523 4.44772 11 5 11C5.55228 11 6 10.5523 6 10V7Z" fill="#647488"/>
                                     </svg>
                                 </div>
-                                <p className={bankName ? ' text-[#000] font-medium ml-2 ': ' text-[#647488] font-medium ml-2 '} >{bankName ? bankName : "Select Bank"}</p>
+                                <p className={holder ? ' text-[#000] font-medium ml-2 ': ' text-[#647488] font-medium ml-2 '} >{holder ? holder : "Select Bank"}</p>
                             </div>
                             <div className=' h-full w-[45px] border-l flex justify-center items-center border-[#CBD5E1] rounded-lg ' >
                                 <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
