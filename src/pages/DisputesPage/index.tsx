@@ -1,6 +1,7 @@
 import React from 'react' 
 import DisputeTable from '../../components/DisputeTable'
 import SupportChat from './SupportChat'
+import { Helmet } from 'react-helmet'
 
 export default function DisputePage() {
 
@@ -8,6 +9,19 @@ export default function DisputePage() {
 
     return (
         <div className=' w-full p-6 lg:p-14 ' >
+            <Helmet>
+                <script type="text/javascript">{`
+                    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                    (function(){
+                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                    s1.async=true;
+                    s1.src='https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
+                    s1.charset='UTF-8';
+                    s1.setAttribute('crossorigin','*');
+                    s0.parentNode.insertBefore(s1,s0);
+                    })();`}
+                </script>
+            </Helmet>
             {tab === 0 && ( 
                 <div className=' w-full flex lg:flex-row flex-col  gap-6 ' >
                     <div role="button" onClick={()=> setTab(2)} className=' lg:w-[423px] flex lg:flex-col flex-col px-6 rounded-xl bg-[#F6F7FF] border border-[#D0D5DD] justify-center items-center py-6 ' >

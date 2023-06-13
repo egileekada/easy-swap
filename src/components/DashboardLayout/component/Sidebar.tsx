@@ -23,7 +23,10 @@ export default function Sidebar({close, type}: props) {
         } else if(item === "Log out"){
             localStorage.clear()
             navigate(0)
-        } else{ 
+        } else if(item === "Sell Crypto"){
+            navigate("/dashboard/"+route)
+            navigate(0)
+        }  else{ 
             navigate("/dashboard/"+route)
         }
         if(type){
