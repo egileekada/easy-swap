@@ -69,15 +69,15 @@ export default function CoinSelection({rate, data, network}: Props) {
                         </div>
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
-                                    <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex items-center gap-3 ' >
-                                        <div className=' w-[40px] h-[40px] rounded-full bg-white '>
-                                            <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
-                                        </div>
-                                        <div className='' >
-                                            <p className=' text-[#333] font-semibold ' >{item?.coin_ticker}</p>
-                                            <p className=' font-normal mt-1 text-[#8994A1] text-sm ' >{item?.coin_name}</p> 
-                                        </div>
-                                    </div> 
+                                <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex items-center gap-3 ' >
+                                    <div className=' w-[40px] h-[40px] rounded-full bg-white '>
+                                        <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
+                                    </div>
+                                    <div className='' >
+                                        <p className=' text-[#333] font-semibold ' >{item?.coin_ticker}</p>
+                                        <p className=' font-normal mt-1 text-[#8994A1] text-sm ' >{item?.coin_name}</p> 
+                                    </div>
+                                </div> 
                             )
                         })}
                     </div>

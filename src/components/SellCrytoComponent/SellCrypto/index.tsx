@@ -50,8 +50,6 @@ export default function SellCrypto({next, kyc}: props) {
         onSubmit: () => {},
     });  
 
-
-
     React.useEffect(()=> {
         formik.setFieldValue("coin_amount_to_swap", value)
         formik.setFieldValue("bank_acc_name", bankName)
@@ -68,7 +66,8 @@ export default function SellCrypto({next, kyc}: props) {
             const request = await handleBankDetail(JSON.stringify({ 
                 "account_number": AcountNumber,
                 "bank_code": bankCode
-            }))    
+            }))   
+
             if(request?.data?.status === 500 || !request?.data?.account_name){ 
                 toast({
                     title: ("Incorrect Acount Details"), 
@@ -76,8 +75,7 @@ export default function SellCrypto({next, kyc}: props) {
                     status: "error",
                     isClosable: true,
                 }) 
-            }
-            
+            } 
             setAccountName(request?.data?.account_name) 
             setLoadingBank(false)
         } 
@@ -113,8 +111,7 @@ export default function SellCrypto({next, kyc}: props) {
         .catch(console.error);;
     }, []) 
     
-    React.useEffect(()=> { 
-
+    React.useEffect(()=> {  
         const exchangeRate =async()=> {
             setLoadingRate(true)
             let Str = coinName.charAt(0).toUpperCase() + coinName.slice(1)
@@ -219,8 +216,12 @@ export default function SellCrypto({next, kyc}: props) {
     }
 
     const ChangeBankCode =(item: any)=> {
+        formik.setFieldValue("bank_code", item)
         setBankCode(item)
         userContext.setSellCrypto({...userContext.sellCrypto, "bank_code": item})
+
+        console.log(item);
+        
     }    
 
     const [open, setOpen] = React.useState(false) 
