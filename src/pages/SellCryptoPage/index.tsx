@@ -29,10 +29,7 @@ export default function SellCryptoPage() {
 
       // make sure to catch any error
       .catch(console.error);;
-  }, [])  
-
-  console.log(data?.kyc_verified);
-  
+  }, [])     
 
   return (
     <div className=' w-full h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >

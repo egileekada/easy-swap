@@ -2,10 +2,32 @@ import React from 'react'
 import DisputeTable from '../../components/DisputeTable'
 import SupportChat from './SupportChat'
 import { Helmet } from 'react-helmet'
+import { useGetDataCallback } from '../../action/useAction'
 
 export default function DisputePage() {
 
     const [tab, setTab] = React.useState(0)
+
+
+    const [data, setData] = React.useState({}as any) 
+
+    const { handleGetData } = useGetDataCallback()
+    
+    React.useEffect(()=> {  
+        const fetchData = async () => {
+            const request: any = await handleGetData("/users/retrieve-user-kyc")  
+            if(request){
+                setData(request?.data)  
+            }
+        }  
+        
+        // call the function
+        fetchData()
+
+        // make sure to catch any error
+        .catch(console.error);;
+    }, [])      
+    
 
     return (
         <div className=' w-full p-6 lg:p-14 ' >
@@ -49,7 +71,12 @@ export default function DisputePage() {
                             <p className=' mt-3 font-normal lg:text-left text-sm ' >Do you have an issue that requires immediate attention? You can converse with a member of our support team on weekdays from 7am to 10pm WAT</p>
                             {/* </div> */}
                         </div>
-                        <button className='bg-[#303179] mt-4 lg:mt-auto ml-auto text-white h-[45px] w-[150px] rounded-md px-3 font-semibold text-sm ' >Call Us</button>
+                        {!data?.kyc_verified  && 
+                            <button disabled={true} className='bg-[#303179] mt-4 lg:mt-auto ml-auto opacity-25 text-white h-[45px] w-[150px] rounded-md px-3 font-semibold text-sm ' >Call Us</button>
+                        }
+                        {data?.kyc_verified  && 
+                            <a href='tel:+2349161720478' className='bg-[#303179] mt-4 lg:mt-auto ml-auto flex justify-center items-center text-white h-[45px] w-[150px] rounded-md px-3 font-semibold text-sm ' >Call Us</a>
+                        }
                     </div>
                 </div>
             )}
