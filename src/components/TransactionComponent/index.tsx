@@ -30,7 +30,7 @@ export default function TransactionComponent() {
     React.useEffect(()=> { 
         const fetchData = async () => {
             setLoading(true);  
-            const request: any = await handleGetData("/swap/transactions/"+userContext.userInfo?.id)  
+            const request: any = await handleGetData("/swap/transactions")  
             // userContext.setUserInformation(request?.data)
             
             if(userContext.userInfo?.id){ 
@@ -47,11 +47,12 @@ export default function TransactionComponent() {
   
         const clickHandler =async () => {   
             const request: any = await handlSortTnx(payload)    
-            if(userContext.userInfo?.id){ 
-                let newArray: any = [...request?.data]
-                newArray.reverse()
-                setData(newArray) 
-            }
+            // if(userContext.userInfo?.id){ 
+            //     // let newArray: any = [...request?.data]
+            //     // newArray.reverse()
+            //     setData(request?.data) 
+            // }
+            setData(request?.data) 
         } 
         if(payload?.coin_name || payload?.trans_status || payload?.date ){
             clickHandler()
@@ -168,7 +169,7 @@ export default function TransactionComponent() {
                                                         <Td>{dateFormat(item?.updated_at)}</Td>  
                                                         <Td>{userContext?.userInfo?.fullname}</Td>   
                                                         <Td>Deposit</Td>  
-                                                        <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name.includes("USDT") ? "USDT": "BTC"}</Td> 
+                                                        <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name?.includes("USDT") ? "USDT": "BTC"}</Td> 
                                                         <Td>{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn :item?.ngn_equivalent)}</Td>  
                                                         <Td>
                                                             <CopyButtton text={item?.coin_address} type={true} />    
@@ -225,7 +226,7 @@ export default function TransactionComponent() {
                                             <div key={index} className=' w-full flex justify-between ' >
                                                 <div role='button' onClick={()=> setshow(index)} className=' flex gap-2 ' >
                                                     <div className=' w-[30px] h-[30px] flex justify-center items-center rounded-full ' > 
-                                                        <img src={item?.coin_name.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
+                                                        <img src={item?.coin_name?.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
                                                     </div>
                                                     <div>
                                                         <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> {item?.coin_name}</p>

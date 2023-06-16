@@ -1,6 +1,6 @@
 import { Input } from '@chakra-ui/react'
 import React from 'react'
-import { useExchangeRateCallback, useGetDataCallback } from '../../../../action/useAction'
+import { useExchangeRateCallback, useGetDataCallback, useGetDataNotAutCallback } from '../../../../action/useAction'
 import { cashFormat } from '../../../../config/utils/cashFormat'
 import { IUser, UserContext } from '../../../../context/userContext'
 import { useNavigate } from 'react-router-dom'
@@ -14,7 +14,7 @@ export default function CryptoCalculation() {
     const [exchangeRate, setExchangeRate] = React.useState("")
     const [rate, setRate] = React.useState("")  
 
-    const { handleGetData } = useGetDataCallback() 
+    const { handleGetDataNotAut } = useGetDataNotAutCallback() 
     
     const { handleExchangeRate } = useExchangeRateCallback();
     const navigate = useNavigate()
@@ -77,7 +77,7 @@ export default function CryptoCalculation() {
     React.useEffect(()=> { 
         const fetchData = async () => {
             setLoading(true);  
-            const request: any = await handleGetData("/swap/usd-rate")   
+            const request: any = await handleGetDataNotAut("/swap/usd-rate")   
             setRate(request?.data?.usdt_ngn_rate)
 
             const t1 = setTimeout(() => {

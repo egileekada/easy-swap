@@ -5,7 +5,7 @@ import Dashboard from "../pages/Dashboard";
  
 export function useGetDataCallback() {
   const navigate = useNavigate()
-  const handleGetData = async (postData: any, ): Promise<any> => {    
+  const handleGetData = async (postData: any): Promise<any> => {    
     try{ 
         const response = await axios.get(postData,
         {
@@ -25,8 +25,31 @@ export function useGetDataCallback() {
     }     
   }
   return { handleGetData }
+} 
+
+export function useGetDataNotAutCallback() {
+  const navigate = useNavigate()
+  const handleGetDataNotAut = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await axios.get(postData,
+        {
+            headers: {
+                'Content-Type':'application/json'
+            }, 
+        }); 
+        return response       
+    } catch(err: any) {    
+      if(window.location.pathname.includes("dashboard")){
+        if(err?.response.data.error?.message === "Request not authorized"){
+          navigate("/signin")
+        } 
+      }
+      return err?.response    
+    }     
+  }
+  return { handleGetDataNotAut }
 }
- 
+
 export function useSwapCoinCallback() {
   const handleSwapCoin = async (postData: any): Promise<any> => {    
     try{ 
