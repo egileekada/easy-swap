@@ -33,11 +33,12 @@ export default function TransactionComponent() {
             const request: any = await handleGetData("/swap/transactions")  
             // userContext.setUserInformation(request?.data)
             
-            if(userContext.userInfo?.id){ 
-                let newArray: any = [...request?.data]
-                newArray.reverse()
-                setData(newArray) 
-            }
+            // if(userContext.userInfo?.id){ 
+            //     let newArray: any = [...request?.data]
+            //     newArray.reverse()
+            //     setData(newArray) 
+            // }
+            setData(request?.data)
             
             const t1 = setTimeout(() => {
                 setLoading(false);  
