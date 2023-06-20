@@ -47,7 +47,7 @@ export default function Footer() {
                         <motion.div ref={ref} initial={{x: +200}} animate={controls}  
                             transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-row lg:flex-col lg:gap-0 gap-6 lg:mt-0 mt-10  ' >
                             <div className=' w-full flex flex-col ' >
-                                <p className=' text-[#F8FAFC] font-normal ' >Learn more about Easyswap</p>
+                                <p className=' text-[#F8FAFC] font-normal ' >Learn more about Ezyswap</p>
                                 <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
                                 <a href='/legal-matters' className=' text-[#F8FAFC] mt-4 ' >Legal</a>
                                 <a href='#faq' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>

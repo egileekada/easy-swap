@@ -276,7 +276,7 @@ export default function SellCrypto({next, kyc}: props) {
                                     </g>
                                 </svg>
                             </div>
-                            The name on your account must match the name provided on your BVN and Easyswap account
+                            The name on your account must match the name provided on your BVN and Ezyswap account
                         </div>
                         {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
                             <> 
