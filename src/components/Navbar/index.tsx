@@ -45,6 +45,11 @@ export default function Navbar({ hide, dashboard, settings }: props) {
         navigate(0)
     }
 
+    const clickHandler =(item: any)=> { 
+        navigate(item)
+        navigate(0)
+    }
+
     return (
         <div className=' relative w-full h-[62px] ' >  
             <div className=' w-full sticky z-40 top-0 h-[62px] py-2 flex items-center lg:pr-20 pr-3 px-2 lg:px-20 bg-white ' > 
@@ -75,8 +80,8 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                             <>
                                 {!userContext.userInfo?.email && ( 
                                     <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
-                                        <button onClick={()=> navigate("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
-                                        <button onClick={()=> navigate("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
+                                        <button onClick={()=> clickHandler("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
+                                        <button onClick={()=> clickHandler("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
                                     </div>
                                 )}
                             </>
@@ -114,7 +119,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                         )}
                         {show && 
                             <div className=' absolute flex flex-col font-semibold right-0 top-12 bg-white z-50 p-2 rounded-lg text-[#202223]  ' style={{boxShadow: "0px 3px 6px -3px rgba(23, 24, 24, 0.08), 0px 8px 20px -4px rgba(23, 24, 24, 0.12)"}} >
-                                <button onClick={()=> navigate("/dashboard/sellcrypto")} disabled={pathName.includes("dashboard")} className={pathName.includes("dashboard") ? ' p-2 rounded-[4px] bg-[#3031791A] ':' p-2 rounded-[4px] hover:bg-[#3031791A] '} >Dashboard</button>
+                                <button onClick={()=> clickHandler("/dashboard/sellcrypto")} disabled={pathName.includes("dashboard")} className={pathName.includes("dashboard") ? ' p-2 rounded-[4px] bg-[#3031791A] ':' p-2 rounded-[4px] hover:bg-[#3031791A] '} >Dashboard</button>
                                 <button onClick={LogOut} className=' p-2 mt-2 rounded-[4px] hover:bg-[#3031791A] ' >Log Out</button>
                             </div>
                         }
@@ -125,7 +130,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                 )}
 
                 {!userContext.userInfo?.email && ( 
-                    <button onClick={()=> navigate("/signin")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
+                    <button onClick={()=> clickHandler("/signin")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
                         Get Started
                     </button>
                 )}
