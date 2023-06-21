@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../../../components/Navbar'
+import OtherFooter from '../../../components/OtherFooter'
 
 export default function KycPolicy() {
 
@@ -26,7 +27,7 @@ export default function KycPolicy() {
                             </svg>
                             <p className=' text-[24px] font-medium ' >KYC policy</p>
                         </div>
-                        <div className=' w-full mt-8 font-normal   ' >
+                        {/* <div className=' w-full mt-8 font-normal   ' >
                             Our platform is committed to ensuring a safe and secure environment for our users. To comply with legal and regulatory requirements and prevent fraudulent activities, we have implemented a KYC (Know Your Customer) policy. This policy outlines our procedures for verifying the identity of our users.
                             <br/><br/>
                             <span className=' text-[#303179] font-bold ' >1. User Identification:</span><br/>
@@ -54,10 +55,74 @@ export default function KycPolicy() {
                             - In case of any changes to your personal details, you should promptly notify us to ensure the accuracy of your information.<br/>
                             <br/><br/>
                             It is important to adhere to our KYC policy to maintain the integrity of our platform and protect all users. By using our services, you acknowledge and agree to comply with our KYC procedures and provide accurate and authentic information when requested.<br/>
+                        </div> */}
+                        <div className=' w-full mt-8 font-normal' >
+                            Effective Date: @May  27, 2023
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Definitions</span><br/><br/>
+                            - Money Laundering (ML): means the process by which criminals attempt to conceal the origin and/or illegitimate ownership of property and assets that are the proceeds of criminal activities.<br/>
+                            - Terrorism Financing: includes both legitimate and illegitimate money characterised by concealment of the origin or intended criminal use of the funds.<br/>
+                            - Know Your Customer (KYC): This entails obtaining and verifying customer identity, preservation of records of customers, mandatory disclosure of transactions to authorised statutory bodies.<br/>
+                            - Nigeria Financial Intelligence Unit (NFIU): The Nigerian arm of the global Financial Intelligence Unit (FIU).<br/>
+                            - Politically Exposed Persons (PEPs): Individuals who have been entrusted with prominent public functions in any country. Generally presenting a higher risk for potential involvement in bribery and corruption by virtue of their position and the influence that they may hold.<br/>
+                            - Enterprise Risk management (ERM): includes the methods and processes used by organisations to manage risks and seize opportunities related to achieving their objectives.<br/>
+                            - Client: includes any entity with a business relationship with the Company or any entity connected with a financial transaction that can pose significant reputational or other risks to the Company<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Policy mandate</span><br/><br/>
+                            This policy is connected to a more comprehensive in-house Anti-Money Laundering (AML), Know Your Customer (KYC) and the combating the Financing of Terrorism Policy (CFT). It sets out an abbreviated version of the guidelines for Ezyswap Solutions Limited (herein referred to as ‘the Company’) compliance with AML/CFT obligations under the law, as well as regulatory directives. It prevents any transaction that facilitates criminal activities.<br/><br/>
+                            Ezyswap Solutions Limited (Dba Ezyswap) understands that it has a vital role in preventing criminals from using our services to facilitate money laundering and terrorist financing. We are committed to detecting and avoiding money laundering and will cooperate fully with the Regulators and Law Enforcement Agencies where necessary.
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Policy description</span><br/><br/>
+                            Money Laundering and financing terrorism are financial crimes with economic effects. This policy is to eradicate the adverse effects of criminal economic activity and promotes integrity and stability in financial markets. Compliance with this policy is also critical to preserving the Company’s corporate integrity, reputation and operational efficiency.<br/><br/>
+                            <span className=' text-[#303179] font-bold ' >The purpose of this Policy is:</span><br/><br/>
+                            - To guide the standard of conduct and practice that Ezyswap (Dba Ezyswap) must follow in implementing the AML, KYC, and CFT regulations.<br/>
+                            - To protect the Company against fraud, reputation and other financial market risks.<br/>
+                            - To minimise the risks faced by the Company from proceeds of crime<br/>
+                            - To prevent money laundering and establish ERM systems to monitor the Company’s exposure to financial crime.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Compliance with policy</span><br/><br/>
+                            The Company shall comply with the following:<br/><br/>
+                            - Formulate and implement internal controls and other procedures that will deter criminals from using its facilities for money laundering and terrorist financing and ensure that its obligations under Nigerian and subsisting laws and Regulations are met.<br/>
+                            - Embark on Enterprise Risk Management (ERM) and maintain an ERM register<br/>
+                            - Designate a Money Laundering Reporting Officer (MLRO) with the relevant competence and independence to implement the Company’s AML/KYC compliance policy.<br/>
+                            - Comply with the Money Laundering (Prohibition) Act, the Money Laundering (Prohibition) (Amendment) Act (together, the Money Laundering Act) and the Economic and Financial Crimes Commission Act.<br/>
+                            - Identify and report any suspicious transactions from the criminal activities defined in AML/KYC Regulations.<br/>
+                            - Ensure the implementation of the AML/KYC Act requirements is not inhibited through the Company’s Confidentiality Agreement or Policy.<br/>
+                            - Effectively communicate and raise staff awareness on AML/KYC issues<br/>
+                            - Establishing and maintaining a risk-based approach to assessing and managing money laundering and terrorist financing risks.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Know your client</span><br/><br/>
+                            KYC is the due diligence that the Company must perform to identify their clients and ascertain relevant information before carrying out any financial businesses with them. The Company, in upholding its KYC policies, shall undertake the following:
+                            <br/><br/>
+                            - Establishing and maintaining a risk-based approach to Customer Due Diligence (CDD), Enhanced Due Diligence (EDD), including customer identification, verification and KYC procedures.<br/>
+                            - Issue a KYC compliance form to clients.<br/>
+                            - Obtain the necessary documents and information from every client<br/>
+                            - Report suspicious activities and transactions to the regulatory authorities<br/>
+                            - Update client information as and when available<br/>
+                            - Identify the client and verify the client’s identity using reliable, independent source documents (e.g. passport data page, national ID card, voters card, utility bills stating their current postal address. e.t.c), data or information.<br/>
+                            - Verify the legal status of business names, incorporated trustees and companies with the Corporate Affairs Commission.<br/>
+                            - Refuse to transact business with “shell companies” as described under the International Conventions.<br/>
+                            - Conduct due diligence for higher-risk clients, business relationships or transactions including PEP, cross border transactions and business relationships.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Record keeping and reporting</span><br/><br/>
+                            The Company shall keep the record of a customer’s identification for at least six years after the closure of the account or the severance of relations with the customer.<br/><br/>
+                            Upon request by a regulatory or law enforcement agency, the Company shall make available records related to AML/CFT compliance or its clients as soon as possible from the date of the request.<br/><br/>
+                            If the company notices any illegal transaction, it shall:
+                            <br/><br/>
+                            - Draw up a report on the identity of the principal and the beneficiary or beneficiaries; <br/>
+                            - Take appropriate action to prevent the laundering of the proceeds of criminal conduct;<br/>
+                            - Send a copy of the report and action taken to the Nigerian Financial Intelligence Unit (NFIU);<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Politically Exposed Persons (PEPs)</span><br/><br/>
+                            Business relationships with family members or close associates of PEPs involve reputation risks similar to those PEPs themselves. The Company shall evaluate the risks to its business operations when dealing with PEPs.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Sanctions</span><br/><br/>
+                            A breach of the AML/CFT is a severe offence and could lead to investigations, imposition of fines and criminal sanctions (including imprisonment) <br/>
                         </div>
                     </div>
                 </div>
             </div>
+            <OtherFooter />
         </div>
     )
 }

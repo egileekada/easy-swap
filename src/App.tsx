@@ -21,6 +21,7 @@ import LegalMatters from './pages/Legal-Matters';
 import TermOfService from './pages/Legal-Matters/termsofservice';
 import Policy from './pages/Legal-Matters/policy';
 import KycPolicy from './pages/Legal-Matters/kyc-policy';
+import About from './pages/About';
 
 function App() {
   return ( 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/privacy-policy" element={<Policy />} /> 
             <Route path="/kyc-policy" element={<KycPolicy />} /> 
             <Route path="/legal-matters" element={<LegalMatters />} />
+            <Route path="/about" element={<About />} />
             <Route path="/termofservice" element={<TermOfService />} />
             <Route path="/signin" element={<LoginPage />} /> 
             <Route path="/signup" element={<RegisterPage />} /> 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../../components/Navbar'
 import { useNavigate } from 'react-router-dom'
+import OtherFooter from '../../../components/OtherFooter'
 
 export default function Policy() {
 
@@ -26,7 +27,7 @@ export default function Policy() {
                             </svg>
                             <p className=' text-[24px] font-medium ' >Privacy policy</p>
                         </div>
-                        <div className=' w-full mt-8 font-normal   ' >
+                        {/* <div className=' w-full mt-8 font-normal   ' >
                             At our platform, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, and safeguard the information you provide to us.
                             <br/><br/>
                             <span className=' text-[#303179] font-bold ' >1. Information Collection:</span><br/>
@@ -58,10 +59,85 @@ export default function Policy() {
                             It is important that you read and understand our full Privacy Policy. By using our services, you consent to the collection, use, and disclosure of your information as described in this policy. If you have any questions or concerns regarding our privacy practices, please contact us.<br/>
                             <br/><br/>
                             Please read our full Terms of Service for more detailed information. By using our platform, you acknowledge that you have read, understood, and agreed to these terms. If you do not agree to these terms, please refrain from using our services.<br/>
+                        </div> */} 
+                        <div className=' w-full mt-8 font-normal   ' >
+                            Effective Date: @May 27, 2023
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Introduction</span><br/><br/>
+                            Ezyswap Solutions Limited (herein referred to as “Ezyswap”, “us”, “we” or “our”) operates this website (“the Service”).<br/><br/>
+                            We strive to maintain the highest standards of integrity in all our operations and are dedicated to protecting our customers’ and online visitors’ privacy on our service. This page informs you of our policies regarding collecting, using, and disclosing personal data when you use our Service and the choices you have associated with that data.<br/><br/>
+                            We use your data to provide and improve the Service. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as our Terms of service. We are committed to protecting your Personal Data while You use this Application.<br/><br/>
+                            We recognize that your privacy is important. This document outlines the types of personal information we receive and collect when you use the service and some of the steps we take to safeguard information. We hope this will help you make an informed decision about sharing personal information with us.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Types of Data Collection</span><br/><br/>
+                            We collect different types of information from the visitors to our website voluntarily. The collection of the information is to provide and improve our service to you, and such information includes but is not limited to:<br/><br/>
+                            - Personal identification information such as your full name, date of birth, nationality, cellphone or mobile number, email address, place of residence (and/or proof of residence), employment status, the industry of employment and/or national identification number;<br/>
+                            - Information for purposes of biometric identification, such as the selfie you provide to us when creating your Ezyswap account.<br/>
+                            - National identity documentation such as a copy of your national identity card, drivers’ license or passport and/or any other information deemed necessary to comply with our legal obligations under financial or anti-money laundering laws;<br/>
+                            - Transaction information such as your transaction data on your Ezyswap account and information on the recipient of any transaction(s);<br/>
+                            - Correspondence such as information provided to us when engaging with our customer support and/or responses to surveys;<br/>
+                            - Usage, device and location information such as cookies, geolocation information, browser name and version information, IP address information, device fingerprint data, authentication data and/or clickstream data.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >This information is collected as follows;</span><br/><br/>
+                            When you provide it to us, such as when you sign up for a Ezyswap account, use our products and services, or take part in customer surveys, competitions and promotions;<br/>
+                            When you communicate with us by email, chat, telephone or any other means, we collect the communication and any personal data provided in it;<br/>
+                            When you use the Ezyswap platform, we collect information on your transactions and usage of your Ezyswap account;<br/>
+                            when we obtain information from third parties such as identity verification services, credit reference agencies, regulatory and enforcement agencies and public sources.<br/><br/>
+                            The information collected is internally reviewed, used to improve the content of our website, notify our visitors of updates, and respond to visitor inquiries. Once information is reviewed, it is discarded or stored in our files. If we make material changes in collecting personally identifiable information, we will inform you by placing a notice on our site. Personal information received from any visitor will be used only for internal purposes and will not be sold or provided to third parties.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Use/Processing of Personal Data</span><br/><br/>
+                            We will only process your personal data to carry out our lawful business activities. In doing so, we rely on one or more of the following lawful grounds for processing your personal data:<br/><br/>
+                            Contractual necessity: We may process your personal data where it is necessary for us to provide our products and services to you or to otherwise comply with our obligations under Ezyswap’s Terms of use.<br/><br/>
+                            Consent: In some cases, we will only process your personal data where you provide us with your express consent for such processing.‍<br/><br/>
+                            Legal obligation: In some cases, we may need to process your personal data to comply with an obligation imposed by law.<br/><br/>
+                            Legitimate interest: In some cases, we may need to process your personal data where it is in our legitimate legal interests to do so.<br/><br/>
+                            More specifically, we may process your personal data for one or more of the following purposes.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Transfer of Data</span><br/><br/>
+                            Your information, including Personal Data, may be transferred to and maintained on computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those from your jurisdiction.<br/><br/>
+                            Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. Ezyswap will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy. Any personal information you provide to us, including and similar to your name, address, telephone number and e-mail address, will not be released, sold, or rented to any entities or individuals except as noted below.<br/><br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' ></span>Storage of Personal Data<br/><br/>
+                            We take the security of the Personal Data we collect very seriously. We take reasonable measures to reduce the risk of accidental destruction, loss or unauthorised access to such information. However, please note that no system involving the transmission of information via electronic storage systems or the internet is entirely secure.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Disclosure of Personal Data</span><br/><br/>
+                            We may share your personal data with:<br/><br/>
+                            - Any person that works for Ezyswap;<br/>
+                            - Financial and other institutions we partner with to provide our products and services;<br/>
+                            - Companies and organizations that provide third-party services to us, including technical infrastructure, marketing and analytics, and web and app development;<br/>
+                            - Companies and organisations that assist us with identity verification, background screening and due diligence.<br/>
+                            - Our professional advisers, consultants and other similar services.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >We will otherwise treat your personal data as private and confidential and will not share it with other parties except:</span><br/><br/>
+                            - Where you have permitted us to do so;<br/>
+                            - Where we believe it is reasonably necessary to comply with any law, regulation, legal process or governmental request, to enforce our Terms of use or other agreements, or to protect the rights, property, or safety of us, our customers or others;<br/>
+                            - Where we may transfer rights and obligations according to our agreement with you.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Service providers</span><br/><br/>
+                            We may employ third-party companies and individuals to facilitate our Service ("Service Providers"), provide service on our behalf, perform Service-related services, or assist us in analysing how our Service is used.‍<br/><br/>
+                            These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >External sites</span><br/><br/>
+                            Our Service may contain links to other sites not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.‍<br/><br/>
+                            We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Children's policy</span><br/><br/>
+                            Our Service does not address anyone under 18 ("Children"). We do not knowingly collect personally identifiable information from anyone under 18. If you are a parent or guardian and know that your child has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we remove that information from our servers.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' ></span>Changes to policy<br/><br/>
+                            We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. We will notify you via email and/or by a notice on our Service before the change becomes effective and update the "effective date" at the top of this Privacy Policy. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when posted on this page.
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Client's liability</span><br/><br/>
+                            The security of your data is important to us. But remember that no method of transmission over the internet or method of electronic storage is 100% secure.<br/><br/>
+                            While we do our best to protect your personal information, we cannot guarantee the security of any information that you transmit to us. You are solely responsible for maintaining the secrecy of any passwords or other account information. By using the Service, you agree to the collection and use of information in accordance with this policy.<br/>
+                            <br/><br/>
+                            <span className=' text-[#303179] font-bold ' >Contact us</span><br/><br/>
+                            If you have any questions about this Privacy Policy, please contact us via ezyswapsolutionsltd@gmail.com<br/>
                         </div>
                     </div>
                 </div>
             </div>
+                <OtherFooter />
         </div>
     )
 }

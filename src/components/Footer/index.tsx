@@ -48,7 +48,7 @@ export default function Footer() {
                             transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-row lg:flex-col lg:gap-0 gap-6 lg:mt-0 mt-10  ' >
                             <div className=' w-full flex flex-col ' >
                                 <p className=' text-[#F8FAFC] font-normal ' >Learn more about Ezyswap</p>
-                                <a href='#' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
+                                <a href='/about' className=' text-[#F8FAFC] !mt-6 ' >About Us</a>
                                 <a href='/legal-matters' className=' text-[#F8FAFC] mt-4 ' >Legal</a>
                                 <a href='#faq' className=' text-[#F8FAFC] mt-4 ' >FAQs</a>
                                 {/* <a href='javascript:void(Tawk_API.toggle())' className=' text-[#F8FAFC] mt-4 ' >Support</a> */}
