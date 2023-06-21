@@ -110,7 +110,7 @@ export default function PaymentDetails({close}: props) {
                             </div>
                         </div> */}
                     </div> 
-                    <p className=' mt-6 font-medium text-sm  ' >We would credit the bank account provided below once the transaction is confirmed as successfulsuccessful on the crypto network.</p>
+                    <p className=' mt-6 font-medium text-sm  ' >We would credit the bank account provided below once the transaction is confirmed as Successful on the crypto network.</p>
                 </div>
                 <div className=' w-full flex flex-col items-center p-0 py-9 lg:p-9 ' >
                     <div className=' w-full lg:w-[420px] ' > 
