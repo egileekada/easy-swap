@@ -79,7 +79,7 @@ export default function OurClients() {
                         <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={()=> clickHandler("https://twitter.com/tom__tom1/status/1661048199912607744?t=2ftfFPJLAr09JYWNnLkxXg&s=19")} className={` py-8 w-[100vw] lg:px-0 px-8 lg:w-[350px] flex flex-col items-center `} > 
                             <div className=' w-fit h-fit ' > 
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))"}} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
-                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1669439711276945417/NRwzEXUx_400x400.jpg'/>
+                                    <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='/images/propic.jpg'/>
                                 </div>
                             </div>
                             <div className=' w-full px-5 pb-6 -mt-[40px] h-full flex flex-col lg:-mt-[70px] pt-[50px] lg:pt-[80px] bg-white rounded-2xl ' >
