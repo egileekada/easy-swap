@@ -23,7 +23,7 @@ export default function About() {
             <div className=' w-full flex justify-center  px-6 ' > 
                 <div className=' max-w-[1240px] flex-col flex flex-1 pt-14 ' >
                     <p className=" text-[36px] font-bold text-center " >Our Story</p>
-                    <p className=' w-full break-all text-base font-normal mt-6  ' >
+                    <p className=' w-full text-base font-normal mt-6  ' >
                         At Ezyswap, We believe that utilizing cryptocurrencies for your everyday needs should be a breeze. Our mission is to simplify the process of sending, spending, and earning with crypto, making it accessible and enjoyable for all individuals.<br/><br/>
                         Whether you’re a crypto enthusiast, a freelancer, or an agency, our platform provides an easy way to send, spend, and earn crypto without worrying about transaction fees eating into your hand-earned funds.<br/><br/>
                         We are committed to delivering a fast straightforward, and enjoyable experience for every user. Whether you’re making online purchases or simply exploring the vast possibilities of cryptocurrency, Ezyswap ensures that your journey is as smooth as possible. Our intuitive interface and user-friendly features make it a breeze to navigate the crypto landscape, empowering you to make the most of your digital assets.
@@ -79,7 +79,7 @@ export default function About() {
                             </div>
                             <div className=' w-full flex items-center mt-6 ' >
                                 <div className=' w-full block ' >
-                                    <p className=' text-[18px] font-bold  ' >Kelechukwu Nwokoro</p>
+                                    <p className=' text-[18px] font-bold  ' >Kelechi Cletus</p>
                                     <p className=' text-[16px] font-semibold  '>Compliance Officer</p>
                                 </div>
                                 <div className=' w-fit ml-4 ' >
