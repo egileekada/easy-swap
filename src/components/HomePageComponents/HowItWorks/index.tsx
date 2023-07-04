@@ -99,7 +99,16 @@ export default function HowItWorks() {
                 </motion.div>
                 <motion.div ref={ref2} initial={{x: +200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }} className='  w-full flex justify-center lg:mt-0 mt-8 ' >
-                        <img alt='first' className=' h-full object-contain ' src='/images/iPhone.png' />
+                        {/* <img alt='first' className=' h-full object-contain ' src='/images/iPhone.png' /> */}
+
+                <video className='  h-full '
+                    autoPlay={true} 
+                    loop={true}
+                    controls={false} 
+                    playsInline
+                    muted   >
+                    <source src="/secondvideo.mp4" type="video/mp4"/>
+                </video>
                 </motion.div>
             </div>
         </div>
