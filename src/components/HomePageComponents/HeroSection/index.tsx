@@ -6,6 +6,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; 
 import { useNavigate } from 'react-router-dom';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import ModalLayout from '../../ModalLayout';
 
 export default function HeroSection() {
 
@@ -83,23 +84,17 @@ export default function HeroSection() {
                     muted   >
                     <source src="/mvideo.mp4" type="video/mp4"/>
                 </video> 
-                {showModal && (
-                    <> 
-                    
-        {/* <iframe width="1195" height="672" className='absolute lg:block hidden inset-0 z-30' src="https://www.youtube.com/embed/rTNeaM7k96I" title="How To Swap Crypto To Naira On Ezyswap" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> */}
-                        {/* <video className=' absolute lg:block hidden inset-0 z-30 lg:w-fit my-auto mx-auto h-[100vh] lg:h-[70vh] '
-                            autoPlay={true} 
-                            // loop={true}
-                            controls={true} 
-                            playsInline
-                            // muted 
-                              >
-                            <source src="https://youtu.be/rTNeaM7k96I" type="video/mp4"/>
-                        </video> */}
+                {/* {showModal && (
+                    <>  
                          <YouTube videoId="rTNeaM7k96I" className=' absolute block inset-0 z-30 w-fit my-auto mx-auto h-auto '  onReady={onPlayerReady} />
                         <div onClick={()=> setShowModal(false)} className=' bg-[#51525C4D] fixed inset-0 z-20 ' />
                     </>
-                )}
+                )} */}
+                <ModalLayout open={showModal} size={"2xl"} rounded={true} bg="transparent" close={setShowModal} > 
+                    <div className=' w-full flex justify-center items-center ' > 
+                        <YouTube videoId="rTNeaM7k96I" className='  w-full h-auto '  onReady={onPlayerReady} />
+                    </div>
+                </ModalLayout>
             </div> 
         </div>
     )
