@@ -2,12 +2,12 @@ import React from 'react'
 import Navbar from '../Navbar' 
 import Sidebar from './component/Sidebar'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure } from '@chakra-ui/react'
+// import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input, useDisclosure } from '@chakra-ui/react'
 
-type props = {
-    settings?: boolean,
-    tab?: any
-}
+// type props = {
+//     settings?: boolean,
+//     tab?: any
+// }
 
 export default function DashboardLayout() { 
 

@@ -6,7 +6,7 @@ import ReasonWhySection from '../../components/HomePageComponents/ReasonWhySecti
 import OurClients from '../../components/HomePageComponents/OurClients'
 import FAQ from '../../components/HomePageComponents/FAQ'
 import Footer from '../../components/Footer'
-// import SellCryptoPage from '../SellCryptoPage'
+import SellCryptoPage from '../SellCryptoPage'
 import { Helmet } from "react-helmet";
 
 export default function HomePage() {
@@ -33,7 +33,7 @@ export default function HomePage() {
             </div>
             <HeroSection />
             <HowItWorks />
-            {/* <SellCryptoPage /> */}
+            <SellCryptoPage />
             <ReasonWhySection />
             <OurClients />
             <FAQ />

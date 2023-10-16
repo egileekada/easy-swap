@@ -10,8 +10,14 @@ import { useRegisterCallback } from '../../action/useAuth'
 import { useToast } from '@chakra-ui/react'
 // import { IUser, UserContext } from '../../context/userContext'
 import GoogleButton from '../../components/GoogleButton'
+import userdata from '../../global-state/userdata'
 
 export default function RegisterPage() {
+
+
+    // global State  
+    const setUserData: any = userdata((state) => state.setUserData)
+
 
     const navigate = useNavigate()
     const [loading, setLoading] = React.useState(false)
@@ -66,7 +72,7 @@ export default function RegisterPage() {
             if (request.status === 200 || request.status === 201) {    
                 localStorage.setItem('token', request?.data?.data?.token);   
                 localStorage.setItem('id', request?.data?.data?.user?.id); 
-                // userContext.setUserEmail(formik.values.email)
+                setUserData({userEmail: formik.values.email})
                 navigate("/verifyemail")
                 toast({
                     title: "Registration Successful", 
