@@ -73,7 +73,7 @@ export default function HeroSection() {
                     controls={false} 
                     playsInline
                     muted   >
-                    <source src="https://res.cloudinary.com/dwotkchmt/video/upload/v1697480408/video_umlz9m.mp44" type="video/mp4"/>
+                    <source src="https://res.cloudinary.com/dwotkchmt/video/upload/v1697480408/video_umlz9m.mp4" type="video/mp4"/>
                 </video>
                 <video className=' absolute lg:hidden inset-0 z-10 w-[100%] h-[100vh] lg:h-[80vh] '
                     autoPlay={true} 
