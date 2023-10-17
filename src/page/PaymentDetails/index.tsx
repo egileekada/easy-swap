@@ -32,8 +32,7 @@ export default function PaymentDetails(props: IProps) {
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
     const [loadingBank, setLoadingBank] = React.useState(false)
-    const toast = useToast()
-    // const userContext: IUser = React.useContext(UserContext); 
+    const toast = useToast() 
 
     const {handlTnxStatus} = uesTnxStatusCallback()
     const { handleBankDetail } = useBankDetailCallback();
@@ -65,7 +64,7 @@ export default function PaymentDetails(props: IProps) {
             setLoadingBank(false)
         } 
             fetchData() 
-            
+
     }, [tnxinfo?.bank_acc_number, tnxinfo?.bank_code]) 
 
     const CancelTnxHandler =async()=> {
@@ -85,12 +84,14 @@ export default function PaymentDetails(props: IProps) {
         }) 
         setLoading(false)
         setOpen(false)
-        navigate("/dashboard/transactionshistory")
-        
-    }  
+        navigate("/dashboard/transactionshistory") 
+    }       
 
-    console.log(tnxinfo);
-    
+    React.useEffect(()=> {
+        if(!tnxinfo?.coin_name){ 
+            navigate("/dashboard/transactionshistory") 
+        }
+    }, [tnxinfo])
 
     return (
         <div className=' w-full flex justify-center' >  
@@ -151,7 +152,7 @@ export default function PaymentDetails(props: IProps) {
                             <p className=' font-medium text-[#475569] ' >email</p>
                             <p className=' font-medium text-[#475569] text-right  ' >{userinfo?.email}</p>
                             <p className=' font-medium text-[#475569]  ' >Phone Number</p>
-                            <p className=' font-medium text-[#475569] text-right ' >{userinfo?.phone}</p>
+                            <p className=' font-medium text-[#475569] text-right ' >{tnxinfo?.phone_number}</p>
                         </div>
                     </div>
                     <div className=' w-full lg:w-[420px] pt-9 ' > 
