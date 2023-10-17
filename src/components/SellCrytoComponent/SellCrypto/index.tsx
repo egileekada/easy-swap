@@ -5,7 +5,7 @@ import Bank from './components/Bank'
 import { Input, useToast } from '@chakra-ui/react'
 import ButtonComponent from '../../ButtonComponent'
 // import { IUser, UserContext } from '../../../context/userContext'
-import { useBankDetailCallback, useExchangeRateCallback, useGetDataCallback, useSwapCoinCallback } from '../../../action/useAction'
+import { useBankDetailCallback, useExchangeRateCallback, useSwapCoinCallback } from '../../../action/useAction'
 import { cashFormat } from '../../../config/utils/cashFormat'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
@@ -26,17 +26,14 @@ export default function SellCrypto({ kyc }: props) {
     const userinfo: any = userdata((state) => state.user)
     const updateCrypto = buycrypto((state) => state.updateCrypto) 
     const tnxinfo = transactiondetail((state) => state.tnx)
-    const setTnxData = transactiondetail((state) => state.setTnxData)
-
-    console.log(data);
-    
+    const setTnxData = transactiondetail((state) => state.setTnxData)     
 
     const navigate = useNavigate()
     const toast = useToast()
 
-    React.useEffect(() => {
-        updateCrypto({} as any)
-    }, []) 
+    // React.useEffect(() => {
+    //     updateCrypto({} as any)
+    // }, []) 
 
     const [loading, setLoading] = React.useState(false)
     const [loadingRate, setLoadingRate] = React.useState(false)
@@ -54,22 +51,23 @@ export default function SellCrypto({ kyc }: props) {
     const { handleSwapCoin } = useSwapCoinCallback();
     const { handleBankDetail } = useBankDetailCallback();
     const { handleExchangeRate } = useExchangeRateCallback();
-    const { handleGetData } = useGetDataCallback()
+    // const { handleGetData } = useGetDataCallback()
 
     const formik = useFormik({
         initialValues: { coin_amount_to_swap: '', bank_acc_name: '', bank_code: '', bank_acc_number: '', phone_number: '', coin_name: '', network: '' },
         onSubmit: () => { },
     });
+   
 
     React.useEffect(() => {
         formik.setFieldValue("coin_amount_to_swap", value)
         formik.setFieldValue("bank_acc_name", bankName)
-        formik.setFieldValue("bank_code", data?.bank_code)
+        formik.setFieldValue("bank_code", bankCode)
         formik.setFieldValue("bank_acc_number", AcountNumber)
-        formik.setFieldValue("phone_number", data?.phone_number)
+        formik.setFieldValue("phone_number", userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
         formik.setFieldValue("network", network)
-    }, [value, bankName, data?.bank_code, AcountNumber, data?.phone_number, coinName, network])
+    }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
     React.useEffect(() => {
         const exchangeRate = async () => {
@@ -114,36 +112,7 @@ export default function SellCrypto({ kyc }: props) {
         if (AcountNumber?.length === 10 && bankCode) {
             fetchData()
         }
-    }, [AcountNumber, bankCode])
-
-    React.useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            const request: any = await handleGetData("/swap/bank-details")
-
-            console.log(request?.data);
-            if (request?.data?.account_name) {
-                setAccountName(request?.data?.account_name)
-                // setBankCode
-                setAcountNumber(request?.data?.account_number)
-                setBankName(request?.data?.bank_name)
-            }
-
-            const t1 = setTimeout(() => {
-                setLoading(false);
-                clearTimeout(t1);
-            }, 1000);
-        }
-
-        // call the function
-        if(formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && (bankCode || accountName) ){
-
-            fetchData()
-
-            // make sure to catch any error
-            .catch(console.error);;
-        }
-    }, [])
+    }, [AcountNumber, bankCode]) 
 
     const submit = async () => {
         setLoading(true);
@@ -225,6 +194,13 @@ export default function SellCrypto({ kyc }: props) {
         setBankCode(code)
     }
 
+    const BankDetailHandler = (item: any, numb: any, name: any) => {
+        updateCrypto({ ...data, "bank_acc_name": item})
+        setBankName(item)
+        setAccountName(name)
+        setAcountNumber(numb)
+    }
+
     const GetAmount = (item: any) => {
         setValue(item.target.value)
         updateCrypto({ ...data, "coin_amount_to_swap": item.target.value })
@@ -273,7 +249,7 @@ export default function SellCrypto({ kyc }: props) {
                     <>
                         <CoinNetwork data={ChangeNetwork} network={network} />
                         {formik.values.network !== "ERC20" && (
-                            <Bank data={BankHandler} holder={bankName} code={ChangeBankCode} />
+                            <Bank data={BankHandler} detail={BankDetailHandler} holder={bankName} code={ChangeBankCode} />
                         )}
                     </>
                 )}
@@ -320,7 +296,7 @@ export default function SellCrypto({ kyc }: props) {
                         </div>
                     </div>
                 )}
-                {(data?.phone_number + "").length > 9 && (
+                {((userinfo?.phone + "").length > 9 && accountName && bankCode) && (
                     <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                 )}
             </div>

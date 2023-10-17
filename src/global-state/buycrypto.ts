@@ -10,7 +10,9 @@ type Action = {
 
 // Create your store, which includes both state and (optionally) actions
 const useCryptoStore = create<State & Action>((set) => ({
-    crypto: {}, 
+    crypto: {
+        "coin_name": "Tether", network: "ERC20"
+    }, 
     updateCrypto: (crypto) => set(() => ({ crypto: crypto })), 
 }))
 
