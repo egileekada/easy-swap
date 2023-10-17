@@ -1,5 +1,5 @@
 import React from 'react' 
-import DisputeTable from '../../components/DisputeTable'
+// import DisputeTable from '../../components/DisputeTable'
 import SupportChat from './SupportChat'
 import { Helmet } from 'react-helmet'
 import { useGetDataCallback } from '../../action/useAction'
@@ -51,7 +51,7 @@ export default function DisputePage() {
                             <div className=' w-full flex gap-4 items-center ' >
                                 <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="60" height="60" rx="30" fill="#303179"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M29.9999 30.2324C34.9705 30.2324 38.9999 26.203 38.9999 21.2324C38.9999 16.2619 34.9705 12.2324 29.9999 12.2324C25.0293 12.2324 20.9999 16.2619 20.9999 21.2324C20.9999 26.203 25.0293 30.2324 29.9999 30.2324ZM29.9999 54.2324C37.5623 54.2324 44.3192 50.7161 48.7216 45.2326C44.3192 39.749 37.5621 36.2324 29.9995 36.2324C22.4372 36.2324 15.6802 39.7488 11.2778 45.2322C15.6802 50.7159 22.4373 54.2324 29.9999 54.2324Z" fill="#F8F8F8"/>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M29.9999 30.2324C34.9705 30.2324 38.9999 26.203 38.9999 21.2324C38.9999 16.2619 34.9705 12.2324 29.9999 12.2324C25.0293 12.2324 20.9999 16.2619 20.9999 21.2324C20.9999 26.203 25.0293 30.2324 29.9999 30.2324ZM29.9999 54.2324C37.5623 54.2324 44.3192 50.7161 48.7216 45.2326C44.3192 39.749 37.5621 36.2324 29.9995 36.2324C22.4372 36.2324 15.6802 39.7488 11.2778 45.2322C15.6802 50.7159 22.4373 54.2324 29.9999 54.2324Z" fill="#F8F8F8"/>
                                 </svg>
                                 <p className=' text-2xl font-semibold lg:text-left text-[#303179] ' >Support Center</p>
                             </div> 
