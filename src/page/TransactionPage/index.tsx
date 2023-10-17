@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import TransactionComponent from '../../components/TransactionComponent'
 
 export default function TransactionPage() {
