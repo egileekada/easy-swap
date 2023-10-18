@@ -5,7 +5,7 @@ import ButtonComponent from '../../components/ButtonComponent'
 // import { IUser, UserContext } from '../../../context/userContext'
 import { cashFormat } from '../../config/utils/cashFormat'
 import { useNavigate } from 'react-router-dom'
-import { uesTnxStatusCallback } from '../../action/useAction'
+import { uesTnxStatusCallback, useBankDetailCallback } from '../../action/useAction'
 import CopyButtton from '../../components/CopyButton'
 import transactiondetail from '../../global-state/transactiondetail'
 import userdata from '../../global-state/userdata'
@@ -23,23 +23,49 @@ export default function PaymentDetails(props: IProps) {
     // Global State
     const userinfo: any = userdata((state) => state.user)
     const tnxinfo: any = transactiondetail((state) => state.tnx)
+    
 
     const [open, setOpen] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
     const [Checked, setChecked] = React.useState(false)
+    const [accountname, setAccountName] = React.useState("")
     const [tab, setTab] = React.useState(0)
     const [size, setSize] = React.useState("md")
-    const toast = useToast()
-    // const userContext: IUser = React.useContext(UserContext); 
+    const [loadingBank, setLoadingBank] = React.useState(false)
+    const toast = useToast() 
 
     const {handlTnxStatus} = uesTnxStatusCallback()
+    const { handleBankDetail } = useBankDetailCallback();
 
     const navigate = useNavigate()
 
     const clickHandler =()=> {
         setOpen(false)
         navigate("/dashboard/transactionshistory")
-    }
+    } 
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            setLoadingBank(true)
+            const request = await handleBankDetail(JSON.stringify({
+                "account_number": tnxinfo?.bank_acc_number,
+                "bank_code": tnxinfo?.bank_code
+            }))
+
+            if (request?.data?.status === 500 || !request?.data?.account_name) {
+                toast({
+                    title: ("Incorrect Acount Details"),
+                    position: "top",
+                    status: "error",
+                    isClosable: true,
+                })
+            }
+            setAccountName(request?.data?.account_name)
+            setLoadingBank(false)
+        } 
+            fetchData() 
+
+    }, [tnxinfo?.bank_acc_number, tnxinfo?.bank_code]) 
 
     const CancelTnxHandler =async()=> {
         setLoading(true)
@@ -58,9 +84,14 @@ export default function PaymentDetails(props: IProps) {
         }) 
         setLoading(false)
         setOpen(false)
-        navigate("/dashboard/transactionshistory")
-        
-    }  
+        navigate("/dashboard/transactionshistory") 
+    }       
+
+    React.useEffect(()=> {
+        if(!tnxinfo?.coin_name){ 
+            navigate("/dashboard/transactionshistory") 
+        }
+    }, [tnxinfo])
 
     return (
         <div className=' w-full flex justify-center' >  
@@ -121,7 +152,7 @@ export default function PaymentDetails(props: IProps) {
                             <p className=' font-medium text-[#475569] ' >email</p>
                             <p className=' font-medium text-[#475569] text-right  ' >{userinfo?.email}</p>
                             <p className=' font-medium text-[#475569]  ' >Phone Number</p>
-                            <p className=' font-medium text-[#475569] text-right ' >{userinfo?.phone}</p>
+                            <p className=' font-medium text-[#475569] text-right ' >{tnxinfo?.phone_number}</p>
                         </div>
                     </div>
                     <div className=' w-full lg:w-[420px] pt-9 ' > 
@@ -130,7 +161,16 @@ export default function PaymentDetails(props: IProps) {
                             <p className=' font-medium text-[#475569]  ' >Bank</p>
                             <p className=' font-medium text-[#475569] text-right  ' >{tnxinfo?.bank_acc_name}</p>
                             <p className=' font-medium text-[#475569]  ' >Name</p>
-                            <p className=' font-medium text-[#475569] text-right ' >{userinfo?.fullname}</p>
+                            <p className=' font-medium text-[#475569] text-right ' >
+
+                                {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
+                                    <>
+                                        {accountname &&
+                                            <p className=' mt-2 font-bold  ' >{accountname}</p>
+                                        }
+                                    </>
+                                }
+                            </p>
                             <p className=' font-medium text-[#475569] ' >Account Number</p>
                             <p className=' font-medium text-[#475569] text-right  ' >{tnxinfo?.bank_acc_number}</p> 
                         </div>
@@ -157,7 +197,7 @@ export default function PaymentDetails(props: IProps) {
                             <div className=' text-[#080707] w-full flex flex-col items-center ' >
                                 <div className=' flex items-center gap-2 mt-4 lg:mt-6 ' >
                                     <div className=' w-[24px] h-[24px] rounded-full flex justify-center items-center ' >
-                                        <img src={tnxinfo?.coin_name.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
+                                        <img src={tnxinfo?.coin_name?.includes("USDT") ? "/images/tether.webp": "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' /> 
                                     </div>
                                     {tnxinfo?.coin_name}
                                 </div>

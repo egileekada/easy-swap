@@ -119,7 +119,7 @@ export default function CryptoCalculation() {
                             {bitpowr_coin_ticker.map((item: any, index: number) => {
                                 return (
                                     <div key={index} role="button" onClick={() => modalHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex py-2 items-center gap-3 ' >
-                                        <div className=' w-[40px] h-[40px] rounded-full bg-white '>
+                                        <div className=' w-[30px] h-[30px] rounded-full bg-white '>
                                             <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                         </div>
                                         <div className='' >

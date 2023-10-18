@@ -1,11 +1,12 @@
 
 import { Input, Select } from '@chakra-ui/react'
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import React from 'react'
 // import { IUser, UserContext } from '../../../../../context/userContext';
 // import { usBankDetailsCallback } from '../../../../../action/useAction';
-import buycrypto from '../../../../../global-state/buycrypto';
-import { useQuery } from 'react-query';
+// import buycrypto from '../../../../../global-state/buycrypto';
+// import { useQuery } from 'react-query';
+import { useGetDataCallback } from '../../../../../action/useAction';
 
 interface Props {
     rate?: boolean,
@@ -13,69 +14,84 @@ interface Props {
     holder?: any,
     code?: any,
     bank?: any
+    detail?: any
 }
 
-export default function BankSelection({ data, holder, code, bank }: Props) {
+export default function BankSelection({ data, holder, code, bank, detail }: Props) {
 
     // global State 
-    const selldata: any = buycrypto((state) => state.crypto)
-    const updateCrypto = buycrypto((state) => state.updateCrypto)
+    // const selldata: any = buycrypto((state) => state.crypto)
+    // const updateCrypto = buycrypto((state) => state.updateCrypto)
 
     const [showModal, setShowModal] = React.useState(false)
-    // const [loading, setLoading] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
+    const [isLoading, setLoadingBank] = React.useState(false)
     const [dataInfo, setDataInfo] = React.useState([] as any)
-    // const [bankName, setBankName] = React.useState("")
+    const [bankName, setBankName] = React.useState("")
     const [searchBank, setSearchBank] = React.useState("")
     // const userContext: IUser = React.useContext(UserContext);  
-    const configValue: string = import.meta.env.BANK_API_KEY
+    const configValue: any = import.meta.env.VITE_APP_BANK_API_KEY 
+    // console.log(configValue); 
+    const { handleGetData } = useGetDataCallback()
 
-
-    const { isLoading } = useQuery(["usd-rate"], () => axios.get(`https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG`,
-        {
-            headers: {
-                'X-API-KEY': configValue
-            },
-        }), {
-        onError: (error: AxiosError<any, any>) => {
-            console.log(error.response?.data);
-        },
-        onSuccess: (data: any) => {
-            console.log(data);
-            
-            setDataInfo(data?.data?.data)
-        }
-    })
-
-
-    // React.useEffect(()=> { 
-    //     setLoading(true)
-    //     axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
-    //         headers: {
-    //             'X-API-KEY': configValue
-    //           }
-    //         }
-    //     )
-    //     .then(function (response) {
-    //         setDataInfo(response?.data?.data) 
-    //         setLoading(false)
-    //     })
-    // }, []) 
 
     React.useEffect(() => {
-        if (holder) {
-            if (!isLoading) {
-                {
-                    dataInfo?.map((item: any) => {
-                        if (holder === item?.name) {
+        const fetchData = async () => {
+            setLoading(true);
+            const request: any = await handleGetData("/swap/bank-details")
 
-                            updateCrypto({ ...selldata, "bank_code": item?.code })
-                            code(item?.code)
-                        }
-                    })
+            console.log(request?.data);
+            if (request?.data?.account_name) { 
+                setBankName(request?.data?.bank_name) 
+                detail(request?.data?.bank_name, request?.data?.account_number,request?.data?.bank_name )
+            }
+
+            fetchAllBank()
+            const t1 = setTimeout(() => {
+                setLoading(false);
+                clearTimeout(t1);
+            }, 1000);
+        }
+        const fetchAllBank = async () => { 
+            axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
+                headers: {
+                    'X-API-KEY': configValue
                 }
+                }
+            )
+            .then(function (response) { 
+                setDataInfo(response?.data?.data)   
+            }) 
+        }
+
+        // call the function 
+
+            fetchData()
+            // make sure to catch any error
+            .catch(console.error);; 
+    }, [])   
+
+    React.useEffect(() => { 
+
+        setLoadingBank(true)
+        if(!loading){ 
+            if (bankName) {             
+                // if (!isLoading) {
+                    {
+                        dataInfo?.map((item: any) => {
+                            if (bankName === item?.name) {  
+                                code(item?.code)
+                            }
+                        })
+                    }
+                // }  
+                setLoadingBank(false)
+            } else { 
+    
+                setLoadingBank(false)
             }
         }
-    }, [isLoading])
+    }, [loading, isLoading, holder, dataInfo])
 
     const clickHandler = (name: string, code: any) => {
         // setBankName(name)
@@ -85,9 +101,9 @@ export default function BankSelection({ data, holder, code, bank }: Props) {
 
 
     const changeHandler = (item: any) => {
-        // let feedArray=item.split(","); 
+        let feedArray=item.split(","); 
 
-        // data(feedArray[0], feedArray[1]) 
+        data(feedArray[0], feedArray[1]) 
         setSearchBank(item)
     }
 
@@ -95,7 +111,7 @@ export default function BankSelection({ data, holder, code, bank }: Props) {
         let feedArray = item.split(",");
 
         data(feedArray[0], feedArray[1])
-        // setSearchBank(item)
+        setSearchBank(item)
     }
 
     const BankList = () => {

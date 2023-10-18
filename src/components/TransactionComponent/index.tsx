@@ -46,12 +46,7 @@ export default function TransactionComponent() {
         }
 
         const clickHandler = async () => {
-            const request: any = await handlSortTnx(payload)
-            // if(userinfo?.id){ 
-            //     // let newArray: any = [...request?.data]
-            //     // newArray.reverse()
-            //     setData(request?.data) 
-            // }
+            const request: any = await handlSortTnx(payload) 
             setData(request?.data)
         }
 
@@ -118,9 +113,7 @@ export default function TransactionComponent() {
     const infoHandler = (item: any) => {
         setTnxData(item)
         navigate("/dashboard/tnxinfo")
-    }
-
-    console.log(startendDate);
+    } 
 
     return (
         <div className=' w-full  ' >
