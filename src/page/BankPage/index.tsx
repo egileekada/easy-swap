@@ -1,4 +1,4 @@
-import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, Select, useToast } from '@chakra-ui/react'
+import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { usBankDetailsCallback, useBankDetailCallback, useGetDataCallback } from '../../action/useAction'
 import Bank from '../../components/SellCrytoComponent/SellCrypto/components/Bank'
@@ -98,9 +98,6 @@ export default function BankPage() {
 
         setLoading(false)
     } 
-
-    console.log(bank_code);
-    
 
     return (
         <div className=' w-full px-6 lg:px-14 ' > 

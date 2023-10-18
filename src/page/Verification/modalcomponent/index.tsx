@@ -6,8 +6,8 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'; 
 import { useVerifyUserCallback } from '../../../action/useAction'
 import { useNavigate } from 'react-router-dom'
-import Webcam from 'react-webcam'
-import { IUser, UserContext } from '../../../context/userContext'
+// import Webcam from 'react-webcam'
+// import { IUser, UserContext } from '../../../context/userContext'
 
 interface Props {
     close?: any
