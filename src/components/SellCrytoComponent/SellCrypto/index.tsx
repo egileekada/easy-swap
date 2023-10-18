@@ -296,7 +296,7 @@ export default function SellCrypto({ kyc }: props) {
                         </div>
                     </div>
                 )}
-                {((userinfo?.phone + "").length > 9 && accountName && bankCode) && (
+                {((userinfo?.phone + "").length > 9) && (
                     <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                 )}
             </div>
