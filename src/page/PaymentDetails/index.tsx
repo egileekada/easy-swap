@@ -87,11 +87,11 @@ export default function PaymentDetails(props: IProps) {
         navigate("/dashboard/transactionshistory") 
     }       
 
-    React.useEffect(()=> {
-        if(!tnxinfo?.coin_name){ 
-            navigate("/dashboard/transactionshistory") 
-        }
-    }, [tnxinfo])
+    // React.useEffect(()=> {
+    //     if(!tnxinfo?.coin_name){ 
+    //         navigate("/dashboard/transactionshistory") 
+    //     }
+    // }, [tnxinfo])
 
     return (
         <div className=' w-full flex justify-center' >  
