@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useIsOverflow } from './component/useIsOverflow';
+// import { useIsOverflow } from './component/useIsOverflow';
 
 export default function OurClients() {
 
@@ -18,7 +18,7 @@ export default function OurClients() {
     const controls4 = useAnimation(); 
     const [ ref1, inView ]  = useInView();  
     const [ ref2, inView2 ] = useInView();  
-    const [ ref3, inView3 ] = useInView();    
+    // const [ ref3, inView3 ] = useInView();    
 
     React.useEffect(() => { 
         if (inView) {
@@ -27,10 +27,10 @@ export default function OurClients() {
         if (inView2) {
             controls2.start({ x: -200});
         }  
-        if (inView3) {
-            controls3.start({ x: 0});
-        } 
-    }, [controls, controls2, controls3, controls4, inView, inView2, inView3]) 
+        // if (inView3) {
+        //     controls3.start({ x: 0});
+        // } 
+    }, [controls, controls2, controls3, controls4, inView, inView2]) 
 
 
     // const ref = React.useRef(null);  
