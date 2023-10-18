@@ -57,7 +57,7 @@ export default function KycPolicy() {
                             It is important to adhere to our KYC policy to maintain the integrity of our platform and protect all users. By using our services, you acknowledge and agree to comply with our KYC procedures and provide accurate and authentic information when requested.<br/>
                         </div> */}
                         <div className=' w-full mt-8 font-normal' >
-                            Effective Date: @May  27, 2023
+                            Effective Date: @May 27, 2023
                             <br/><br/>
                             <span className=' text-[#303179] font-bold ' >Definitions</span><br/><br/>
                             - Money Laundering (ML): means the process by which criminals attempt to conceal the origin and/or illegitimate ownership of property and assets that are the proceeds of criminal activities.<br/>

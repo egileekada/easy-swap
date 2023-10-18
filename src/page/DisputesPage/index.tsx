@@ -9,13 +9,15 @@ export default function DisputePage() {
     const [tab, setTab] = React.useState(0)
 
 
-    const [data, setData] = React.useState({}as any) 
+    const [data, setData] = React.useState({
+        kyc_verified:""
+    }) 
 
     const { handleGetData } = useGetDataCallback()
     
     React.useEffect(()=> {  
         const fetchData = async () => {
-            const request: any = await handleGetData("/users/retrieve-user-kyc")  
+            const request = await handleGetData("/users/retrieve-user-kyc")  
             if(request){
                 setData(request?.data)  
             }
@@ -25,7 +27,7 @@ export default function DisputePage() {
         fetchData()
 
         // make sure to catch any error
-        .catch(console.error);;
+        .catch(console.error)
     }, [])      
     
 
