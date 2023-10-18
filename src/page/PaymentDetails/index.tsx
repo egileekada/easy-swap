@@ -10,15 +10,7 @@ import CopyButtton from '../../components/CopyButton'
 import transactiondetail from '../../global-state/transactiondetail'
 import userdata from '../../global-state/userdata'
 
-type IProps = {
-    close?: any
-}
-
-export default function PaymentDetails(props: IProps) {
- 
-    const  {
-
-    } = props
+export default function PaymentDetails() { 
 
     // Global State
     const userinfo: any = userdata((state) => state.user)

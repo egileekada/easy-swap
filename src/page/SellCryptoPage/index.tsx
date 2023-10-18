@@ -61,7 +61,7 @@ export default function SellCryptoPage() {
           </div>
         )}
         {isShown && ( 
-          <PaymentDetails close={setIsShown} />
+          <PaymentDetails />
         )}
     </div>
   )

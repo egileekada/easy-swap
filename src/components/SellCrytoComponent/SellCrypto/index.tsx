@@ -155,9 +155,9 @@ export default function SellCrypto({ kyc }: props) {
                     isClosable: true,
                 })
 
-                let newObj = {...request?.data}
-                newObj = {...tnxinfo, bankname: accountName}
-                setTnxData(newObj)
+                // let newObj = {...request?.data}
+                // newObj = {...tnxinfo, bankname: accountName}
+                setTnxData(request?.data)
                 const t1 = setTimeout(() => {
                     setLoading(false);
                     navigate("/dashboard/tnxinfo")
