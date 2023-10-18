@@ -1,7 +1,7 @@
 import React from 'react'
 import InputComponent from '../../InputComponent'
 import ButtonComponent from '../../ButtonComponent'
-import { useChangePasswordCallback, useResetPasswordCallback } from '../../../action/useAction'
+import { useChangePasswordCallback } from '../../../action/useAction'
 import { useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ export default function PasswordTab() {
 
     const navigate = useNavigate()
 
-    const [tab, setTab] = React.useState(0)
+    // const [tab, setTab] = React.useState(0)
     const [loading, setLoading] = React.useState(false) 
     const [pwd, setPwd] = React.useState("")  
     const [newPwd, setNewPwd] = React.useState("")  
