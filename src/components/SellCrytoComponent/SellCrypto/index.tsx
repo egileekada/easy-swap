@@ -25,7 +25,7 @@ export default function SellCrypto({ kyc }: props) {
     const data: any = buycrypto((state) => state.crypto) 
     const userinfo: any = userdata((state) => state.user)
     const updateCrypto = buycrypto((state) => state.updateCrypto) 
-    const tnxinfo = transactiondetail((state) => state.tnx)
+    // const tnxinfo = transactiondetail((state) => state.tnx)
     const setTnxData = transactiondetail((state) => state.setTnxData)     
 
     const navigate = useNavigate()
