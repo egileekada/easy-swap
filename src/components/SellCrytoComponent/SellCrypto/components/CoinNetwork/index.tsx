@@ -11,11 +11,14 @@ type Props= {
 export default function CoinNetwork({data}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
-    // const userContext: IUser = React.useContext(UserContext);  
+    // const userContext: IUser = React.useContext(UserContext); 
+    const updateCrypto: any = buycrypto((state) => state.updateCrypto) 
     const selldata: any = buycrypto((state) => state.crypto)
 
     const changeHandler =(item: any)=> {
         data(item)
+
+        updateCrypto({ ...selldata, network: item })
     }   
 
     const NetworkList =()=>{
