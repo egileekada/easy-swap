@@ -21,19 +21,21 @@ export default function CoinSelection({rate, data}: Props) {
     const [selectedNetwork, setSelectedNetwork] = React.useState("ERC20")
     const [selectCoinTicker, setSelectCoinTicker] = React.useState("USDT")
     
-    const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
+    // const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
     const bitpowr_coin_ticker = [
         {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
         {'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp'},  
     ]
 
-    const clickHandler =(item: any, value: string, image:string, net:string)=> { 
+    const clickHandler =(item: any, value: string, net:string)=> { 
         data(item, net) 
         setSelectCoinTicker(value)
         setSelectCoin(item)
         setShowModal(false)
-        setcoinImage(image)
+
+        updateCrypto({ ...selldata, "coin_name": item, network: net })
+        // setcoinImage(image)
     }
 
     React.useEffect(()=>{
@@ -51,7 +53,7 @@ export default function CoinSelection({rate, data}: Props) {
         if(selldata?.coin_amount_to_swap){
             setAmount(selldata?.coin_amount_to_swap)
         }
-    }, [])
+    }, []) 
   
  
     React.useEffect(()=>{  
@@ -95,7 +97,7 @@ export default function CoinSelection({rate, data}: Props) {
                         </div>
                         {bitpowr_coin_ticker.map((item: any, index: number) => {
                             return ( 
-                                <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.image, item?.network)} className=' w-full flex items-center gap-3 ' >
+                                <div key={index} role="button" onClick={()=> clickHandler(item?.coin_name, item?.coin_ticker, item?.network)} className=' w-full flex items-center gap-3 ' >
                                     <div className=' w-[40px] h-[40px] rounded-full bg-white '>
                                         <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full ' />
                                     </div>
@@ -129,7 +131,7 @@ export default function CoinSelection({rate, data}: Props) {
                     {selectCoinTicker && (
                         <> 
                             {bitpowr_coin_ticker?.map((item: any)=> {
-                                if(item?.image === coinImage){
+                                if(item?.coin_name === selectCoin){
                                     return( 
                                         <div key={item?.image} className=' w-[24px] h-[24px] rounded-full ' >
                                             <img src={item?.image} alt="coin" className=' w-full h-full  rounded-full' />
