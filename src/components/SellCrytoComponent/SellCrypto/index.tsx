@@ -66,7 +66,7 @@ export default function SellCrypto({ kyc }: props) {
         formik.setFieldValue("bank_acc_number", AcountNumber)
         formik.setFieldValue("phone_number", userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
-        formik.setFieldValue("network", network)
+        // formik.setFieldValue("network", network)
     }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
     React.useEffect(() => {
@@ -178,6 +178,8 @@ export default function SellCrypto({ kyc }: props) {
         updateCrypto({ ...data, "coin_name": item, network: net })
         setcoinName(item)
         setNetwork(net)
+
+        formik.setFieldValue("network", item === "Bitcoin" ? "Bitcoin" : net)
         if (val > -1) {
             setValue(val)
             updateCrypto({ ...data, "coin_amount_to_swap": val })
@@ -204,6 +206,8 @@ export default function SellCrypto({ kyc }: props) {
 
     const ChangeNetwork = (item: any) => {
         setNetwork(item)
+
+        formik.setFieldValue("network", coinName === "Bitcoin" ? "Bitcoin" : item)
     }
 
     const ChangeAccountNumber = (item: any) => {
@@ -223,6 +227,7 @@ export default function SellCrypto({ kyc }: props) {
 
     const [open, setOpen] = React.useState(false)
 
+    console.log(formik.values); 
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
@@ -290,7 +295,7 @@ export default function SellCrypto({ kyc }: props) {
                         <div className=' w-full   ' >
                             <Input value={formik.values.phone_number} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e) => ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
                         </div>
-                        {((userinfo?.phone + "").length > 9) && (
+                        {((formik.values?.phone_number + "").length > 9) && (
                             <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                         )}
                     </div>
