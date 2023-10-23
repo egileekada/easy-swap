@@ -226,9 +226,7 @@ export default function SellCrypto({ kyc }: props) {
         updateCrypto({ ...data, "bank_code": item })
     }
 
-    const [open, setOpen] = React.useState(false) 
-    console.log(formik.values?.phone_number);
-    
+    const [open, setOpen] = React.useState(false)      
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
