@@ -50,7 +50,7 @@ export default function CryptoCalculation() {
             setLoadingRate(false)
         }
 
-        if (selectCoin && value) {
+        if (value) {
             exchangeRate()
         }
 
