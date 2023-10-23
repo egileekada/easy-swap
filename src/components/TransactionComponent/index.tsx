@@ -213,11 +213,11 @@ export default function TransactionComponent() {
                                             {data.map((item: any, index: number) => {
                                                 return (
                                                     <Tr key={index} style={{ boxShadow: "inset 0px -1px 0px #E1E3E5" }} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
-                                                        <Td>{dateFormat(item?.updated_at)}</Td>
-                                                        <Td>{userinfo?.fullname}</Td>
-                                                        <Td>Deposit</Td>
-                                                        <Td>{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name?.includes("USDT") ? "USDT" : "BTC"}</Td>
-                                                        <Td>{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn : item?.ngn_equivalent)}</Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)}  >{dateFormat(item?.updated_at)}</Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)} >{userinfo?.fullname}</Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)} >Deposit</Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)} >{parseFloat(item?.trans_amount ? item.trans_amount : item?.coin_amount_to_swap)} {item?.coin_name?.includes("USDT") ? "USDT" : "BTC"}</Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)} >{cashFormat(item?.trans_amount_ngn ? item?.trans_amount_ngn : item?.ngn_equivalent)}</Td>
                                                         <Td>
                                                             <CopyButtton text={item?.coin_address} type={true} />
                                                         </Td>
@@ -227,7 +227,7 @@ export default function TransactionComponent() {
                                                                 <CopyButtton text={item?.trans_hash} type={true} />
                                                             )}
                                                         </Td>
-                                                        <Td>
+                                                        <Td className=' cursor-pointer ' onClick={() => infoHandler(item)}  >
                                                             {item?.payout_status === "SUCCESS" ? (
                                                                 <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
                                                                     PayOut Successful
@@ -237,7 +237,7 @@ export default function TransactionComponent() {
                                                                     Cancelled
                                                                 </div>
                                                             ) : item?.transaction_status === "PENDING" ? (
-                                                                <div role='button' onClick={() => infoHandler(item)} className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                <div role='button' className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                     Pending
                                                                 </div>
                                                             ) : (

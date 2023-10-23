@@ -39,8 +39,7 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
         const fetchData = async () => {
             setLoading(true);
             const request: any = await handleGetData("/swap/bank-details")
-
-            console.log(request?.data);
+ 
             if (request?.data?.account_name) { 
                 setBankName(request?.data?.bank_name) 
                 detail(request?.data?.bank_name, request?.data?.account_number,request?.data?.bank_name )

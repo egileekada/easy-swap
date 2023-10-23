@@ -63,8 +63,8 @@ export default function PaymentDetails() {
         setLoading(true)
         const request = await handlTnxStatus(JSON.stringify({
             "transaction_status": "FAILED"
-        }), tnxinfo?.id) 
-        
+        }), tnxinfo?.id)
+
         if (request?.status === 202) {
             toast({
                 title: 'Your Transaction Has Been Cancelled Successfully  ',
@@ -72,7 +72,7 @@ export default function PaymentDetails() {
                 duration: 3000,
                 position: "top"
             })
-        } else { 
+        } else {
             toast({
                 title: 'Error Occured',
                 status: 'success',
@@ -85,12 +85,6 @@ export default function PaymentDetails() {
         setOpen(false)
         navigate("/dashboard/transactionshistory")
     }
-
-    // React.useEffect(()=> {
-    //     if(!tnxinfo?.coin_name){ 
-    //         navigate("/dashboard/transactionshistory") 
-    //     }
-    // }, [tnxinfo])
 
     return (
         <div className=' w-full flex justify-center' >
@@ -174,10 +168,12 @@ export default function PaymentDetails() {
                             <p className=' font-medium text-[#475569] text-right  ' >{tnxinfo?.bank_acc_number}</p>
                         </div>
                     </div>
-                    <div className=' mt-9 w-full lg:w-[420px] flex justify-end gap-7 text-sm ' >
-                        <button onClick={() => { setSize("xl"); setTab(3); setOpen(true) }} className=' font-semibold text-[#344054] ' >Cancel Order</button>
-                        <button onClick={() => { setSize("xl"); setTab(0); setOpen(true) }} className=' bg-[#303179] text-[#fff] rounded-md px-6 lg:px-6 py-2 font-semibold  ' >I’ve Made Payment</button>
-                    </div>
+                    {tnxinfo?.transaction_status === "PENDING" && (
+                        <div className=' mt-9 w-full lg:w-[420px] flex justify-end gap-7 text-sm ' >
+                            <button onClick={() => { setSize("xl"); setTab(3); setOpen(true) }} className=' font-semibold text-[#344054] ' >Cancel Order</button>
+                            <button onClick={() => { setSize("xl"); setTab(0); setOpen(true) }} className=' bg-[#303179] text-[#fff] rounded-md px-6 lg:px-6 py-2 font-semibold  ' >I’ve Made Payment</button>
+                        </div>
+                    )}
                 </div>
 
                 <ModalLayout open={open} size={size} close={setOpen} >
