@@ -63,13 +63,11 @@ export default function Navbar({ hide, dashboard, settings }: props) {
 
     const LogOut = () => {
         localStorage.clear()
-        navigate("/")
-        navigate(0)
+        navigate("/") 
     }
 
     const clickHandler = (item: any) => {
-        navigate(item)
-        navigate(0)
+        navigate(item) 
     }
 
     return (

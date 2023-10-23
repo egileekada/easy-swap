@@ -21,12 +21,12 @@ type props = {
 }
 
 export default function SellCrypto({ kyc }: props) {
- 
-    const data: any = buycrypto((state) => state.crypto) 
+
+    const data: any = buycrypto((state) => state.crypto)
     const userinfo: any = userdata((state) => state.user)
-    const updateCrypto = buycrypto((state) => state.updateCrypto) 
-    const tnxinfo = transactiondetail((state) => state.tnx)
-    const setTnxData = transactiondetail((state) => state.setTnxData)     
+    const updateCrypto = buycrypto((state) => state.updateCrypto)
+    // const tnxinfo = transactiondetail((state) => state.tnx)
+    const setTnxData = transactiondetail((state) => state.setTnxData)
 
     const navigate = useNavigate()
     const toast = useToast()
@@ -57,7 +57,7 @@ export default function SellCrypto({ kyc }: props) {
         initialValues: { coin_amount_to_swap: '', bank_acc_name: '', bank_code: '', bank_acc_number: '', phone_number: '', coin_name: '', network: '' },
         onSubmit: () => { },
     });
-   
+
 
     React.useEffect(() => {
         formik.setFieldValue("coin_amount_to_swap", value)
@@ -66,7 +66,7 @@ export default function SellCrypto({ kyc }: props) {
         formik.setFieldValue("bank_acc_number", AcountNumber)
         formik.setFieldValue("phone_number", userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
-        formik.setFieldValue("network", network)
+        // formik.setFieldValue("network", network)
     }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
     React.useEffect(() => {
@@ -76,8 +76,8 @@ export default function SellCrypto({ kyc }: props) {
             const request = await handleExchangeRate(JSON.stringify({
                 "coin_name": (coinName === "Bitcoin" ? Str : coinName === "Tether" ? "USDT" : "USDT_TRON"),
                 "coin_amount_to_calc": value
-            })) 
-            
+            }))
+
             setExchangeRate(request?.data?.total_coin_price_ngn)
             setLoadingRate(false)
         }
@@ -107,12 +107,11 @@ export default function SellCrypto({ kyc }: props) {
             }
             setAccountName(request?.data?.account_name)
             setLoadingBank(false)
-        }
-
+        } 
         if (AcountNumber?.length === 10 && bankCode) {
             fetchData()
         }
-    }, [AcountNumber, bankCode]) 
+    }, [AcountNumber, bankCode])
 
     const submit = async () => {
         setLoading(true);
@@ -122,19 +121,19 @@ export default function SellCrypto({ kyc }: props) {
         } else if (Number(formik.values.coin_amount_to_swap) < 20 && formik?.values?.coin_name !== "Bitcoin") {
             setAmountData("20")
             setOpen(true)
-        } else if (Number(formik.values.coin_amount_to_swap) > 1000 && !kyc  && formik?.values?.coin_name !== "Bitcoin") {
+        } else if (Number(formik.values.coin_amount_to_swap) > 1000 && !kyc && formik?.values?.coin_name !== "Bitcoin") {
             setAmountData("1000")
             setOpen(true)
-        } else if (Number(formik.values.coin_amount_to_swap) > 50000 && kyc  && formik?.values?.coin_name !== "Bitcoin") {
+        } else if (Number(formik.values.coin_amount_to_swap) > 50000 && kyc && formik?.values?.coin_name !== "Bitcoin") {
             setAmountData("50,000")
             setOpen(true)
-        }  else if (Number(exchangeRate) < 20000 && formik?.values?.coin_name === "Bitcoin") {
+        } else if (Number(exchangeRate) < 20000 && formik?.values?.coin_name === "Bitcoin") {
             setAmountData("20")
             setOpen(true)
-        } else if (Number(exchangeRate) > 1000000 && !kyc  && formik?.values?.coin_name === "Bitcoin") {
+        } else if (Number(exchangeRate) > 1000000 && !kyc && formik?.values?.coin_name === "Bitcoin") {
             setAmountData("1000")
             setOpen(true)
-        } else if (Number(exchangeRate) > 50000000 && kyc  && formik?.values?.coin_name === "Bitcoin") {
+        } else if (Number(exchangeRate) > 50000000 && kyc && formik?.values?.coin_name === "Bitcoin") {
             setAmountData("50,000")
             setOpen(true)
         } else if (!formik.values.bank_code) {
@@ -153,11 +152,8 @@ export default function SellCrypto({ kyc }: props) {
                     position: "top",
                     status: "success",
                     isClosable: true,
-                })
-
-                let newObj = {...request?.data}
-                newObj = {...tnxinfo, bankname: accountName}
-                setTnxData(newObj)
+                }) 
+                setTnxData(request?.data)
                 const t1 = setTimeout(() => {
                     setLoading(false);
                     navigate("/dashboard/tnxinfo")
@@ -182,6 +178,8 @@ export default function SellCrypto({ kyc }: props) {
         updateCrypto({ ...data, "coin_name": item, network: net })
         setcoinName(item)
         setNetwork(net)
+
+        formik.setFieldValue("network", item === "Bitcoin" ? "Bitcoin" : net)
         if (val > -1) {
             setValue(val)
             updateCrypto({ ...data, "coin_amount_to_swap": val })
@@ -195,7 +193,7 @@ export default function SellCrypto({ kyc }: props) {
     }
 
     const BankDetailHandler = (item: any, numb: any, name: any) => {
-        updateCrypto({ ...data, "bank_acc_name": item})
+        updateCrypto({ ...data, "bank_acc_name": item })
         setBankName(item)
         setAccountName(name)
         setAcountNumber(numb)
@@ -208,6 +206,8 @@ export default function SellCrypto({ kyc }: props) {
 
     const ChangeNetwork = (item: any) => {
         setNetwork(item)
+
+        formik.setFieldValue("network", coinName === "Bitcoin" ? "Bitcoin" : item)
     }
 
     const ChangeAccountNumber = (item: any) => {
@@ -217,6 +217,7 @@ export default function SellCrypto({ kyc }: props) {
 
     const ChangePhoneNumber = (item: any) => {
         updateCrypto({ ...data, "phone_number": item })
+        formik.setFieldValue("phone_number", item)
     }
 
     const ChangeBankCode = (item: any) => {
@@ -225,8 +226,9 @@ export default function SellCrypto({ kyc }: props) {
         updateCrypto({ ...data, "bank_code": item })
     }
 
-    const [open, setOpen] = React.useState(false)
-
+    const [open, setOpen] = React.useState(false) 
+    console.log(formik.values?.phone_number);
+    
 
     return (
         <div className=' w-full flex flex-col items-center font-medium ' >
@@ -294,10 +296,10 @@ export default function SellCrypto({ kyc }: props) {
                         <div className=' w-full   ' >
                             <Input value={formik.values.phone_number} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e) => ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
                         </div>
+                        {((formik.values?.phone_number + "").length > 9) && (
+                            <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
+                        )}
                     </div>
-                )}
-                {((userinfo?.phone + "").length > 9 && accountName && bankCode) && (
-                    <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
                 )}
             </div>
             <ModalLayout open={open} size={"md"} close={setOpen} >

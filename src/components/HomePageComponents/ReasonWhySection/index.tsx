@@ -29,7 +29,7 @@ export default function ReasonWhySection() {
     }, [controls, controls2, controls3, controls4, inView, inView2, inView3, inView4]) 
 
     return (
-        <div className=' w-full py-20 flex lg:px-0 px-6  flex-col items-center ' >
+        <div className=' w-full py-2 lg:py-20 flex lg:px-0 px-6  flex-col items-center ' >
             <motion.div ref={ref4} initial={{x: -200}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}> 
                 {/* <p className=' text-left text-lg font-normal ' >Here are a few reasons why you should chose Easyswap</p> */}

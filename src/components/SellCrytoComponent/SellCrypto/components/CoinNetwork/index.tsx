@@ -1,5 +1,6 @@
 import { Select } from '@chakra-ui/react'
 import React from 'react'
+import buycrypto from '../../../../../global-state/buycrypto'
 // import { IUser, UserContext } from '../../../../../context/userContext';
 
 type Props= {
@@ -7,19 +8,18 @@ type Props= {
     data?: any
 }
 
-export default function CoinNetwork({network, data}: Props) {
+export default function CoinNetwork({data}: Props) {
 
     const [showModal, setShowModal] = React.useState(false)
-    // const userContext: IUser = React.useContext(UserContext);  
+    // const userContext: IUser = React.useContext(UserContext); 
+    const updateCrypto: any = buycrypto((state) => state.updateCrypto) 
+    const selldata: any = buycrypto((state) => state.crypto)
 
     const changeHandler =(item: any)=> {
         data(item)
-    }  
 
-    // 40+30+10=2x+x+x
-    // 80/4=x
-    // x=50
-    // 25+30+25+40+50+10
+        updateCrypto({ ...selldata, network: item })
+    }   
 
     const NetworkList =()=>{
         return(
@@ -55,7 +55,7 @@ export default function CoinNetwork({network, data}: Props) {
         <div className=' w-full relative' >
             <p className=' font-normal text-[#334155] mb-2 ' >Coin network</p>
 
-            <Select value={network} disabled={network === "Bitcoin"? true: false} onChange={(e)=> changeHandler(e.target.value)} placeholder={network === "Bitcoin"? network: 'Select Network'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  >
+            <Select value={selldata?.network} disabled={selldata?.network === "Bitcoin"? true: false} onChange={(e)=> changeHandler(e.target.value)} placeholder={selldata?.network === "Bitcoin"? selldata?.network: 'Select Network'} fontSize="sm" height="45px" borderWidth="1px" borderColor="#CBD5E1"  >
             
                 <option value={"BSC"} >BEP- 20</option>
                 <option value={"TRON"}>TRC- 20</option>
