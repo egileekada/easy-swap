@@ -1,3 +1,44 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+    "headers": [
+        {
+            "source": "/Mobile.gif",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=43200, stale-with-revalidate=86400"
+                },
+                {
+                    "key": "CDN-Cache-Control",
+                    "value": "s-maxage=43200"
+                }
+            ]
+        },
+        {
+            "source": "/favicon.ico",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=43200, stale-with-revalidate=86400"
+                },
+                {
+                    "key": "CDN-Cache-Control",
+                    "value": "s-maxage=43200"
+                }
+            ]
+        },
+        {
+            "source": "/images/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=43200, stale-with-revalidate=86400"
+                },
+                {
+                    "key": "CDN-Cache-Control",
+                    "value": "s-maxage=43200"
+                }
+            ]
+        }
+    ]
 }
