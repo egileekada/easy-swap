@@ -23,7 +23,7 @@ export default function CoinSelection({rate, data}: Props) {
     
     // const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
     const bitpowr_coin_ticker = [
-        {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.png'},
+        {'coin_name': 'Bitcoin', 'network': 'Bitcoin','coin_ticker': 'BTC', image: '/images/Bitcoin.webp'},
         // {'coin_name': 'Ethereum', 'coin_ticker': 'ETH', image: '/images/ethereum.png'},
         {'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp'},  
     ]

@@ -34,7 +34,7 @@ export default function CryptoCalculation() {
     const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
     const [network, setNetwork] = React.useState('ERC20')
     const bitpowr_coin_ticker = [
-        { 'coin_name': 'Bitcoin', 'network': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.png' }, 
+        { 'coin_name': 'Bitcoin', 'network': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.webp' }, 
         { 'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp' }, 
     ]
 

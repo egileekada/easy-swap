@@ -222,8 +222,7 @@ export default function TransactionComponent() {
                                                             <CopyButtton text={item?.coin_address} type={true} />
                                                         </Td>
                                                         <Td>
-                                                            {item?.trans_hash && (
-
+                                                            {item?.trans_hash && ( 
                                                                 <CopyButtton text={item?.trans_hash} type={true} />
                                                             )}
                                                         </Td>
