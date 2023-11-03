@@ -7,6 +7,7 @@ import userdata from '../../global-state/userdata'
 import axios from '../../config/utils/axios'
 import { useQuery } from 'react-query'
 import { AxiosError } from 'axios'
+import transactiondetail from '../../global-state/transactiondetail'
 // import { IUser, UserContext } from '../../context/userContext'
 
 type props = {
@@ -21,7 +22,8 @@ export default function Navbar({ hide, dashboard, settings }: props) {
 
     // Global State
     const userinfo: any = userdata((state) => state.user)
-    const setUserData: any = userdata((state) => state.setUserData)
+    const setUserData: any = userdata((state) => state.setUserData) 
+    const setTnxData = transactiondetail((state) => state.setTnxData)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [show, setShow] = React.useState(false)
@@ -68,6 +70,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
 
     const clickHandler = (item: any) => {
         navigate(item) 
+        setTnxData({})
     }
 
     return (

@@ -236,7 +236,7 @@ export default function TransactionComponent() {
                                                                     Cancelled
                                                                 </div>
                                                             ) : item?.transaction_status === "PENDING" ? (
-                                                                <div role='button' className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
+                                                                <div role='button' className=' font-semibold text-sm py-2 px-4 w-fit bg-[#F7CB73] rounded-[10px] ' >
                                                                     Pending
                                                                 </div>
                                                             ) : (
@@ -281,7 +281,7 @@ export default function TransactionComponent() {
                                                 </div>
                                                 <div role='button' onClick={() => setshow(index)} className=' flex flex-col ' >
                                                     <div className=' flex items-center justify-end gap-2 ' >
-                                                        <p className={item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold" : item?.transaction_status === "PENDING" ? " text-xs text-[#F04438] font-semibold" : ' text-xs text-[#12B76A] font-semibold '}>{item?.transaction_status === "FAILED" ? "Cancelled" : item?.transaction_status === "PENDING" ? "Pending" : "Success"}</p>
+                                                        <p className={item?.transaction_status === "FAILED" ? " text-xs text-[#F04438] font-semibold" : item?.transaction_status === "PENDING" ? " text-xs text-[#F29339] font-semibold" : ' text-xs text-[#12B76A] font-semibold '}>{item?.transaction_status === "FAILED" ? "Cancelled" : item?.transaction_status === "PENDING" ? "Pending" : "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M5.88379 6.00007C5.87814 5.80232 5.80469 5.62151 5.64648 5.47461L1.2507 1.18052C1.1264 1.05622 0.968192 0.98842 0.781738 0.98842C0.408831 0.98842 0.109375 1.28223 0.109375 1.65513C0.109375 1.83594 0.182826 2.01109 0.312779 2.14104L4.27351 5.99442L0.312779 9.8591C0.188477 9.98905 0.109375 10.1586 0.109375 10.345C0.109375 10.7179 0.408831 11.0117 0.781738 11.0117C0.968192 11.0117 1.1264 10.9439 1.2507 10.8196L5.64648 6.51988C5.80469 6.36733 5.88379 6.19782 5.88379 6.00007Z" fill="#1C1C1E" />
                                                         </svg>
@@ -299,13 +299,19 @@ export default function TransactionComponent() {
                                                                     <p className=' font-semibold text-[26px] ' >Sell order {item?.transaction_status === "FAILED" ? "Cancelled" : item?.transaction_status === "PENDING" ? "pending" : "completed"}</p>
                                                                     <p className=' font-normal text-base ' >{item?.transaction_status === "FAILED" ? "Your order has been successfully canceled" : item?.transaction_status === "PENDING" ? "Your order is pending" : "You successfully sold " + parseFloat(item?.coin_amount_to_swap) + " " + item?.coin_name}</p>
                                                                 </div>
-                                                                {(item?.transaction_status === "FAILED" || item?.transaction_status === "PENDING") ? (
+                                                                {(item?.transaction_status === "FAILED") ? (
                                                                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <circle cx="31.25" cy="31.25" r="31.25" fill="#FECDCA" />
                                                                         <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#F04438" stroke="#F97066" stroke-linecap="round" stroke-linejoin="round" />
                                                                         <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    </svg>
-                                                                ) : (
+                                                                    </svg> 
+                                                                ):( item?.transaction_status === "PENDING") ? (
+                                                                    <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <circle cx="31.25" cy="31.25" r="31.25" fill="#F7CB73" />
+                                                                        <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#F29339" stroke="#F29339" stroke-linecap="round" stroke-linejoin="round" />
+                                                                        <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    </svg> 
+                                                                )  : (
                                                                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <circle cx="31.25" cy="31.25" r="31.25" fill="#BFE5D0" />
                                                                         <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#40B274" stroke="#009845" stroke-linecap="round" stroke-linejoin="round" />

@@ -33,7 +33,7 @@ export default function SellCryptoPage() {
   }, [])     
 
   return (
-    <div className=' w-full h-auto lg:h-full overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >
+    <div className=' w-full h-auto lg:h-auto overflow-x-hidden flex flex-col lg:bg-transparent bg-white items-center py-6 '  >
         {!isShown && (
           <div className=' w-full lg:w-[680px] flex flex-col items-center mt-6 lg:mt-4 text-sm font-medium rounded-lg bg-white ' > 
             <p className=' text-3xl font-semibold mt-6 text-[#303179] lg:pb-0 pb-5 ' >Ezyswap Services</p>
@@ -47,7 +47,7 @@ export default function SellCryptoPage() {
                 </div>
               </div>
             </div>
-            <div className=' w-full flex justify-center items-center gap-3 px-4 lg:px-9 py-8 pb-2 ' >
+            <div className=' w-full flex justify-center items-center gap-3 px-4 lg:px-9 pt-8 pb-2 ' >
               {tab === 0 && (
                 <SellCrypto next={setIsShown} kyc={data?.kyc_verified} />
               )}

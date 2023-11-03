@@ -75,14 +75,14 @@ export default function HeroSection() {
                     muted   >
                     <source src="https://res.cloudinary.com/dwotkchmt/video/upload/v1697480408/video_umlz9m.mp4" type="video/mp4"/>
                 </video>
-                <video className=' absolute lg:hidden inset-0 z-10 w-[100%] h-[100vh] lg:h-[80vh] '
+                {/* <video className=' absolute lg:hidden inset-0 z-10 w-[100%] h-[100vh] lg:h-[80vh] '
                     autoPlay={true} 
                     loop={true}
                     controls={false} 
                     playsInline
                     muted   >
                     <source src="https://res.cloudinary.com/dwotkchmt/video/upload/v1697480411/mvideo_fxkrsx.mp4" type="video/mp4"/>
-                </video> 
+                </video>  */}
                 {/* {showModal && (
                     <>  
                          <YouTube videoId="rTNeaM7k96I" className=' absolute block inset-0 z-30 w-fit my-auto mx-auto h-auto '  onReady={onPlayerReady} />
