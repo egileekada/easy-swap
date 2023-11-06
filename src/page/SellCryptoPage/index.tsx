@@ -14,6 +14,7 @@ export default function SellCryptoPage() {
     kyc_verified: false
   }) 
 
+  let token = localStorage.getItem('token') as string
 
   const { handleGetData } = useGetDataCallback()
   
@@ -25,11 +26,13 @@ export default function SellCryptoPage() {
           }
       }  
       
-      // call the function
-      fetchData()
-
-      // make sure to catch any error
-      .catch(console.error);
+      if(token) {
+        // call the function
+        fetchData()
+  
+        // make sure to catch any error
+        .catch(console.error);
+      }
   }, [])     
 
   return (

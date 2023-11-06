@@ -4,10 +4,11 @@ import { HamburgerIcon } from '@chakra-ui/icons'
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import Sidebar from '../DashboardLayout/component/Sidebar'
 import userdata from '../../global-state/userdata'
-import axios from '../../config/utils/axios'
-import { useQuery } from 'react-query'
-import { AxiosError } from 'axios'
+// import axios from '../../config/utils/axios'
+// import { useQuery } from 'react-query'
+// import { AxiosError } from 'axios'
 import transactiondetail from '../../global-state/transactiondetail'
+import { useGetDataCallback } from '../../action/useAction'
 // import { IUser, UserContext } from '../../context/userContext'
 
 type props = {
@@ -29,39 +30,46 @@ export default function Navbar({ hide, dashboard, settings }: props) {
     const [show, setShow] = React.useState(false)
     const [pathName, setPathName] = React.useState(window.location.pathname) 
 
+    let token = localStorage.getItem('token') as string
+
     
-    const { } = useQuery(["userInfo"], () => axios.get(`/users/profile`,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            },
-        }), {
-        onError: (error: AxiosError<any, any>) => {
-            console.log(error.response?.data);
-        },
-        onSuccess: (data: any) => {
-            setUserData(data?.data) 
-            setPathName(window.location.pathname)
+    // const { } = useQuery(["userInfo"], () => axios.get(`/users/profile`,
+    //     {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${localStorage.getItem('token')}`
+    //         },
+    //     }), {
+    //     onError: (error: AxiosError<any, any>) => {
+    //         console.log(error.response?.data);
+    //     },
+    //     onSuccess: (data: any) => {
+    //         setUserData(data?.data) 
+    //         setPathName(window.location.pathname)
+    //     }
+    // })
+
+    const { handleGetData } = useGetDataCallback()
+
+    React.useEffect(()=> { 
+        const fetchData = async () => {
+            const request: any = await handleGetData("/users/profile")  
+
+            setUserData(request?.data) 
+            console.log(request?.data); 
+        } 
+        setPathName(window.location.pathname)  
+
+
+        if(token) {        
+            // call the function
+            fetchData()
+
+            // make sure to catch any error
+            .catch(console.error);;
         }
-    })
 
-
-    // React.useEffect(()=> { 
-    //     const fetchData = async () => {
-    //         const request: any = await handleGetData("/users/profile")  
-
-    //         setUserData(request?.data) 
-    //         console.log(request?.data); 
-    //     } 
-    //     setPathName(window.location.pathname)  
-
-    //     // call the function
-    //     fetchData()
-
-    //     // make sure to catch any error
-    //     .catch(console.error);;
-    // }, [])  
+    }, [])  
 
     const LogOut = () => {
         localStorage.clear()
@@ -171,4 +179,5 @@ export default function Navbar({ hide, dashboard, settings }: props) {
             </div>
         </div>
     )
-}
+} 
+
