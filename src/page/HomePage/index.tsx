@@ -10,9 +10,7 @@ import SellCryptoPage from '../SellCryptoPage'
 import { Helmet } from "react-helmet";
 
 export default function HomePage() {
-
-
-
+    
     return (
         <div className=' w-full h-screen relative overflow-x-hidden   ' >
             <Helmet>
