@@ -30,7 +30,7 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
     const [bankName, setBankName] = React.useState("")
     const [searchBank, setSearchBank] = React.useState("")
     // const userContext: IUser = React.useContext(UserContext);  
-    const configValue: any = import.meta.env.VITE_APP_BANK_API_KEY 
+    const configValue: any = import.meta.env.VITE_APP_BANK_API_KEY
     // console.log(configValue); 
     const { handleGetData } = useGetDataCallback()
 
@@ -39,54 +39,54 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
         const fetchData = async () => {
             setLoading(true);
             const request: any = await handleGetData("/swap/bank-details")
- 
-            if (request?.data?.account_name) { 
-                setBankName(request?.data?.bank_name) 
-                detail(request?.data?.bank_name, request?.data?.account_number,request?.data?.bank_name )
+
+            if (request?.data?.account_name) {
+                setBankName(request?.data?.bank_name)
+                detail(request?.data?.bank_name, request?.data?.account_number, request?.data?.bank_name)
             }
 
-            fetchAllBank()
             const t1 = setTimeout(() => {
                 setLoading(false);
                 clearTimeout(t1);
             }, 1000);
         }
-        const fetchAllBank = async () => { 
+        const fetchAllBank = async () => {
             axios.get('https://api.shutterscore.io/v1/merchant/public/misc/banks?country=NG', {
                 headers: {
                     'X-API-KEY': configValue
                 }
-                }
+            }
             )
-            .then(function (response) { 
-                setDataInfo(response?.data?.data)   
-            }) 
+                .then(function (response) {
+                    setDataInfo(response?.data?.data)
+                })
         }
 
         // call the function 
 
-            fetchData()
+        fetchAllBank()
+        fetchData()
             // make sure to catch any error
-            .catch(console.error);; 
-    }, [])   
+            .catch(console.error);;
+    }, [])
 
-    React.useEffect(() => { 
+    React.useEffect(() => {
 
         setLoadingBank(true)
-        if(!loading){ 
-            if (bankName) {             
+        if (!loading) {
+            if (bankName) {
                 // if (!isLoading) {
-                    {
-                        dataInfo?.map((item: any) => {
-                            if (bankName === item?.name) {  
-                                code(item?.code)
-                            }
-                        })
-                    }
+                {
+                    dataInfo?.map((item: any) => {
+                        if (bankName === item?.name) {
+                            code(item?.code)
+                        }
+                    })
+                }
                 // }  
                 setLoadingBank(false)
-            } else { 
-    
+            } else {
+
                 setLoadingBank(false)
             }
         }
@@ -100,9 +100,9 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
 
 
     const changeHandler = (item: any) => {
-        let feedArray=item.split(","); 
+        let feedArray = item.split(",");
 
-        data(feedArray[0], feedArray[1]) 
+        data(feedArray[0], feedArray[1])
         setSearchBank(item)
     }
 

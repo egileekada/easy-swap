@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import CoinSelection from './components/CoinSelection'
 import CoinNetwork from './components/CoinNetwork'
 import Bank from './components/Bank'
@@ -31,10 +31,8 @@ export default function SellCrypto({ kyc }: props) {
     const navigate = useNavigate()
     const toast = useToast()
 
-    // React.useEffect(() => {
-    //     updateCrypto({} as any)
-    // }, []) 
 
+    const endHeight: any = useRef(null)
     const [loading, setLoading] = React.useState(false)
     const [loadingRate, setLoadingRate] = React.useState(false)
     const [loadingBank, setLoadingBank] = React.useState(false)
@@ -67,7 +65,16 @@ export default function SellCrypto({ kyc }: props) {
         formik.setFieldValue("phone_number", userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
         // formik.setFieldValue("network", network)
+        
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
+
+
+
+    React.useEffect(() => {
+        
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
+    }, [bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
     React.useEffect(() => {
         const exchangeRate = async () => {
@@ -107,7 +114,7 @@ export default function SellCrypto({ kyc }: props) {
             }
             setAccountName(request?.data?.account_name)
             setLoadingBank(false)
-        } 
+        }
         if (AcountNumber?.length === 10 && bankCode) {
             fetchData()
         }
@@ -152,7 +159,7 @@ export default function SellCrypto({ kyc }: props) {
                     position: "top",
                     status: "success",
                     isClosable: true,
-                }) 
+                })
                 setTnxData(request?.data)
                 const t1 = setTimeout(() => {
                     setLoading(false);
@@ -184,12 +191,14 @@ export default function SellCrypto({ kyc }: props) {
             setValue(val)
             updateCrypto({ ...data, "coin_amount_to_swap": val })
         }
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const BankHandler = (item: any, code: any) => {
         updateCrypto({ ...data, "bank_acc_name": item, "bank_code": code })
         setBankName(item)
         setBankCode(code)
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const BankDetailHandler = (item: any, numb: any, name: any) => {
@@ -197,39 +206,49 @@ export default function SellCrypto({ kyc }: props) {
         setBankName(item)
         setAccountName(name)
         setAcountNumber(numb)
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const GetAmount = (item: any) => {
         setValue(item.target.value)
-        updateCrypto({ ...data, "coin_amount_to_swap": item.target.value })
+        updateCrypto({ ...data, "coin_amount_to_swap": item.target.value }) 
     }
 
     const ChangeNetwork = (item: any) => {
         setNetwork(item)
 
         formik.setFieldValue("network", coinName === "Bitcoin" ? "Bitcoin" : item)
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const ChangeAccountNumber = (item: any) => {
         updateCrypto({ ...data, "bank_acc_number": item })
         setAcountNumber(item)
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const ChangePhoneNumber = (item: any) => {
         updateCrypto({ ...data, "phone_number": item })
         formik.setFieldValue("phone_number", item)
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
     const ChangeBankCode = (item: any) => {
         formik.setFieldValue("bank_code", item)
         setBankCode(item)
         updateCrypto({ ...data, "bank_code": item })
+        endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
-    const [open, setOpen] = React.useState(false)      
+    const [open, setOpen] = React.useState(false)
+
+    // const scrollToBottom = () => {
+    //     const element: any = document.getElementById("end");
+    //     element.scrollTop = element.scrollHeight;
+    // }
 
     return (
-        <div className=' w-full flex flex-col items-center font-medium ' >
+        <div id='end' className=' w-full flex flex-col items-center font-medium ' >
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                 <CoinSelection data={CoinName} />
@@ -327,6 +346,8 @@ export default function SellCrypto({ kyc }: props) {
                     <ButtonComponent onClick={() => setOpen(false)} name={"Try Again"} bgcolor={' text-[#F1F1F1] text-base bg-[#303179] mt-4  '} />
                 </div>
             </ModalLayout>
+
+            <div ref={endHeight} />
         </div>
     )
 }
