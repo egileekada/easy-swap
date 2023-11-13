@@ -163,7 +163,7 @@ export default function SellCrypto({ kyc }: props) {
                 setTnxData(request?.data)
                 const t1 = setTimeout(() => {
                     setLoading(false);
-                    navigate("/dashboard/tnxinfo")
+                    navigate("/tnxinfo")
                     // next(true)
                     clearTimeout(t1);
                 }, 1000);

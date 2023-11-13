@@ -114,7 +114,7 @@ export default function TransactionComponent() {
 
     const infoHandler = (item: any) => {
         setTnxData(item)
-        navigate("/dashboard/tnxinfo")
+        navigate("/tnxinfo") 
     } 
 
     return (

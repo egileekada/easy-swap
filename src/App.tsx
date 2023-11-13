@@ -39,12 +39,14 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />} >
           <Route index element={<Dashboard />} />
           <Route path="/dashboard/sellcrypto" element={<SellCryptoPage />} />
-          <Route path="/dashboard/tnxinfo" element={<PaymentDetails />} />
           <Route path="/dashboard/banks" element={<BankPage />} />
           <Route path="/dashboard/transactionshistory" element={<Dashboard />} />
           <Route path="/dashboard/support" element={<DisputePage />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/verification" element={<Verification />} />
+        </Route>
+        <Route path="/tnxinfo" element={<DashboardLayout />} >
+          <Route index element={<PaymentDetails />} />
         </Route>
       </Route>
     )
