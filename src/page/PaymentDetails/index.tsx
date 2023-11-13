@@ -62,7 +62,8 @@ export default function PaymentDetails() {
     const CancelTnxHandler = async () => {
         setLoading(true)
         const request = await handlTnxStatus(JSON.stringify({
-            "transaction_status": "FAILED"
+            "transaction_status": "CANCELLED", 
+            "payout_status": "CANCELLED"
         }), tnxinfo?.id)
 
         if (request?.status === 202) {
