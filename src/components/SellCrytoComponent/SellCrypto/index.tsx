@@ -65,16 +65,16 @@ export default function SellCrypto({ kyc }: props) {
         formik.setFieldValue("phone_number", userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
         // formik.setFieldValue("network", network)
-        
-        endHeight.current?.scrollIntoView({ behavior: "smooth" })
+
+        // endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
 
 
-    React.useEffect(() => {
-        
-        endHeight.current?.scrollIntoView({ behavior: "smooth" })
-    }, [bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
+    // React.useEffect(() => {
+
+    //     endHeight.current?.scrollIntoView({ behavior: "smooth" })
+    // }, [bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
 
     React.useEffect(() => {
         const exchangeRate = async () => {
@@ -211,7 +211,7 @@ export default function SellCrypto({ kyc }: props) {
 
     const GetAmount = (item: any) => {
         setValue(item.target.value)
-        updateCrypto({ ...data, "coin_amount_to_swap": item.target.value }) 
+        updateCrypto({ ...data, "coin_amount_to_swap": item.target.value })
     }
 
     const ChangeNetwork = (item: any) => {
@@ -235,8 +235,10 @@ export default function SellCrypto({ kyc }: props) {
 
     const ChangeBankCode = (item: any) => {
         formik.setFieldValue("bank_code", item)
-        setBankCode(item)
-        updateCrypto({ ...data, "bank_code": item })
+        setAccountName('')
+        setBankCode(item) 
+        setAcountNumber("")
+        updateCrypto({ ...data, "bank_acc_number": "" , "bank_code": item })
         endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
 
@@ -252,7 +254,7 @@ export default function SellCrypto({ kyc }: props) {
             <p className=' text-[#757575] font-medium text-lg ' >To swap your Crypto to Naira, select your coin to proceed.</p>
             <div className=' w-full mt-10 flex flex-col gap-4 pb-8 ' >
                 <CoinSelection data={CoinName} />
-                {coinName && (
+                {/* {coinName && ( */}
                     <div className=' w-full ' >
                         <p className=' font-normal text-[#334155] mb-2 ' >Amount of asset you want to sell</p>
                         <div className=' w-full mb-1 relative flex ' >
@@ -263,61 +265,54 @@ export default function SellCrypto({ kyc }: props) {
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate ? "..." : cashFormat(exchangeRate)}</p>
                         </div>
                     </div>
-                )}
-                {(formik.values.coin_amount_to_swap) && (
-                    <>
-                        <CoinNetwork data={ChangeNetwork} network={network} />
-                        {formik.values.network !== "ERC20" && (
-                            <Bank data={BankHandler} detail={BankDetailHandler} holder={bankName} code={ChangeBankCode} />
-                        )}
-                    </>
-                )}
-                {formik.values.network !== "ERC20" && formik.values.coin_amount_to_swap && (bankCode || accountName) && (
-                    <div className=' w-full ' >
-                        <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
-                        <div className=' w-full   ' >
-                            <Input value={AcountNumber} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} placeholder='Enter Account Number' onChange={(e) => ChangeAccountNumber(e.target.value)} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
-                        </div>
-                        <div className=' flex gap-2 lg:gap-3 font-normal mt-2 text-[#303179] text-sm ' >
-                            <div className=' w-fit mt-[1px] ' >
-                                <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="warning">
-                                        <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179" />
-                                        <g id="Group 12">
-                                            <g id="Path">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70" />
-                                                <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </g>
-                                            <g id="Path_2">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70" />
-                                                <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                            </g>
+                {/* // )} */}
+                {/* {(formik.values.coin_amount_to_swap) && ( */}
+                <>
+                    <CoinNetwork data={ChangeNetwork} network={network} /> 
+                        <Bank data={BankHandler} detail={BankDetailHandler} holder={bankName} code={ChangeBankCode} /> 
+                </>
+
+                <div className=' w-full ' >
+                    <p className=' font-normal text-[#334155] mb-2 ' >Bank account number</p>
+                    <div className=' w-full   ' >
+                        <Input value={AcountNumber} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} placeholder='Enter Account Number' onChange={(e) => ChangeAccountNumber(e.target.value)} height="45px" type='number' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
+                    </div>
+                    <div className=' flex gap-2 lg:gap-3 font-normal mt-2 text-[#303179] text-sm ' >
+                        <div className=' w-fit mt-[1px] ' >
+                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g id="warning">
+                                    <circle id="Oval" cx="8" cy="8.99316" r="8" fill="#303179" />
+                                    <g id="Group 12">
+                                        <g id="Path">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72372 6.08789V8.81516V6.08789Z" fill="#362A70" />
+                                            <path d="M7.72372 6.08789V8.81516" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                        </g>
+                                        <g id="Path_2">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72359 12.2967V12.5171V12.2967Z" fill="#362A70" />
+                                            <path d="M7.72359 12.2967V12.5171" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                                         </g>
                                     </g>
-                                </svg>
-                            </div>
-                            The name on your account must match the name provided on your BVN and Ezyswap account
+                                </g>
+                            </svg>
                         </div>
-                        {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
-                            <>
-                                {accountName &&
-                                    <p className=' mt-2 font-bold  ' >{accountName}</p>
-                                }
-                            </>
-                        }
+                        The name on your account must match the name provided on your BVN and Ezyswap account
                     </div>
-                )}
-                {formik.values.network !== "ERC20" && accountName && formik.values.coin_amount_to_swap && formik.values.bank_acc_number && (
-                    <div className=' w-full ' >
-                        <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
-                        <div className=' w-full   ' >
-                            <Input value={formik.values.phone_number} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e) => ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
-                        </div>
-                        {((formik.values?.phone_number + "").length > 9) && (
-                            <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
-                        )}
+                    {loadingBank ? <p className=' mt-2 font-bold  ' >Loading</p> :
+                        <>
+                            {accountName &&
+                                <p className=' mt-2 font-bold  ' >{accountName}</p>
+                            }
+                        </>
+                    }
+                </div>
+                <div className=' w-full ' >
+                    <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
+                    <div className=' w-full   ' >
+                        <Input value={formik.values.phone_number} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e) => ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
                     </div>
-                )}
+                    <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
+
+                </div>
             </div>
             <ModalLayout open={open} size={"md"} close={setOpen} >
                 <div className=' w-full bg-white p-6 pb-[35px] pt-[40px] ' >
@@ -347,7 +342,7 @@ export default function SellCrypto({ kyc }: props) {
                 </div>
             </ModalLayout>
 
-            <div ref={endHeight} />
+            {/* <div ref={endHeight} /> */}
         </div>
     )
 }
