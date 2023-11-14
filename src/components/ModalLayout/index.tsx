@@ -12,8 +12,6 @@ type props = {
 
 export default function ModalLayout({open, close, children, size, bg, rounded}: props) { 
     
-    // const [size, setSize] = React.useState("md") 
-
     return (
         <Modal onClose={close} scrollBehavior="outside" size={size ? size : "md"} isOpen={open} isCentered>
             <ModalOverlay />
