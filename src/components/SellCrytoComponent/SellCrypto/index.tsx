@@ -163,7 +163,7 @@ export default function SellCrypto({ kyc }: props) {
                 setTnxData(request?.data)
                 const t1 = setTimeout(() => {
                     setLoading(false);
-                    navigate("/dashboard/tnxinfo")
+                    navigate("/tnxinfo")
                     // next(true)
                     clearTimeout(t1);
                 }, 1000);
@@ -195,7 +195,11 @@ export default function SellCrypto({ kyc }: props) {
     }
 
     const BankHandler = (item: any, code: any) => {
-        updateCrypto({ ...data, "bank_acc_name": item, "bank_code": code })
+        updateCrypto({ ...data, "bank_acc_name": item, "bank_code": code, "bank_acc_number": ""  })
+
+        setAccountName('')
+        setBankCode(item) 
+        setAcountNumber("") 
         setBankName(item)
         setBankCode(code)
         endHeight.current?.scrollIntoView({ behavior: "smooth" })
@@ -234,13 +238,20 @@ export default function SellCrypto({ kyc }: props) {
     }
 
     const ChangeBankCode = (item: any) => {
-        formik.setFieldValue("bank_code", item)
-        setAccountName('')
-        setBankCode(item) 
-        setAcountNumber("")
-        updateCrypto({ ...data, "bank_acc_number": "" , "bank_code": item })
+        formik.setFieldValue("bank_code", item) 
+        setBankCode(item)  
+        updateCrypto({ ...data, "bank_code": item })
         endHeight.current?.scrollIntoView({ behavior: "smooth" })
     }
+    
+    // const SelectBankCode = (item: any) => {
+    //     formik.setFieldValue("bank_code", item)
+    //     setAccountName('')
+    //     setBankCode(item) 
+    //     setAcountNumber("")
+    //     updateCrypto({ ...data, "bank_acc_number": "" , "bank_code": item })
+    //     endHeight.current?.scrollIntoView({ behavior: "smooth" })
+    // }
 
     const [open, setOpen] = React.useState(false)
 

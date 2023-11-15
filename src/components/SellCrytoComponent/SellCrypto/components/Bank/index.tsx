@@ -14,7 +14,7 @@ interface Props {
     holder?: any,
     code?: any,
     bank?: any
-    detail?: any
+    detail?: any, 
 }
 
 export default function BankSelection({ data, holder, code, bank, detail }: Props) {
