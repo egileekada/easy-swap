@@ -4,14 +4,19 @@ import ButtonComponent from '../../components/ButtonComponent'
 import { HStack, PinInput, PinInputField, Stack, useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { useEmailVerificationCallback, useSendOtpCallback } from '../../action/useAction'
-import userdata from '../../global-state/userdata'
+// import userdata from '../../global-state/userdata'
 // import { IUser, UserContext } from '../../context/userContext'
 
 export default function VerifyEmail() {
 
 
     // global State  
-    const userinfo: any = userdata((state) => state.user)
+
+    const slug  =   localStorage.getItem('email') as string 
+    // const userinfo: any = userdata((state) => state.user)
+
+    console.log(slug);
+    
 
     const [tab, setTab] = React.useState(false) 
     const [pin, setPin] = React.useState("") 
@@ -32,7 +37,7 @@ export default function VerifyEmail() {
         setLoading(true); 
         const request: any = await handleEmailVerification(JSON.stringify({ 
             "otp": pin+"",
-            "email": userinfo?.userEmail
+            "email": slug
         })) 
 
         if (request.status === 200 || request.status === 201) {  
@@ -57,7 +62,7 @@ export default function VerifyEmail() {
         setResending(true)
 
         const request: any = await handleSendOtp(JSON.stringify({ 
-            "user_email": userinfo.userEmail
+            "user_email": slug
         })) 
 
         if (request.status === 200 || request.status === 201) {  
@@ -107,7 +112,7 @@ export default function VerifyEmail() {
             {!tab && ( 
                 <div className=' w-full lg:w-[560px] my-auto lg:text-center ' > 
                     <p className=' text-2xl lg:text-4xl font-bold lg:font-semibold text-[#1E293B]' >Verify your email address</p>
-                    <p className=' text-[#475569] mt-2 lg:text-base text-sm ' >We emailed you a five-digit code to {userinfo.userEmail} Enter the code below to confirm your email address</p>
+                    <p className=' text-[#475569] mt-2 lg:text-base text-sm ' >We emailed you a five-digit code to {slug} Enter the code below to confirm your email address</p>
                     <div className=' mt-8 w-full hidden lg:flex justify-center ' > 
                         <Stack>
                             <HStack gap="16px">

@@ -71,9 +71,10 @@ export default function RegisterPage() {
 
             if (request.status === 200 || request.status === 201) {    
                 localStorage.setItem('token', request?.data?.data?.token);   
-                localStorage.setItem('id', request?.data?.data?.user?.id); 
+                localStorage.setItem('id', request?.data?.data?.user?.id);   
+                localStorage.setItem('email',  formik.values.email); 
                 setUserData({userEmail: formik.values.email})
-                navigate("/verifyemail")
+                navigate("/verifyemail/"+formik.values.email)
                 toast({
                     title: "Registration Successful", 
                     status: 'success',  
