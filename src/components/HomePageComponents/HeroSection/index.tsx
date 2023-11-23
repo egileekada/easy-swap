@@ -4,6 +4,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';  
 import YouTube, { YouTubeProps } from 'react-youtube';
 import ModalLayout from '../../ModalLayout';
+import { Helmet } from 'react-helmet';
 
 export default function HeroSection() { 
 
@@ -38,6 +39,20 @@ export default function HeroSection() {
 
     return (
         <div className=' w-full flex justify-center bg-[#f8f8f8]  ' > 
+
+<Helmet>
+                <script type="text/javascript">{`
+                    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                    (function(){
+                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                    s1.async=true;
+                    s1.src='https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
+                    s1.charset='UTF-8';
+                    s1.setAttribute('crossorigin','*');
+                    s0.parentNode.insertBefore(s1,s0);
+                    })();`}
+                </script>
+            </Helmet>
             <div className=' bg-[#f8f8f8] lg:h-[80vh] h-full relative lg:pb-24 pb-24 py-6 lg:py-24 lg:items-center max-w-[1440px] lg:justify-center px-6 lg:px-16 flex ' >
                 <div className='   z-20 max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
                     <motion.div  ref={ref} initial={{x: 0}} animate={controls}  

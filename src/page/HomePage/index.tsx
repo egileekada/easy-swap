@@ -7,10 +7,10 @@ import OurClients from '../../components/HomePageComponents/OurClients'
 import FAQ from '../../components/HomePageComponents/FAQ'
 import Footer from '../../components/Footer'
 import SellCryptoPage from '../SellCryptoPage'
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet'
 
 export default function HomePage() {
-    
+
     return (
         <div className=' w-full h-screen relative overflow-x-hidden   ' >
             <Helmet>
