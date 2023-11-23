@@ -30,33 +30,15 @@ export default function Navbar({ hide, dashboard, settings }: props) {
     const [show, setShow] = React.useState(false)
     const [pathName, setPathName] = React.useState(window.location.pathname) 
 
-    let token = localStorage.getItem('token') as string
+    let token = localStorage.getItem('token') as string 
 
-    
-    // const { } = useQuery(["userInfo"], () => axios.get(`/users/profile`,
-    //     {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: `Bearer ${localStorage.getItem('token')}`
-    //         },
-    //     }), {
-    //     onError: (error: AxiosError<any, any>) => {
-    //         console.log(error.response?.data);
-    //     },
-    //     onSuccess: (data: any) => {
-    //         setUserData(data?.data) 
-    //         setPathName(window.location.pathname)
-    //     }
-    // })
-
-    const { handleGetData } = useGetDataCallback()
+    const { handleGetData } = useGetDataCallback() 
 
     React.useEffect(()=> { 
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")  
 
-            setUserData(request?.data) 
-            console.log(request?.data); 
+            setUserData(request?.data)  
         } 
         setPathName(window.location.pathname)  
 

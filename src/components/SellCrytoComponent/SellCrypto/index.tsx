@@ -55,19 +55,18 @@ export default function SellCrypto({ kyc }: props) {
         initialValues: { coin_amount_to_swap: '', bank_acc_name: '', bank_code: '', bank_acc_number: '', phone_number: '', coin_name: '', network: '' },
         onSubmit: () => { },
     });
-
-
+ 
     React.useEffect(() => {
-        formik.setFieldValue("coin_amount_to_swap", value)
-        formik.setFieldValue("bank_acc_name", bankName)
-        formik.setFieldValue("bank_code", bankCode)
-        formik.setFieldValue("bank_acc_number", AcountNumber)
-        formik.setFieldValue("phone_number", userinfo?.phone)
+        formik.setFieldValue("coin_amount_to_swap", data?.coin_amount_to_swap)
+        formik.setFieldValue("bank_acc_name", data?.bank_acc_name)
+        formik.setFieldValue("bank_code", data?.bank_code)
+        formik.setFieldValue("bank_acc_number", data?.bank_acc_number)
+        formik.setFieldValue("phone_number", data?.phone_number ? data?.phone_number : userinfo?.phone)
         formik.setFieldValue("coin_name", (coinName === "Bitcoin" ? "Bitcoin" : network === "BSC" ? "USDT_BSC" : network === "TRON" ? "USDT_TRON" : "USDT"))
         // formik.setFieldValue("network", network)
 
         // endHeight.current?.scrollIntoView({ behavior: "smooth" })
-    }, [value, bankName, bankCode, AcountNumber, userinfo?.phone, coinName, network])
+    }, [data?.coin_amount_to_swap, data?.bank_acc_name, data?.bank_code, data?.bank_acc_number, userinfo?.phone, coinName, network, data?.phone_number])
 
 
 

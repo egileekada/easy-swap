@@ -30,25 +30,25 @@ export default function ReasonWhySection() {
 
     return (
         <div className=' w-full py-2 lg:py-20 flex lg:px-0 px-6  flex-col items-center ' >
-            <motion.div ref={ref4} initial={{x: -200}} animate={controls}  
+            <motion.div ref={ref4} initial={{x: 0}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}> 
                 {/* <p className=' text-left text-lg font-normal ' >Here are a few reasons why you should chose Easyswap</p> */}
                 <p className=' text-[#303179] text-center font-bold text-3xl lg:text-4xl lg:max-w-2xl mt-3 ' >A Trusted and Secured Crypto Exchange Platform</p>
             </motion.div>
             <div className=' xl:w-[1366px]  lg:w-full mt-8 px-0 lg:px-14 flex lg:flex-row flex-col lg:gap-12 ' >
-                <motion.div ref={ref} initial={{x: -200}} animate={controls}  
+                <motion.div ref={ref} initial={{x: 0}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}  className=' w-full  lg:text-left ' >
                     <img src='/images/secure.png'  alt='data' className=' object-fit w-full ' />
                     <p className=' mt-8 font-bold text-lg lg:text-2xl text-[#232323] ' >Easier</p>
                     <p className=' font-normal text-[#757575] lg:text-lg mt-2 ' >We make selling crypto simple and easy to understand. Anyone can sell on Ezyswap. </p>
                 </motion.div>
-                <motion.div ref={ref2} initial={{x: -200}} animate={controls}  
+                <motion.div ref={ref2} initial={{x: 0}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }} className=' w-full lg:text-left ' >
                     <img src='/images/Personalised.png'  alt='data' className=' object-fit w-full ' />
                     <p className=' mt-8 font-bold text-lg lg:text-2xl text-[#232323] ' >Faster</p>
                     <p className=' font-normal text-[#757575] lg:text-lg mt-2 ' >Selling crypto with Ezyswap takes less than 5 minutes - Much faster than other services.</p>
                 </motion.div>
-                <motion.div ref={ref3} initial={{x: +200}} animate={controls}  
+                <motion.div ref={ref3} initial={{x: 0}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }} className=' w-full lg:text-left ' >
                     <img src='/images/data.png'  alt='data' className=' object-fit w-full ' />
                     <p className=' mt-8 font-bold text-lg lg:text-2xl text-[#232323] ' >Cheaper</p>
