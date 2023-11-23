@@ -40,7 +40,7 @@ export default function HeroSection() {
         <div className=' w-full flex justify-center bg-[#f8f8f8]  ' > 
             <div className=' bg-[#f8f8f8] lg:h-[80vh] h-full relative lg:pb-24 pb-24 py-6 lg:py-24 lg:items-center max-w-[1440px] lg:justify-center px-6 lg:px-16 flex ' >
                 <div className='   z-20 max-[1280px]:w-full flex lg:flex-row flex-col items-center ' >
-                    <motion.div  ref={ref} initial={{x: -200}} animate={controls}  
+                    <motion.div  ref={ref} initial={{x: 0}} animate={controls}  
                         transition={{ ease: "easeOut", duration: 1 }}  className=' w-full pt-8 ' >
                         <h1 className=' text-[#303179] text-3xl lg:text-5xl xl:text-6xl leading-[1.1] font-bold ' >Swap your crypto to Naira with ease.</h1>
                         <p className=' font-normal mt-4 ' >Ezyswap enables you to sell your crypto and receive Naira instantly. No waits or delays!! Sign-up today and experience the power of quick payments.</p>

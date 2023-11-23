@@ -26,7 +26,7 @@ export default function Footer() {
             <div className=' w-full bg-[#303179] flex flex-col items-center ' >
                 <div className='w-[1366px] max-[1366px]:w-full px-6 lg:px-20' >
                     <div className=' w-full pt-8 lg:pt-20 gap-6 flex lg:flex-row flex-col bg-[#303179]  ' >
-                        <motion.div ref={ref} initial={{ x: -200 }} animate={controls}
+                        <motion.div ref={ref} initial={{ x: 0}} animate={controls}
                             transition={{ ease: "easeOut", duration: 1 }} className=' w-full ' >
                             <p className=' text-2xl lg:text-4xl font-semibold lg:leading-[50px] text-[#F8FAFC] lg:max-w-[430px] ' >Your easiest way to send, spend, and earn with crypto</p>
                             <div className=' flex items-center mt-8 gap-2 ' >
@@ -46,7 +46,7 @@ export default function Footer() {
                                 <a href='https://t.me/ezyswap' className=' text-lg text-[#00BAF0] ' >Join our community</a>
                             </div>
                         </motion.div>
-                        <motion.div ref={ref} initial={{ x: +200 }} animate={controls}
+                        <motion.div ref={ref} initial={{ x: 0}} animate={controls}
                             transition={{ ease: "easeOut", duration: 1 }} className=' w-full flex flex-row lg:flex-col lg:gap-0 gap-6 lg:mt-0 mt-10  ' >
                             <div className=' w-full flex flex-col ' >
                                 <p className=' text-[#F8FAFC] font-normal ' >Learn more about Ezyswap</p>

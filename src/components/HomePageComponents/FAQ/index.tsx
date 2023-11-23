@@ -38,7 +38,7 @@ export default function FAQ() {
                 <p className=' text-lg font-normal ' >FAQs</p>
                 <p className=' font-bold text-2xl lg:text-4xl text-[#303179] mt-3  max-w-xl ' >Some questions you might already have</p> 
             </motion.div>
-            <motion.div ref={ref} initial={{x: -200}} animate={controls}  
+            <motion.div ref={ref} initial={{x: 0}} animate={controls}  
                 transition={{ ease: "easeOut", duration: 1 }} className=' w-full lg:w-[750px] flex flex-col mt-12 gap-4 ' >
                 <div className=' w-full ' > 
                     <div role='button' onClick={()=> clickHandler("one")} className=' border py-5 rounded-2xl border-[#00000033] w-full px-5 flex items-center justify-between ' >

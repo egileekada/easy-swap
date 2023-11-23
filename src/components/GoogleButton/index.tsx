@@ -3,6 +3,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useGoogleCallback } from '../../action/useAction';
 import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import buycrypto from '../../global-state/buycrypto';
 
 interface Props {
     name?: any
@@ -11,6 +12,7 @@ interface Props {
 export default function GoogleButton({ name }:Props) {
 
     const [access_token, setToken] = React.useState("")
+    const tnxinfo: any = buycrypto((state) => state.crypto)
     const {handlGoogle} = useGoogleCallback()
     const toast = useToast()
     const navigate = useNavigate()
@@ -28,7 +30,12 @@ export default function GoogleButton({ name }:Props) {
             if (responses?.status === 200 || responses?.status === 201) {    
                 localStorage.setItem('token', responses?.data?.access_token);   
                 // localStorage.setItem('id', responses?.data?.data?.user?.id); 
-                navigate("/")
+                
+                if(tnxinfo?.coin_amount_to_swap){
+                    navigate("/dashboard/sellcrypto") 
+                } else { 
+                    navigate("/")
+                }
                 toast({
                     title: "Login Successful", 
                     status: 'success',  

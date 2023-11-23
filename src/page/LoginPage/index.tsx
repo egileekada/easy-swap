@@ -8,13 +8,15 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'; 
 import { useLoginCallback } from '../../action/useAuth'
 import { useToast } from '@chakra-ui/react'
-import GoogleButton from '../../components/GoogleButton'
+import GoogleButton from '../../components/GoogleButton' 
+import buycrypto from '../../global-state/buycrypto'
 
 export default function LoginPage() {
 
     const navigate = useNavigate()
     const [loading, setLoading] = React.useState(false)
-
+ 
+    const tnxinfo: any = buycrypto((state) => state.crypto)
     const { handleLogin } = useLoginCallback()
     const toast = useToast()
      
@@ -61,8 +63,13 @@ export default function LoginPage() {
 
             if (request?.status === 200 || request?.status === 201) {    
                 localStorage.setItem('token', request?.data?.access_token);   
-                // localStorage.setItem('id', request?.data?.data?.user?.id); 
-                navigate("/")
+                // localStorage.setItem('id', request?.data?.data?.user?.id);  
+                
+                if(tnxinfo?.coin_amount_to_swap){
+                    navigate("/dashboard/sellcrypto") 
+                } else { 
+                    navigate("/")
+                }
                 toast({
                     title: "Login Successful", 
                     status: 'success',  
