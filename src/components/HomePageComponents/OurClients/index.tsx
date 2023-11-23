@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 // import { useIsOverflow } from './component/useIsOverflow';
@@ -8,7 +8,7 @@ export default function OurClients() {
     const ref: any = React.useRef(null);
     const width: any = window.innerWidth
 
-    const [size, setSize] = React.useState(false)
+    // const [size, setSize] = React.useState(false)
 
     const scroll = (scrolloffset: any) => {
         ref.current.scrollLeft += scrolloffset;
@@ -52,19 +52,19 @@ export default function OurClients() {
         window.open(item, "_blank")
     }
 
-    useEffect(() => {
-        const t1 = setTimeout(() => {
-            if(width > 600){
-                scroll(500)
-            } else { 
-                scroll(width)
-            }
-            setSize((prev) => !prev)
-        }, 5000);
-        return () => {
-            clearTimeout(t1);
-        }
-    }, [size])
+    // useEffect(() => {
+    //     const t1 = setTimeout(() => {
+    //         if(width > 600){
+    //             scroll(500)
+    //         } else { 
+    //             scroll(width)
+    //         }
+    //         setSize((prev) => !prev)
+    //     }, 5000);
+    //     return () => {
+    //         clearTimeout(t1);
+    //     }
+    // }, [size])
 
     return (
         <div className=' w-full py-6 pb-20 lg:py-20 flex flex-col text-center items-center bg-[#F0F0F0] px-0 lg:px-14 ' >
@@ -237,7 +237,7 @@ export default function OurClients() {
                         <div className={` w-[100px] `} ></div>
                     </div>
                 </div>
-                {/* <div className=' w-full hidden lg:flex pt-12 lg:pb-0 pb-8 justify-center items-center ' >
+                <div className=' w-full hidden lg:flex pt-12 lg:pb-0 pb-8 justify-center items-center ' >
                     <div onClick={()=> scroll(-400)} role="button" style={{boxShadow: "0px 15.829999923706055px 10.670000076293945px 0px #0000001F"}} className=' w-[59px] h-[59px] bg-white flex justify-center items-center rounded-full ' >
                         <svg className=' rotate-180 ' width="16" height="30" viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.91509 28.5009L15.5518 15.8617C15.6899 15.7112 15.788 15.5482 15.846 15.3727C15.904 15.1971 15.9325 15.0091 15.9316 14.8084C15.9316 14.6078 15.9026 14.4197 15.8446 14.2442C15.7866 14.0686 15.689 13.9056 15.5518 13.7552L3.91509 1.07839C3.59281 0.727302 3.18996 0.551758 2.70653 0.551758C2.22311 0.551758 1.80875 0.739841 1.46345 1.11601C1.11814 1.49217 0.945492 1.93103 0.945492 2.43259C0.945492 2.93414 1.11814 3.373 1.46345 3.74917L11.6153 14.8084L1.46345 25.8677C1.14116 26.2188 0.980021 26.6516 0.980021 27.1662C0.980021 27.6808 1.15267 28.1257 1.49798 28.5009C1.84328 28.877 2.24613 29.0651 2.70653 29.0651C3.16694 29.0651 3.56979 28.877 3.91509 28.5009Z" fill="#303179"/>
@@ -249,7 +249,7 @@ export default function OurClients() {
                             <path d="M3.91509 28.5009L15.5518 15.8617C15.6899 15.7112 15.788 15.5482 15.846 15.3727C15.904 15.1971 15.9325 15.0091 15.9316 14.8084C15.9316 14.6078 15.9026 14.4197 15.8446 14.2442C15.7866 14.0686 15.689 13.9056 15.5518 13.7552L3.91509 1.07839C3.59281 0.727302 3.18996 0.551758 2.70653 0.551758C2.22311 0.551758 1.80875 0.739841 1.46345 1.11601C1.11814 1.49217 0.945492 1.93103 0.945492 2.43259C0.945492 2.93414 1.11814 3.373 1.46345 3.74917L11.6153 14.8084L1.46345 25.8677C1.14116 26.2188 0.980021 26.6516 0.980021 27.1662C0.980021 27.6808 1.15267 28.1257 1.49798 28.5009C1.84328 28.877 2.24613 29.0651 2.70653 29.0651C3.16694 29.0651 3.56979 28.877 3.91509 28.5009Z" fill="#303179"/>
                         </svg>
                     </div>
-                </div> */}
+                </div>
             </motion.div>
         </div>
     )
