@@ -42,7 +42,7 @@ export default function OurClients() {
     // };     
 
     const handleScroll = (e: any) => {
-        const bottom = e.target.scrollWidth - ref.current.scrollLeft === e.target.clientWidth;
+        const bottom = e.target.scrollWidth - ref.current.scrollLeft <= e.target.clientWidth;
         if (bottom) { 
             scroll(-100000)
         }
@@ -75,14 +75,14 @@ export default function OurClients() {
             </motion.div>
             <motion.div ref={ref1} initial={{ x: 0 }} animate={controls}
                 transition={{ ease: "easeOut", duration: 1 }} className=' w-full scroll_event relative flex flex-col lg:pl-0 ' >
-                <div className='absolute lg:hidden left-4 h-full flex items-center justify-center ' >
+                <div className='absolute lg:hidden z-20 left-4 h-full flex items-center justify-center ' >
                     <div onClick={() => scroll(-(width + 20))} role="button" style={{ boxShadow: "0px 15.829999923706055px 10.670000076293945px 0px #0000001F" }} className=' w-[40px] h-[40px] bg-white flex justify-center items-center rounded-full ' >
                         <svg className=' rotate-180 w-[10px] ' viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.91509 28.5009L15.5518 15.8617C15.6899 15.7112 15.788 15.5482 15.846 15.3727C15.904 15.1971 15.9325 15.0091 15.9316 14.8084C15.9316 14.6078 15.9026 14.4197 15.8446 14.2442C15.7866 14.0686 15.689 13.9056 15.5518 13.7552L3.91509 1.07839C3.59281 0.727302 3.18996 0.551758 2.70653 0.551758C2.22311 0.551758 1.80875 0.739841 1.46345 1.11601C1.11814 1.49217 0.945492 1.93103 0.945492 2.43259C0.945492 2.93414 1.11814 3.373 1.46345 3.74917L11.6153 14.8084L1.46345 25.8677C1.14116 26.2188 0.980021 26.6516 0.980021 27.1662C0.980021 27.6808 1.15267 28.1257 1.49798 28.5009C1.84328 28.877 2.24613 29.0651 2.70653 29.0651C3.16694 29.0651 3.56979 28.877 3.91509 28.5009Z" fill="#303179" />
                         </svg>
                     </div>
                 </div>
-                <div className='absolute lg:hidden right-4 h-full flex items-center justify-center ' >
+                <div className='absolute lg:hidden z-20 right-4 h-full flex items-center justify-center ' >
                     <div onClick={() => scroll(width + 20)} role="button" style={{ boxShadow: "0px 15.829999923706055px 10.670000076293945px 0px #0000001F" }} className='w-[40px] h-[40px] bg-white flex justify-center items-center rounded-full ' >
                         <svg className=' w-[10px] ' viewBox="0 0 16 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.91509 28.5009L15.5518 15.8617C15.6899 15.7112 15.788 15.5482 15.846 15.3727C15.904 15.1971 15.9325 15.0091 15.9316 14.8084C15.9316 14.6078 15.9026 14.4197 15.8446 14.2442C15.7866 14.0686 15.689 13.9056 15.5518 13.7552L3.91509 1.07839C3.59281 0.727302 3.18996 0.551758 2.70653 0.551758C2.22311 0.551758 1.80875 0.739841 1.46345 1.11601C1.11814 1.49217 0.945492 1.93103 0.945492 2.43259C0.945492 2.93414 1.11814 3.373 1.46345 3.74917L11.6153 14.8084L1.46345 25.8677C1.14116 26.2188 0.980021 26.6516 0.980021 27.1662C0.980021 27.6808 1.15267 28.1257 1.49798 28.5009C1.84328 28.877 2.24613 29.0651 2.70653 29.0651C3.16694 29.0651 3.56979 28.877 3.91509 28.5009Z" fill="#303179" />
