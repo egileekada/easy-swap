@@ -6,14 +6,14 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function OurClients() {
 
-    const ref: any = React.useRef(null);
-    const width: any = window.innerWidth
+    // const ref: any = React.useRef(null);
+    // const width: any = window.innerWidth
 
-    // const [size, setSize] = React.useState(false)
+    // // const [size, setSize] = React.useState(false)
 
-    const scroll = (scrolloffset: any) => {
-        ref.current.scrollLeft += scrolloffset;
-    };
+    // const scroll = (scrolloffset: any) => {
+    //     ref.current.scrollLeft += scrolloffset;
+    // };
 
     const controls = useAnimation();
     const controls2 = useAnimation();
@@ -35,12 +35,12 @@ export default function OurClients() {
         // } 
     }, [controls, controls2, controls3, controls4, inView, inView2])
 
-    const handleScroll = (e: any) => {
-        const bottom = e.target.scrollWidth - ref.current.scrollLeft <= e.target.clientWidth;
-        if (bottom) {
-            scroll(-100000)
-        }
-    }
+    // const handleScroll = (e: any) => {
+    //     const bottom = e.target.scrollWidth - ref.current.scrollLeft <= e.target.clientWidth;
+    //     if (bottom) {
+    //         scroll(-100000)
+    //     }
+    // }
 
     const clickHandler = (item: any) => {
         window.open(item, "_blank")
