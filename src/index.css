@@ -37,3 +37,5 @@ input[type="number"] {
         font-size: 16px;
     }
 }
+
+body.hideTawkTo.widget-visible {display: none}
