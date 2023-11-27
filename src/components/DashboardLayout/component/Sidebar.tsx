@@ -27,9 +27,10 @@ export default function Sidebar({close, type}: props) {
             navigate(0)
         } else if(item === "Sell Crypto"){
             navigate("/dashboard/"+route)
-            // navigate(0)
+            navigate(0)
         }  else{ 
             navigate("/dashboard/"+route)
+            navigate(0)
         }
         if(type){
             close()

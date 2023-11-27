@@ -33,7 +33,7 @@ export default function PaymentDetails() {
 
     const clickHandler = () => {
         setOpen(false)
-        navigate("/dashboard/transactionshistory")
+        navigate("/dashboard/transactionshistory", { replace: true })
     }
 
     React.useEffect(() => {
@@ -84,7 +84,7 @@ export default function PaymentDetails() {
 
         setLoading(false)
         setOpen(false)
-        navigate("/dashboard/transactionshistory")
+        navigate("/dashboard/transactionshistory", { replace: true })
     }
 
     return (

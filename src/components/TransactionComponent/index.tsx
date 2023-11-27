@@ -282,7 +282,7 @@ export default function TransactionComponent() {
                                                     </div>
                                                     <div>
                                                         <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> {item?.coin_name}</p>
-                                                        <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {cashFormat(item?.coin_amount_to_swap, 5)} {item?.coin_name}</p>
+                                                        <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {parseFloat(item?.coin_amount_to_swap)} {item?.coin_name}</p>
                                                     </div>
                                                 </div>
                                                 <div role='button' onClick={() => setshow(index)} className=' flex flex-col ' >

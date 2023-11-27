@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react' 
+import React from 'react' 
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import Sidebar from '../DashboardLayout/component/Sidebar'
@@ -68,39 +68,8 @@ export default function Navbar({ hide, dashboard, settings }: props) {
 
     }
 
-    useEffect(() => {
-        if(pathName.includes("dashboard")){
-            var Tawk_API: any = Tawk_API || {};
-            (function () {
-                var s1 = document.createElement("script"),
-                    s0: any = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
-                s1.charset = "UTF-8";
-                s1.setAttribute("crossorigin", "*");
-                s0.parentNode.insertBefore(s1, s0);
-            })(); 
-        }
-    }, []);
-
-
     return (
         <div className=' relative w-full h-[62px] ' >
-            {/* {showChat && (
-                <Helmet>
-                    <script type="text/javascript">{`
-                    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-                    (function(){
-                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                    s1.async=true;
-                    s1.src='https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
-                    s1.charset='UTF-8';
-                    s1.setAttribute('crossorigin','*');
-                    s0.parentNode.insertBefore(s1,s0);
-                    })();`}
-                    </script>
-                </Helmet>
-            )} */}
 
             <div className=' w-full sticky z-40 top-0 h-[62px] py-2 flex items-center lg:pr-20 pr-3 px-2 lg:px-20 bg-white ' >
 
