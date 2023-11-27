@@ -22,6 +22,13 @@ export default function HomePage() {
             s1.setAttribute("crossorigin", "*");
             s0.parentNode.insertBefore(s1, s0);
         })();
+        
+        return () => {
+            console.log("Funny maan!!!!");
+            const tawkEl = document.querySelector('.widget-visible');
+            tawkEl?.remove();
+            // window.removeEventListener('beforeunload', showWarning);
+         }
     }, []);
 
     return (
