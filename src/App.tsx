@@ -18,6 +18,7 @@ import TermOfService from './page/Legal-Matters/termsofservice';
 import RegisterPage from './page/RegisterPage';
 import ResetPwdPage from './page/ResetPwdPage';
 import VerifyEmail from './page/VerifyEmail'; 
+import TransactionStatus from './page/TransactionStatus';
 
 function App() { 
   
@@ -45,6 +46,9 @@ function App() {
           <Route path="/dashboard/support" element={<DisputePage />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/verification" element={<Verification />} />
+        </Route>
+        <Route path="/tnxstatus" element={<DashboardLayout />} >
+          <Route index element={<TransactionStatus />} />
         </Route>
         <Route path="/tnxinfo" element={<DashboardLayout />} >
           <Route index element={<PaymentDetails />} />
