@@ -83,7 +83,7 @@ export default function OurClients() {
                     // showDots={true}
                     customTransition="transform 1ms linear" 
                     minimumTouchDrag={10} 
-                    transitionDuration={10}
+                    transitionDuration={50}
                     responsive={responsive} 
                     // ssr={true} // means to render carousel on server-side.
                     infinite={true}
