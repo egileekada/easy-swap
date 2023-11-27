@@ -362,6 +362,7 @@ export default function TransactionComponent() {
                                                             {item?.transaction_status === "PENDING" && (
                                                                 <ButtonComponent onClick={() => infoHandler(item)} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-8  '} />
                                                             )}
+                                                            <ButtonComponent onClick={() => setshow(-1)} name={"Close"} bgcolor={'mt-8 bg-[#F1F1F1] text-[#667085] '} />
                                                         </div>
                                                     </div>
                                                 )}

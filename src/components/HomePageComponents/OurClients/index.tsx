@@ -82,10 +82,11 @@ export default function OurClients() {
                     draggable={true}
                     // showDots={true}
                     responsive={responsive}
+                    minimumTouchDrag={0}
                     // ssr={true} // means to render carousel on server-side.
                     infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={1000}
+                    autoPlay={false}
+                    // autoPlaySpeed={1000}
                     keyBoardControl={true}
                     transitionDuration={3000}
                     containerClass="carousel-container"
