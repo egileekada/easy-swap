@@ -87,7 +87,7 @@ export default function OurClients() {
                     responsive={responsive} 
                     // ssr={true} // means to render carousel on server-side.
                     infinite={true}
-                    autoPlay={false}
+                    autoPlay={true}
                     // autoPlaySpeed={1000}
                     // keyBoardControl={true}
                     // transitionDuration={3000}
