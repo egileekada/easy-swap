@@ -83,7 +83,7 @@ export default function OurClients() {
                     // showDots={true}
                     customTransition="transform 1ms linear" 
                     minimumTouchDrag={10} 
-                    transitionDuration={1}
+                    transitionDuration={10}
                     responsive={responsive} 
                     // ssr={true} // means to render carousel on server-side.
                     infinite={true}
@@ -95,10 +95,10 @@ export default function OurClients() {
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     //   deviceType={this.props.deviceType}
                     dotListClass="custom-dot-list-style"
-                    itemClass="carousel-item-padding-40-px"
+                    itemClass=" "
                 >
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/tom__tom1/status/1661048199912607744?t=2ftfFPJLAr09JYWNnLkxXg&s=19")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full flex flex-col items-center `} >
+                    <div className=' w-full px-4 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/tom__tom1/status/1661048199912607744?t=2ftfFPJLAr09JYWNnLkxXg&s=19")} className={` py-8 lg:pr-0 lg:pl-0 max-w-full lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='/images/propic.jpg' />
@@ -122,8 +122,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Ghyfty4/status/1661051996789522447?t=gH4YZG_3-I5KJD3-UoQWRg&s=19")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Ghyfty4/status/1661051996789522447?t=gH4YZG_3-I5KJD3-UoQWRg&s=19")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1658171613991378944/Czo8AB2R_400x400.jpg' />
@@ -144,8 +144,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/geejayholufunm1/status/1661449261945442321?t=ziVSUX0EP6rpLP2MzjsMxQ&s=19")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/geejayholufunm1/status/1661449261945442321?t=ziVSUX0EP6rpLP2MzjsMxQ&s=19")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1480389641731821571/Man6s6Iw_400x400.jpg' />
@@ -166,8 +166,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Austin__Ik/status/1661268382186962945?t=K7zuKkC1bmwgPbTOka2pCw&s=19")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Austin__Ik/status/1661268382186962945?t=K7zuKkC1bmwgPbTOka2pCw&s=19")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1663851276776423424/SXPzffc-_400x400.jpg' />
@@ -188,8 +188,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/durojaiyeadeba3/status/1661248887720644608?t=k7dI_An_KoU5HA4UvfgZkw&s=19")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/durojaiyeadeba3/status/1661248887720644608?t=k7dI_An_KoU5HA4UvfgZkw&s=19")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1633505070284242944/W0Aijju6_400x400.jpg' />
@@ -210,8 +210,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Buildinghomes01/status/1662086277338996742")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/Buildinghomes01/status/1662086277338996742")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1533401758449512450/i8SeCE6g_400x400.jpg' />
@@ -232,8 +232,8 @@ export default function OurClients() {
                             </div>
                         </motion.div>
                     </div>
-                    <div className=' w-full lg:px-6  ' >
-                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/galvaninat/status/1662086188029624321")} className={` py-8 w-[full] lg:px-0 px-8 lg:w-full mx-6 flex flex-col items-center `} >
+                    <div className=' w-full px-6 lg:px-6  ' >
+                        <motion.div whileHover={{ scale: 1.05 }} role='button' onClick={() => clickHandler("https://twitter.com/galvaninat/status/1662086188029624321")} className={` py-8 max-w-full lg:pr-0 lg:pl-0  lg:w-full flex flex-col items-center `} >
                             <div className=' w-fit h-fit ' >
                                 <div style={{ filter: "drop-shadow(0px 14px 34px rgba(0, 0, 0, 0.2))" }} className=' lg:w-[130px] lg:h-[130px] w-[80px] h-[80px] rounded-full ' >
                                     <img className=' w-full h-full object-cover rounded-full ' alt='propic' src='https://pbs.twimg.com/profile_images/1635705505132732416/SmuasBEC_400x400.jpg' />
