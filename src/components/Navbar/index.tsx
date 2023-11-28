@@ -1,5 +1,4 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react' 
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, useDisclosure } from '@chakra-ui/react'
 import Sidebar from '../DashboardLayout/component/Sidebar'
@@ -8,8 +7,9 @@ import userdata from '../../global-state/userdata'
 // import { useQuery } from 'react-query'
 // import { AxiosError } from 'axios'
 import transactiondetail from '../../global-state/transactiondetail'
-import { useGetDataCallback } from '../../action/useAction'
-// import { IUser, UserContext } from '../../context/userContext'
+import { useGetDataCallback } from '../../action/useAction' 
+import { useNavigate } from 'react-router-dom'  
+// import { IUser, UserContext } from '../../context/userContext' 
 
 type props = {
     hide?: boolean,
@@ -17,54 +17,60 @@ type props = {
     settings?: boolean
 }
 
-export default function Navbar({ hide, dashboard, settings }: props) {
-
-    const navigate = useNavigate()
+export default function Navbar({ hide, dashboard, settings }: props) { 
 
     // Global State
     const userinfo: any = userdata((state) => state.user)
-    const setUserData: any = userdata((state) => state.setUserData) 
+    const setUserData: any = userdata((state) => state.setUserData)
     const setTnxData = transactiondetail((state) => state.setTnxData)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [show, setShow] = React.useState(false)
-    const [pathName, setPathName] = React.useState(window.location.pathname) 
+    const navigate = useNavigate()
+    const [pathName, setPathName] = React.useState(window.location.pathname)
 
-    let token = localStorage.getItem('token') as string 
+    let token = localStorage.getItem('token') as string
 
     const { handleGetData } = useGetDataCallback() 
 
-    React.useEffect(()=> { 
+    // useEffect(() => { 
+    //     window.location.reload();
+    // }, [useLocation().pathname]);
+    
+    React.useEffect(() => {
         const fetchData = async () => {
-            const request: any = await handleGetData("/users/profile")  
+            const request: any = await handleGetData("/users/profile")
 
-            setUserData(request?.data)  
-        } 
-        setPathName(window.location.pathname)  
+            setUserData(request?.data)
+        }
+        setPathName(window.location.pathname)
 
 
-        if(token) {        
+        if (token) {
             // call the function
             fetchData()
 
-            // make sure to catch any error
-            .catch(console.error);;
+                // make sure to catch any error
+                .catch(console.error);;
         }
 
-    }, [])  
+    }, [])
 
     const LogOut = () => {
         localStorage.clear()
-        navigate("/") 
+        navigate("/")
+
     }
 
     const clickHandler = (item: any) => {
-        navigate(item) 
+        navigate(item, { state: item })
         setTnxData({})
+
     }
 
     return (
         <div className=' relative w-full h-[62px] ' >
+
             <div className=' w-full sticky z-40 top-0 h-[62px] py-2 flex items-center lg:pr-20 pr-3 px-2 lg:px-20 bg-white ' >
 
                 <svg role='button' onClick={() => navigate("/")} className=' mr-auto lg:ml-0 ml-3 w-[130px] lg:w-[170px] ' viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +165,11 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                     </DrawerContent>
                 </Drawer>
             </div>
+
+            {/* <TawkMessengerReact
+                propertyId="property_id"
+                widgetId="default"/> */}
         </div>
     )
-} 
+}
 

@@ -1,12 +1,12 @@
 // import React from 'react'
-import { Helmet } from 'react-helmet'
+// import { Helmet } from 'react-helmet'
 import Navbar from '../../components/Navbar'
 import OtherFooter from '../../components/OtherFooter'
 
 export default function About() {
     return (
         <div className=' w-full h-screen relative overflow-x-hidden' >
-            <Helmet>
+            {/* <Helmet>
                 <script type="text/javascript">{`
                     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
                     (function(){
@@ -18,7 +18,7 @@ export default function About() {
                     s0.parentNode.insertBefore(s1,s0);
                     })();`}
                 </script>
-            </Helmet>
+            </Helmet> */}
             <Navbar />
             <div className=' w-full flex justify-center  px-6 ' > 
                 <div className=' max-w-[1240px] flex-col flex flex-1 pt-14 ' >

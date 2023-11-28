@@ -31,7 +31,6 @@ export default function SellCrypto({ kyc }: props) {
     const navigate = useNavigate()
     const toast = useToast()
 
-
     const endHeight: any = useRef(null)
     const [loading, setLoading] = React.useState(false)
     const [loadingRate, setLoadingRate] = React.useState(false)
@@ -205,7 +204,7 @@ export default function SellCrypto({ kyc }: props) {
     }
 
     const BankDetailHandler = (item: any, numb: any, name: any) => {
-        updateCrypto({ ...data, "bank_acc_name": item })
+        updateCrypto({ ...data, "bank_acc_name": item, bank_acc_number: numb })
         setBankName(item)
         setAccountName(name)
         setAcountNumber(numb)
@@ -241,23 +240,9 @@ export default function SellCrypto({ kyc }: props) {
         setBankCode(item)  
         updateCrypto({ ...data, "bank_code": item })
         endHeight.current?.scrollIntoView({ behavior: "smooth" })
-    }
-    
-    // const SelectBankCode = (item: any) => {
-    //     formik.setFieldValue("bank_code", item)
-    //     setAccountName('')
-    //     setBankCode(item) 
-    //     setAcountNumber("")
-    //     updateCrypto({ ...data, "bank_acc_number": "" , "bank_code": item })
-    //     endHeight.current?.scrollIntoView({ behavior: "smooth" })
-    // }
+    } 
 
-    const [open, setOpen] = React.useState(false)
-
-    // const scrollToBottom = () => {
-    //     const element: any = document.getElementById("end");
-    //     element.scrollTop = element.scrollHeight;
-    // }
+    const [open, setOpen] = React.useState(false) 
 
     return (
         <div id='end' className=' w-full flex flex-col items-center font-medium ' >
@@ -274,9 +259,7 @@ export default function SellCrypto({ kyc }: props) {
                         <div className=' w-full flex justify-end ' >
                             <p className=' text-xs text-[#475467] font-medium  ' >Est Price = <span className='font-semibold' >NGN</span> {loadingRate ? "..." : cashFormat(exchangeRate)}</p>
                         </div>
-                    </div>
-                {/* // )} */}
-                {/* {(formik.values.coin_amount_to_swap) && ( */}
+                    </div> 
                 <>
                     <CoinNetwork data={ChangeNetwork} network={network} /> 
                         <Bank data={BankHandler} detail={BankDetailHandler} holder={bankName} code={ChangeBankCode} /> 
@@ -317,10 +300,10 @@ export default function SellCrypto({ kyc }: props) {
                 </div>
                 <div className=' w-full ' >
                     <p className=' font-normal text-[#334155] mb-2 ' >Phone number</p>
-                    <div className=' w-full   ' >
+                    <div className=' w-full mb-8  ' >
                         <Input value={formik.values.phone_number} onFocus={(e) => e.target.addEventListener("wheel", function (e) { e.preventDefault() }, { passive: false })} onChange={(e) => ChangePhoneNumber(e.target.value)} placeholder='Enter your phone number' height="45px" type='tel' fontSize="sm" borderColor="#CBD5E1" backgroundColor="#F8FAFC" borderWidth="1px" borderRadius="4px" outline="none" focusBorderColor='#CBD5E1' />
                     </div>
-                    <ButtonComponent onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-4  '} />
+                    <ButtonComponent disable={(formik?.values?.coin_amount_to_swap && formik?.values?.bank_acc_name && formik?.values?.bank_code && formik?.values?.bank_acc_number && formik?.values?.phone_number && formik?.values?.coin_name && formik?.values?.network) ? false : true } onClick={() => submit()} name={loading ? "Loading..." : "Initialize Payment"} bgcolor={' text-[#F1F1F1] bg-[#303179] '} />
 
                 </div>
             </div>

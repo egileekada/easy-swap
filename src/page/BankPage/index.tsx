@@ -1,8 +1,7 @@
 import { TableContainer, Table, Thead, Tr, Td, Tbody, Input, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { usBankDetailsCallback, useBankDetailCallback, useGetDataCallback } from '../../action/useAction'
-import Bank from '../../components/SellCrytoComponent/SellCrypto/components/Bank'
-import { Helmet } from 'react-helmet'
+import Bank from '../../components/SellCrytoComponent/SellCrypto/components/Bank' 
 
 export default function BankPage() {
 
@@ -100,20 +99,7 @@ export default function BankPage() {
     } 
 
     return (
-        <div className=' w-full px-6 lg:px-14 ' > 
-            <Helmet>
-                <script type="text/javascript">{`
-                    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-                    (function(){
-                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                    s1.async=true;
-                    s1.src='https://embed.tawk.to/647b0a547957702c744b8a2e/1h20a0nu5';
-                    s1.charset='UTF-8';
-                    s1.setAttribute('crossorigin','*');
-                    s0.parentNode.insertBefore(s1,s0);
-                    })();`}
-                </script>
-            </Helmet>
+        <div className=' w-full px-6 lg:px-14 ' >  
             <p className=' font-semibold text-lg lg:text-2xl mb-8 mt-14 ' >Bank Information</p>
             <div className=' w-full lg:block hidden mt-6 ' >
                 <TableContainer>

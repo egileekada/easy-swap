@@ -37,10 +37,7 @@ export default function TransactionComponent() {
         const fetchData = async () => {
             setLoading(true);
             const request: any = await handleGetData("/swap/transactions")
-            setData(request?.data)
-
-            console.log(request);
-            
+            setData(request?.data) 
             const t1 = setTimeout(() => {
                 setLoading(false);
                 clearTimeout(t1);
@@ -115,6 +112,12 @@ export default function TransactionComponent() {
     const infoHandler = (item: any) => {
         setTnxData(item)
         navigate("/tnxinfo") 
+    } 
+
+
+    const StatusHandler = (item: any) => {
+        setTnxData(item)
+        navigate("/tnxstatus") 
     } 
 
     return (
@@ -276,16 +279,16 @@ export default function TransactionComponent() {
                                     {data?.map((item: any, index: number) => {
                                         return (
                                             <div key={index} className=' w-full flex justify-between ' >
-                                                <div role='button' onClick={() => setshow(index)} className=' flex gap-2 ' >
+                                                <div role='button' onClick={() => StatusHandler(item)} className=' flex gap-2 ' >
                                                     <div className=' w-[30px] h-[30px] flex justify-center items-center rounded-full ' >
                                                         <img src={item?.coin_name?.includes("USDT") ? "/images/tether.webp" : "/images/Bitcoin.png"} alt="coin" className=' w-full h-full  rounded-full ' />
                                                     </div>
                                                     <div>
                                                         <p className=' font-semibold text-[#344054] ' ><span className=' text-[#F04438] ' >Sell</span> {item?.coin_name}</p>
-                                                        <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {cashFormat(item?.coin_amount_to_swap, 5)} {item?.coin_name}</p>
+                                                        <p className=' mt-2 text-[#98A2B3] text-xs ' >Amount: {parseFloat(item?.coin_amount_to_swap)} {item?.coin_name}</p>
                                                     </div>
                                                 </div>
-                                                <div role='button' onClick={() => setshow(index)} className=' flex flex-col ' >
+                                                <div role='button' onClick={() => StatusHandler(item)} className=' flex flex-col ' >
                                                     <div className=' flex items-center justify-end gap-2 ' >
                                                         <p className={(item?.transaction_status === "FAILED" || item?.transaction_status === "CANCELLED") ? " text-xs text-[#F04438] font-semibold" : item?.transaction_status === "PENDING" ? " text-xs text-[#F29339] font-semibold" : ' text-xs text-[#12B76A] font-semibold '}>{item?.transaction_status === "FAILED" ? "Failed" : item?.transaction_status === "CANCELLED" ? "Cancelled" : item?.transaction_status === "PENDING" ? "Pending" : "Success"}</p>
                                                         <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -362,6 +365,7 @@ export default function TransactionComponent() {
                                                             {item?.transaction_status === "PENDING" && (
                                                                 <ButtonComponent onClick={() => infoHandler(item)} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] mt-8  '} />
                                                             )}
+                                                            <ButtonComponent onClick={() => setshow(-1)} name={"Close"} bgcolor={'mt-8 bg-[#F1F1F1] text-[#667085] '} />
                                                         </div>
                                                     </div>
                                                 )}

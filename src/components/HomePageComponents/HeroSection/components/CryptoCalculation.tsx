@@ -32,7 +32,7 @@ export default function CryptoCalculation() {
     const [selectCoinTicker, setSelectCoinTicker] = React.useState("USDT")
     const [selectCoin, setSelectCoin] = React.useState("Tether")
     const [coinImage, setcoinImage] = React.useState('/images/tether.webp')
-    const [network, setNetwork] = React.useState('ERC20')
+    // const [network, setNetwork] = React.useState('ERC20')
     const bitpowr_coin_ticker = [
         { 'coin_name': 'Bitcoin', 'network': 'Bitcoin', 'coin_ticker': 'BTC', image: '/images/Bitcoin.webp' }, 
         { 'coin_name': 'Tether', 'network': 'ERC20', 'coin_ticker': 'USDT', image: '/images/tether.webp' }, 
@@ -60,13 +60,15 @@ export default function CryptoCalculation() {
         setSelectCoinTicker(value)
         setSelectCoin(item)
         setIsShown(false)
-        setNetwork(net)
-        updateCrypto({ ...data, "coin_name": item, network: net })
+        console.log(net);
+        
+        // setNetwork(net)
+        updateCrypto({ ...data, "coin_name": item })
         setcoinImage(image)
     }
 
     const SubmitHandler = () => {
-        updateCrypto({ ...data, "coin_amount_to_swap": value + "", "coin_name": selectCoin, network: network })
+        updateCrypto({ ...data, "coin_amount_to_swap": value + "", "coin_name": selectCoin })
         if (userinfo?.email) {
             navigate("/dashboard/sellcrypto")
         } else {

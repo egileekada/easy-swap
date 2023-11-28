@@ -17,9 +17,11 @@ import Policy from './page/Legal-Matters/policy';
 import TermOfService from './page/Legal-Matters/termsofservice';
 import RegisterPage from './page/RegisterPage';
 import ResetPwdPage from './page/ResetPwdPage';
-import VerifyEmail from './page/VerifyEmail';
+import VerifyEmail from './page/VerifyEmail'; 
+import TransactionStatus from './page/TransactionStatus';
 
-function App() {
+function App() { 
+  
 
   const router = createBrowserRouter(
     // I used the App as the home path to be changed when the homepage is created
@@ -45,6 +47,9 @@ function App() {
           <Route path="/dashboard/settings" element={<Settings />} />
           <Route path="/dashboard/verification" element={<Verification />} />
         </Route>
+        <Route path="/tnxstatus" element={<DashboardLayout />} >
+          <Route index element={<TransactionStatus />} />
+        </Route>
         <Route path="/tnxinfo" element={<DashboardLayout />} >
           <Route index element={<PaymentDetails />} />
         </Route>
@@ -53,7 +58,7 @@ function App() {
   );
 
   return (
-    <GoogleAuthProvider>
+    <GoogleAuthProvider> 
       <RouterProvider router={router} />
     </GoogleAuthProvider>
   )
