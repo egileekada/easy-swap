@@ -2,6 +2,8 @@ import React from "react";
 // import { useGoogleLogin } from "react-use-googlelogin";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+const liveUrl = import.meta.env.VITE_GOOGLE_API_KEY
+
 const GoogleAuthContext = React.createContext({} as any);
 
 export const GoogleAuthProvider = (props: any) => {
@@ -12,7 +14,7 @@ export const GoogleAuthProvider = (props: any) => {
   
 
   return ( 
-    <GoogleOAuthProvider clientId="802643163548-8um3vi6jea67go2j5kib1bt7l5ji0mv4.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId={liveUrl}>
       {props.children}
     </GoogleOAuthProvider>
   );
