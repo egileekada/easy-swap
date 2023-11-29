@@ -1,12 +1,14 @@
 
 import { BASEURL } from '../BasicUrl/Url';
 
+const liveUrl = import.meta.env.VITE_GOOGLE_API_KEY
+
 function getGoogleOAuthURL() {
     const rootUrl = "https://accounts.google.com/o/oauth2/v2/auth";
     
     const options = {
       redirect_uri: BASEURL.URL+"/users/google-auth",
-      client_id: "727859404694-0c3ti1r9ndvqk6f2tq817lsbvas8aqt4.apps.googleusercontent.com",
+      client_id: liveUrl,
       access_type: "offline",
       response_type: "code",
       prompt: "consent",
