@@ -107,6 +107,7 @@ export default function SellCrypto({ kyc }: props) {
                     title: ("Incorrect Acount Details"),
                     position: "top",
                     status: "error",
+                    duration: 1500,
                     isClosable: true,
                 })
             }
@@ -146,6 +147,7 @@ export default function SellCrypto({ kyc }: props) {
                 title: ("Please Enter Your Bank Information"),
                 position: "top",
                 status: "error",
+                duration: 1500,
                 isClosable: true,
             })
         } else {
@@ -156,6 +158,7 @@ export default function SellCrypto({ kyc }: props) {
                     title: "Order Successful",
                     position: "top",
                     status: "success",
+                    duration: 1500,
                     isClosable: true,
                 })
                 setTnxData(request?.data)
@@ -170,6 +173,7 @@ export default function SellCrypto({ kyc }: props) {
                     title: (request?.data?.error?.details[0] ? request?.data?.error?.details[0] : "Error Occured"),
                     position: "top",
                     status: "error",
+                    duration: 1500,
                     isClosable: true,
                 })
                 setLoading(false)
