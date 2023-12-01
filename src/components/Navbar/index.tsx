@@ -22,7 +22,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
     // Global State
     const userinfo: any = userdata((state) => state.user)
     const setUserData: any = userdata((state) => state.setUserData)
-    const setTnxData = transactiondetail((state) => state.setTnxData)
+    const setTnxData = transactiondetail((state) => state.setTnxData) 
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [show, setShow] = React.useState(false)
@@ -87,7 +87,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                     <>
                         {!dashboard && (
                             <>
-                                {!userinfo?.email && (
+                                {(!token) && (
                                     <div className=' flex items-center h-full ml-auto text-sm gap-4 ' >
                                         <button onClick={() => clickHandler("/signin")} className=' text-[#303179] lg:block hidden font-bold px-5 h-full ' >Log In</button>
                                         <button onClick={() => clickHandler("/signup")} className=' bg-[#303179] lg:block hidden text-white h-full font-bold px-5 rounded-lg ' >Sign Up</button>
@@ -97,7 +97,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                         )}
                     </>
                 )}
-                {userinfo?.email && (
+                {(token) && (
                     <div className=' hidden relative lg:flex items-center h-full ml-auto text-sm gap-2 ' >
                         <div role='button' onClick={() => navigate("/dashboard/settings")} className=' w-[40px] h-[40px] rounded-full  ' >
                             <img className=' w-full h-full rounded-full ' src={userinfo.photo ? userinfo.photo : "/images/person.webp"} alt='image' />
@@ -106,7 +106,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                             <div className=' flex items-center ' >
                                 <div>
                                     <p className=' font-medium text-base ' >{userinfo?.fullname}</p>
-                                    <p className=' font-normal -mt-1 text-sm ' >{userinfo?.email.length < 12 ? userinfo?.email : userinfo?.email?.slice(0, 12) + "..."}</p>
+                                    <p className=' font-normal -mt-1 text-sm ' >{userinfo?.email?.length < 12 ? userinfo?.email : userinfo?.email?.slice(0, 12) + "..."}</p>
                                 </div>
                                 <div className=' ml-5 '>
                                     <HamburgerIcon onClick={() => onOpen()} role='button' boxSize="25px" />
@@ -117,7 +117,7 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                             <div role='button' className=' flex items-center ' >
                                 <div>
                                     <p className=' font-medium text-base ' >{userinfo?.fullname}</p>
-                                    <p className=' font-normal -mt-1 text-sm ' >{userinfo?.email.length < 12 ? userinfo?.email : userinfo?.email?.slice(0, 12) + "..."}</p>
+                                    <p className=' font-normal -mt-1 text-sm ' >{userinfo?.email?.length < 12 ? userinfo?.email : userinfo?.email?.slice(0, 12) + "..."}</p>
                                 </div>
                                 {!settings && (
                                     <div className=' ml-5 '>
@@ -138,13 +138,13 @@ export default function Navbar({ hide, dashboard, settings }: props) {
                     </div>
                 )}
 
-                {!userinfo?.email && (
+                {(!token) && (
                     <button onClick={() => clickHandler("/signin")} className=' px-3 bg-[#303179] text-xs font-semibold text-white rounded-lg lg:hidden h-[35px] ' >
                         Get Started
                     </button>
                 )}
 
-                {userinfo?.email && (
+                {(token) && (
                     <div className=' ml-auto lg:hidden '>
                         <HamburgerIcon onClick={() => onOpen()} role='button' boxSize="25px" />
                     </div>

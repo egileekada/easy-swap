@@ -49,6 +49,7 @@ export default function PaymentDetails() {
                     title: ("Incorrect Acount Details"),
                     position: "top",
                     status: "error",
+                    duration: 1500,
                     isClosable: true,
                 })
             }
@@ -70,14 +71,16 @@ export default function PaymentDetails() {
             toast({
                 title: 'Your Transaction Has Been Cancelled Successfully  ',
                 status: 'success',
-                duration: 3000,
+                duration: 1500,
+                isClosable: true,
                 position: "top"
             })
         } else {
             toast({
                 title: 'Error Occured',
-                status: 'success',
-                duration: 3000,
+                status: 'error',
+                duration: 1500,
+                isClosable: true,
                 position: "top"
             })
         }

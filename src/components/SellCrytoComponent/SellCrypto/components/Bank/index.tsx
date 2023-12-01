@@ -7,6 +7,7 @@ import React from 'react'
 // import buycrypto from '../../../../../global-state/buycrypto';
 // import { useQuery } from 'react-query';
 import { useGetDataCallback } from '../../../../../action/useAction';
+import ModalLayout from '../../../../ModalLayout';
 
 interface Props {
     rate?: boolean,
@@ -14,7 +15,7 @@ interface Props {
     holder?: any,
     code?: any,
     bank?: any
-    detail?: any, 
+    detail?: any,
 }
 
 export default function BankSelection({ data, holder, code, bank, detail }: Props) {
@@ -116,7 +117,7 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
     const BankList = () => {
         return (
             <>
-                <div className=' w-full flex font-medium py-6  flex-col gap-5 overflow-y-auto lg:max-h-64 px-8 ' >
+                <div className=' w-full flex font-medium my-6 flex-1 flex-col gap-5 overflow-y-auto px-8 ' >
                     {dataInfo?.filter((item: any) => item?.name.toLocaleLowerCase()?.includes(searchBank.toLocaleLowerCase()))?.map((item: any, index: number) => {
                         return (
                             <div key={index} role="button" onClick={() => clickHandler(item?.name, item?.code)} className=' w-full flex items-center gap-3 ' >
@@ -171,10 +172,9 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
             {isLoading && (
                 <p>Loading...</p>
             )}
-            {showModal && (
+            {/* {showModal && (
                 <>
                     <div className=' w-full fixed z-50 inset-0 justify-center items-center h-full flex lg:px-4 flex-col '  >
-
                         <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' lg:mt-4 z-[200] lg:h-auto h-full bg-white flex flex-col w-full lg:w-[500px] lg:mb-20 lg:rounded-lg pt-4 ' >
                             <div className=' w-full flex px-5 items-center justify-between ' >
                                 <p className='font-bold text-lg ' >Select Bank</p>
@@ -192,11 +192,16 @@ export default function BankSelection({ data, holder, code, bank, detail }: Prop
                         </div>
                         <div className=' fixed z-[100] inset-0 bg-opacity-20 bg-black ' onClick={() => setShowModal(false)} />
                     </div>
-                    {/* <div className=' w-full absolute z-20 hidden h-full lg:flex flex-col items-end '  > 
-                        <BankList />
-                    </div> */}
                 </>
-            )}
+            )} */}
+            <ModalLayout open={showModal} close={setShowModal} title={"Select Bank"} size={["full", "full", "md"]} >
+                <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' bg-white flex flex-col w-full h-full relative ' >
+                    <div className=' w-full px-5 sticky top-0 z-[300] py-3 bg-white ' >
+                        <Input placeholder='Search' onChange={(e) => changeHandler(e.target.value)} type='text' />
+                    </div>
+                    <BankList />
+                </div>
+            </ModalLayout>
         </div>
     )
 }

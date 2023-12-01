@@ -97,7 +97,7 @@ export default function TransactionStatus() {
                         {tnxinfo?.transaction_status === "PENDING" && (
                             <ButtonComponent onClick={() => infoHandler()} name={"View Transaction"} bgcolor={' text-[#F1F1F1] bg-[#303179] '} />
                         )}
-                        <ButtonComponent onClick={() => navigate("/dashboard/transactionshistory")} name={"Close"} bgcolor={'bg-[#F1F1F1] text-[#667085] '} />
+                        <ButtonComponent onClick={() => navigate("/dashboard/transactionshistory")} name={"Close"} bgcolor={' text-[#F1F1F1] bg-[#303179] '} />
                     </div>
                 </>
             )}
