@@ -40,8 +40,11 @@ export default function Navbar({ hide, dashboard, settings }: props) {
     React.useEffect(() => {
         const fetchData = async () => {
             const request: any = await handleGetData("/users/profile")
-
-            setUserData(request?.data)
+            if(request?.data?.email){
+                setUserData(request?.data)
+            } else {
+                localStorage.clear()
+            }
         }
         setPathName(window.location.pathname)
 
