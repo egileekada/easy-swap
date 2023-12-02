@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import ButtonComponent from '../ButtonComponent'
 import userdata from '../../global-state/userdata'
 import transactiondetail from '../../global-state/transactiondetail'
+import ModalLayout from '../ModalLayout'
 
 export default function TransactionComponent() {
 
@@ -29,7 +30,8 @@ export default function TransactionComponent() {
     const [data, setData] = React.useState([] as any)
 
     const [payload, setPayload] = React.useState({} as any)
-    const [startendDate, setstartendDate] = React.useState(["YYYY-MM-DD"] as any)
+    const [payloadMobile, setPayloadMobile] = React.useState({} as any)
+    const [startendDate, setstartendDate] = React.useState([] as any)
     const nav = useNavigate()
 
     React.useEffect(() => {
@@ -37,7 +39,7 @@ export default function TransactionComponent() {
         const fetchData = async () => {
             setLoading(true);
             const request: any = await handleGetData("/swap/transactions")
-            setData(request?.data) 
+            setData(request?.data)
             const t1 = setTimeout(() => {
                 setLoading(false);
                 clearTimeout(t1);
@@ -45,7 +47,7 @@ export default function TransactionComponent() {
         }
 
         const clickHandler = async () => {
-            const request: any = await handlSortTnx(payload) 
+            const request: any = await handlSortTnx(payload)
             setData(request?.data)
         }
 
@@ -74,23 +76,32 @@ export default function TransactionComponent() {
 
 
     const clickHandlerDate = async () => {
-        setShowModalTnx(false)
+        const newArr = { ...payloadMobile }
+        // console.log(newArr);
+
+        setPayload(newArr)
         setShowModal(false)
-        const request: any = await handlSortTnx(
-            { start_date_end_date: startendDate }
-        )
-
-        if (request?.status === 200 || request?.status === 201) {
-            setData(request?.data)
-        } else {
-            setData([])
-        }
-
-    }
+    } 
 
     const clearHandler = () => {
         setPayload({} as any)
         nav(0)
+    }
+
+    const changeHandlerMobile = (item: any, name: any, index?: any) => {
+
+        let newArr = [...startendDate]
+        if (name === "Date") {
+            setPayloadMobile({ ...payloadMobile, date: item.target.value })
+        } else if (name === "Range") {
+
+            newArr[index] = item
+            setstartendDate(newArr)
+        } else if (name === "Assets") {
+            setPayloadMobile({ ...payloadMobile, coin_name: item.target.value })
+        } else if (name === "Status") {
+            setPayloadMobile({ ...payloadMobile, trans_status: item.target.value })
+        }
     }
 
     const changeHandler = (item: any, name: any, index?: any) => {
@@ -109,16 +120,33 @@ export default function TransactionComponent() {
         }
     }
 
+    const clickHandlerDateRange = async () => {
+        setShowModalTnx(false)
+        setShowModal(false)
+        const request: any = await handlSortTnx(
+            { start_date_end_date: startendDate }
+        )
+
+        if (request?.status === 200 || request?.status === 201) {
+            setData(request?.data)
+        } else {
+            setData([])
+        }
+
+        setPayload({} as any)
+
+    }
+
     const infoHandler = (item: any) => {
         setTnxData(item)
-        navigate("/tnxinfo") 
-    } 
+        navigate("/tnxinfo")
+    }
 
 
     const StatusHandler = (item: any) => {
         setTnxData(item)
-        navigate("/tnxstatus") 
-    } 
+        navigate("/tnxstatus")
+    }
 
     return (
         <div className=' w-full  ' >
@@ -227,7 +255,7 @@ export default function TransactionComponent() {
                                                             <CopyButtton text={item?.coin_address} type={true} />
                                                         </Td>
                                                         <Td>
-                                                            {item?.trans_hash && ( 
+                                                            {item?.trans_hash && (
                                                                 <CopyButtton text={item?.trans_hash} type={true} />
                                                             )}
                                                         </Td>
@@ -236,11 +264,11 @@ export default function TransactionComponent() {
                                                                 <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#AEE9D1] rounded-[10px] ' >
                                                                     PayOut Successful
                                                                 </div>
-                                                            ) :(item?.transaction_status === "CANCELLED")? (
+                                                            ) : (item?.transaction_status === "CANCELLED") ? (
                                                                 <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                     Cancelled
                                                                 </div>
-                                                            ) :( item?.transaction_status === "FAILED")? (
+                                                            ) : (item?.transaction_status === "FAILED") ? (
                                                                 <div className=' font-semibold text-sm py-2 px-4 w-fit bg-[#FED3D1] rounded-[10px] ' >
                                                                     Failed
                                                                 </div>
@@ -313,14 +341,14 @@ export default function TransactionComponent() {
                                                                         <circle cx="31.25" cy="31.25" r="31.25" fill="#FECDCA" />
                                                                         <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#F04438" stroke="#F97066" stroke-linecap="round" stroke-linejoin="round" />
                                                                         <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    </svg> 
-                                                                ):( item?.transaction_status === "PENDING") ? (
+                                                                    </svg>
+                                                                ) : (item?.transaction_status === "PENDING") ? (
                                                                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <circle cx="31.25" cy="31.25" r="31.25" fill="#F7CB73" />
                                                                         <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#F29339" stroke="#F29339" stroke-linecap="round" stroke-linejoin="round" />
                                                                         <path d="M26.293 31.2501L29.8326 34.7897L36.9119 27.7104" stroke="white" stroke-width="2.33333" stroke-linecap="round" stroke-linejoin="round" />
-                                                                    </svg> 
-                                                                )  : (
+                                                                    </svg>
+                                                                ) : (
                                                                     <svg width="63" height="63" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                         <circle cx="31.25" cy="31.25" r="31.25" fill="#BFE5D0" />
                                                                         <path d="M31.2469 17.0913L34.9658 19.8041L39.5691 19.7954L40.9832 24.176L44.7124 26.8747L43.2816 31.2499L44.7124 35.6251L40.9832 38.3237L39.5691 42.7044L34.9658 42.6957L31.2469 45.4085L27.5279 42.6957L22.9247 42.7044L21.5105 38.3237L17.7812 35.6251L19.2121 31.2499L17.7812 26.8747L21.5105 24.176L22.9247 19.7954L27.5279 19.8041L31.2469 17.0913Z" fill="#40B274" stroke="#009845" stroke-linecap="round" stroke-linejoin="round" />
@@ -392,97 +420,109 @@ export default function TransactionComponent() {
                 <div className=' w-full flex justify-center pt-6 font-semibold lg:text-xl ' >
                     <p>Loading...</p>
                 </div>
-            )}
+            )} 
 
-            {showModalTnx && (
-                <>
-                    <div className=' w-full fixed z-20 h-full px-4 inset-0 flex justify-center items-center flex-col '  >
-                        <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' mt-4 z-[200] lg:w-[591px] md:w-[591px] bg-white w-full rounded-lg px-5 py-6 '>
-                            <div className=' w-full flex items-center justify-between ' >
-                                <p className='font-bold text-2xl ' >Customize time range</p>
-                                <button onClick={() => setShowModalTnx(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <p className=' text-sm font-normal ' >Select your time range within 3 months.</p>
-                            <div className=' w-full pt-7 flex items-center ' >
-                                <div className=' w-full ' >
-                                    <p className=' text-[#334155] text-sm font-semibold ' >Start time</p>
-                                    <div className=' flex gap-3 mt-2 items-center ' >
-                                        <Input onChange={(e) => changeHandler(e.target.value, "Range", 0)} type='date' fontSize="sm" />
-                                    </div>
-                                </div>
-                                <p className=' mx-4 font-semibold text-sm ' >to</p>
-                                <div className=' w-full ' >
-                                    <p className=' text-[#334155] text-sm font-semibold ' >End time</p>
-                                    <div className=' flex gap-3 mt-2 items-center ' >
-                                        <Input onChange={(e) => changeHandler(e.target.value, "Range", 1)} type='date' fontSize="sm" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button onClick={() => clickHandlerDate()} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-4 font-bold  ' >Confirm</button>
-                        </div>
-                        <div className=' fixed z-10 inset-0 lg:bg-black lg:bg-opacity-20 bg-opacity-40 bg-black ' onClick={() => setShowModalTnx(false)} />
+            <ModalLayout open={showModalTnx} close={setShowModalTnx} >
+                <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' mt-4 z-[200] lg:w-[591px] md:w-[591px] bg-white w-full rounded-lg px-5 py-6 '>
+                    <div className=' w-full flex items-center justify-between ' >
+                        <p className='font-bold text-2xl ' >Customize time range</p>
+                        <button onClick={() => setShowModalTnx(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
                     </div>
-                </>
-            )}
-            {showModal && (
-                <>
-                    <div className=' w-full fixed z-20 h-full px-4 inset-0 flex justify-center items-center flex-col '  >
-                        <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' mt-4 z-[200] lg:w-[500px] md:w-[500px] bg-white w-full rounded-lg px-5 py-4 ' >
-                            <div className=' w-full flex items-center justify-between ' >
-                                <p className='font-bold text-lg ' >Filter</p>
-                                <button onClick={() => setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
+                    <p className=' text-sm font-normal ' >Select your time range within 3 months.</p>
+                    <div className=' w-full pt-7 flex items-center ' >
+                        <div className=' w-full ' >
+                            <p className=' text-[#334155] text-sm font-semibold ' >Start time</p>
+                            <div className=' flex gap-3 mt-2 items-center ' >
+                                <Input onChange={(e) => changeHandler(e.target.value, "Range", 0)} type='date' fontSize="sm" />
                             </div>
-                            <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Status</p>
-                            <Select value={payload?.trans_status} placeholder='All' onChange={(e) => changeHandler(e, "Status")} fontSize="sm" backgroundColor="white" >
-                                <option value={"FAILED"} >CANCELLED</option>
-                                <option>PENDING</option>
-                                <option>SUCCESS</option>
-                            </Select>
-                            <div className=' w-full flex gap-4 items-center ' >
-                                <div className=' w-full ' >
-                                    <p className=' text-[#475467] font-semibold mt-5 ' >Start Date</p>
-                                    <div className=' flex gap-3 mt-2 items-center ' >
-                                        <Input onChange={(e) => changeHandler(e, "Date")} type='date' fontSize="sm" />
-                                    </div>
-                                </div>
-                                <div className='  w-full '>
-                                    <p className=' text-[#475467] font-semibold mt-5 ' >End Date</p>
-                                    <div className=' flex gap-3 mt-2 items-center ' >
-                                        <Input onChange={(e) => changeHandler(e, "Date")} type='date' fontSize="sm" />
-                                    </div>
-                                </div>
+                        </div>
+                        <p className=' mx-4 font-semibold text-sm ' >to</p>
+                        <div className=' w-full ' >
+                            <p className=' text-[#334155] text-sm font-semibold ' >End time</p>
+                            <div className=' flex gap-3 mt-2 items-center ' >
+                                <Input onChange={(e) => changeHandler(e.target.value, "Range", 1)} type='date' fontSize="sm" />
                             </div>
-                            <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p>
-                            <Select placeholder='All' value={payload?.coin_name} onChange={(e) => changeHandler(e, "Assets")} fontSize="sm" backgroundColor="white"  >
-                                <option>BTC</option>
-                                <option value={"USDT"} >USDT(ERC-20)</option>
-                                <option value={"USDT_BSC"} >USDT(BEP- 20)</option>
-                                <option value={"USDT_TRON"}>USDT(TRC- 20)</option>
-                            </Select>
-                            {(payload?.coin_name || payload?.trans_status || payload?.date) && (
+                        </div>
+                    </div>
+                    <button onClick={() => clickHandlerDateRange()} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-4 font-bold  ' >Confirm</button>
+                </div>
+            </ModalLayout>
+            <ModalLayout open={showModal} close={setShowModal} title='Filter' >
+                <div style={{ boxShadow: "0px 6px 56px rgba(0, 0, 0, 0.09)" }} className=' w-full bg-white rounded-lg px-5 py-4 ' >
+                    {/* <div className=' w-full flex items-center justify-between ' >
+                        <p className='font-bold text-lg ' >Filter</p>
+                        <button onClick={() => setShowModal(false)} className=' bg-[#EFEFFE] w-[32px] h-[32px] rounded-full flex justify-center items-center ' >
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div> */}
+                    <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Status</p>
+                    <Select value={payload?.trans_status} placeholder='All' onChange={(e) => changeHandlerMobile(e, "Status")} fontSize="sm" backgroundColor="white" >
+                        <option value={"FAILED"} >CANCELLED</option>
+                        <option>PENDING</option>
+                        <option>SUCCESS</option>
+                    </Select>
+                    <div className=' w-full flex gap-4 items-center ' >
+                        <div className=' w-full ' >
+                            <p className=' text-[#475467] font-semibold mt-5 ' >Date</p>
+                            <div className=' flex gap-3 mt-2 items-center ' >
+                                <Input onChange={(e) => changeHandlerMobile(e, "Date")} type='date' fontSize="sm" />
+                            </div>
+                        </div>
+                    </div>
+                    <p className=' text-[#475467] font-semibold mt-5 mb-2 ' >Assets</p>
+                    <Select placeholder='All' value={payload?.coin_name} onChange={(e) => changeHandlerMobile(e, "Assets")} fontSize="sm" backgroundColor="white"  >
+                        <option>BTC</option>
+                        <option value={"USDT"} >USDT(ERC-20)</option>
+                        <option value={"USDT_BSC"} >USDT(BEP- 20)</option>
+                        <option value={"USDT_TRON"}>USDT(TRC- 20)</option>
+                    </Select>
 
-                                <button onClick={() => clearHandler()} className=' border bg-white border-[#303179] mt-5 text-[#303179] rounded-md w-full text-sm py-3 font-bold  ' >Clear All</button>
-                                // <svg role='button' onClick={()=> clearHandler()} className=' absolute -right-12 top-12 ' width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                //     <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                //     <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                                // </svg>
-                            )}
-                            <button onClick={() => clickHandlerDate()} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                    <p className=' text-[#475467] font-semibold mt-5 ' >Date Range</p>
+                    <div className=' w-full pt-5 gap-4 flex items-center ' >
+                        <div className=' w-full ' >
+                            <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >{startendDate[0] !== "YYYY-MM-DD" ? "Start Date" : "Date"}</p>
+                            <div className=' w-full flex items-center ' >
+                                <div role='button' onClick={() => setShowModalTnx(true)} className=' w-full h-[40px] rounded-md border bg-white flex items-center px-4 text-sm ' >
+                                    {startendDate[0] !== "YYYY-MM-DD" ? startendDate[0] : "YYYY-MM-DD"}
+                                </div>
+                            </div>
                         </div>
-                        <div className=' fixed z-10 inset-0 lg:bg-transparent lg:bg-opacity-0 bg-opacity-20 bg-black ' onClick={() => setShowModal(false)} />
+                        {startendDate[1] && (
+                            <div className=' w-full ' >
+                                <p className=' text-[#647488] lg:text-base text-sm font-normal mb-2 ' >End Date</p>
+                                <div className=' w-full flex items-center ' >
+                                    <div role='button' onClick={() => setShowModalTnx(true)} className=' w-full h-[40px] rounded-md border bg-white flex items-center px-4 text-sm ' >
+                                        {startendDate[1] ? startendDate[1] : "YYYY-MM-DD"}
+                                    </div>
+                                    {startendDate[0] !== "YYYY-MM-DD" && (
+                                        <svg role='button' className=' ml-2  ' onClick={() => setstartendDate(["YYYY-MM-DD"])} width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </>
-            )}
+                    {(payload?.coin_name || payload?.trans_status || payload?.date) && (
+
+                        <button onClick={() => clearHandler()} className=' border bg-white border-[#303179] mt-5 text-[#303179] rounded-md w-full text-sm py-3 font-bold  ' >Clear All</button>
+                        // <svg role='button' onClick={()=> clearHandler()} className=' absolute -right-12 top-12 ' width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        //     <path d="M10.2677 1.7334L1.73438 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        //     <path d="M1.73438 1.7334L10.2677 10.2667" stroke="#303179" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        // </svg>
+                    )}
+                    <button onClick={() => clickHandlerDate()} className=' bg-[#303179] mt-8 text-[#fff] rounded-md w-full text-sm py-3 font-bold  ' >Confirm</button>
+                </div>
+            </ModalLayout>
         </div>
     )
 }
