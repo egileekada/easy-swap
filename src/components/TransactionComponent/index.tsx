@@ -243,7 +243,7 @@ export default function TransactionComponent() {
                                 <>
                                     {data?.length > 0 && (
                                         <>
-                                            {data.map((item: any, index: number) => {
+                                            {data?.map((item: any, index: number) => {
                                                 return (
                                                     <Tr key={index} style={{ boxShadow: "inset 0px -1px 0px #E1E3E5" }} className=' text-[14px] bg-white text-[#202223] font-Inter-Regular border-t  ' >
                                                         <Td className=' cursor-pointer ' onClick={() => infoHandler(item)}  >{dateFormat(item?.updated_at)}</Td>
