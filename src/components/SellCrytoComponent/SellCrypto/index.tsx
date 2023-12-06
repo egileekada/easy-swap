@@ -29,8 +29,7 @@ export default function SellCrypto({ kyc }: props) {
     const setTnxData = transactiondetail((state) => state.setTnxData)
 
     const navigate = useNavigate()
-    const toast = useToast()
-
+    const toast = useToast() 
     const endHeight: any = useRef(null)
     const [loading, setLoading] = React.useState(false)
     const [loadingRate, setLoadingRate] = React.useState(false)
@@ -160,6 +159,9 @@ export default function SellCrypto({ kyc }: props) {
                     status: "success",
                     duration: 1500,
                     isClosable: true,
+                })
+                updateCrypto({
+                    "coin_name": "Tether"
                 })
                 setTnxData(request?.data)
                 const t1 = setTimeout(() => {

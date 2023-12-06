@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import userdata from '../../../global-state/userdata';
+import buycrypto from '../../../global-state/buycrypto';
 // import { UserContext, IUser } from '../../../context/userContext';
 
 type props = {
@@ -11,10 +12,12 @@ type props = {
 export default function Sidebar({close, type}: props) {
 
     const userinfo: any = userdata((state) => state.user)
+    const setUserData: any = userdata((state) => state.setUserData)
 
     const navigate = useNavigate()
     const menu =["Home", "Sell Crypto", "Transactions History", "Banks", "Support", "Verification", "Settings", "Log out"]
 
+    const updateCrypto = buycrypto((state) => state.updateCrypto)
     const [active, setActive] = React.useState("")
 
     const clickHandler =(item: any)=>{
@@ -23,6 +26,10 @@ export default function Sidebar({close, type}: props) {
             navigate("/")
         } else if(item === "Log out"){
             localStorage.clear()
+            updateCrypto({
+                "coin_name": "Tether"
+            })
+            setUserData({})
             navigate("/") 
         } else if(item === "Sell Crypto"){
             navigate("/dashboard/"+route) 

@@ -7,9 +7,9 @@ import OurClients from '../../components/HomePageComponents/OurClients'
 import FAQ from '../../components/HomePageComponents/FAQ'
 import Footer from '../../components/Footer'
 import SellCryptoPage from '../SellCryptoPage' 
-import { useEffect } from 'react'
+import { useEffect } from 'react' 
 
-export default function HomePage() { 
+export default function HomePage() {  
 
     useEffect(() => {
         var Tawk_API: any = Tawk_API || {};
@@ -30,6 +30,7 @@ export default function HomePage() {
             // window.removeEventListener('beforeunload', showWarning);
          }
     }, []);
+    
 
     return (
         <div className=' w-full h-screen relative overflow-x-hidden   ' >
